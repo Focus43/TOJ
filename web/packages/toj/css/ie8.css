@@ -1,0 +1,6 @@
+#introLinks ul.unstyled li a {
+    background: transparent;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000,endColorstr=#CC000000)"; /* IE8 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000,endColorstr=#CC000000);   /* IE6 & 7 */
+    zoom: 1;
+}
