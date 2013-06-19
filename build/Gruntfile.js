@@ -5,13 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    //banner: '/*! <%= pkg.title || pkg.name %>-<%= pkg.customer %> - v<%= pkg.version %> - ' +
-    //  '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-    //  '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-    //  '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-    //  ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    banner: '/*! <%= pkg.project %> - Deploy v: <%= pkg.version %>\n' +
-        '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+    banner: '/*! <%= pkg.project %> - Deploy v: <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd") %>)\n' +
         'Author: <%= pkg.author.name %> (<%= pkg.author.url %>) */\n',
     filename: '<%= pkg.name %>',
     // Task configuration.
@@ -21,14 +15,14 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['../web/concrete/js/ccm.base.js'],
-        dest: '../web/js/<%= filename %>.js'
+        src: ['../web/concrete/js/ccm.base.js', '../web/packages/toj/js/libs/bootstrap.min.js', '../web/packages/toj/js/toj.app.js'],
+        dest: '../web/packages/toj/js/<%= filename %>.dev.js'
       }
     },
     strip: {
       main : {
         src : '<%= concat.dist.dest %>',
-        dest : '../web/js/<%= filename %>.min.js'
+        dest : '../web/packages/toj/js/<%= filename %>.min.js'
       }
     },
     uglify: {
@@ -83,40 +77,16 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       lib_test: {
-        src: ['web/packages/toj/js/**/*.js', 'test/**/*.js']
+        src: ['../web/packages/toj/js/**/*.js'] // , 'test/**/*.js'
       }
     },
-    qunit: {
-      files: ['test/**/*.html']
-    },
     sass: {
-      dev: {
-        options: {
-          style: 'expanded',
-          debugInfo: false
-        },
-        files: {
-          'web/css/<%= filename %>-dev.css': 'web/css/manifest.scss'
-        }
-      },
       build: {
         options: {
           style: 'compressed'
         },
         files: {
-          'web/css/<%= filename %>.min.css': 'web/css/manifest.scss'
-        }
-      }
-    },
-    yuidoc: {
-      compile: {
-        name: 'Base Docs',
-        description: 'Documentation for the Base Implementation',
-        version: '<%= pkg.version %>',
-        url: '<%= pkg.repository.url %>',
-        options: {
-          paths: 'dist/assets/js',
-          outdir: 'docs'
+            '../web/packages/toj/css/<%= filename %>.min.css': '../web/packages/toj/css/manifest.scss'
         }
       }
     },
@@ -130,7 +100,7 @@ module.exports = function(grunt) {
         tasks: ['default']
       },
       sassy_pants: {
-        files: 'web/packages/**/*.scss',
+        files: '../web/packages/**/*.scss',
         tasks: ['sass:build', 'bump']
       }
     }
@@ -142,13 +112,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  //grunt.loadNpmTasks('grunt-contrib-yuidoc');
   grunt.loadNpmTasks('grunt-strip');
   grunt.loadNpmTasks('grunt-bump');
 
   // Default task.
-  grunt.registerTask('default', ['concat', 'sass:dev', 'bump']);
-  grunt.registerTask('build', ['jshint', 'concat', 'strip', 'uglify', 'sass:build', 'bump:minor']);
+  grunt.registerTask('default', ['concat', 'sass:build', 'bump']);
+  //grunt.registerTask('build', ['jshint', 'concat', 'strip', 'uglify', 'sass:build', 'bump:minor']);
+  grunt.registerTask('build', ['concat', 'strip', 'uglify', 'sass:build', 'bump:minor']);
   grunt.registerTask('release', ['jshint', 'concat', 'strip', 'uglify', 'sass:build', 'bump:major']);
 
 };

@@ -4,7 +4,9 @@
 	 * PAGODABOX PRODUCTION SETTINGS
 	 */
 	if( isset($_SERVER['PAGODA_PRODUCTION']) && ((bool) $_SERVER['PAGODA_PRODUCTION'] === true) ) {
-		
+
+        define('DEPLOYMENT_STATUS_PRODUCTION', true);
+
 		// enable all url rewriting
 		define('URL_REWRITING_ALL', true);
 		

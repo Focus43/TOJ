@@ -82,7 +82,7 @@
         protected function _includeThemeAssets(){
             // header and CSS items
             $this->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
-            $this->addHeaderItem( $this->getHelper('html')->css('toj-app.min.css') );
+            $this->addHeaderItem( $this->getHelper('html')->css('toj-app.min.css', self::PACKAGE_HANDLE) );
             $this->addHeaderItem( $this->getHelper('html')->javascript('libs/modernizr.min.js', self::PACKAGE_HANDLE) );
 
             //$this->addHeaderItem( $this->getHelper('html')->css('bootstrap.min.css', self::PACKAGE_HANDLE) );
@@ -90,9 +90,9 @@
             //$this->addHeaderItem( $this->getHelper('html')->css('base.toj.css', self::PACKAGE_HANDLE) );
             
             if( DEPLOYMENT_STATUS_PRODUCTION === true ){
-                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.min.js')) );
+                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.min.js', self::PACKAGE_HANDLE)) );
             }else{
-                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.js')) );
+                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.dev.js', self::PACKAGE_HANDLE)) );
             }
             
             // ie8 stylesheet
