@@ -96,9 +96,9 @@
             }
             
             // ie8 stylesheet
-            $ie8 = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->";
-            $ie8 = "<!--[if lt IE 8]>\n" . $this->getHelper('html')->css('font-awesome-ie7.min.css', self::PACKAGE_HANDLE) . "\n<![endif]-->";
-            $this->addHeaderItem( $ie8 );
+            $ieShim = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
+            $ieShim .= "<!--[if lt IE 8]>\n" . $this->getHelper('html')->css('font-awesome-ie7.min.css', self::PACKAGE_HANDLE) . "\n<![endif]-->";
+            $this->addHeaderItem( $ieShim );
             
             // footer stuff (usually javascript)
             //$this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('libs/bootstrap.min.js', self::PACKAGE_HANDLE)) );
