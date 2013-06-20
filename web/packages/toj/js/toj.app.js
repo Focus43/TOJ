@@ -82,6 +82,26 @@
                     responsiveSidebars();
                 });
             }
+
+
+            /**
+             * Popovers and tooltips
+             */
+            $document.popover({
+                animation: false,
+                selector: '.showPopover',
+                trigger: 'hover',
+                placement: function(){
+                    return this.$element.attr('data-placement') || 'top';
+                },
+                container: 'body'
+            }).tooltip({
+                animation: false,
+                selector: '.showTooltip',
+                trigger: 'hover focus',
+                placement: 'top',
+                container: 'body'
+            });
             
             
             /**

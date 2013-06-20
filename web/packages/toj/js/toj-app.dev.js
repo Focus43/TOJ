@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 0.2.1 (2013-06-19)
+/*! Town Of Jackson - Deploy v: 0.3.147 (2013-06-20)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -177,6 +177,26 @@ ccm_disableLinks = function() {
                     responsiveSidebars();
                 });
             }
+
+
+            /**
+             * Popovers and tooltips
+             */
+            $document.popover({
+                animation: false,
+                selector: '.showPopover',
+                trigger: 'hover',
+                placement: function(){
+                    return this.$element.attr('data-placement') || 'top';
+                },
+                container: 'body'
+            }).tooltip({
+                animation: false,
+                selector: '.showTooltip',
+                trigger: 'hover focus',
+                placement: 'top',
+                container: 'body'
+            });
             
             
             /**
