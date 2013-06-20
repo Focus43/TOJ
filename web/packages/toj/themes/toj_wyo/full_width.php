@@ -48,7 +48,7 @@
                         </div>
                         <div class="row-fluid">
                             <div class="span12">
-                                <h1>Government Agency Listings</h1>
+                                <h1><?php echo Page::getCurrentPage()->getCollectionName(); ?> <small class="visible-desktop"><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small></h1>
                             </div>
                         </div>
                         <div class="row-fluid">
