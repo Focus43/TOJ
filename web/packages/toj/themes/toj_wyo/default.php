@@ -30,44 +30,21 @@
         <div id="cMiddle" class="fullHeight">
             <div id="biggieSmalls" class="backStretch hidden-phone" data-background="<?php echo $backgroundImage; ?>"></div>
             <?php Loader::packageElement('partials/primary_navigation', 'toj', array('c' => $c)); ?>
-
             <div id="cPrimary">
                 <div id="cPrimaryInner">
                     <div class="container-fluid">
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <ul id="breadcrumbs" class="unstyled clearfix">
-                                    <li><a>Home</a></li>
-                                    <li><a>Government</a></li>
-                                    <li style="background:none;"><a>Agency Listing</a></li>
-                                    <li class="hidden-phone" style="float:right;font-size:1.4em;padding-top:.4em;">
-                                        <i class="icon-facebook-sign"></i><i class="icon-twitter-sign"></i><i class="icon-google-plus-sign"></i>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <h1><?php echo Page::getCurrentPage()->getCollectionName(); ?> <small class="visible-desktop"><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small></h1>
-                            </div>
-                        </div>
+                        <?php Loader::packageElement('partials/landing_page_subheader', 'toj'); ?>
                         <div class="row-fluid">
                             <div class="span3">
                                 <div class="well" style="padding:8px 0;">
-                                    <ul class="nav nav-list">
-                                        <li class="nav-header">Government</li>
-                                        <li class="active"><a>Mayor &amp; Town Council</a></li>
-                                        <li><a>Boards &amp; Committees</a></li>
-                                        <li><a>Department Listings</a></li>
-                                        <li><a>Development Regulations &amp; Comprehensive Plan</a></li>
-                                        <li><a>Job Opportunities</a></li>
-                                        <li><a>Meeting Minutes</a></li>
-                                        <li><a>Meeting Agenda</a></li>
-                                        <li><a>Municipal Court</a></li>
-                                        <li><a>Municipal Code</a></li>
-                                        <li><a>Open Bids &amp; RFPs</a></li>
-                                        <li><a>Ordinances &amp; Resolutions</a></li>
-                                    </ul>
+                                    <?php
+                                        $bt = BlockType::getByHandle('autonav');
+                                        $bt->controller->orderBy 					= 'display_asc';
+                                        $bt->controller->displayPages 				= 'second_level';
+                                        $bt->controller->displaySubPages 			= 'none';
+                                        $bt->controller->displaySubPageLevels 		= 'enough';
+                                        $bt->render('templates/sidebar');
+                                    ?>
                                 </div>
                                 <?php $a = new Area('Sidebar Content'); $a->display($c); ?>
                             </div>

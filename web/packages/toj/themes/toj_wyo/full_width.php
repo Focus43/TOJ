@@ -30,27 +30,10 @@
         <div id="cMiddle" class="fullHeight">
             <div id="biggieSmalls" class="backStretch hidden-phone" data-background="<?php echo $backgroundImage; ?>"></div>
             <?php Loader::packageElement('partials/primary_navigation', 'toj', array('c' => $c)); ?>
-
             <div id="cPrimary">
                 <div id="cPrimaryInner">
                     <div class="container-fluid">
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <ul id="breadcrumbs" class="unstyled clearfix">
-                                    <li><a>Home</a></li>
-                                    <li><a>Government</a></li>
-                                    <li style="background:none;"><a>Agency Listing</a></li>
-                                    <li class="hidden-phone" style="float:right;font-size:1.4em;padding-top:.4em;">
-                                        <i class="icon-facebook-sign"></i><i class="icon-twitter-sign"></i><i class="icon-google-plus-sign"></i>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <h1><?php echo Page::getCurrentPage()->getCollectionName(); ?> <small class="visible-desktop"><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small></h1>
-                            </div>
-                        </div>
+                        <?php Loader::packageElement('partials/landing_page_subheader', 'toj'); ?>
                         <div class="row-fluid">
                             <div class="span12">
                                 <?php $a = new Area('Page Content'); $a->display($c); ?>

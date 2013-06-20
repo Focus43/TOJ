@@ -16,10 +16,10 @@ a:hover {text-decoration:none;}
 #pageWrap {}
 
 #cLeft, #cRight {color:#fff;display:none;position:fixed;top:0;bottom:0; overflow-y:auto;}
-  #cLeft {left:0;}
-  #cRight {right:0;}
+  #cLeft {left:0; @include boxShadow(inset -20px 0 20px -20px #000);}
+  #cRight {right:0; @include boxShadow(inset 20px 0 20px -20px #000);}
   #cRight .inner, #cLeft .inner {font-size:13px;padding:15px;}
-  #cMiddle {z-index:1; @include boxShadow(0 0 20px #000);}
+  #cMiddle {z-index:1;}
   /* show animated loading icon while data-load attribute is present */
   #cLeft[data-load], #cRight[data-load] {background:transparent url(#{$tojImages}loading.gif) no-repeat 50% 50%;}
 
@@ -32,13 +32,13 @@ a:hover {text-decoration:none;}
 #primaryNav .btn.btn-navbar span {display:inline-block;}
 #primaryNavList {}
 #primaryNavList li a.level-1 {color:#fff;position:relative;z-index:3;border:1px solid transparent;border-top:0;border-bottom:0;}
-#primaryNavList li:hover a.level-1 {color:#333;background:#e9e9e9;text-shadow:none;border-left-color:#000;border-right-color:#000;}
-#primaryNavList li .subMenu {color:#333;display:none;position:absolute;top:100%;left:0;right:0;padding:15px;border:1px solid #333;border-top:0; @include rounded(0, 0, 3px, 3px); @include boxShadow(0 2px 6px rgba(0,0,0,.45)); }
+#primaryNavList li:hover a.level-1 {color:#333;background:#f4f4f4;text-shadow:none;border-left-color:#000;border-right-color:#000;}
+#primaryNavList li .subMenu {color:#333;display:none;position:absolute;top:100%;left:0;right:0;padding:15px;border:1px solid #333;border-top:0; @include rounded(0, 0, 6px, 6px); @include boxShadow(0 2px 12px rgba(0,0,0,.45)); }
 #primaryNavList li:hover .subMenu {display:block;}
 #primaryNavList li .subMenu .container-fluid {padding:0;}
-#primaryNavList li .subMenu .container-fluid ul.unstyled {position:relative;margin-left:-.6em;}
+#primaryNavList li .subMenu .container-fluid ul.unstyled {position:relative;}
 #primaryNavList li .subMenu .container-fluid ul.unstyled li a {padding:.4em .6em;display:block;border:0;background:transparent;text-transform:capitalize;}
-#primaryNavList li .subMenu .container-fluid ul.unstyled li:hover a {background:#d9d9d9; @include rounded(5px); @include boxShadow(inset 0 0 4px rgba(0,0,0,.5));}
+#primaryNavList li .subMenu .container-fluid ul.unstyled li:hover a {background:#f2f2f2; @include rounded(5px); @include boxShadow(inset 0 0 4px rgba(0,0,0,.5));}
 
 
 /* LEFT COLUMN */
@@ -63,16 +63,17 @@ body.landing #biggieSmalls {position:fixed;top:0;right:0;bottom:0;left:0;}
 body.landing #cPrimary {min-height:100%;position:relative;margin:0 30px;max-width:1170px;z-index:2;}
 body.landing #cPrimaryInner {padding:60px 0 320px;}
 body.landing #cPrimaryInner .container-fluid {overflow:hidden;background:rgba(255,255,255,.9);padding-bottom:2em; -webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px; -webkit-box-shadow:0 0 3px rgba(0,0,0,.75);-moz-box-shadow:0 0 3px rgba(0,0,0,.75);box-shadow:0 0 3px rgba(0,0,0,.75);}
-body.landing #cMiddle h1 small {display:inline !important;}
-body.landing #breadcrumbs {line-height:1em;letter-spacing:1px;font-size:12px;font-weight:200;font-family:'helvetica neue', arial, sans-serif;margin:0 -20px;border-bottom:1px solid #ddd;background:#e9e9e9;}
+body.landing #breadcrumbs {text-transform:capitalize;line-height:1em;letter-spacing:1px;font-size:12px;font-weight:200;font-family:'helvetica neue', arial, sans-serif;margin:0 -20px;border-bottom:1px solid #ddd;background:#e9e9e9;}
+body.landing #breadcrumbs ul.nav.unstyled {margin:0;}
 body.landing #breadcrumbs li {display:inline-block;float:left;padding-right:12px;background:url('/packages/toj/images/breadcrumb-arrow@2x.png') no-repeat 100% 50%;background-size:11px 35px;}
-body.landing #breadcrumbs li a {display:block;padding:.6em 1.2em .5em;}
+body.landing #breadcrumbs li a {display:block;padding:.7em 1.2em .5em;}
+body.landing #breadcrumbs li.current {font-weight:bold;}
 body.landing #breadcrumbs li:last-child {background:none;}
 body.landing #breadcrumbs li:first-child a {padding-left:20px;}
+body.landing #breadcrumbs a.hidden-phone {display:block;padding:.2em .3em;font-size:1.9em;}
+body.landing #breadcrumbs a.hidden-phone i {margin-left:4px;}
 body.landing #cPrimaryInner h1 {font-weight:300;color:#777;margin:0 -20px 20px;padding:.3em 0 .4em 20px;background:#f1f1f1;border-top:1px solid #f9f9f9;border-bottom:1px solid #ddd;text-shadow:0 1px 0 #fff;}
 body.landing #cPrimaryInner ul.nav.nav-list li a {display:block;padding-top:.4em;padding-bottom:.4em;}
-body.landing #footer {}
-body.landing #footer .content {box-shadow:0 0 20px #000;}
 
 
 /* MAIN SCREEN ON THE HOMEPAGE */
@@ -96,7 +97,7 @@ body.landing #footer .content {box-shadow:0 0 20px #000;}
   /* LINK BUTTONS */
   #introLinks ul.unstyled {text-align:center;}
   #introLinks ul.unstyled li {display:inline-block;width:19%;margin:.4em 1%;}
-  #introLinks ul.unstyled li a {background-color:rgba(0,0,0,.8); color:inherit;display:block;padding:1.2em 1em 1em;background-clip:padding-box; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box; @include rounded(8px); @include boxShadow(0 0 4px #000);}
+  #introLinks ul.unstyled li a {background-color:rgba(0,0,0,.8); color:inherit;display:block;padding:1.2em 1em 1em;background-clip:padding-box; @include borderBox; @include rounded(8px); @include boxShadow(0 0 4px #000);}
     #introLinks ul.unstyled li:hover a {background-color:#111;}
   #introLinks ul.unstyled li a i {display:block;margin:0 auto;font-size:2.9em;margin-bottom:.1em;}
   /* IMPORTANT ALERTS */
@@ -121,8 +122,8 @@ body.landing #footer .content {box-shadow:0 0 20px #000;}
   body.parallax #parallaxWrap {top:60px;}
 
 
-/* HOMEPAGE FOOTER */
-#footer {position:relative;font-size:13px;z-index:2;}
+/* FOOTER */
+#footer {position:relative;font-size:13px;z-index:2; @include boxShadow(0 0 15px #000);}
 #footer .content {padding:0 4em;}
 #footer .content .span12.icons {border-bottom:1px solid #bbb;}
 #footer .content ul.inlined {font-size:1.3em;text-align:center;margin-top:10px;}
@@ -164,6 +165,7 @@ body.landing #footer .content {box-shadow:0 0 20px #000;}
 
 
 /* BOOTSTRAP OVERRIDES */
+img.thumbnail {background:#fff; @include borderBox;}
 .popover-title {@include linearGradientDark;color:#fff;}
 
 
@@ -213,6 +215,10 @@ body.landing #footer .content {box-shadow:0 0 20px #000;}
   #footer .content {padding:0 1em;}
   #footer .content ul.inlined {font-size:1em;}
   #footer .content ul.inlined li a {padding:.7em .8em .5em;}
+}
+
+@media (min-width:979px){
+  body.landing h1 small.visible-desktop {display:inline-block !important;}
 }
 
 @media (min-width:1240px){
