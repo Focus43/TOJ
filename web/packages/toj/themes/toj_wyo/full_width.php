@@ -52,26 +52,7 @@
                             </div>
                         </div>
                         <div class="row-fluid">
-                            <div class="span3">
-                                <div class="well" style="padding:8px 0;">
-                                    <ul class="nav nav-list">
-                                        <li class="nav-header">Government</li>
-                                        <li class="active"><a>Mayor &amp; Town Council</a></li>
-                                        <li><a>Boards &amp; Committees</a></li>
-                                        <li><a>Department Listings</a></li>
-                                        <li><a>Development Regulations &amp; Comprehensive Plan</a></li>
-                                        <li><a>Job Opportunities</a></li>
-                                        <li><a>Meeting Minutes</a></li>
-                                        <li><a>Meeting Agenda</a></li>
-                                        <li><a>Municipal Court</a></li>
-                                        <li><a>Municipal Code</a></li>
-                                        <li><a>Open Bids &amp; RFPs</a></li>
-                                        <li><a>Ordinances &amp; Resolutions</a></li>
-                                    </ul>
-                                </div>
-                                <?php $a = new Area('Sidebar Content'); $a->display($c); ?>
-                            </div>
-                            <div class="span9">
+                            <div class="span12">
                                 <?php $a = new Area('Page Content'); $a->display($c); ?>
                             </div>
                         </div>

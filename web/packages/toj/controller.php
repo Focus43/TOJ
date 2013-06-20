@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.19';
+	    protected $pkgVersion 			= '0.22';
 	
 		
 		/**
@@ -145,10 +145,15 @@
 		 * @return TojPackage
 		 */
 		private function setupBlocks(){
-			// PageChoozer
-			//if(!is_object(BlockType::getByHandle('page_choozer'))) {
-			//	BlockType::installBlockTypeFromPackage('page_choozer', $this->packageObject());
-			//}
+            // PageChoozer
+            if(!is_object(BlockType::getByHandle('page_choozer'))) {
+                BlockType::installBlockTypeFromPackage('page_choozer', $this->packageObject());
+            }
+
+            // Button Link
+            if(!is_object(BlockType::getByHandle('button_link'))) {
+                BlockType::installBlockTypeFromPackage('button_link', $this->packageObject());
+            }
 			
 			return $this;
 		}
