@@ -7,7 +7,7 @@
             </a>
             <div class="nav-collapse collapse">
                 <ul id="primaryNavList" class="nav pull-right">
-                    <li><a>Government</a>
+                    <li><a class="level-1">Government</a>
                         <div class="subMenu">
                             <div class="container-fluid">
                                 <div class="row-fluid">
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a>About Jackson</a>
+                    <li><a class="level-1">About Jackson</a>
                         <div class="subMenu">
                             <div class="container-fluid">
                                 <div class="row-fluid">
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a>Services</a><!-- fold "Emergency Services" into this -->
+                    <li><a class="level-1">Services</a><!-- fold "Emergency Services" into this -->
                         <div class="subMenu">
                             <div class="container-fluid">
                                 <div class="row-fluid">
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a>Contact</a>
+                    <li><a class="level-1">Contact</a>
                         <div class="subMenu">
                             <div class="container-fluid">
                                 <div class="row-fluid">
@@ -64,7 +64,7 @@
                         </div>
                     </li>
                     <!--<li><a><i class="icon-facebook-sign"></i><i class="icon-twitter-sign"></i><i class="icon-google-plus-sign"></i></a></li>-->
-                    <li><a><i class="icon-warning-sign" style="color:#66CC00;"></i> Timely Info.</a>
+                    <li><a class="level-1"><i class="icon-warning-sign" style="color:#66CC00;"></i> Timely Info.</a>
                         <div class="subMenu">
                             <?php $a = new GlobalArea('Nav Menu 5'); $a->display($c); ?>
                         </div>
