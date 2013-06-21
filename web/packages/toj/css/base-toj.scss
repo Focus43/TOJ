@@ -22,7 +22,7 @@ a:hover {text-decoration:none;}
   #cMiddle {z-index:1;}
   /* show animated loading icon while data-load attribute is present */
   #cLeft[data-load], #cRight[data-load] {background:transparent url(#{$tojImages}loading.gif) no-repeat 50% 50%;}
-
+  #cLeft .hidden-sidebar, #cRight .hidden-sidebar {display:none;}
 
 /* PRIMARY NAVIGATION */
 #primaryNav {z-index:3;position:fixed;top:0;left:0;right:0;}
@@ -115,11 +115,11 @@ body.landing #cPrimaryInner ul.nav.nav-list li a {display:block;padding-top:.4em
 
 /* PARALLAX PLACEHOLDER (HOME ONLY) */
 #opaqueBack {opacity:0;position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(255,255,255,.55);z-index:3;}
-#parallaxWrap {position:fixed;top:100%;right:60px;bottom:60px;left:60px;background:rgba(20,20,20,.8) url(#{$tojImages}loading.gif) no-repeat 50% 50%; z-index:4; -webkit-box-shadow:0 0 25px #000;-moz-box-shadow:0 0 25px #000;box-shadow:0 0 25px #000;}
+#parallaxWrap {position:fixed;top:100%;right:30px;bottom:30px;left:30px;background:rgba(20,20,20,.8) url(#{$tojImages}loading.gif) no-repeat 50% 50%; z-index:4; -webkit-box-shadow:0 0 25px #000;-moz-box-shadow:0 0 25px #000;box-shadow:0 0 25px #000;}
   body.parallax #pageWrap {-webkit-filter:grayscale(.9) blur(15px); -webkit-transform:perspective(2000px) scale3d(1,1,1); /* triggers hardware rendering */}
   body.parallax #pageWrap #primaryNav {display:none;}
   body.parallax #opaqueBack {opacity:1;}
-  body.parallax #parallaxWrap {top:60px;}
+  body.parallax #parallaxWrap {top:30px;}
 
 
 /* FOOTER */

@@ -60,22 +60,13 @@
                     </div>
                     <div class="row-fluid">
                         <div class="span10 offset1">
-                            <div id="alertSection" class="well">
-                                <span id="importantAlerts">News <span class="hidden-phone">&amp; Current Events</span></span>
-                                <!--<ul class="unstyled clearfix hidden-phone">
-                                    <li><span class="badge badge-important">0</span> Critical Alert(s)</li>
-                                    <li><span class="badge badge-warning">1</span> Moderate Alert(s)</li>
-                                    <li><span class="badge badge-success">4</span> General Announcements</li>
-                                </ul>-->
-                                <div id="alertRotation">
-                                    <ol class="unstyled">
-                                        <li><span class="label label-warning">May 29, 2013</span> Teton County Elects New Chair of the Sheriff's Department</li>
-                                        <li><span class="label label-success">May 29, 2013</span> This is a second piece of news that would show up...</li>
-                                        <li><span class="label label-info">May 29, 2013</span> And this is an example of a different color label for the date</li>
-                                    </ol>
-                                </div>
-                                <h4 class="centerize">View More Recent News &nbsp;<i class="icon-arrow-right"></i></h4>
-                            </div>
+                            <?php
+                                $bt = BlockType::getByHandle('page_list');
+                                $bt->controller->num        = 4;
+                                $bt->controller->ctID       = CollectionType::getByHandle('news_post')->getCollectionTypeID();
+                                $bt->controller->cParentID  = 0;
+                                $bt->render('templates/news_and_recent');
+                            ?>
                         </div>
                     </div>
                 </div>

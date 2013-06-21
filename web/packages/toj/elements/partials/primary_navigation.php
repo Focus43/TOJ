@@ -7,63 +7,29 @@
             </a>
             <div class="nav-collapse collapse">
                 <ul id="primaryNavList" class="nav pull-right">
-                    <li><a class="level-1">Government</a>
-                        <div class="subMenu">
-                            <div class="container-fluid">
-                                <div class="row-fluid">
-                                    <div class="span6">
-                                        <?php $a = new GlobalArea('Nav Menu 1 Left'); $a->display($c); ?>
-                                    </div>
-                                    <div class="span6">
-                                        <?php $a = new GlobalArea('Nav Menu 1 Right'); $a->display($c); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a class="level-1">About Jackson</a>
-                        <div class="subMenu">
-                            <div class="container-fluid">
-                                <div class="row-fluid">
-                                    <div class="span6">
-                                        <?php $a = new GlobalArea('Nav Menu 2 Left'); $a->display($c); ?>
-                                    </div>
-                                    <div class="span6">
-                                        <?php $a = new GlobalArea('Nav Menu 2 Right'); $a->display($c); ?>
+                    <?php
+                        $pageList = new PageList();
+                        $pageList->filterByParentID(1);
+                        $pageList->filterByAttribute('exclude_nav', 1, '!=');
+                        $pages = $pageList->get();
+
+                        foreach($pages AS $pageObj): ?>
+                            <li><a class="level-1" href="<?php echo $this->url( $pageObj->getCollectionPath() ); ?>"><?php echo $pageObj->getCollectionName(); ?></a>
+                                <div class="subMenu">
+                                    <div class="container-fluid">
+                                        <div class="row-fluid">
+                                            <div class="span6">
+                                                <?php $a = new GlobalArea("{$pageObj->getCollectionName()} Menu Left"); $a->display($c); ?>
+                                            </div>
+                                            <div class="span6">
+                                                <?php $a = new GlobalArea("{$pageObj->getCollectionName()} Menu Right"); $a->display($c); ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a class="level-1">Services</a><!-- fold "Emergency Services" into this -->
-                        <div class="subMenu">
-                            <div class="container-fluid">
-                                <div class="row-fluid">
-                                    <div class="span6">
-                                        <?php $a = new GlobalArea('Nav Menu 3 Left'); $a->display($c); ?>
-                                    </div>
-                                    <div class="span6">
-                                        <?php $a = new GlobalArea('Nav Menu 3 Right'); $a->display($c); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a class="level-1">Contact</a>
-                        <div class="subMenu">
-                            <div class="container-fluid">
-                                <div class="row-fluid">
-                                    <div class="span6">
-                                        <?php $a = new GlobalArea('Nav Menu 4 Left'); $a->display($c); ?>
-                                    </div>
-                                    <div class="span6">
-                                        <?php $a = new GlobalArea('Nav Menu 4 Right'); $a->display($c); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <!--<li><a><i class="icon-facebook-sign"></i><i class="icon-twitter-sign"></i><i class="icon-google-plus-sign"></i></a></li>-->
+                            </li>
+                    <?php endforeach; ?>
+
                     <li><a class="level-1"><i class="icon-warning-sign" style="color:#66CC00;"></i> Timely Info.</a>
                         <div class="subMenu">
                             <?php $a = new GlobalArea('Nav Menu 5'); $a->display($c); ?>

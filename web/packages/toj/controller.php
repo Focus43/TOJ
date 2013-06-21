@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.22';
+	    protected $pkgVersion 			= '0.25';
 	
 		
 		/**
@@ -134,8 +134,20 @@
 	            CollectionAttributeKey::add($this->attributeType('image_file'), array(
 	                'akHandle'  => 'page_background',
 	                'akName'    => 'Page Background'
-	            ));
+	            ), $this->packageObject());
 	        }
+
+            if( !is_object(CollectionAttributeKey::getByHandle('alert_level')) ){
+                $alertLevelAk = CollectionAttributeKey::add($this->attributeType('select'), array(
+                    'akHandle'  => 'alert_level',
+                    'akName'    => 'Alert Level'
+                ), $this->packageObject());
+
+                // setup alert level values
+                SelectAttributeTypeOption::add($alertLevelAk, 'Normal', 1);
+                SelectAttributeTypeOption::add($alertLevelAk, 'Warning', 1);
+                SelectAttributeTypeOption::add($alertLevelAk, 'Extreme', 1);
+            }
 	        
 	        return $this;
 	    }
@@ -186,6 +198,19 @@
 			if( !is_object($this->pageType('full_width')) ){
 	            CollectionType::add(array('ctHandle' => 'full_width', 'ctName' => 'Full Width'), $this->packageObject());
 	        }
+
+            if( !is_object($this->pageType('news_post')) ){
+                CollectionType::add(array('ctHandle' => 'news_post', 'ctName' => 'News Post'), $this->packageObject());
+                // assign default attribute "Alert Level"
+                $this->pageType('news_post')->update(array(
+                    'ctName'    => 'News Post',
+                    'ctHandle'  => 'news_post',
+                    'ctIcon'    => 'main.png',
+                    'akID'      => array(
+                        CollectionAttributeKey::getByHandle('alert_level')->getAttributeKeyID()
+                    )
+                ));
+            }
 
 			return $this;
 		}
