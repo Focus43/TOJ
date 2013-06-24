@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.25';
+	    protected $pkgVersion 			= '0.26';
 	
 		
 		/**
@@ -165,6 +165,11 @@
             // Button Link
             if(!is_object(BlockType::getByHandle('button_link'))) {
                 BlockType::installBlockTypeFromPackage('button_link', $this->packageObject());
+            }
+
+            // Weather Widget
+            if(!is_object(BlockType::getByHandle('weather_widget'))) {
+                BlockType::installBlockTypeFromPackage('weather_widget', $this->packageObject());
             }
 			
 			return $this;

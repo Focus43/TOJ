@@ -52,9 +52,9 @@ a:hover {text-decoration:none;}
 #cLeft ul#alertz li a i {position:absolute;right:0;top:6px;color:#777;font-size:1.5em;}
 #cLeft ul#alertz li:hover a {background:rgba(0,0,0,.1);}
 #cLeft ul#alertz li:last-child a {padding-bottom:.5em;}
-#weather {text-align:center;color:#333;margin-bottom:1em;overflow:hidden; @include rounded(5px); @include boxShadow(0 0 5px #000);}
-#weather label {padding:.3em 0;font-size:inherit;color:#e1e1e1;background:rgba(0,0,0,.55);}
-#weather img {margin-bottom:5px;}
+.weatherWidget {text-align:center;color:#333;margin-bottom:1em;overflow:hidden; @include rounded(5px); @include boxShadow(0 0 5px #000); @include linearGradientLight;}
+.weatherWidget label {padding:.3em 0;font-size:inherit;color:#e1e1e1;background:rgba(0,0,0,.55);}
+.weatherWidget img {margin-bottom:5px;}
 
 
 /* LANDING PAGES */
@@ -172,22 +172,24 @@ img.thumbnail {background:#fff; @include borderBox;}
 /* MEDIA QUERIES */
 @media (max-width:767px){
   html {overflow-x:hidden;}
-  body {padding:0;background:url(#{$tojImages}mobile-bg.jpg) no-repeat 50% 50%;background-size:cover; }
+  body {padding:0;/*background:#f5f5f5;*/background:url(#{$tojImages}mobile-bg.jpg) no-repeat 50% 50%;background-size:cover;background-attachment:fixed;}
   .fullHeight {height:auto !important;min-height:auto !important;}
   #primaryNav {}
   #primaryNav.navbar.navbar-inverse .navbar-inner {padding:0 1em;background:#1d1d1d;}
 
   #homeScreen .container-fluid {padding-top:60px;}
-  #homeScreen .container-fluid #homeSearch {width:94%;margin:0 auto 1.4em;}
+  #homeScreen .container-fluid #homeSearch {width:100%;margin:0 auto 1.4em;padding:0 1em; @include borderBox;}
+  #homeScreen .container-fluid #homeSearch i {left:1em;}
+  #homeScreen .container-fluid #homeSearch button {right:1em;top:4px;}
 
   #introLinks ul.unstyled li {width:22%;}
 
-  #alertSection.well {width:88%;color:#222;margin:2em auto 2em;}
+  #alertSection.well {color:#222;margin:2em 1em;}
 
   /* landing pages */
   body.landing #cPrimary {margin:0;}
   body.landing #cPrimaryInner {padding:40px 0 0;}
-  body.landing #cPrimaryInner .container-fluid {padding:0 1em;border-radius:0;}
+  body.landing #cPrimaryInner .container-fluid {padding:0 1em;border-radius:0;background:rgba(255,255,255,.75);}
   body.landing #cPrimaryInner h1 {font-size:1.4em;}
 
   #footer {margin:0;}
@@ -208,6 +210,7 @@ img.thumbnail {background:#fff; @include borderBox;}
   #introLinks ul.unstyled li {width:45%;}
   body.landing #breadcrumbs li {padding-right:8px;}
   body.landing #breadcrumbs li a {padding-left:.6em;padding-right:.5em;}
+  #primaryNav.navbar.navbar-inverse .navbar-inner {padding:0;}
 }
 
 @media (max-width:979px){

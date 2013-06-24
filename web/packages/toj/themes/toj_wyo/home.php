@@ -39,7 +39,7 @@
                         <div class="span10 offset1">
                             <div id="homeSearch">
                                 <i class="icon-search"></i>
-                                <input type="text" class="search-query input-block-level" placeholder="Search &amp; Explore" />
+                                <input type="text" class="search-query input-block-level" placeholder="Search" />
                                 <button class="btn btn-info btn-large">Search</button>
                             </div>
                         </div>

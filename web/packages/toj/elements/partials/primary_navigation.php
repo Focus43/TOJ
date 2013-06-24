@@ -5,6 +5,9 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span><span class="hidden-phone">Navigation</span> <i class="icon-reorder"></i></span>
             </a>
+            <a class="btn btn-navbar visible-phone">
+                <span><i class="icon-warning-sign" style="color:#66CC00;"></i></span>
+            </a>
             <div class="nav-collapse collapse">
                 <ul id="primaryNavList" class="nav pull-right">
                     <?php
@@ -30,12 +33,12 @@
                             </li>
                     <?php endforeach; ?>
 
-                    <li><a class="level-1"><i class="icon-warning-sign" style="color:#66CC00;"></i> Timely Info.</a>
+                    <li class="hidden-phone"><a class="level-1"><i class="icon-warning-sign" style="color:#66CC00;"></i> Timely Info.</a>
                         <div class="subMenu">
                             <?php $a = new GlobalArea('Nav Menu 5'); $a->display($c); ?>
                         </div>
                     </li>
-                    <li><a><i class="icon-cogs" style="color:#999;"></i><!--<i class="icon-facebook-sign"></i><i class="icon-twitter-sign"></i><i class="icon-google-plus-sign"></i>--></a></li>
+                    <li><a><i class="icon-cogs" style="color:#999;"></i></a></li>
                 </ul>
             </div>
         </div>
