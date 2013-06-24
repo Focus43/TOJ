@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 0.13.0 (2013-06-24)
+/*! Town Of Jackson - Deploy v: 0.14.0 (2013-06-24)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
