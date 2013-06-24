@@ -33,7 +33,7 @@
             <div id="cPrimary">
                 <div id="cPrimaryInner">
                     <div class="container-fluid">
-                        <?php Loader::packageElement('partials/landing_page_subheader', 'toj'); ?>
+                        <?php Loader::packageElement('partials/landing_page_subheader', 'toj', array('hideDescription' => true)); ?>
                         <div class="row-fluid">
                             <div class="span12">
                                 <?php $a = new Area('Page Content'); $a->display($c); ?>

@@ -60,13 +60,7 @@
                     </div>
                     <div class="row-fluid">
                         <div class="span10 offset1">
-                            <?php
-                                $bt = BlockType::getByHandle('page_list');
-                                $bt->controller->num        = 4;
-                                $bt->controller->ctID       = CollectionType::getByHandle('news_post')->getCollectionTypeID();
-                                $bt->controller->cParentID  = 0;
-                                $bt->render('templates/news_and_recent');
-                            ?>
+                            <?php $a = new Area('Homepage Content'); $a->display($c); ?>
                         </div>
                     </div>
                 </div>

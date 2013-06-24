@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.26';
+	    protected $pkgVersion 			= '0.28';
 	
 		
 		/**
@@ -31,13 +31,10 @@
 	        define('TOJ_TOOLS_URL', BASE_URL . REL_DIR_FILES_TOOLS_PACKAGES . '/' . $this->pkgHandle . '/');
 			define('TOJ_IMAGES_URL', DIR_REL . '/packages/' . $this->pkgHandle . '/images/');
 			
-			// set theme paths
-			//View::getInstance()->setThemeByPath('/login', 'toj_site');
-			
 			// autoload classes
 			Loader::registerAutoload(array(
 				// page controller
-				'TojPageController'		=> array('library', 'toj_page_controller', $this->pkgHandle)
+				'TojPageController'	=> array('library', 'toj_page_controller', $this->pkgHandle)
 			));
 	    }
 		
@@ -84,7 +81,8 @@
 				 ->setupBlocks()
 				 ->setupTheme()
 				 ->setupPageTypes()
-				 ->setupSitePages();
+				 ->setupSitePages()
+                 ->setupFileSets();
 		}
 		
 		
@@ -227,6 +225,18 @@
 		private function setupSitePages(){
 			return $this;
 		}
+
+
+        /**
+         * @return TojPackage
+         */
+        private function setupFileSets(){
+            if( ! (FileSet::getByName('Page Backgrounds') instanceof FileSet) ){
+                FileSet::createAndGetSet('Page Backgrounds', FileSet::TYPE_PUBLIC);
+            }
+
+            return $this;
+        }
 
 
 		/**

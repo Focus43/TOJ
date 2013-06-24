@@ -21,14 +21,31 @@
                 'type' => $type
             );
         }
-        
-        
+
+
         /**
-         * Output an SVG image directly in the page
-         * @return string
+         * If the page background attribute is set explicitly on the page, that
+         * takes precedence. Otherwise, look for and return a randomized image from
+         * the Page Backgrounds set.
+         * @return string || void
          */
-        public function svg( $string ){
-            include(DIR_PACKAGES . '/toj/images/' . $string);
+        protected function getPageBackgroundImageURL(){
+            $fileObj = $this->getCollectionObject()->getAttribute('page_background');
+            if( $fileObj instanceof File ){
+                return $fileObj->getRecentVersion()->getRelativePath();
+            }
+
+            // get a random one from the Page Backgrounds file set
+            $fileListObj = new FileList;
+            $fileListObj->filterByExtension('jpg');
+            $fileListObj->filterBySet( FileSet::getByName('Page Backgrounds') );
+            $imagesList = $fileListObj->get();
+            if( !empty($imagesList) ){
+                $imageObj = $imagesList[ array_rand($imagesList, 1) ];
+                if( $imageObj instanceof File ){
+                    return $imageObj->getRecentVersion()->getRelativePath();
+                }
+            }
         }
         
         
@@ -84,30 +101,22 @@
             $this->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
             $this->addHeaderItem( $this->getHelper('html')->css('toj-app.min.css', self::PACKAGE_HANDLE) );
             $this->addHeaderItem( $this->getHelper('html')->javascript('libs/modernizr.min.js', self::PACKAGE_HANDLE) );
-
-            //$this->addHeaderItem( $this->getHelper('html')->css('bootstrap.min.css', self::PACKAGE_HANDLE) );
-            //$this->addHeaderItem( $this->getHelper('html')->css('font-awesome.min.css', self::PACKAGE_HANDLE) );
-            //$this->addHeaderItem( $this->getHelper('html')->css('base.toj.css', self::PACKAGE_HANDLE) );
-            
-            if( DEPLOYMENT_STATUS_PRODUCTION === true ){
-                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.min.js', self::PACKAGE_HANDLE)) );
-            }else{
-                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.dev.js', self::PACKAGE_HANDLE)) );
-            }
             
             // ie8 stylesheet
             $ieShim = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
             $ieShim .= "<!--[if lt IE 8]>\n" . $this->getHelper('html')->css('font-awesome-ie7.min.css', self::PACKAGE_HANDLE) . "\n<![endif]-->";
             $this->addHeaderItem( $ieShim );
-            
-            // footer stuff (usually javascript)
-            //$this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('libs/bootstrap.min.js', self::PACKAGE_HANDLE)) );
-            //$this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj.app.js', self::PACKAGE_HANDLE)) );
+
+            if( DEPLOYMENT_STATUS_PRODUCTION === true ){
+                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.min.js', self::PACKAGE_HANDLE)) );
+            }else{
+                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.dev.js', self::PACKAGE_HANDLE)) );
+            }
         }
         
         
         /**
-         * Same as $view->action(), but forces to return a fully qualified URL prepended
+         * Same as $view->action(), but returns a fully qualified URL prepended
          * with https://
          * @param string $action
          * @param string $task(s)
