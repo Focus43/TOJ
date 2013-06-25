@@ -35,7 +35,7 @@
                             <a id="launchParallax"><img src="<?php echo TOJ_IMAGES_URL; ?>explore.svg" /></a>
                         </div>
                     </div>
-                    <div class="row-fluid">
+                    <div class="row-fluid hidden-phone">
                         <div class="span10 offset1">
                             <div id="homeSearch">
                                 <i class="icon-search"></i>
