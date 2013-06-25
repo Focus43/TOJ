@@ -55,6 +55,7 @@
         </div>
     </div>
 
+<?php Loader::packageElement('partials/site_settings', 'toj'); ?>
 <?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
 </body>
 </html>
