@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 0.15.111 (2013-06-25)
+/*! Town Of Jackson - Deploy v: 0.16.4 (2013-06-25)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -108,7 +108,8 @@ ccm_disableLinks = function() {
             var _self       = this,
                 $document   = $(document),
                 $window     = $(window),
-                $body       = $('body');
+                $body       = $('body'),
+                $settings   = $('#siteSettings');
 
             // css transitions
             this.transitionEnd  = 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd';
@@ -241,13 +242,13 @@ ccm_disableLinks = function() {
             /**
              * Accessibility settings
              */
-            $document.on('click', '#openSettings, #closeSettings', {overlay: $('#siteSettings')}, function(_clickEv){
+            $document.on('click', '#openSettings, #closeSettings', {overlay: $settings}, function(_clickEv){
                 var _top = _clickEv.data.overlay.data('toggled') === true ? '-100%' : 0;
                 $('#siteSettings').animate({top:_top}, 300, 'easeOutExpo').data('toggled', !_clickEv.data.overlay.data('toggled'));
             });
 
-
-            $('#siteSettings').on('click', '.setFontSize', function(){
+            // toggle font size
+            $settings.on('click', '.setFontSize', function(){
                 $body.css({zoom: $(this).attr('data-zoom')});
             });
 

@@ -13,7 +13,8 @@
             var _self       = this,
                 $document   = $(document),
                 $window     = $(window),
-                $body       = $('body');
+                $body       = $('body'),
+                $settings   = $('#siteSettings');
 
             // css transitions
             this.transitionEnd  = 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd';
@@ -146,13 +147,13 @@
             /**
              * Accessibility settings
              */
-            $document.on('click', '#openSettings, #closeSettings', {overlay: $('#siteSettings')}, function(_clickEv){
+            $document.on('click', '#openSettings, #closeSettings', {overlay: $settings}, function(_clickEv){
                 var _top = _clickEv.data.overlay.data('toggled') === true ? '-100%' : 0;
                 $('#siteSettings').animate({top:_top}, 300, 'easeOutExpo').data('toggled', !_clickEv.data.overlay.data('toggled'));
             });
 
-
-            $('#siteSettings').on('click', '.setFontSize', function(){
+            // toggle font size
+            $settings.on('click', '.setFontSize', function(){
                 $body.css({zoom: $(this).attr('data-zoom')});
             });
 
