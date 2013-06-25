@@ -159,6 +159,14 @@
 
 
             /**
+             * On mobile load, hide the navigation bar (hack for iOS)
+             */
+            if( $body.width() < 767 ){
+                document.body.scrollTop || window.scrollTo(0,17);
+            }
+
+
+            /**
              * Public methods of the TOJ class
              */
             return {

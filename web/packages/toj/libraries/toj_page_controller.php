@@ -99,6 +99,7 @@
         protected function _includeThemeAssets(){
             // google translate
             $this->addHeaderItem('<meta name="google-translate-customization" content="'. GOOGLE_TRANSLATE_META_KEY .'"></meta>');
+            $this->addHeaderItem('<meta name="apple-mobile-web-app-capable" content="yes" />');
 
             // header and CSS items
             $this->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
