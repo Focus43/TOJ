@@ -29,6 +29,9 @@
 		
 		// application profiler. disable this for live sites! (just comment out)
 		//define('ENABLE_APPLICATION_PROFILER', true);
+
+        // google translate
+        define('GOOGLE_TRANSLATE_META_KEY', 'fe19218503253714-9071846145fc9ecf-gf08250028e52f83f-1d');
 	
 	/**
 	 * LOCAL DEVELOPMENT OR STAGING

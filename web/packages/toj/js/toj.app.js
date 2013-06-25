@@ -36,6 +36,7 @@
                 }
             };
 
+
             // trigger the backstretch function
             $window.on('resize.toj', function(){
                 if( $body.width() > 767 ){
@@ -99,25 +100,31 @@
                 animation: false,
                 selector: '.showTooltip',
                 trigger: 'hover focus',
-                placement: 'top',
+                placement: function(){
+                    return this.$element.attr('data-placement') || 'top';
+                },
                 container: 'body'
             });
 
 
-            // alert rotation
+            /**
+             * Auto rotate alert messages on the homepage
+             */
             var $alertItems = $('li', '#cMiddle #alertSection ol'),
                 _alertCount = $alertItems.length;
-            (function alertRotation(){
-                setTimeout(function(){
-                    var $current = $alertItems.filter(':visible'),
-                        _index   = $current.index(),
-                        $next    = (_index == (_alertCount-1)) ? $('li:first', '#cMiddle #alertSection ol') : $current.next('li');
-                    $current.fadeOut(150, function(){
-                        $next.fadeIn(150);
-                        alertRotation();
-                    });
-                }, 3800);
-            })();
+            if( $alertItems.length ){
+                (function alertRotation(){
+                    setTimeout(function(){
+                        var $current = $alertItems.filter(':visible'),
+                            _index   = $current.index(),
+                            $next    = (_index == (_alertCount-1)) ? $('li:first', '#cMiddle #alertSection ol') : $current.next('li');
+                        $current.fadeOut(150, function(){
+                            $next.fadeIn(150);
+                            alertRotation();
+                        });
+                    }, 3800);
+                })();
+            }
             
             
             /**
@@ -134,6 +141,28 @@
                     }
                 }
             });
+
+
+            /**
+             * Accessibility settings
+             */
+            $document.on('click', '#openSettings, #closeSettings', {overlay: $('#siteSettings')}, function(_clickEv){
+                var _top = _clickEv.data.overlay.data('toggled') === true ? '-100%' : 0;
+                $('#siteSettings').animate({top:_top}, 300, 'easeOutExpo').data('toggled', !_clickEv.data.overlay.data('toggled'));
+            });
+
+
+            $('#siteSettings').on('click', '.setFontSize', function(){
+                $body.css({zoom: $(this).attr('data-zoom')});
+            });
+
+
+            /**
+             * Public methods of the TOJ class
+             */
+            return {
+
+            }
 
         })();
 

@@ -39,6 +39,7 @@ a:hover {text-decoration:none;}
 #primaryNavList li .subMenu .container-fluid ul.unstyled {position:relative;}
 #primaryNavList li .subMenu .container-fluid ul.unstyled li a {padding:.4em .6em;display:block;border:0;background:transparent;text-transform:capitalize;}
 #primaryNavList li .subMenu .container-fluid ul.unstyled li:hover a {background:#f2f2f2; @include rounded(5px); @include boxShadow(inset 0 0 4px rgba(0,0,0,.5));}
+#primaryNavList li .subMenu .container-fluid ul.unstyled li:hover i.icon-cogs {color:#fff;}
 
 
 /* LEFT COLUMN */
@@ -144,6 +145,12 @@ body.landing #cPrimaryInner ul.nav.nav-list li a {display:block;padding-top:.4em
 #footer .content .span12.legaleze p {margin:0;line-height:1.2em;padding:.3em 0 1em;font-size:11px;text-transform:uppercase;}
 
 
+/* SITE SETTINGS MANAGER */
+#siteSettings {width:650px;position:fixed;top:-100%;left:50%;margin-left:-325px;z-index:11; @include linearGradientLight; @include boxShadow(0 0 10px #000);}
+  #siteSettings .inner {position:relative;padding:1.6em 0;}
+  #siteSettings .inner a.closer {padding:8px;display:block;position:absolute;top:0;right:0;text-align:center;color:#fff;font-size:1.4em; @include linearGradientDark;}
+
+
 /* SHARED BACKGROUND OPACITY */
 #primaryNav.navbar.navbar-inverse .navbar-inner {@include linearGradientDark;}
 .well, #primaryNavList li .subMenu, #footer .content, #cLeft ul#alertz, #weather {@include linearGradientLight;}
@@ -191,6 +198,9 @@ img.thumbnail {background:#fff; @include borderBox;}
   body.landing #cPrimaryInner {padding:40px 0 0;}
   body.landing #cPrimaryInner .container-fluid {padding:0 1em;border-radius:0;background:rgba(255,255,255,.75);}
   body.landing #cPrimaryInner h1 {font-size:1.4em;}
+
+  #siteSettings {width:auto;position:fixed;top:-100%;left:1em;right:1em;margin:0;text-align:center;}
+  #siteSettings .span4 {padding-top:1em;}
 
   #footer {margin:0;}
   #footer .content .span12.icons {border:none;}

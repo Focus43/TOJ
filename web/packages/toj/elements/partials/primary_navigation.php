@@ -38,7 +38,7 @@
                             <?php $a = new GlobalArea('Nav Menu 5'); $a->display($c); ?>
                         </div>
                     </li>
-                    <li><a><i class="icon-cogs" style="color:#999;"></i></a></li>
+                    <li><a id="openSettings" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-cogs"></i></a></li>
                 </ul>
             </div>
         </div>
