@@ -104,7 +104,6 @@
             // header and CSS items
             $this->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
             $this->addHeaderItem( $this->getHelper('html')->css('toj-app.min.css', self::PACKAGE_HANDLE) );
-            $this->addHeaderItem( $this->getHelper('html')->javascript('libs/modernizr.min.js', self::PACKAGE_HANDLE) );
             
             // ie8 stylesheet
             $ieShim = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";

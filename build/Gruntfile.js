@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['../web/concrete/js/ccm.base.js', '../web/packages/toj/js/libs/bootstrap.min.js', '../web/packages/toj/js/toj.app.js'],
+        src: ['../web/concrete/js/ccm.base.js', '../web/packages/toj/js/libs/bootstrap.min.js', '../web/packages/toj/js/libs/modernizr.min.js', '../web/packages/toj/js/toj.app.js'],
         dest: '../web/packages/toj/js/<%= filename %>.dev.js'
       }
     },
