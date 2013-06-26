@@ -3,6 +3,8 @@
 thumbs.db
 __MACOSX
 ._*
+*.jar
+mysql-connector-license.txt
 
 # ignore the site.php
 /web/config/*.local.php
