@@ -43,6 +43,19 @@
                                 <input type="text" class="search-query input-block-level" placeholder="Search" />
                                 <button class="btn btn-info btn-large">Search</button>
                             </div>
+                            <!--<script>
+                                (function() {
+                                    var cx = '011694434224589997737:sbj5ayzj2fe';
+                                    var gcse = document.createElement('script');
+                                    gcse.type = 'text/javascript';
+                                    gcse.async = true;
+                                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                        '//www.google.com/cse/cse.js?cx=' + cx;
+                                    var s = document.getElementsByTagName('script')[0];
+                                    s.parentNode.insertBefore(gcse, s);
+                                })();
+                            </script>
+                            <gcse:search></gcse:search>-->
                         </div>
                     </div>
                     <div id="introLinks" class="row-fluid">
