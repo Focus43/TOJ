@@ -200,9 +200,9 @@
             /**
              * On mobile load, hide the navigation bar (hack for iOS)
              */
-            if( $body.width() < 767 ){
-                document.body.scrollTop || window.scrollTo(0,17);
-            }
+            //if( $body.width() < 767 ){
+            //    document.body.scrollTop || window.scrollTo(0,17);
+            //}
 
 
             /**

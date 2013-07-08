@@ -20,6 +20,8 @@ a:hover {text-decoration:none;}
   #cRight {right:0; @include boxShadow(inset 20px 0 20px -20px #000);}
   #cRight .inner, #cLeft .inner {font-size:13px;padding:15px;}
   #cMiddle {z-index:1;}
+  #cMiddle a {color:#1b67a2;}
+  #cMiddle a:hover {text-decoration:underline;}
   /* show animated loading icon while data-load attribute is present */
   #cLeft[data-load], #cRight[data-load] {background:transparent url(#{$tojImages}loading.gif) no-repeat 50% 50%;}
   #cLeft .hidden-sidebar, #cRight .hidden-sidebar {display:none;}
@@ -125,6 +127,7 @@ body.landing #cPrimaryInner ul.nav.nav-list li a {display:block;padding-top:.4em
 
 /* FOOTER */
 #footer {position:relative;font-size:13px;z-index:2; @include boxShadow(0 0 15px #000);}
+#footer a, #footer a:hover {text-decoration:none;color:inherit;}
 #footer .content {padding:0 4em;}
 #footer .content .span12.icons {border-bottom:1px solid #bbb;}
 #footer .content ul.inlined {font-size:1.3em;text-align:center;margin-top:10px;}
