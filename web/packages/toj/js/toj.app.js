@@ -158,7 +158,7 @@
                 if( _uri.length ){
                     $.get(_uri, {modal:true}, function(_html){
                         var $modal = $(_html);
-                        $modal.appendTo('body').modal();
+                        $modal.appendTo($body).modal();
                     }, 'html');
                     return;
                 }

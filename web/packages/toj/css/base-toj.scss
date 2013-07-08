@@ -32,7 +32,7 @@ a:hover {text-decoration:none;}
   #primaryNav a.brand {color:#fff;}
 #primaryNav .navbar-inner {border:0; @include rounded(0);}
 #primaryNav .brand {position:relative;top:-2px;color:#e5e5e5;font-weight:700;}
-#primaryNav .btn.btn-navbar {line-height:1em;padding:.5em 1em;position:relative;top:-1px;}
+#primaryNav .btn.btn-navbar {color:#fff;line-height:1em;padding:.5em 1em;position:relative;top:-1px;}
 #primaryNav .btn.btn-navbar span {display:inline-block;}
 #primaryNavList {}
 #primaryNavList li a.level-1 {color:#fff;position:relative;z-index:3;border:1px solid transparent;border-top:0;border-bottom:0;}
@@ -43,7 +43,7 @@ a:hover {text-decoration:none;}
 #primaryNavList li .subMenu .container-fluid ul.unstyled {position:relative;}
 #primaryNavList li .subMenu .container-fluid ul.unstyled li a {padding:.4em .6em;display:block;border:0;background:transparent;text-transform:capitalize;}
 #primaryNavList li .subMenu .container-fluid ul.unstyled li:hover a {background:#f2f2f2; @include rounded(5px); @include boxShadow(inset 0 0 4px rgba(0,0,0,.5));}
-#primaryNavList li .subMenu .container-fluid ul.unstyled li:hover i.icon-cogs {color:#fff;}
+#primaryNavList li i.icon-cogs {color:#fff;}
 
 
 /* LEFT COLUMN */
