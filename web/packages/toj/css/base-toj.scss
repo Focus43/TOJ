@@ -177,14 +177,10 @@ body.landing #cPrimaryInner ul.nav.nav-list li a {display:block;padding-top:.4em
 
 
 /* BOOTSTRAP OVERRIDES */
+body.modalPage div.modal {z-index:4;}
 img.thumbnail {background:#fff; @include borderBox;}
 .popover-title {@include linearGradientDark;color:#fff;}
 .well a:hover {text-decoration:none !important;}
-
-
-/* EDITABLE MODALS */
-body.modalPage div.modal {z-index:4;}
-.modal {width:600px;margin-left:-300px;}
 
 
 /* MEDIA QUERIES */
@@ -243,6 +239,7 @@ body.modalPage div.modal {z-index:4;}
 
 @media (min-width:979px){
   body.landing h1 small.visible-desktop {display:inline-block !important;}
+  .modal {width:720px;margin-left:-360px;}
 }
 
 @media (min-width:1240px){
