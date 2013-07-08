@@ -182,6 +182,11 @@ img.thumbnail {background:#fff; @include borderBox;}
 .well a:hover {text-decoration:none !important;}
 
 
+/* EDITABLE MODALS */
+body.modalPage div.modal {z-index:4;}
+.modal {width:600px;margin-left:-300px;}
+
+
 /* MEDIA QUERIES */
 @media (max-width:767px){
   html {overflow-x:hidden;}

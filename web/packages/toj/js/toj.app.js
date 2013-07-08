@@ -148,6 +148,27 @@
 
 
             /**
+             * Modal windows
+             */
+            $document.on('click', '.modalize', function(_clickEvent){
+                _clickEvent.preventDefault();
+                var $this = $(this),
+                    _uri  = $this.attr('href');
+
+                if( _uri.length ){
+                    $.get(_uri, {modal:true}, function(_html){
+                        var $modal = $(_html);
+                        $modal.appendTo('body').modal();
+                    }, 'html');
+                    return;
+                }
+
+                // if we get here, show error message
+                alert('Unable to load requested page.');
+            });
+
+
+            /**
              * Auto rotate alert messages on the homepage
              */
             var $alertItems = $('li', '#cMiddle #alertSection ol'),

@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.28';
+	    protected $pkgVersion 			= '0.29';
 	
 		
 		/**
@@ -213,6 +213,11 @@
                         CollectionAttributeKey::getByHandle('alert_level')->getAttributeKeyID()
                     )
                 ));
+            }
+
+            // modal
+            if( !is_object($this->pageType('modal')) ){
+                CollectionType::add(array('ctHandle' => 'modal', 'ctName' => 'Modal'), $this->packageObject());
             }
 
 			return $this;

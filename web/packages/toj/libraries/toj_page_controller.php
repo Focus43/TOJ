@@ -65,8 +65,7 @@
             }
             
             // body classes (used for edit mode stuff)
-            $permissions = new Permissions( $this->getCollectionObject() );
-            if( $permissions->canAdminPage() ){
+            if( $this->pagePermissionObject()->canAdminPage() ){
                 $bodyClasses = array('editable');
                 if( $this->getCollectionObject()->isEditMode() ){
                     $bodyClasses[] = 'editMode';
@@ -173,6 +172,18 @@
                 $this->{$helper} = Loader::helper($handle, $pkg);
             }
             return $this->{$helper};
+        }
+
+
+        /**
+         * Get the Concrete5 permission object for the given page.
+         * @return Permissions
+         */
+        protected function pagePermissionObject(){
+            if( $this->_pagePermissionObj === null ){
+                $this->_pagePermissionObj = new Permissions( $this->getCollectionObject() );
+            }
+            return $this->_pagePermissionObj;
         }
         
     }
