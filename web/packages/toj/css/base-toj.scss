@@ -28,6 +28,8 @@ a:hover {text-decoration:none;}
 
 /* PRIMARY NAVIGATION */
 #primaryNav {z-index:3;position:fixed;top:0;left:0;right:0;}
+#primaryNav a, #primaryNav a:hover {text-decoration:none;color:inherit;}
+  #primaryNav a.brand {color:#fff;}
 #primaryNav .navbar-inner {border:0; @include rounded(0);}
 #primaryNav .brand {position:relative;top:-2px;color:#e5e5e5;font-weight:700;}
 #primaryNav .btn.btn-navbar {line-height:1em;padding:.5em 1em;position:relative;top:-1px;}
@@ -177,6 +179,7 @@ body.landing #cPrimaryInner ul.nav.nav-list li a {display:block;padding-top:.4em
 /* BOOTSTRAP OVERRIDES */
 img.thumbnail {background:#fff; @include borderBox;}
 .popover-title {@include linearGradientDark;color:#fff;}
+.well a:hover {text-decoration:none !important;}
 
 
 /* MEDIA QUERIES */
