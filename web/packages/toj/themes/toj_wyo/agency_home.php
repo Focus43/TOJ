@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="<?php echo LANGUAGE; ?>">
 <head>
-<?php Loader::element('header_required'); // REQUIRED BY C5 // ?>
 <?php Loader::packageElement('partials/head_tag_inner', 'toj'); ?>
+<?php Loader::element('header_required'); // REQUIRED BY C5 // ?>
 </head>
 
-<body class="toj landing <?php echo $bodyClass; ?>">
+<body class="toj landing agency-home <?php echo $bodyClass; ?>">
 
     <div id="pageWrap" class="fullHeight">
 
@@ -27,7 +27,24 @@
                         <?php Loader::packageElement('partials/landing_page_subheader', 'toj'); ?>
                         <div class="row-fluid">
                             <div class="span12">
-                                <?php $a = new Area('Page Content'); $a->display($c); ?>
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <a class="brand"><?php echo Page::getCurrentPage()->getCollectionName(); ?></a>
+                                        <ul class="nav pull-right">
+                                            <li><a>test 1</a></li>
+                                            <li><a>test 2</a></li>
+                                            <li><a>test 3</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <?php $a = new Area('Left Content'); $a->display($c); ?>
+                            </div>
+                            <div class="span6">
+                                <?php $a = new Area('Right Content'); $a->display($c); ?>
                             </div>
                         </div>
                     </div>

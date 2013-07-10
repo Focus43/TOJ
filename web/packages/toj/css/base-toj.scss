@@ -105,8 +105,8 @@ body.landing #cPrimaryInner ul.nav.nav-list li a {display:block;padding-top:.4em
   /* LINK BUTTONS */
   #introLinks ul.unstyled {text-align:center;}
   #introLinks ul.unstyled li {display:inline-block;width:19%;margin:.4em 1%;}
-  #introLinks ul.unstyled li a {background-color:rgba(0,0,0,.8); color:inherit;display:block;padding:1.2em 1em 1em;background-clip:padding-box; @include borderBox; @include rounded(8px); @include boxShadow(0 0 4px #000);}
-    #introLinks ul.unstyled li:hover a {background-color:#111;}
+  #introLinks ul.unstyled li a {background-color:rgba(0,0,0,.8);border:1px solid transparent;color:inherit;display:block;padding:1.2em 1em 1em;background-clip:padding-box; @include borderBox; @include rounded(8px); @include boxShadow(0 0 4px #000);}
+    #introLinks ul.unstyled li:hover a {text-decoration:none;border:1px solid #fff;}
   #introLinks ul.unstyled li a i {display:block;margin:0 auto;font-size:2.9em;margin-bottom:.1em;}
   /* IMPORTANT ALERTS */
   #alertSection.well {color:#222;margin:3.4em 0 3em;position:relative; -webkit-box-shadow:0 0 8px rgba(0,0,0,.6);-moz-box-shadow:0 0 8px rgba(0,0,0,.6);box-shadow:0 0 8px rgba(0,0,0,.6);}

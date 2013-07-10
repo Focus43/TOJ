@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.29';
+	    protected $pkgVersion 			= '0.31';
 	
 		
 		/**
@@ -218,6 +218,11 @@
             // modal
             if( !is_object($this->pageType('modal')) ){
                 CollectionType::add(array('ctHandle' => 'modal', 'ctName' => 'Modal'), $this->packageObject());
+            }
+
+            // agency homepage
+            if( !is_object($this->pageType('agency_home')) ){
+                CollectionType::add(array('ctHandle' => 'agency_home', 'ctName' => 'Agency Home'), $this->packageObject());
             }
 
 			return $this;
