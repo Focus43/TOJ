@@ -64,10 +64,8 @@
 		
 		
 		public function save( $data ){
-			$args['content'] 		= htmlspecialchars( $data['content'] );
-			$args['showExample']	= (int) $data['showExample'];
-			$args['allowRunIframe'] = (int) $data['allowRunIframe'];
-			$args['height']			= (int) $data['height'];
+			$args['content'] = htmlspecialchars( $data['content'] );
+			$args['height']	 = (int) $data['height'];
 			parent::save( $args );
 		}
 

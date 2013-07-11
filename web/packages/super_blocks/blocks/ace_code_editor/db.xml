@@ -5,16 +5,6 @@
 			<key />
 			<unsigned />
 		</field>
-		<field name="showExample" type="I1">
-			<unsigned />
-			<notnull />
-			<default value="0" />
-		</field>
-		<field name="allowRunIframe" type="I1">
-			<unsigned />
-			<notnull />
-			<default value="0" />
-		</field>
 		<field name="height" type="I">
 			<unsigned />
 			<notnull />
