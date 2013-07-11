@@ -3,6 +3,10 @@
 $navItems = $controller->getNavItems();
 
 /*** STEP 1 of 2: Determine all CSS classes (only 2 are enabled by default, but you can un-comment other ones or add your own) ***/
+$departmentPage = Page::getCurrentPage();
+$departmentName = $departmentPage->getCollectionName();
+$departmentURL  = View::url( $departmentPage->getCollectionPath() );
+
 foreach ($navItems as $index => $ni) {
     $classes = array();
 
