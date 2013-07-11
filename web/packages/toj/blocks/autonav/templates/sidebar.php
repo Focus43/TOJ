@@ -18,9 +18,10 @@ foreach ($navItems as $ni) {
 
     //Put all classes together into one space-separated string
     $ni->classes = implode(" ", $classes);
-}
+} ?>
 
-if( count($navItems) >= 1 ){
+<div class="well sidebar">
+<?php if( count($navItems) >= 1 ){
     //*** Step 2 of 2: Output menu HTML ***/
     echo '<ul id="sidebarNav" class="nav nav-list">'; //opens the top-level menu
 
@@ -43,4 +44,5 @@ if( count($navItems) >= 1 ){
     }
 
     echo '</ul>'; //closes the top-level menu
-}
+} ?>
+</div>

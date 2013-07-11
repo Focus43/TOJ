@@ -6,7 +6,7 @@ html, body, .fullHeight {height:100% !important;min-height:100%;}
   .fullHeight {position:relative;}
 body {font-family:'Roboto Slab', serif;background:url(#{$tojImages}textures/black_lozenge.png);background-attachment:fixed;}
 h1,h2,h3,h4,h5 {font-family:'Roboto Slab', serif;font-weight:700;}
-a {cursor:pointer;color:inherit;}
+a {cursor:pointer;/*color:inherit;*/}
 a:hover {text-decoration:none;}
 .centerize {text-align:center;}
 .robotoSlab {font-family:'Roboto Slab', serif;}
@@ -82,6 +82,14 @@ body.landing #breadcrumbs a.hidden-phone i {margin-left:4px;}
 body.landing #cPrimaryInner h1 {font-weight:300;color:#777;margin:0 -20px 20px;padding:.3em 0 .4em 20px;background:#f1f1f1;border-top:1px solid #f9f9f9;border-bottom:1px solid #ddd;text-shadow:0 1px 0 #fff;}
 body.landing #cPrimaryInner ul.nav.nav-list li a {display:block;padding-top:.4em;padding-bottom:.4em;}
 #sidebarNav li.active a {color:#f5f5f5;}
+
+
+/* AGENCY LANDING PAGES */
+body.agency-page.editMode #areaTop {margin-bottom:1.4em;}
+#agencyNavbar.navbar a:hover {text-decoration:none !important;}
+#agencyNavbar.navbar ul li:hover a.depth-1 {background:#eee;}
+#agencyNavbar.navbar ul li.dropdown ul.dropdown-menu li:hover a,
+#agencyNavbar.navbar ul li.dropdown ul.dropdown-menu li.active a {color:#fff !important;}
 
 
 /* MAIN SCREEN ON THE HOMEPAGE */
@@ -184,7 +192,8 @@ body.modalPage div.modal {z-index:4;}
 img.thumbnail {background:#fff; @include borderBox;}
 .popover-title {@include linearGradientDark;color:#fff;}
 .well a:hover {text-decoration:none !important;}
-
+.well.sidebar {padding:8px 0;}
+.well.sidebar ul {list-style:none;}
 
 /* MEDIA QUERIES */
 @media (max-width:767px){

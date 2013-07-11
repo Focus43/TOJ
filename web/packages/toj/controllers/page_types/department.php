@@ -1,6 +1,6 @@
 <?php
 
-    class AgencyHomePageTypeController extends TojPageController {
+    class DepartmentPageTypeController extends TojPageController {
         
         protected $includeThemeAssets = true;
 

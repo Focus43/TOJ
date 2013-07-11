@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.31';
+	    protected $pkgVersion 			= '0.32';
 	
 		
 		/**
@@ -211,8 +211,8 @@
             }
 
             // agency homepage
-            if( !is_object($this->pageType('agency_home')) ){
-                CollectionType::add(array('ctHandle' => 'agency_home', 'ctName' => 'Agency Home'), $this->packageObject());
+            if( !is_object($this->pageType('department')) ){
+                CollectionType::add(array('ctHandle' => 'department', 'ctName' => 'Department', 'ctIcon' => 'right_sidebar.png'), $this->packageObject());
             }
 
 			return $this;

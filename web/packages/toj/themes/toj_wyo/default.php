@@ -27,17 +27,16 @@
                         <?php Loader::packageElement('partials/landing_page_subheader', 'toj'); ?>
                         <div class="row-fluid">
                             <div class="span3">
-                                <div class="well" style="padding:8px 0;">
-                                    <?php
-                                        $bt = BlockType::getByHandle('autonav');
-                                        $bt->controller->orderBy 					= 'display_asc';
-                                        $bt->controller->displayPages 				= 'second_level';
-                                        $bt->controller->displaySubPages 			= 'none';
-                                        $bt->controller->displaySubPageLevels 		= 'enough';
-                                        $bt->render('templates/sidebar');
-                                    ?>
-                                </div>
-                                <?php $a = new Area('Sidebar Content'); $a->display($c); ?>
+                                <?php
+                                    $bt = BlockType::getByHandle('autonav');
+                                    $bt->controller->orderBy                = 'display_asc';
+                                    $bt->controller->displayPages 			= 'second_level';
+                                    $bt->controller->displaySubPages 		= 'none';
+                                    $bt->controller->displaySubPageLevels 	= 'enough';
+                                    $bt->render('templates/sidebar');
+
+                                    $a = new Area('Sidebar Content'); $a->display($c);
+                                ?>
                             </div>
                             <div class="span9">
                                 <?php $a = new Area('Page Content'); $a->display($c); ?>

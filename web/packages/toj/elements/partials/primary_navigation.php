@@ -2,13 +2,13 @@
     <div class="navbar-inner">
         <div class="container">
             <a class="brand" href="<?php echo $this->url('/'); ?>">Town Of Jackson</a>
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target="#responsivePrimaryNav">
                 <span><span class="hidden-phone">Navigation</span> <i class="icon-reorder"></i></span>
             </a>
             <a class="btn btn-navbar visible-phone">
                 <span><i class="icon-warning-sign" style="color:#66CC00;"></i></span>
             </a>
-            <div class="nav-collapse collapse">
+            <div id="responsivePrimaryNav" class="nav-collapse collapse">
                 <ul id="primaryNavList" class="nav pull-right">
                     <?php
                         $pageList = new PageList();
