@@ -32,7 +32,7 @@
         protected function getPageBackgroundImageURL(){
             $fileObj = $this->getCollectionObject()->getAttribute('page_background');
             if( $fileObj instanceof File ){
-                return $fileObj->getRecentVersion()->getRelativePath();
+                return Loader::helper('image')->setJpegCompression(82)->getThumbnail($fileObj, 1400, 1400)->src;
             }
 
             // get a random one from the Page Backgrounds file set
@@ -43,7 +43,7 @@
             if( !empty($imagesList) ){
                 $imageObj = $imagesList[ array_rand($imagesList, 1) ];
                 if( $imageObj instanceof File ){
-                    return $imageObj->getRecentVersion()->getRelativePath();
+                    return Loader::helper('image')->setJpegCompression(82)->getThumbnail($imageObj, 1400, 1400)->src;
                 }
             }
         }
