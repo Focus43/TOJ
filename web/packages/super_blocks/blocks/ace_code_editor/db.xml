@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btAceCodeEditor">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+		<field name="showExample" type="I1">
+			<unsigned />
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="allowRunIframe" type="I1">
+			<unsigned />
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="height" type="I">
+			<unsigned />
+			<notnull />
+		</field>
+		<field name="content" type="X2" />
+	</table>
+</schema>

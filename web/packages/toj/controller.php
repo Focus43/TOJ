@@ -155,16 +155,6 @@
 		 * @return TojPackage
 		 */
 		private function setupBlocks(){
-            // PageChoozer
-            if(!is_object(BlockType::getByHandle('page_choozer'))) {
-                BlockType::installBlockTypeFromPackage('page_choozer', $this->packageObject());
-            }
-
-            // Button Link
-            if(!is_object(BlockType::getByHandle('button_link'))) {
-                BlockType::installBlockTypeFromPackage('button_link', $this->packageObject());
-            }
-
             // Weather Widget
             if(!is_object(BlockType::getByHandle('weather_widget'))) {
                 BlockType::installBlockTypeFromPackage('weather_widget', $this->packageObject());

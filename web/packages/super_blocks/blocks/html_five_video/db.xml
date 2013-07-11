@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btHtmlFiveVideo">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+		<field name="srcMp4FileID" type="I" size="11">
+			<unsigned />
+		</field>
+		<field name="srcOggFileID" type="I" size="11">
+			<unsigned />
+		</field>
+		<field name="srcWebmFileID" type="I" size="11">
+			<unsigned />
+		</field>
+		<!--<field name="srcYoutube" type="C" size="255" />-->
+		<field name="posterFileID" type="I" size="11">
+			<unsigned />
+		</field>
+		<field name="width" type="X" size="10" />
+		<field name="height" type="X" size="10" />
+		<field name="captions" type="X" />
+		<field name="autoplay" type="I1">
+			<unsigned />
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="showControls" type="I1">
+			<unsigned />
+			<notnull />
+			<default value="1" />
+		</field>
+		<field name="preload" type="I1">
+			<unsigned />
+			<notnull />
+			<default value="0" />
+		</field>
+		<field name="loopVideo" type="I1">
+			<unsigned />
+			<notnull />
+			<default value="0" />
+		</field>
+	</table>
+</schema>
