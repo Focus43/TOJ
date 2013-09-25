@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>concrete5_site</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>6500893991587058304</string>
+			<key>name</key>
+			<string>localhost</string>
+			<key>port</key>
+			<integer>3307</integer>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK4HCBUWFxgZHSQpLTE0OFUkbnVsbNMJ
+			CgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+AAoAD
+			gASjERITgAWABoAIgA1UdHlwZVRyb3dzVGtleXNfECZTZWxlY3Rp
+			b25EZXRhaWxUeXBlUHJpbWFyeUtleWVkRGV0YWlsc9MJCgsaGxyg
+			oIAH0h4fICFaJGNsYXNzbmFtZVgkY2xhc3Nlc18QE05TTXV0YWJs
+			ZURpY3Rpb25hcnmjICIjXE5TRGljdGlvbmFyeVhOU09iamVjdNIK
+			CyUooiYngAmAC4AM0gsqKyxZTlMuc3RyaW5ngApSaWTSHh8uL18Q
+			D05TTXV0YWJsZVN0cmluZ6MuMCNYTlNTdHJpbmfSCyorM4AKV293
+			bmVySUTSHh81Nl5OU011dGFibGVBcnJheaM1NyNXTlNBcnJhedIe
+			HyI5oiIjXxAPTlNLZXllZEFyY2hpdmVy0Tw9VGRhdGGAAQAIABEA
+			GgAjAC0AMgA3AEYATABTAFsAZgBtAHEAcwB1AHcAewB9AH8AgQCD
+			AIgAjQCSALsAwgDDAMQAxgDLANYA3wD1APkBBgEPARQBFwEZARsB
+			HQEiASwBLgExATYBSAFMAVUBWgFcAWQBaQF4AXwBhAGJAYwBngGh
+			AaYAAAAAAAACAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAABqA==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {693, 456}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>SET @date = '2013-07-28';
+SET @firstDayOfMonth = DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY);
+SET @firstDayIndexPosition = DAYOFWEEK(@firstDayOfMonth);
+select @date, @firstDayOfMonth, @firstDayIndexPosition;
+
+
+select CONVERT_TZ(@date, '-06:00', '+00:00');
+
+
+# full query *WITH* timezone conversions
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(CONVERT_TZ(ev.startUTC, '+00:00', ev.timezoneOffset))) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+WHERE ((DATE(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerEventRepeatNullify evnullify WHERE DATE(@date) = DATE(evnullify.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(CONVERT_TZ(ev2.startUTC, '+00:00', ev2.timezoneOffset)) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0;
+
+
+# formula for "repeat every month on {first|second|third|etc} {sun|mon|tue|etc}
+SET @mockDayIndex = 6;
+SET @mockWeek = 2;
+select @firstDayOfMonth, DATE_ADD(@firstDayOfMonth, INTERVAL (((@mockDayIndex+7)-DAYOFWEEK(@firstDayOfMonth)) % 7) + ((@mockWeek*7)-7) DAY); #= '2013-03-06';
+</string>
+			<key>table</key>
+			<string>SchedulizerEvent</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>209</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string># full query *WITH* timezone conversions
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(CONVERT_TZ(ev.startUTC, '+00:00', ev.timezoneOffset))) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+WHERE ((DATE(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerEventRepeatNullify evnullify WHERE DATE(@date) = DATE(evnullify.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(CONVERT_TZ(ev2.startUTC, '+00:00', ev2.timezoneOffset)) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># full query
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(CONVERT_TZ(ev.startUTC, '+00:00', ev.timezoneOffset))) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+WHERE ((DATE(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= CONVERT_TZ(ev.repeatEndUTC, '+00:00', ev.timezoneOffset) AND ev.repeatIndefinite = 0))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerEventRepeatNullify evnullify WHERE DATE(@date) = DATE(evnullify.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(CONVERT_TZ(ev2.startUTC, '+00:00', ev2.timezoneOffset)) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># full query
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(CONVERT_TZ(ev.startUTC, '+00:00', ev.timezoneOffset))) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+WHERE ((DATE(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= CONVERT_TZ(ev.repeatEndUTC, '+00:00', ev.timezoneOffset) AND ev.repeatIndefinite = 0))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerEventRepeatNullify evnullify WHERE DATE(@date) = DATE(evnullify.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(CONVERT_TZ(ev2.startUTC, '+00:00', ev.timezoneOffset)) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># full query
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(CONVERT_TZ(ev.startUTC, '+00:00', ev.timezoneOffset))) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id</string>
+		<string># full query
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(CONVERT_TZ(ev.startUTC, '+00:00', ev.timezoneOffset))) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+WHERE ((DATE(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= CONVERT_TZ(ev.repeatEndUTC, '+00:00', ev.timezoneOffset) AND ev.repeatIndefinite = 0))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerEventRepeatNullify evnullify WHERE DATE(@date) = DATE(evnullify.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string>SET @date = '2013-07-28'</string>
+		<string># full query
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(CONVERT_TZ(ev.startUTC, '+00:00', ev.timezoneOffset))) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+WHERE ((DATE(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerEventRepeatNullify evnullify WHERE DATE(@date) = DATE(evnullify.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset)) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(CONVERT_TZ(startUTC, '+00:00', ev.timezoneOffset))) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string>SET @date = '2013-07-01'</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+#LEFT JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerEventRepeatNullify evnullify WHERE DATE(@date) = DATE(evnullify.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+#LEFT JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerEventRepeatNullify evnullify)
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+#LEFT JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerRepeatNullify evnullify)
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+#LEFT JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND ev.id NOT IN (SELECT evnullify.eventID FROM SchedulizerRepeatNullify)
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+#LEFT JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+LEFT JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+AND (DATE(@date) != DATE(evn.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+LEFT JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+inner JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+OUTER JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+RIGHT JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+		<string># UPDATE QUERY
+SELECT evrepeat.eventID, (CASE WHEN (DATE(@date) != DATE(ev.startUTC)) IS TRUE THEN 1 ELSE 0 END) AS isAlias
+FROM SchedulizerEvent ev
+RIGHT JOIN SchedulizerEventRepeat evrepeat ON evrepeat.eventID = ev.id
+#RIGHT JOIN SchedulizerEventRepeatNullify evn ON evn.eventID = ev.id
+WHERE ((DATE(ev.startUTC) &lt;= DATE(@date)) AND (ev.calendarID IN (1)))
+AND (ev.repeatIndefinite = 1 OR (DATE(@date) &lt;= ev.repeatEndUTC AND ev.repeatIndefinite = 0))
+#AND (DATE(@date) != DATE(evn.hideOnDate))
+AND (
+	# DAILY ONLY
+	((DATEDIFF(@date, ev.startUTC) % ev.repeatEvery) = 0 AND ev.repeatTypeHandle = 'daily')
+	# WEEKLY; ACCOUNTS FOR "OF EVERY x WEEKS"
+	OR
+	(((evrepeat.repeatWeekday = DAYOFWEEK(@date)) AND (CEIL(DATEDIFF(@date, ev.startUTC)/7) % ev.repeatEvery = 0)) AND (evrepeat.repeatWeek IS NULL) AND (ev.repeatTypeHandle = 'weekly'))
+	# MONTHLY; ON SPECIFIC DAY OF THE MONTH
+	OR
+	((evrepeat.repeatDay = DAYOFMONTH(@date)) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# MONTHLY; ON ABSTRACT (eg. "SECOND FRIDAY", see: http://oreilly.com/catalog/sqlhks/chapter/ch04.pdf)
+	OR
+	( ((DATE_ADD(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY), INTERVAL (((evrepeat.repeatWeekday+7)-DAYOFWEEK(DATE_SUB(LAST_DAY(@date), INTERVAL DAY(LAST_DAY(@date)) -1 DAY))) % 7) + ((evrepeat.repeatWeek*7)-7) DAY)) = @date) AND ((MONTH(@date) - MONTH(ev.startUTC)) % ev.repeatEvery = 0) AND (ev.repeatTypeHandle = 'monthly'))
+	# YEARLY (ONLY SUPPORTS ONE DATE ON EVERY YEAR)
+	OR
+	( (YEAR(@date)-YEAR(ev.startUTC)) % ev.repeatEvery = 0 AND ev.repeatTypeHandle = 'yearly' )) 
+UNION SELECT ev2.id AS eventID, 0 AS isAlias FROM SchedulizerEvent ev2
+WHERE ((DATE(ev2.startUTC) = DATE(@date)) AND (ev2.calendarID IN (1))) AND ev2.isRepeating = 0</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.5.32-0ubuntu0.12.04.1-log</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

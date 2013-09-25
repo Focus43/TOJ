@@ -1,0 +1,8 @@
+#schedulizerFlash ul.unstyled {margin:0;}
+#schedulizerWrap form {margin:0;}
+.btn.btn-block {width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.ccm-ui .message ul.unstyled {margin:0;}
+form {margin-bottom:0 !important;}
+span.colorThumbnail {width:20px;height:20px;float:left;margin-right:5px;cursor:pointer;border:2px solid transparent; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+span.colorThumbnail.active {border-color:#333;}
+span.colorThumbnail input[type="radio"] {display:none;}
