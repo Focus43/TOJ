@@ -2,7 +2,9 @@
 	
 	
 	/**
-	 * Button Link block
+	 * Button Link block.
+     * @note: this block is customized to use FontAwesome icons, and depends on the .scss
+     * file in the TOJ package to parse the available icon names.
 	 */
 	class ButtonLinkBlockController extends BlockController {
 
@@ -70,10 +72,12 @@
 		}
         
         
-        public function add(){ }
-        
-        
-        public function edit(){ }
+        public function add(){ $this->edit(); }
+        public function edit(){
+            $iconHelper     = Loader::helper('font_awesome_icon_names', 'toj');
+            $iconListArray  = $iconHelper->getFromFile( "{$_SERVER['DOCUMENT_ROOT']}/packages/toj/css/font-awesome.scss" );
+            $this->set('fontAwesomeIconList', $iconListArray);
+        }
 		
         
 		public function view(){

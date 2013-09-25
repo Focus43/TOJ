@@ -33,7 +33,6 @@
                     </div>
                 </div>
             </div>
-
             <?php Loader::packageElement('partials/footer', 'toj', array('c' => $c)); ?>
         </div>
 

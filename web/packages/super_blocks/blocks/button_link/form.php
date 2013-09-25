@@ -36,6 +36,9 @@
 		
 		<h4>Custom Link Text (Optional)</h4>
 		<?php echo $formHelper->text('linkText', $this->controller->linkText, array('class' => 'input-block-level')); ?>
+
+        <h4>Custom Icon (Optional)</h4>
+        <?php echo $formHelper->select('fontAwesomeIcon', $fontAwesomeIconList, $this->controller->fontAwesomeIcon, array('class' => 'input-block-level')); ?>
 	</div>
 
 <script type="text/javascript">

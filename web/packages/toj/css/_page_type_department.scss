@@ -1,0 +1,13 @@
+#agencyNavbar.navbar {
+  a:hover {text-decoration:none;}
+  ul {
+    li {
+      &:hover a.depth-1 {background:#eee;}
+      &.dropdown ul.dropdown-menu li {
+        &:hover, &.active {
+          a {color:#fff !important;}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+#homeScreen {color:#fff;min-height:100%;
+  .container-fluid {padding-top:80px;
+    h1 {line-height:1em;text-shadow:0 1px 4px #000;
+      small {color:#e9e9e9;padding:.6em 0;display:block;}
+    }
+
+    // SEARCH BAR AREA
+    #homeSearch {position:relative;width:75%;margin:1.5em auto 3.5em;
+      input {opacity:.89;line-height:1em;font-size:1.8em;height:auto;padding:.4em 4.4em .4em 1.7em; @include rounded(1.8em); @include boxShadow(0 0 5px rgba(0,0,0,.75));
+        &:hover, &:focus {opacity:1;}
+      }
+      i {color:#666;font-size:1.8em;position:absolute;top:14px;left:.55em;z-index:2;}
+      button {position:absolute;top:5px;right:.3em;z-index:2; @include rounded(1.8em);}
+      ::-webkit-input-placeholder { font-weight:100;padding-top:3px; }
+      ::-moz-placeholder { font-weight:100;padding-top:3px; } /* firefox 19+ */
+      :-ms-input-placeholder { font-weight:100;padding-top:3px; } /* ie */
+      input:-moz-placeholder { font-weight:100;padding-top:3px; }
+    }
+
+    // "APP" STYLE BUTTON LINKS
+    #introLinks {
+      ul.unstyled {text-align:center;
+        li {display:inline-block;width:19%;margin:.4em 1%;
+          a {background-color:rgba(0,0,0,.8);border:1px solid transparent;color:inherit;display:block;padding:1.2em 1em 1em;background-clip:padding-box; @include borderBox; @include rounded(8px); @include boxShadow(0 0 4px #000);
+            i {display:block;margin:0 auto;font-size:2.9em;margin-bottom:.1em;}
+          }
+          &:hover a {text-decoration:none;border:1px solid #fff;}
+        }
+      }
+    }
+  }
+}
+
+
+#launchParallax {display:block;position:absolute;right:30px;top:60px;}
+#launchParallax img {height:70px;}
+
+
+/* PARALLAX PLACEHOLDER (HOME ONLY) */
+#opaqueBack {opacity:0;position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(255,255,255,.55);z-index:3;}
+#parallaxWrap {position:fixed;top:100%;right:30px;bottom:30px;left:30px;background:rgba(20,20,20,.8) url(#{$tojImages}loading.gif) no-repeat 50% 50%; z-index:4; -webkit-box-shadow:0 0 25px #000;-moz-box-shadow:0 0 25px #000;box-shadow:0 0 25px #000;}
+body.parallax #pageWrap {-webkit-filter:grayscale(.9) blur(15px); -webkit-transform:perspective(2000px) scale3d(1,1,1); /* triggers hardware rendering */}
+body.parallax #pageWrap #primaryNav {display:none;}
+body.parallax #opaqueBack {opacity:1;}
+body.parallax #parallaxWrap {top:30px;}

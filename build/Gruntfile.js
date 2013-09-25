@@ -16,13 +16,13 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['../web/concrete/js/ccm.base.js', '../web/packages/toj/js/libs/bootstrap.min.js', '../web/packages/toj/js/libs/modernizr.min.js', '../web/packages/toj/js/toj.app.js'],
-        dest: '../web/packages/toj/js/<%= filename %>.dev.js'
+        dest: '../web/packages/toj/js/compiled/<%= filename %>-dev.js'
       }
     },
     strip: {
       main : {
         src : '<%= concat.dist.dest %>',
-        dest : '../web/packages/toj/js/<%= filename %>.min.js'
+        dest : '../web/packages/toj/js/compiled/<%= filename %>-min.js'
       }
     },
     uglify: {
@@ -86,7 +86,8 @@ module.exports = function(grunt) {
           style: 'compressed'
         },
         files: {
-            '../web/packages/toj/css/<%= filename %>.min.css': '../web/packages/toj/css/manifest.scss'
+            '../web/packages/toj/css/compiled/<%= filename %>-min.css': '../web/packages/toj/css/manifest.scss',
+            '../web/packages/toj/css/compiled/<%= filename %>-parallax-min.css': '../web/packages/toj/css/parallax.scss'
         }
       }
     },

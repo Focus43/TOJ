@@ -21,5 +21,6 @@
             <default value="0" />
         </field>
 	    <field name="linkText" type="X" />
+        <field name="fontAwesomeIcon" type="C" size="255" />
 	</table>
 </schema>

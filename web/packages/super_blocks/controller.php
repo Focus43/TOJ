@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'super_blocks';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.01';
+	    protected $pkgVersion 			= '0.02';
 	
 		
 		/**

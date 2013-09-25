@@ -102,17 +102,17 @@
 
             // header and CSS items
             $this->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
-            $this->addHeaderItem( $this->getHelper('html')->css('toj-app.min.css', self::PACKAGE_HANDLE) );
+            $this->addHeaderItem( $this->getHelper('html')->css('compiled/toj-min.css', self::PACKAGE_HANDLE) );
             
             // ie8 stylesheet
-            $ieShim = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
-            $ieShim .= "<!--[if lt IE 8]>\n" . $this->getHelper('html')->css('font-awesome-ie7.min.css', self::PACKAGE_HANDLE) . "\n<![endif]-->";
+            $ieShim = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('elderly/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
+            $ieShim .= "<!--[if lt IE 8]>\n" . $this->getHelper('html')->css('elderly/font-awesome-ie7.min.css', self::PACKAGE_HANDLE) . "\n<![endif]-->";
             $this->addHeaderItem( $ieShim );
 
             if( DEPLOYMENT_STATUS_PRODUCTION === true ){
-                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.min.js', self::PACKAGE_HANDLE)) );
+                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-min.js', self::PACKAGE_HANDLE)) );
             }else{
-                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('toj-app.dev.js', self::PACKAGE_HANDLE)) );
+                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-dev.js', self::PACKAGE_HANDLE)) );
             }
         }
         

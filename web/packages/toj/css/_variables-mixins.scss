@@ -19,6 +19,13 @@ $tojImages: "/packages/toj/images/";
   box-sizing:border-box;
 }
 
+@mixin transition($trztn){
+  -webkit-transition:$trztn;
+  -moz-transition:$trztn;
+  -o-transition:$trztn;
+  transition:$trztn;
+}
+
 @mixin linearGradientLight {
   background: #f4f4f4; /* Old browsers */
   /* IE9 SVG, needs conditional override of 'filter' to 'none' */

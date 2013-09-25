@@ -1,4 +1,11 @@
-@import "variables_mixins";
-@import 'bootstrap-min';
-@import 'font-awesome-min';
-@import 'base-toj';
+// LIBRARIES
+@import '_variables-mixins';
+@import '_bootstrap';
+@import '_font-awesome';
+
+// SITEWIDE
+@import 'base-sitewide';
+
+// PAGE TYPE SPECIFIC
+@import '_page_type_home';
+@import '_page_type_department';
