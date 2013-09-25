@@ -75,7 +75,7 @@
         public function add(){ $this->edit(); }
         public function edit(){
             $iconHelper     = Loader::helper('font_awesome_icon_names', 'toj');
-            $iconListArray  = $iconHelper->getFromFile( "{$_SERVER['DOCUMENT_ROOT']}/packages/toj/css/font-awesome.scss" );
+            $iconListArray  = $iconHelper->getFromFile( "{$_SERVER['DOCUMENT_ROOT']}/packages/toj/css/_font-awesome.scss" );
             $this->set('fontAwesomeIconList', $iconListArray);
         }
 		
