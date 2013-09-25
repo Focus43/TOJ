@@ -14,6 +14,7 @@
                         $pageList = new PageList();
                         $pageList->filterByParentID(1);
                         $pageList->filterByAttribute('exclude_nav', 1, '!=');
+                        $pageList->sortByDisplayOrder();
                         $pages = $pageList->get();
 
                         foreach($pages AS $pageObj): ?>
