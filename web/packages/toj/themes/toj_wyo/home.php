@@ -28,7 +28,7 @@
             <div id="cL3">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="bodyContent">
+                        <div id="cBodyContent">
 
                             <!-- actual page content -->
                             <div id="tagLine" class="row hidden-xs">

@@ -2,7 +2,7 @@
 
 $navItems = $controller->getNavItems(true); ?>
 
-<ul class="nav list-unstyled clearfix">
+<ul id="breadCrumbs">
     <?php for ($i = 0; $i < count($navItems); $i++):
             $ni = $navItems[$i];
 

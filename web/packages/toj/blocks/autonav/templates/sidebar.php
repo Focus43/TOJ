@@ -20,29 +20,22 @@ foreach ($navItems as $ni) {
     $ni->classes = implode(" ", $classes);
 } ?>
 
-<div class="well sidebar">
-<?php if( count($navItems) >= 1 ){
-    //*** Step 2 of 2: Output menu HTML ***/
-    echo '<ul id="sidebarNav" class="nav nav-list">'; //opens the top-level menu
-
-    $parentID = Page::getCollectionParentIDFromChildID( $navItems[0]->cID );
-    $parent   = Page::getByID( $parentID );
-    echo '<li class="nav-header">' . $parent->getCollectionName() . '</li>';
-
-    foreach ($navItems as $ni) {
-
-        echo '<li class="' . $ni->classes . '">'; //opens a nav item
-
-        echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="' . $ni->classes . '">' . $ni->name . '</a>';
-
-        if ($ni->hasSubmenu) {
-            echo '<ul>'; //opens a dropdown sub-menu
-        } else {
-            echo '</li>'; //closes a nav item
-            echo str_repeat('</ul></li>', $ni->subDepth); //closes dropdown sub-menu(s) and their top-level nav item(s)
-        }
-    }
-
-    echo '</ul>'; //closes the top-level menu
-} ?>
+<div class="panel panel-default">
+<?php if( count($navItems) >= 1 ): ?>
+    <div class="panel-heading">
+        <?php
+            $parentID = Page::getCollectionParentIDFromChildID( $navItems[0]->cID );
+            echo Page::getByID( $parentID )->getCollectionName();
+        ?>
+    </div>
+    <ul class="list-group">
+        <?php
+            foreach ($navItems as $ni) {
+                echo '<li class="list-group-item ' . $ni->classes . '">'; //opens a nav item
+                echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="' . $ni->classes . '">' . $ni->name . '</a>';
+                echo '</li>';
+            }
+        ?>
+    </ul>
+<?php endif; ?>
 </div>
