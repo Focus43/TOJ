@@ -63,21 +63,34 @@
             if( $this->includeThemeAssets === true ){
                 $this->_includeThemeAssets();
             }
-            
-            // body classes (used for edit mode stuff)
-            if( $this->pagePermissionObject()->canAdminPage() ){
-                $bodyClasses = array('editable');
-                if( $this->getCollectionObject()->isEditMode() ){
-                    $bodyClasses[] = 'editMode';
-                }
-                $this->set('bodyClass', join($bodyClasses, ' '));
-            }
+
+            $this->setBodyClasses();
             
             // message flash
             if( isset($_SESSION['flash_msg']) ){
                 $this->set('flash', $_SESSION['flash_msg']);
                 unset($_SESSION['flash_msg']);
             }
+        }
+
+
+        /**
+         * Handler for setting the body class(es) depending on page type, login status, etc.
+         * @return void
+         */
+        private function setBodyClasses(){
+            // created classes array with collection type handle as first element
+            $classes = array(Page::getCurrentPage()->getCollectionTypeHandle());
+
+            // add specific classes if logged in
+            if( $this->pagePermissionObject()->canAdminPage() ){
+                array_push($classes, 'cms-admin');
+                if( $this->getCollectionObject()->isEditMode() ){
+                    array_push($classes, 'edit-mode');
+                }
+            }
+
+            $this->set('bodyClass', join($classes, ' '));
         }
 
 

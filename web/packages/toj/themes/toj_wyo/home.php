@@ -5,18 +5,48 @@
 <?php Loader::element('header_required'); // REQUIRED BY C5 // ?>
 </head>
 
-<body class="toj <?php echo $bodyClass; ?>">
-    
+<body class="<?php echo $bodyClass; ?>">
+
+    <div id="sidebarLeft" class="sidebars" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_left">
+        <?php if( Page::getCurrentPage()->isEditMode() ){
+            Loader::packageElement('partials/sidebar_left', 'toj', array('c' => $c));
+        } ?>
+    </div>
+
+    <div id="sidebarRight" class="sidebars" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_right">
+        <?php if( Page::getCurrentPage()->isEditMode() ){
+            Loader::packageElement('partials/sidebar_right', 'toj', array('c' => $c));
+        } ?>
+    </div>
+
+    <div id="cL1">
+        <span class="backStretch" data-background="<?php echo $backgroundImage; ?>"></span>
+
+        <div id="cL2">
+            <?php for($i = 0; $i <= 50; $i++){ ?>
+                <p>test</p>
+            <?php } ?>
+
+            <div id="footer">
+                <?php for($i = 0; $i <= 15; $i++){ ?>
+                    <p>test</p>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+
+
+
+<?php /*
     <div id="pageWrap" class="fullHeight">
 
         <!-- left column -->
         <div id="cLeft" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_left">
-            <!-- Loaded JIT via ajax -->
             <?php if( Page::getCurrentPage()->isEditMode() ){
                 Loader::packageElement('partials/sidebar_left', 'toj', array('c' => $c));
             } ?>
         </div>
-        
+
         <!-- main content -->
         <div id="cMiddle" class="fullHeight">
             <div id="homeScreen" class="backStretch" data-background="<?php echo $backgroundImage; ?>">
@@ -71,7 +101,6 @@
 
         <!-- right column -->
         <div id="cRight" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_right">
-            <!-- Loaded JIT via ajax -->
             <?php if( Page::getCurrentPage()->isEditMode() ){
                 Loader::packageElement('partials/sidebar_right', 'toj', array('c' => $c));
             } ?>
@@ -79,6 +108,7 @@
     </div>
 
 <?php Loader::packageElement('partials/site_settings', 'toj'); ?>
+ */ ?>
 <?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
 </body>
 </html>

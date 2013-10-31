@@ -1,0 +1,38 @@
+// libraries / dependencies
+@import "variables-mixins";
+@import "bootstrap";
+@import "font-awesome";
+
+html, body, #cL1 {height:100% !important;}
+body {background:url(#{$imagePath}textures/black_lozenge.png);background-attachment:fixed;}
+
+.sidebars {width:$sidebarWidth;position:fixed;top:0;bottom:0;z-index:0;
+  &#sidebarLeft {left:0;} &#sidebarRight {right:0;}
+  .inner {min-height:100%;
+
+  }
+}
+
+#cL1 {position:relative;z-index:1;@include cssTransition(margin .25s ease-in);
+  .backStretch {position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;background-position:50% 50%;background-size:cover;background-repeat:no-repeat;@include cssTransition((left .25s ease-in, right .25s ease-in));}
+
+  #cL2 {min-height:100%;position:relative;z-index:1;
+    #footer {position:absolute;top:100%;left:0;right:0;background:#ddd;padding:20px;}
+  }
+}
+
+
+
+// transition main content and fixed background to show sidebars
+@media (min-width:1240px){
+  #cL1 {margin-left:$sidebarWidth;
+    .backStretch {left:$sidebarWidth;}
+  }
+
+  @media (min-width:1480px){
+    #cL1 {margin-right:$sidebarWidth;
+      .backStretch {right:$sidebarWidth;}
+    }
+  }
+}
+

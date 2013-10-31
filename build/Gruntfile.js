@@ -15,7 +15,8 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['../web/concrete/js/ccm.base.js', '../web/packages/toj/js/libs/bootstrap.min.js', '../web/packages/toj/js/libs/modernizr.min.js', '../web/packages/toj/js/toj.app.js'],
+        //src: ['../web/concrete/js/ccm.base.js', '../web/packages/toj/js/libs/bootstrap.min.js', '../web/packages/toj/js/libs/modernizr.min.js', '../web/packages/toj/js/toj.app.js'],
+        src: ['../web/concrete/js/ccm.base.js', '../web/packages/toj/js/libs/*.js', '../web/packages/toj/js/app.js'],
         dest: '../web/packages/toj/js/compiled/<%= filename %>-dev.js'
       }
     },
@@ -86,8 +87,8 @@ module.exports = function(grunt) {
           style: 'compressed'
         },
         files: {
-            '../web/packages/toj/css/compiled/<%= filename %>-min.css': '../web/packages/toj/css/manifest.scss',
-            '../web/packages/toj/css/compiled/<%= filename %>-parallax-min.css': '../web/packages/toj/css/parallax.scss'
+            '../web/packages/toj/css/compiled/<%= filename %>-min.css': '../web/packages/toj/css/app_manifest.scss'
+            //'../web/packages/toj/css/compiled/<%= filename %>-parallax-min.css': '../web/packages/toj/css/parallax.scss'
         }
       }
     },
@@ -101,7 +102,7 @@ module.exports = function(grunt) {
         tasks: ['default']
       },
       sassy_pants: {
-        files: '../web/packages/**/*.scss',
+        files: '../web/packages/toj/css/*.scss',
         tasks: ['sass:build', 'bump']
       }
     }

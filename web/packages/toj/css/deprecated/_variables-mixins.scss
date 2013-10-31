@@ -1,8 +1,4 @@
-$fontAwesomePath: "../../fonts/";
-$imagePath: "/packages/toj/images/";
-
-// variables
-$sidebarWidth:240px;
+$tojImages: "/packages/toj/images/";
 
 @mixin rounded($a, $b: null, $c: null, $d: null){
   @if $b == null { $b: $a; $c: $a; $d: $a; }
@@ -23,25 +19,11 @@ $sidebarWidth:240px;
   box-sizing:border-box;
 }
 
-@mixin cssFilter($filter) {
-  -webkit-filter: $filter;
-  -moz-filter: $filter;
-  filter: $filter;
-}
-
-@mixin cssTransition($transitions) {
-  -webkit-transition: $transitions;
-  -moz-transition: $transitions;
-  -o-transition: $transitions;
-  transition: $transitions;
-}
-
-@mixin cssTransform($transform){
-  -webkit-transform: $transform;
-  -moz-transform:    $transform;
-  -ms-transform:     $transform;
-  -o-transform:      $transform;
-  transform:         $transform;
+@mixin transition($trztn){
+  -webkit-transition:$trztn;
+  -moz-transition:$trztn;
+  -o-transition:$trztn;
+  transition:$trztn;
 }
 
 @mixin linearGradientLight {
