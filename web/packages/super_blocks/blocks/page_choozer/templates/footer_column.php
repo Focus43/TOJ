@@ -1,10 +1,12 @@
 <?php defined('C5_EXECUTE') or die("Access Denied."); ?>
 
     <div class="resources">
-        <h4 data-toggle="collapse" data-target="#footer-list-<?php echo $this->controller->bID; ?>">
-            <?php echo $this->getBlockObject()->getBlockName(); ?>
-        </h4>
-        <ul id="footer-list-<?php echo $this->controller->bID; ?>" class="list-unstyled collapse">
+        <a class="blockName" data-toggle="collapse" data-target="#footer-list-<?php echo $this->controller->bID; ?>">
+            <h4>
+                <?php echo $this->getBlockObject()->getBlockName(); ?>
+            </h4>
+        </a>
+        <ul id="footer-list-<?php echo $this->controller->bID; ?>" class="list-unstyled collapse navbar-collapse">
             <?php foreach( $pageCollection AS $pageObj ){
                 // determine link URL
                 $url = ($pageObj->isExternalLink()) ?

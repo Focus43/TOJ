@@ -80,7 +80,7 @@
          */
         private function setBodyClasses(){
             // created classes array with collection type handle as first element
-            $classes = array(Page::getCurrentPage()->getCollectionTypeHandle());
+            $classes = array( 'pt-' . Page::getCurrentPage()->getCollectionTypeHandle() );
 
             // add specific classes if logged in
             if( $this->pagePermissionObject()->canAdminPage() ){

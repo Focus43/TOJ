@@ -34,40 +34,34 @@ foreach ($navItems as $index => $ni) {
     }
 } ?>
 
-<div id="agencyNavbar" class="navbar">
-    <div class="navbar-inner">
-        <div class="container">
-            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-            <a class="btn btn-navbar" data-toggle="collapse" data-target="#agencySubnav">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-
-            <a class="brand" href="<?php echo $departmentURL; ?>"><?php echo $departmentName; ?></a>
-
-            <div id="agencySubnav" class="nav-collapse collapse">
-                <?php if( count($navItems) >= 1 ){
-                    //*** Step 2 of 2: Output menu HTML ***/
-                    echo '<ul class="nav pull-right">'; //opens the top-level menu
-
-                    foreach ($navItems as $ni) {
-
-                        echo '<li class="' . $ni->classes . ($ni->hasSubmenu ? ' dropdown' : '') . '">'; //opens a nav item
-
-                        echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="' . ($ni->hasSubmenu ? 'dropdown-toggle ' : '') . $ni->classes . '"' . ($ni->hasSubmenu ? 'data-toggle="dropdown"' : '') . '>' . $ni->name . ($ni->hasSubmenu ? ' <i class="icon-chevron-down"></i>' : '') . '</a>';
-
-                        if ($ni->hasSubmenu) {
-                            echo '<ul class="dropdown-menu">'; //opens a dropdown sub-menu
-                        } else {
-                            echo '</li>'; //closes a nav item
-                            echo str_repeat('</ul></li>', $ni->subDepth); //closes dropdown sub-menu(s) and their top-level nav item(s)
-                        }
-                    }
-
-                    echo '</ul>'; //closes the top-level menu
-                } ?>
-            </div>
-        </div>
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#departmentNavList">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="<?php echo $departmentURL; ?>"><?php echo $departmentName; ?> Links</a>
     </div>
-</div>
+
+    <div id="departmentNavList" class="collapse navbar-collapse">
+        <?php if( count($navItems) >= 1 ){
+            //*** Step 2 of 2: Output menu HTML ***/
+            echo '<ul class="nav navbar-nav">'; //opens the top-level menu
+
+            foreach ($navItems as $ni) {
+                echo '<li class="' . $ni->classes . ($ni->hasSubmenu ? ' dropdown' : '') . '">'; //opens a nav item
+                echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="' . ($ni->hasSubmenu ? 'dropdown-toggle ' : '') . $ni->classes . '"' . ($ni->hasSubmenu ? 'data-toggle="dropdown"' : '') . '>' . $ni->name . ($ni->hasSubmenu ? ' <i class="icon-chevron-down"></i>' : '') . '</a>';
+                if ($ni->hasSubmenu) {
+                    echo '<ul class="dropdown-menu">'; //opens a dropdown sub-menu
+                } else {
+                    echo '</li>'; //closes a nav item
+                    echo str_repeat('</ul></li>', $ni->subDepth); //closes dropdown sub-menu(s) and their top-level nav item(s)
+                }
+            }
+
+            echo '</ul>'; //closes the top-level menu
+        } ?>
+    </div>
+</nav>

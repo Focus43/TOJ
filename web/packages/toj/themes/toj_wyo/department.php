@@ -7,50 +7,54 @@
 
 <body class="toj landing agency-page <?php echo $bodyClass; ?>">
 
-    <div id="pageWrap" class="fullHeight">
+    <div id="sidebarLeft" class="sidebars" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_left">
+        <?php if( Page::getCurrentPage()->isEditMode() ){
+            Loader::packageElement('partials/sidebar_left', 'toj', array('c' => $c));
+        } ?>
+    </div>
 
-        <!-- left column -->
-        <div id="cLeft" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_left">
-            <!-- Loaded JIT via ajax -->
-            <?php if( Page::getCurrentPage()->isEditMode() ){
-                Loader::packageElement('partials/sidebar_left', 'toj', array('c' => $c));
-            } ?>
-        </div>
+    <div id="sidebarRight" class="sidebars" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_right">
+        <?php if( Page::getCurrentPage()->isEditMode() ){
+            Loader::packageElement('partials/sidebar_right', 'toj', array('c' => $c));
+        } ?>
+    </div>
 
-        <!-- main content -->
-        <div id="cMiddle" class="fullHeight">
-            <div id="biggieSmalls" class="backStretch hidden-phone" data-background="<?php echo $backgroundImage; ?>"></div>
+    <div id="cL1">
+        <span id="pageBackgroundImage" class="backStretch" data-background="<?php echo $backgroundImage; ?>"></span>
+
+        <div id="cL2">
             <?php Loader::packageElement('partials/primary_navigation', 'toj', array('c' => $c)); ?>
-            <div id="cPrimary">
-                <div id="cPrimaryInner">
-                    <div class="container-fluid">
-                        <?php Loader::packageElement('partials/landing_page_subheader', 'toj'); ?>
-                        <div id="areaTop" class="row-fluid">
-                            <div class="span12">
-                                <?php $a = new Area('Top Area'); $a->setCustomTemplate('autonav', 'agency_subnav.php'); $a->display($c); ?>
+
+            <div id="cL3">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="cBodyContent">
+
+                            <!-- actual page content -->
+                            <div class="whiteContainer">
+                                <?php Loader::packageElement('partials/landing_page_header', 'toj'); ?>
+                                <div id="areaTop" class="row">
+                                    <div class="col-sm-12">
+                                        <?php $a = new Area('Top Area'); $a->setCustomTemplate('autonav', 'agency_subnav.php'); $a->display($c); ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <?php $a = new Area('Left Content'); $a->display($c); ?>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <?php $a = new Area('Right Content'); $a->display($c); ?>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row-fluid">
-                            <div class="span8">
-                                <?php $a = new Area('Left Content'); $a->display($c); ?>
-                            </div>
-                            <div class="span4">
-                                <?php $a = new Area('Right Content'); $a->display($c); ?>
-                            </div>
+                            <!-- end page content -->
+
                         </div>
                     </div>
                 </div>
             </div>
 
             <?php Loader::packageElement('partials/footer', 'toj', array('c' => $c)); ?>
-        </div>
-
-        <!-- right column -->
-        <div id="cRight" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_right">
-            <!-- Loaded JIT via ajax -->
-            <?php if( Page::getCurrentPage()->isEditMode() ){
-                Loader::packageElement('partials/sidebar_right', 'toj', array('c' => $c));
-            } ?>
         </div>
     </div>
 
