@@ -25,46 +25,55 @@
         <div id="cL2">
             <?php Loader::packageElement('partials/primary_navigation', 'toj', array('c' => $c)); ?>
 
-            <div class="container-fluid">
+            <div id="cL3">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="bodyContent">
 
-                <div class="row-fluid hidden-phone">
-                    <div class="span12">
-                        <h1 class="centerize">Town Of Jackson, Wyoming<small>The Last Of The Wild, Wild West</small></h1>
-                        <a id="launchParallax">
-                            <img src="<?php echo TOJ_IMAGES_URL; ?>explore.svg" />
-                        </a>
-                    </div>
-                </div>
+                            <!-- actual page content -->
+                            <div id="tagLine" class="row hidden-xs">
+                                <div class="col-sm-12">
+                                    <h1>Town Of Jackson, Wyoming<small>The Last Of The Wild, Wild West</small></h1>
+                                    <!--<a id="launchParallax">
+                                        <img src="<?php echo TOJ_IMAGES_URL; ?>explore.svg" />
+                                    </a>-->
+                                </div>
+                            </div>
 
-                <div class="row-fluid hidden-phone">
-                    <div class="span10 offset1">
-                        <div id="homeSearch">
-                            <i class="icon-search"></i>
-                            <input type="text" class="search-query input-block-level" placeholder="Search" />
-                            <button class="btn btn-info btn-large">Search</button>
+                            <div id="homeSearch" class="row hidden-xs">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <div class="inner">
+                                        <input type="text" class="form-control input-lg" placeholder="Search" />
+                                        <i class="fa fa-search"></i>
+                                        <button class="btn btn-info btn-lg">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="introLinks" class="row-fluid">
+                                <div class="span12">
+                                    <ul class="list-unstyled">
+                                        <?php for($i = 1; $i <= 8; $i++): ?>
+                                            <li><?php
+                                                $loopedArea = new Area("Home Buttons $i");
+                                                $loopedArea->setBlockLimit(1);
+                                                $loopedArea->setCustomTemplate('button_link', 'templates/toj_homepage_buttons.php');
+                                                $loopedArea->display($c);
+                                                ?>
+                                            </li>
+                                        <?php endfor; ?>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="row-fluid">
+                                <div class="span10 offset1">
+                                    <?php $a = new Area('Homepage Content'); $a->display($c); ?>
+                                </div>
+                            </div>
+                            <!-- end page content -->
+
                         </div>
-                    </div>
-                </div>
-
-                <div id="introLinks" class="row-fluid">
-                    <div class="span12">
-                        <ul class="unstyled">
-                            <?php for($i = 1; $i <= 8; $i++): ?>
-                                <li><?php
-                                    $loopedArea = new Area("Home Buttons $i");
-                                    $loopedArea->setBlockLimit(1);
-                                    $loopedArea->setCustomTemplate('button_link', 'templates/toj_homepage_buttons.php');
-                                    $loopedArea->display($c);
-                                    ?>
-                                </li>
-                            <?php endfor; ?>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row-fluid">
-                    <div class="span10 offset1">
-                        <?php $a = new Area('Homepage Content'); $a->display($c); ?>
                     </div>
                 </div>
             </div>

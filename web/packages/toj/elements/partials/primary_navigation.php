@@ -6,24 +6,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand"><?php echo SITE; ?></a>
+        <a class="navbar-brand" href="<?php echo $this->url('/'); ?>"><?php echo SITE; ?></a>
     </div>
 
     <div id="navbarLinks" class="collapse navbar-collapse">
-        <!--<ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
-            </li>
-        </ul>-->
-
         <ul class="nav navbar-nav navbar-right">
             <?php
             $pageList = new PageList();
@@ -33,14 +19,17 @@
             $pages = $pageList->get();
 
             foreach($pages AS $pageObj): ?>
-                <li><a class="level-1" href="<?php echo $this->url( $pageObj->getCollectionPath() ); ?>"><?php echo $pageObj->getCollectionName(); ?></a>
+                <li>
+                    <a class="level-1" href="<?php echo $this->url( $pageObj->getCollectionPath() ); ?>"><?php echo $pageObj->getCollectionName(); ?></a>
                     <div class="subMenu">
-                        <div class="container-fluid">
-                            <div class="row-fluid">
-                                <div class="span6">
-                                    <?php $a = new GlobalArea("{$pageObj->getCollectionName()} Menu Left"); $a->display($c); ?>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="well well-sm">
+                                        <?php $a = new GlobalArea("{$pageObj->getCollectionName()} Menu Left"); $a->display($c); ?>
+                                    </div>
                                 </div>
-                                <div class="span6">
+                                <div class="col-sm-6">
                                     <?php $a = new GlobalArea("{$pageObj->getCollectionName()} Menu Right"); $a->display($c); ?>
                                 </div>
                             </div>
@@ -54,7 +43,7 @@
                     <?php $a = new GlobalArea('Nav Menu 5'); $a->display($c); ?>
                 </div>
             </li>
-            <li><a id="openSettings" data-toggle="collapse" data-target=".nav-collapse"><i class="icon-cogs"></i></a></li>
+            <li><a id="openSettings" data-toggle="collapse" data-target=".nav-collapse"><i class="fa fa-cogs"></i></a></li>
         </ul>
     </div>
 
@@ -106,13 +95,13 @@
 </div>
 
 <?php if( $c->isEditMode() ): ?>
-    <!--<script type="text/javascript">
+    <script type="text/javascript">
         // to make hover menus easily editable...
         $(function(){
-            $('li > a', '#primaryNavList').on('click', function(_clickEvent){
+            $('#primaryNav a.level-1').on('click', function(_clickEvent){
                 _clickEvent.preventDefault(); // prevent from following
-                $(this).parent('li').toggleClass('persist');
+                $(this).parent('li').toggleClass('sticky');
             });
         });
-    </script>-->
+    </script>
 <?php endif; ?>

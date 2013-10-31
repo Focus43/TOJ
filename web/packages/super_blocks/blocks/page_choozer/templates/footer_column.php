@@ -1,8 +1,8 @@
 <?php defined('C5_EXECUTE') or die("Access Denied."); ?>
 
-	<ul class="unstyled top">
+	<ul class="list-unstyled top">
         <li><h4 data-toggle="collapse" data-target=".footer-list-<?php echo $this->controller->bID; ?>"><?php echo $this->getBlockObject()->getBlockName(); ?></h4>
-            <ul class="unstyled footer-list-<?php echo $this->controller->bID; ?> collapse">
+            <ul class="list-unstyled footer-list-<?php echo $this->controller->bID; ?> collapse">
                 <?php foreach( $pageCollection AS $pageObj ){
                     // determine link URL
                     $url = ($pageObj->isExternalLink()) ?

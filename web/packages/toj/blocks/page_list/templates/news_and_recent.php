@@ -3,7 +3,7 @@
 <div id="newsAndAlerts" class="well">
     <span id="importantAlerts">News <span class="hidden-sidebar hidden-phone">&amp; Current Events</span></span>
     <div id="alertRotation">
-        <ol class="unstyled">
+        <ol class="list-unstyled">
             <?php foreach( $pages AS $pageObj ):
                     $labelClass = 'label-default';
                     $alertLevel = $pageObj->getAttribute('alert_level');

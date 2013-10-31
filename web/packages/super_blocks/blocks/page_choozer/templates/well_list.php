@@ -1,6 +1,6 @@
 <?php defined('C5_EXECUTE') or die("Access Denied."); ?>
 
-    <ul class="unstyled basic-list">
+    <ul class="list-unstyled basic-list">
         <?php foreach( $pageCollection AS $pageObj ){
             // determine link URL
             $url = ($pageObj->isExternalLink()) ?
