@@ -3,36 +3,78 @@
 @import "bootstrap";
 @import "font-awesome";
 
+// commons
 html, body, #cL1 {height:100% !important;}
 body {background:url(#{$imagePath}textures/black_lozenge.png);background-attachment:fixed;}
-
-.sidebars {width:$sidebarWidth;position:fixed;top:0;bottom:0;z-index:0;
-  &#sidebarLeft {left:0;} &#sidebarRight {right:0;}
-  .inner {min-height:100%;
-
-  }
+.backStretch {background-position:50% 50%;background-size:cover;background-repeat:no-repeat;
+  &.anchorLeft {background-position:0 50%;}
 }
 
-#cL1 {position:relative;z-index:1;@include cssTransition(margin .25s ease-in);
-  .backStretch {position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;background-position:50% 50%;background-size:cover;background-repeat:no-repeat;@include cssTransition((left .25s ease-in, right .25s ease-in));}
-
-  #cL2 {min-height:100%;position:relative;z-index:1;
-    #footer {position:absolute;top:100%;left:0;right:0;background:#ddd;padding:20px;}
-  }
+// sidebars
+.sidebars {width:$sidebarWidth;position:fixed;top:0;bottom:0;overflow-y:auto;z-index:0;
+  &#sidebarLeft {left:0;@include boxShadow(inset -20px 0 20px -20px #000);}
+  &#sidebarRight {right:0;@include boxShadow(inset 20px 0 20px -20px #000);}
+  &[data-load] {background:transparent url(#{$imagePath}loading.gif) no-repeat 50% 50%;}
+  .inner {padding:10px;min-height:100%;}
 }
 
+// main page content
+#cL1 {position:relative;z-index:1;@include cssTransition(margin .25s ease-in);}
+  #pageBackgroundImage {display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include cssTransition((left .25s ease-in, right .25s ease-in));}
+  #cL2 {min-height:100%;position:relative;z-index:1;}
+    #cFooter {position:absolute;top:100%;left:0;right:0;background:#ddd;padding:20px;}
+
+// navigation
+#primaryNav {@include linearGradientDark;
+
+}
+
+/*#primaryNav {z-index:3;position:fixed;top:0;left:0;right:0;
+  a, a:hover {text-decoration:none;color:inherit;}
+  .brand {color:#fff;position:relative;top:-2px;color:#e5e5e5;font-weight:700;}
+
+  // BOOTSTRAP CUSTOMIZATION
+  .navbar-inner {border:0; @include rounded(0);}
+  .btn.btn-navbar {color:#fff;line-height:1em;padding:.5em 1em;position:relative;top:-1px;
+    span {display:inline-block;}
+  }
+
+  #primaryNavList {
+    li {
+      a.level-1 {color:#fff;position:relative;z-index:3;border:1px solid transparent;border-top:0;border-bottom:0;}
+      &:hover a.level-1 {color:#333;background:#f4f4f4;text-shadow:none;border-left-color:#000;border-right-color:#000;}
+      .subMenu {color:#333;display:none;position:absolute;top:100%;left:0;right:0;padding:15px;border:1px solid #333;border-top:0; @include rounded(0, 0, 6px, 6px); @include boxShadow(0 2px 12px rgba(0,0,0,.45));
+        .container-fluid {padding:0;
+          ul.unstyled {position:relative;
+            li {
+              a {padding:.4em .6em;display:block;border:0;background:transparent;text-transform:capitalize;}
+              &:hover a {background:#f2f2f2; @include rounded(5px); @include boxShadow(inset 0 0 4px rgba(0,0,0,.5));}
+            }
+          }
+        }
+      }
+      &:hover .subMenu {display:block;}
+      .icon-cogs {color:#fff;}
+    }
+  }
+}*/
+
+/****************************** PAGE TYPES ******************************/
+body.home {
+
+}
 
 
 // transition main content and fixed background to show sidebars
 @media (min-width:1240px){
-  #cL1 {margin-left:$sidebarWidth;
-    .backStretch {left:$sidebarWidth;}
-  }
+  #cL1 {margin-left:$sidebarWidth;}
+  #pageBackgroundImage {left:$sidebarWidth;}
+  #primaryNav {left:$sidebarWidth;}
 
   @media (min-width:1480px){
-    #cL1 {margin-right:$sidebarWidth;
-      .backStretch {right:$sidebarWidth;}
-    }
+    #cL1 {margin-right:$sidebarWidth;}
+    #pageBackgroundImage {right:$sidebarWidth;}
+    #primaryNav {right:$sidebarWidth;}
   }
 }
 

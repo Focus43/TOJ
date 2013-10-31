@@ -1,4 +1,4 @@
-<div id="footer">
+<div id="cFooter">
     <div class="content fullHeight">
         <div class="container-fluid">
             <div class="row-fluid">
