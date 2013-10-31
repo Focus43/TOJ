@@ -6,7 +6,7 @@
      */
     class FontAwesomeIconNamesHelper {
 
-        protected $pattern = '/\.(icon-(?:\w+(?:-)?)+):before\s+{\s*content:\s*"(.+)";\s+}/';
+        protected $pattern = '/\.(fa-(?:\w+(?:-)?)+):before\s+{\s*content:\s*"(.+)";\s+}/';
 
 
         /**

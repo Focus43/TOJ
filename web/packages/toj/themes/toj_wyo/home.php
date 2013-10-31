@@ -40,7 +40,7 @@
                                 </div>
                             </div>
 
-                            <div id="homeSearch" class="row hidden-xs">
+                            <div id="homeSearch" class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
                                     <div class="inner">
                                         <input type="text" class="form-control input-lg" placeholder="Search" />
@@ -50,25 +50,18 @@
                                 </div>
                             </div>
 
-                            <div id="introLinks" class="row-fluid">
-                                <div class="span12">
-                                    <ul class="list-unstyled">
-                                        <?php for($i = 1; $i <= 8; $i++): ?>
-                                            <li><?php
-                                                $loopedArea = new Area("Home Buttons $i");
-                                                $loopedArea->setBlockLimit(1);
-                                                $loopedArea->setCustomTemplate('button_link', 'templates/toj_homepage_buttons.php');
-                                                $loopedArea->display($c);
-                                                ?>
-                                            </li>
-                                        <?php endfor; ?>
-                                    </ul>
-                                </div>
+                            <div id="introLinks">
+                                <?php for($i = 1; $i <= 8; $i++):
+                                    $loopedArea = new Area("Home Buttons $i");
+                                    $loopedArea->setBlockLimit(1);
+                                    $loopedArea->setCustomTemplate('button_link', 'templates/toj_homepage_buttons.php');
+                                    $loopedArea->display($c);
+                                endfor; ?>
                             </div>
 
                             <div class="row-fluid">
                                 <div class="span10 offset1">
-                                    <?php $a = new Area('Homepage Content'); $a->display($c); ?>
+                                    <?php //$a = new Area('Homepage Content'); $a->display($c); ?>
                                 </div>
                             </div>
                             <!-- end page content -->

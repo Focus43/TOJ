@@ -19,6 +19,18 @@
             this.transitionEnd  = 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd';
 
 
+            // lazy-load large background images (anything w/ data-background attr)
+            if( typeof Modernizr !== 'undefined' ){
+                var $backgroundElements = $('[data-background]');
+                if( Modernizr.backgroundsize && $backgroundElements.length ){
+                    $backgroundElements.each(function(idx, element){
+                        $(element).css({backgroundImage: 'url('+element.getAttribute('data-background')+')'})
+                            .removeAttr('data-background');
+                    });
+                }
+            }
+
+
             // lazy-load sidebar content, if visible (auto-triggers on init)
             $document.on(_self.transitionEnd, '#cL1', function( _transitionEvent ){
                 if( _transitionEvent.target === this ){
@@ -50,16 +62,41 @@
             $('#cL1').trigger('transitionend');
 
 
-            // lazy-load large background images (anything w/ data-background attr)
-            if( typeof Modernizr !== 'undefined' ){
-                var $backgroundElements = $('[data-background]');
-                if( Modernizr.backgroundsize && $backgroundElements.length ){
-                    $backgroundElements.each(function(idx, element){
-                        $(element).css({backgroundImage: 'url('+element.getAttribute('data-background')+')'})
-                            .removeAttr('data-background');
-                    });
-                }
-            }
+            /**
+             * Accessibility settings
+             */
+            $document.on('click', '#openSettings, #closeSettings', {overlay: $settings}, function(_clickEv){
+                var _top = _clickEv.data.overlay.data('toggled') === true ? '-100%' : 0;
+                $('#siteSettings').animate({top:_top}, 300, 'easeOutExpo').data('toggled', !_clickEv.data.overlay.data('toggled'));
+            });
+
+
+            // toggle font size
+            $settings.on('click', '.setFontSize', function(){
+                $body.css({zoom: $(this).attr('data-zoom')});
+            });
+
+
+            /**
+             * Popovers and tooltips
+             */
+            $document.popover({
+                animation: false,
+                selector: '.showPopover',
+                trigger: 'hover',
+                placement: function(){
+                    return this.$element.attr('data-placement') || 'top';
+                },
+                container: 'body'
+            }).tooltip({
+                animation: false,
+                selector: '.showTooltip',
+                trigger: 'hover focus',
+                placement: function(){
+                    return this.$element.attr('data-placement') || 'top';
+                },
+                container: 'body'
+            });
 
 
             // PUBLIC METHODS
@@ -68,4 +105,20 @@
             }
 
         }());
+
+
+        /**
+         * jQuery Easing Methods
+         */
+        jQuery.extend( jQuery.easing, {
+            easeInSine: function (x, t, b, c, d) {
+                return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+            },
+            easeInExpo: function (x, t, b, c, d) {
+                return (t===0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+            },
+            easeOutExpo: function (x, t, b, c, d) {
+                return (t===d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+            }
+        });
     });
