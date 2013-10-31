@@ -61,7 +61,7 @@
 
                             <div class="row-fluid">
                                 <div class="span10 offset1">
-                                    <?php //$a = new Area('Homepage Content'); $a->display($c); ?>
+                                    <?php $a = new Area('Homepage Content'); $a->display($c); ?>
                                 </div>
                             </div>
                             <!-- end page content -->

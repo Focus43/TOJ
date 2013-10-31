@@ -1,3 +1,6 @@
+// web fonts
+@import url(http://fonts.googleapis.com/css?family=PT+Serif:400italic,700italic|Roboto+Slab:400,300,700);
+
 // libraries / dependencies
 @import "variables-mixins";
 @import "bootstrap";
@@ -8,6 +11,9 @@ html, body, #cL1 {height:100% !important;}
 body {font-family:'Roboto Slab', serif;background:url(#{$imagePath}textures/black_lozenge.png);background-attachment:fixed;}
 h1,h2,h3,h4,h5 {font-family:inherit;font-weight:700;}
 a {cursor:pointer;}
+blockquote {margin-left:30px;margin-right:30px;border-left-color:$textColorLightGray;background:#fff;font-family:'PT Serif', serif;font-style:italic;font-size:1.45em; @include rounded(4px);@include boxShadow(inset 0 0 4px rgba(0,0,0,.35));
+  p {font-size:1em;} // text editor puts p inside blockquote
+}
 .backStretch {background-position:50% 50%;background-size:cover;background-repeat:no-repeat;
   &.anchorLeft {background-position:0 50%;}
 }
@@ -123,6 +129,7 @@ a {cursor:pointer;}
 
 
 /****************************** PAGE TYPES ******************************/
+/*### HOME ###*/
 body.pt-home {
   #tagLine {margin:45px 0;
     h1 {margin:0;line-height:1em;color:#fff;text-align:center;text-shadow:0 1px 4px #000;
@@ -138,7 +145,7 @@ body.pt-home {
     }
   }
 
-  #introLinks {color:#f1f1f1;text-align:center;margin-bottom:45px;@include clearfix;
+  #introLinks {max-width:780px;margin:0 auto 45px;color:#f1f1f1;text-align:center;@include clearfix;
     a {width:24%;float:left;margin-left:1%;margin-bottom:8px;left:-1%;position:relative;display:block;padding:1.2em 1em 1em;background-color:rgba(0,0,0,.8);border:1px solid transparent;color:inherit;background-clip:padding-box; @include borderBox; @include rounded(8px); @include boxShadow(0 0 4px #000);
       i {display:block;margin:0 auto;font-size:2.9em;margin-bottom:.1em;}
       &:hover {text-decoration:none;border:1px solid #fff;color:#fff;}
@@ -146,11 +153,12 @@ body.pt-home {
   }
 }
 
-
-/****************************** BOOTSTRAP OVERRIDES ******************************/
+/*### MODAL ###*/
 // drop the z-index when editing so areas don't get overlayed
 body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
 
+
+/****************************** BOOTSTRAP OVERRIDES ******************************/
 .modal {
   .modal-dialog {width:720px;
     .modal-header {padding:12px 20px 13px 20px;@include rounded(6px,6px,0,0);@include linearGradientLight;
