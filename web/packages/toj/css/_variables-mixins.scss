@@ -53,6 +53,7 @@ $screen-lg:1200px;
 @mixin cssTransition($transitions) {
   -webkit-transition: $transitions;
   -moz-transition: $transitions;
+  -ms-transition: $transitions;
   -o-transition: $transitions;
   transition: $transitions;
 }
@@ -64,6 +65,29 @@ $screen-lg:1200px;
   -o-transform:      $transform;
   transform:         $transform;
 }
+
+@mixin cssAnimation($animations){
+  -webkit-animation: $animations;
+  -moz-animation:    $animations;
+  -o-animation:      $animations;
+  animation:         $animations;
+}
+
+@mixin cssKeyframes($animationName){
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
 
 @mixin linearGradientLight {
   background: #f4f4f4; /* Old browsers */

@@ -20,7 +20,9 @@
     </div>
 
     <div id="cL1">
-        <span id="pageBackgroundImage" class="backStretch" data-background="<?php echo $backgroundImage; ?>"></span>
+        <span id="pageBackgroundImage">
+            <span class="backStretch" data-background="<?php echo $backgroundImage; ?>"></span>
+        </span>
 
         <div id="cL2">
             <?php Loader::packageElement('partials/primary_navigation', 'toj', array('c' => $c)); ?>

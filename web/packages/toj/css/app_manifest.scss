@@ -28,7 +28,9 @@ blockquote {margin-left:30px;margin-right:30px;border-left-color:$textColorLight
 
 // main page content
 #cL1 {background:#e5e5e5;position:relative;z-index:1;@include cssTransition(margin .25s ease-in);}
-#pageBackgroundImage {display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include cssTransition((left .25s ease-in, right .25s ease-in));}
+#pageBackgroundImage {display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include cssTransition((left .25s ease-in, right .25s ease-in));
+  span.backStretch {position:absolute;top:0;right:0;bottom:0;left:0;}
+}
 #cL2 {min-height:100%;position:relative;z-index:1;}
 #cL3 {padding:80px 45px 20px;}
 #cBodyContent {margin:0 auto;max-width:$contentMaxWidth;}
@@ -209,6 +211,21 @@ body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
 @media (orientation: portrait){
   body.home #introLinks a {width:48%;margin-left:0;left:0;
     &:nth-child(even) {float:right;}
+  }
+}
+
+
+///////////////////////// TRANSITIONS (SCALE BACKGROUND SIZE) /////////////////////////
+// http://joshbroton.com/quick-fix-sass-mixins-for-css-keyframe-animations/
+// http://stackoverflow.com/questions/13010776/how-can-i-convert-this-css3-animation-into-a-sass-mixin
+@include cssKeyframes(backgroundScaler){
+  from { @include cssTransform(scale(1.1,1.1)); }
+  to { @include cssTransform(scale(1,1)); }
+}
+
+#pageBackgroundImage {overflow:hidden;
+  span.backStretch {
+    @include cssAnimation(backgroundScaler 4s 1 normal);
   }
 }
 
