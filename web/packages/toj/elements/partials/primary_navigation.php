@@ -38,11 +38,11 @@
                 </li>
             <?php endforeach; ?>
 
-            <li class="hidden-phone"><a class="level-1"><i class="fa fa-warning" style="color:#66CC00;"></i> Alerts</a>
+            <!--<li class="hidden-phone"><a class="level-1"><i class="fa fa-warning" style="color:#66CC00;"></i> Alerts</a>
                 <div class="subMenu">
                     <?php $a = new GlobalArea('Nav Menu 5'); $a->display($c); ?>
                 </div>
-            </li>
+            </li>-->
             <li><a id="openSettings" data-toggle="collapse" data-target=".nav-collapse"><i class="fa fa-cogs"></i></a></li>
         </ul>
     </div>

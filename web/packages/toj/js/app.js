@@ -48,9 +48,6 @@
                     if( _bodyWidth >= 1480 ){
                         var $sidebarRight = $('#sidebarRight');
                         if( $sidebarRight.attr('data-load') ){
-                            /*$sidebarRight.load( $sidebarRight.attr('data-load'), function(){
-                                $sidebarRight.removeAttr('data-load');
-                            });*/
                             $sidebarRight.htmlCacheLoader( $sidebarRight.attr('data-load')).done(function(){
                                 $sidebarRight.removeAttr('data-load');
                             });
