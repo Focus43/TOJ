@@ -39,7 +39,7 @@
                     if( _bodyWidth >= 1240 ){
                         var $sidebarLeft = $('#sidebarLeft');
                         if( $sidebarLeft.attr('data-load') ){
-                            $sidebarLeft.load( $sidebarLeft.attr('data-load'), function(){
+                            $sidebarLeft.htmlCacheLoader( $sidebarLeft.attr('data-load')).done(function(){
                                 $sidebarLeft.removeAttr('data-load');
                             });
                         }
@@ -48,7 +48,10 @@
                     if( _bodyWidth >= 1480 ){
                         var $sidebarRight = $('#sidebarRight');
                         if( $sidebarRight.attr('data-load') ){
-                            $sidebarRight.load( $sidebarRight.attr('data-load'), function(){
+                            /*$sidebarRight.load( $sidebarRight.attr('data-load'), function(){
+                                $sidebarRight.removeAttr('data-load');
+                            });*/
+                            $sidebarRight.htmlCacheLoader( $sidebarRight.attr('data-load')).done(function(){
                                 $sidebarRight.removeAttr('data-load');
                             });
                             $document.off(_self.transitionEnd, '#cL1');

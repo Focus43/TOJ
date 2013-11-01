@@ -19,6 +19,15 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
+        <?php if( $showAuthor === true ): ?>
+        <div class="pull-right">
+            <div class="circle">
+                <?php echo Page::getCurrentPage()->getCollectionDatePublic('M d, Y'); ?>
+            </div>
+            <div class="circle img" style="background-image:url(https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-prn1/904214_10101418698728273_1426251468_o.jpg)"></div>
+            <span style="font-size:16px;top:3px;position:relative;display:inline-block;"><?php echo User::getByUserID( Page::getCurrentPage()->getCollectionUserID() )->getUserName(); ?></span>
+        </div>
+        <?php endif; ?>
         <h1><?php echo Page::getCurrentPage()->getCollectionName(); ?> <?php if(!($hideDescription === true)): ?><small class="visible-desktop"><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small><?php endif; ?></h1>
     </div>
 </div>

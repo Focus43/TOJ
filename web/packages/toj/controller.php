@@ -142,9 +142,9 @@
                 ), $this->packageObject());
 
                 // setup alert level values
-                SelectAttributeTypeOption::add($alertLevelAk, 'Normal', 1);
+                SelectAttributeTypeOption::add($alertLevelAk, 'News Post', 1);
                 SelectAttributeTypeOption::add($alertLevelAk, 'Warning', 1);
-                SelectAttributeTypeOption::add($alertLevelAk, 'Extreme', 1);
+                SelectAttributeTypeOption::add($alertLevelAk, 'Critical Alert', 1);
             }
 	        
 	        return $this;

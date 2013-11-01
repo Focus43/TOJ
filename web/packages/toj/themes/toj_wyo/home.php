@@ -43,7 +43,7 @@
                             </div>
 
                             <div id="homeSearch" class="row">
-                                <div class="col-sm-8 col-sm-offset-2">
+                                <div class="col-sm-12">
                                     <div class="inner">
                                         <input type="text" class="form-control input-lg" placeholder="Search" />
                                         <i class="fa fa-search"></i>
@@ -54,15 +54,17 @@
 
                             <div id="introLinks">
                                 <?php for($i = 1; $i <= 8; $i++):
+                                    echo '<div class="element">';
                                     $loopedArea = new Area("Home Buttons $i");
                                     $loopedArea->setBlockLimit(1);
                                     $loopedArea->setCustomTemplate('button_link', 'templates/toj_homepage_buttons.php');
                                     $loopedArea->display($c);
+                                    echo '</div>';
                                 endfor; ?>
                             </div>
 
-                            <div class="row-fluid">
-                                <div class="span10 offset1">
+                            <div class="row">
+                                <div class="col-sm-12">
                                     <?php $a = new Area('Homepage Content'); $a->display($c); ?>
                                 </div>
                             </div>
