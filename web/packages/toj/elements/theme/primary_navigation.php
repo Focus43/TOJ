@@ -38,19 +38,36 @@
                 </li>
             <?php endforeach; ?>
 
-            <!--<li class="hidden-phone"><a class="level-1"><i class="fa fa-warning" style="color:#66CC00;"></i> Alerts</a>
+            <li>
+                <a class="level-1" href="<?php echo $this->url('/current'); ?>"><i class="fa fa-spinner fa-spin"></i>&nbsp; News &amp; Current</a>
                 <div class="subMenu">
-                    <?php $a = new GlobalArea('Nav Menu 5'); $a->display($c); ?>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="well well-sm">
+                                    <?php
+                                        $newsPosts = new TojNewsPageList;
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </li>-->
-            <li><a id="openSettings" data-toggle="collapse" data-target=".nav-collapse"><i class="fa fa-cogs"></i></a></li>
+            </li>
+
+            <li>
+                <a id="openSettings" data-toggle="collapse" data-target=".nav-collapse"><i class="fa fa-cogs"></i></a>
+            </li>
         </ul>
     </div>
 </div>
 
 <?php if( $c->isEditMode() ): ?>
     <script type="text/javascript">
-        // to make hover menus easily editable...
+        // to make hover menus stay open while in edit mode for CMS admins
         $(function(){
             $('#primaryNav a.level-1').on('click', function(_clickEvent){
                 _clickEvent.preventDefault(); // prevent from following

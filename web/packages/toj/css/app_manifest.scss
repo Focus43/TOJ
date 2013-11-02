@@ -1,5 +1,5 @@
 // web fonts
-@import url(http://fonts.googleapis.com/css?family=PT+Serif:400italic,700italic|Roboto+Slab:400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400italic,700italic|Roboto+Slab:400,300,700);
 
 // libraries / dependencies
 @import "variables-mixins";
@@ -11,7 +11,7 @@ html, body, #cL1 {height:100% !important;}
 body {font-family:'Roboto Slab', serif;background:url(#{$imagePath}textures/black_lozenge.png);background-attachment:fixed;}
 h1,h2,h3,h4,h5 {font-family:inherit;font-weight:700;}
 a {cursor:pointer;}
-blockquote {margin-left:30px;margin-right:30px;border-left-color:$textColorLightGray;background:#fff;font-family:'PT Serif', serif;font-style:italic;font-size:1.45em; @include rounded(4px);@include boxShadow(inset 0 0 4px rgba(0,0,0,.35));
+blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30px;margin-right:30px;border-left-color:$textColorLightGray;background:#fff; @include rounded(4px);@include boxShadow(inset 0 0 4px rgba(0,0,0,.35));
   p {font-size:1em;} // text editor puts p inside blockquote
 }
 .backStretch {background-position:50% 50%;background-size:cover;background-repeat:no-repeat;
@@ -170,6 +170,42 @@ body.pt-home {
 body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
 
 
+/****************************** SINGLE PAGE STYLES ******************************/
+#cCurrent {
+  .alertGroup {margin-bottom:20px;@include rounded(6px);@include boxShadow(0 0 4px rgba(0,0,0,.45));
+    .alert {margin:0;@include rounded(0);
+      &:first-child {@include rounded(6px,6px,0,0);}
+      &:last-child {@include rounded(0,0,6px,6px);}
+    }
+  }
+
+  #currentMain {
+    #postList.panel {
+      .panel-heading {
+        h2 {margin:0;}
+      }
+      .list-group {
+        .list-group-item {display:block;
+          h4 {font-weight:bold;margin:3px 0 7px;text-transform:capitalize;}
+          span {margin-bottom:0;}
+        }
+
+        &.grid {@include clearfix;
+          .list-group-item {background:none;width:33.33%;border:0;border-bottom:1px solid #ccc;@include rounded(0);
+            h4 {font-weight:bold;}
+          }
+        }
+      }
+      .panel-footer {text-align:center;}
+    }
+  }
+
+  #currentSidebar {
+
+  }
+}
+
+
 /****************************** BOOTSTRAP OVERRIDES ******************************/
 .modal {
   .modal-dialog {width:720px;
@@ -208,6 +244,18 @@ body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
           .resources {font-size:.9em;margin:4px 0;padding:.3em 1em;border:0;@include rounded(4px);@include boxShadow(0 1px 3px rgba(0,0,0,.35));@include linearGradientLight;
             a {text-align:center;}
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:$screen-md){
+  #cCurrent {
+    #currentMain {
+      #postList.panel {
+        .list-group.news-grid {
+          .list-group-item {width:50%;}
         }
       }
     }

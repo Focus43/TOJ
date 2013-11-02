@@ -61,7 +61,7 @@
             
             // include main theme assets? (set in the child controller class)
             if( $this->includeThemeAssets === true ){
-                $this->_includeThemeAssets();
+                $this->attachThemeAssets( $this );
             }
 
             $this->setBodyClasses();
@@ -79,8 +79,14 @@
          * @return void
          */
         private function setBodyClasses(){
-            // created classes array with collection type handle as first element
-            $classes = array( 'pt-' . Page::getCurrentPage()->getCollectionTypeHandle() );
+            $classes = array();
+
+            // "isGeneratedCollection" = is it a single page?
+            if( $this->getCollectionObject()->isGeneratedCollection() ){
+                array_push($classes, 'sp-' . $this->getCollectionObject()->getCollectionHandle());
+            }else{
+                array_push($classes, 'pt-' . $this->getCollectionObject()->getCollectionTypeHandle());
+            }
 
             // add specific classes if logged in
             if( $this->pagePermissionObject()->canAdminPage() ){
@@ -105,27 +111,29 @@
 
 
         /**
-         * Include assets used for page templates
+         * Include assets used for page templates. *NOTE*, pass the pageController in (even
+         * if we're doing it from the on_start method in this class), so this method can
+         * be re-used on view.php templates
          * @return void
          */
-        protected function _includeThemeAssets(){
+        public function attachThemeAssets( Controller $pageController ){
             // google translate
-            $this->addHeaderItem('<meta name="google-translate-customization" content="'. GOOGLE_TRANSLATE_META_KEY .'"></meta>');
-            $this->addHeaderItem('<meta name="apple-mobile-web-app-capable" content="yes" />');
+            //$this->addHeaderItem('<meta name="google-translate-customization" content="'. GOOGLE_TRANSLATE_META_KEY .'"></meta>');
+            $pageController->addHeaderItem('<meta name="apple-mobile-web-app-capable" content="yes" />');
 
             // header and CSS items
-            $this->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
-            $this->addHeaderItem( $this->getHelper('html')->css('compiled/toj-min.css', self::PACKAGE_HANDLE) );
+            $pageController->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
+            $pageController->addHeaderItem( $this->getHelper('html')->css('compiled/toj-min.css', self::PACKAGE_HANDLE) );
             
             // ie8 stylesheet
             $ieShim = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('elderly/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
             $ieShim .= "<!--[if lt IE 8]>\n" . $this->getHelper('html')->css('elderly/font-awesome-ie7.min.css', self::PACKAGE_HANDLE) . "\n<![endif]-->";
-            $this->addHeaderItem( $ieShim );
+            $pageController->addHeaderItem( $ieShim );
 
             if( DEPLOYMENT_STATUS_PRODUCTION === true ){
-                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-min.js', self::PACKAGE_HANDLE)) );
+                $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-min.js', self::PACKAGE_HANDLE)) );
             }else{
-                $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-dev.js', self::PACKAGE_HANDLE)) );
+                $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-dev.js', self::PACKAGE_HANDLE)) );
             }
         }
         

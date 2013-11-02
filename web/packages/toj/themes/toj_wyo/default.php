@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="<?php echo LANGUAGE; ?>">
 <head>
-<?php Loader::packageElement('partials/head_tag_inner', 'toj'); ?>
+<?php Loader::packageElement('theme/head_tag_inner', 'toj'); ?>
 <?php Loader::element('header_required'); // REQUIRED BY C5 // ?>
 </head>
 
@@ -25,7 +25,7 @@
         </span>
 
         <div id="cL2">
-            <?php Loader::packageElement('partials/primary_navigation', 'toj', array('c' => $c)); ?>
+            <?php Loader::packageElement('theme/primary_navigation', 'toj', array('c' => $c)); ?>
 
             <div id="cL3">
                 <div class="row">
@@ -34,7 +34,7 @@
 
                             <!-- actual page content -->
                             <div class="whiteContainer">
-                                <?php Loader::packageElement('partials/landing_page_header', 'toj'); ?>
+                                <?php Loader::packageElement('theme/landing_page_header', 'toj'); ?>
                                 <div class="row">
                                     <div class="containerSidebar col-sm-3">
                                         <?php
@@ -60,11 +60,11 @@
                 </div>
             </div>
 
-            <?php Loader::packageElement('partials/footer', 'toj', array('c' => $c)); ?>
+            <?php Loader::packageElement('theme/footer', 'toj', array('c' => $c)); ?>
         </div>
     </div>
 
-<?php Loader::packageElement('partials/site_settings', 'toj'); ?>
+<?php Loader::packageElement('theme/site_settings', 'toj'); ?>
 <?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
 </body>
 </html>

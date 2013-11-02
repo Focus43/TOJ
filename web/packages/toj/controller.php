@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.32';
+	    protected $pkgVersion 			= '0.36';
 	
 		
 		/**
@@ -34,7 +34,8 @@
 			// autoload classes
 			Loader::registerAutoload(array(
 				// page controller
-				'TojPageController'	=> array('library', 'toj_page_controller', $this->pkgHandle)
+				'TojPageController'	=> array('library', 'toj_page_controller', $this->pkgHandle),
+                'TojNewsPageList'   => array('model', 'news_page_list', $this->pkgHandle)
 			));
 	    }
 		
@@ -50,12 +51,33 @@
 				
 			}catch(Exception $e){ /* FAIL GRACEFULLY */ }
 	    }
+
+
+        /**
+         * Run before install or upgrade to ensure dependencies are present
+         * @dependency concrete_redis package
+         */
+        private function checkDependencies(){
+            // test for the redis package
+            $masonryPackage = Package::getByHandle('masonry_grid');
+            $masonryPackageAvail = false;
+            if( $masonryPackage instanceof Package ){
+                if( (bool) $masonryPackage->isPackageInstalled() ){
+                    $masonryPackageAvail = true;
+                }
+            }
+
+            if( !$masonryPackageAvail ){
+                throw new Exception('Installation requires the Masonry Grid package for Concrete5.');
+            }
+        }
 	    
 		
 		/**
 		 * @return void
 		 */
 	    public function upgrade(){
+            $this->checkDependencies();
 			parent::upgrade();
 			$this->installAndUpdate();
 	    }
@@ -65,6 +87,7 @@
 		 * @return void
 		 */
 		public function install() {
+            $this->checkDependencies();
 	    	$this->_packageObj = parent::install(); 
 			$this->installAndUpdate();
 	    }
@@ -135,7 +158,7 @@
 	            ), $this->packageObject());
 	        }
 
-            if( !is_object(CollectionAttributeKey::getByHandle('alert_level')) ){
+            /*if( !is_object(CollectionAttributeKey::getByHandle('alert_level')) ){
                 $alertLevelAk = CollectionAttributeKey::add($this->attributeType('select'), array(
                     'akHandle'  => 'alert_level',
                     'akName'    => 'Alert Level'
@@ -145,6 +168,27 @@
                 SelectAttributeTypeOption::add($alertLevelAk, 'News Post', 1);
                 SelectAttributeTypeOption::add($alertLevelAk, 'Warning', 1);
                 SelectAttributeTypeOption::add($alertLevelAk, 'Critical Alert', 1);
+            }*/
+
+            if( !is_object(CollectionAttributeKey::getByHandle('alert_warning')) ){
+                CollectionAttributeKey::add($this->attributeType('boolean'), array(
+                    'akHandle'  => 'alert_warning',
+                    'akName'    => 'Alert Level: Warning'
+                ), $this->packageObject());
+            }
+
+            if( !is_object(CollectionAttributeKey::getByHandle('alert_critical')) ){
+                CollectionAttributeKey::add($this->attributeType('boolean'), array(
+                    'akHandle'  => 'alert_critical',
+                    'akName'    => 'Alert Level: Critical'
+                ), $this->packageObject());
+            }
+
+            if( !is_object(CollectionAttributeKey::getByHandle('sticky_until')) ){
+                CollectionAttributeKey::add($this->attributeType('date_time'), array(
+                    'akHandle'  => 'sticky_until',
+                    'akName'    => 'Sticky Until'
+                ), $this->packageObject());
             }
 	        
 	        return $this;
@@ -223,6 +267,8 @@
 		 * @return TojPackage
 		 */
 		private function setupSitePages(){
+            SinglePage::add('current', $this->packageObject());
+
 			return $this;
 		}
 

@@ -1,69 +1,64 @@
 <?php
-if( !($this->controller instanceof ClinicaPageController) ){
-	$htmlHelper = Loader::helper('html');
-	// header and CSS items
-	$this->addHeaderItem( '<meta id="clinicaToolsDir" value="'.CLINICA_TOOLS_URL.'" />' );
-	$this->addHeaderItem( $htmlHelper->css('bootstrap.min.css', 'clinica') );
-	$this->addHeaderItem( $htmlHelper->css('clinica.app.css', 'clinica') );
-	$this->addHeaderItem( $htmlHelper->javascript('libs/modernizr.min.js', 'clinica') );
-	
-	// ie8 stylesheet
-	$ie8 = "<!--[if lt IE 9]>\n" . $htmlHelper->css('ie8.css', 'clinica') . "\n<![endif]-->";
-	$this->addHeaderItem( $ie8 );
-	
-	// footer stuff (usually javascript)
-	$this->addFooterItem( $htmlHelper->javascript('libs/bootstrap.min.js', 'clinica') );
-	$this->addFooterItem( $htmlHelper->javascript('clinica.app.js', 'clinica') );
-}
+    if( !($this->controller instanceof TojPageController) ){
+        $tojController = new TojPageController;
+        $tojController->attachThemeAssets( $this->controller );
+    }
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo LANGUAGE; ?>">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href='//fonts.googleapis.com/css?family=Enriqueta:400,700' rel='stylesheet' type='text/css' />
     <?php Loader::element('header_required'); // REQUIRED BY C5 // ?>
-    <?php Loader::packageElement('modernizr', 'clinica'); ?>
+    <?php Loader::packageElement('theme/head_tag_inner', 'toj'); ?>
 </head>
 
-<!-- Enjoy checking out what's under the hood? We should talk! www.focus-43.com -->
+<body class="<?php echo $bodyClass; ?>">
 
-<body class="clinicaPage fullWidth">
-	
-	<div id="minHeighter">
-		<?php Loader::packageElement('theme_header', 'clinica'); ?>
-		<div class="container">
-			<div class="row hidden-phone">
-				<div class="span12">
-					<h1><?php echo Page::getCurrentPage()->getCollectionName(); ?> <small class="visible-desktop"><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small></h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="span12">
-					<div id="cPrimary">
-						<?php
-							$bt = BlockType::getByHandle('autonav');
-							$bt->controller->orderBy 					= 'display_asc';
-							$bt->controller->displayPages 				= 'top';
-							$bt->controller->displaySubPages 			= 'relevant_breadcrumb';
-							$bt->controller->displaySubPageLevels 		= 'all';
-							$bt->render('templates/clinica_breadcrumb');
-						?>
-						
-						<div class="container-fluid" style="padding:0;">
-							<div class="row-fluid">
-								<div class="span12">
-									<?php print $innerContent; ?>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="pushFooter"></div>
-	</div>
-	
-	<?php Loader::packageElement('theme_footer', 'clinica', array('c' => $c)); ?>
-    <?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
+    <div id="sidebarLeft" class="sidebars" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_left">
+        <?php if( Page::getCurrentPage()->isEditMode() ){
+            Loader::packageElement('partials/sidebar_left', 'toj', array('c' => $c));
+        } ?>
+    </div>
+
+    <div id="sidebarRight" class="sidebars" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_right">
+        <?php if( Page::getCurrentPage()->isEditMode() ){
+            Loader::packageElement('partials/sidebar_right', 'toj', array('c' => $c));
+        } ?>
+    </div>
+
+    <div id="cL1">
+            <span id="pageBackgroundImage">
+                <span class="backStretch" data-background="<?php echo $backgroundImage; ?>"></span>
+            </span>
+
+        <div id="cL2">
+            <?php Loader::packageElement('theme/primary_navigation', 'toj', array('c' => $c)); ?>
+
+            <div id="cL3">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="cBodyContent">
+
+                            <!-- actual page content -->
+                            <div class="whiteContainer">
+                                <?php Loader::packageElement('theme/landing_page_header', 'toj'); ?>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <?php print $innerContent; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end page content -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php Loader::packageElement('theme/footer', 'toj', array('c' => $c)); ?>
+        </div>
+    </div>
+
+<?php Loader::packageElement('theme/site_settings', 'toj'); ?>
+<?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
 </body>
 </html>

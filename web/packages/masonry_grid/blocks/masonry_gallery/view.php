@@ -31,15 +31,16 @@
 	</div>
 	
 	<script type="text/javascript">
-		$(function(){
-			new C5Masonry({
-				blockID: <?php echo $controller->bID; ?>,
-				containerID: '#<?php echo $controller->getContainerID(); ?>',
-				itemClass: '.<?php echo $controller->getItemClass(); ?>',
-				columnWidth: <?php echo $controller->getColumnWidth(); ?>,
-				setFiltersID: '#<?php echo $controller->getFilterListID(); ?>',
-				toolsURL: '<?php echo MASONRY_TOOLS_URL; ?>',
-				enableModals: <?php echo (bool) $controller->enableModals ? 'true' : 'false'; ?>
-			});
-		});
+        (function( _stack ){
+            _stack.push({
+                blockID: <?php echo $controller->bID; ?>,
+                containerID: '#<?php echo $controller->getContainerID(); ?>',
+                itemClass: '.<?php echo $controller->getItemClass(); ?>',
+                columnWidth: <?php echo $controller->getColumnWidth(); ?>,
+                setFiltersID: '#<?php echo $controller->getFilterListID(); ?>',
+                toolsURL: '<?php echo MASONRY_TOOLS_URL; ?>',
+                enableModals: <?php echo (bool) $controller->enableModals ? 'true' : 'false'; ?>
+            });
+            window.initMasonries = _stack;
+        }( window.initMasonries || [] ));
 	</script>

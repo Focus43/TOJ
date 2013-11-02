@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 0.30.895 (2013-11-01)
+/*! Town Of Jackson - Deploy v: 0.30.1093 (2013-11-02)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -281,6 +281,57 @@ $(function(){
                     return this.$element.attr('data-placement') || 'top';
                 },
                 container: 'body'
+            });
+
+
+            // news page
+            $('#btnLoadMore').on('click.pager', function(){
+                var $this = $(this),
+                    _page = +($this.data('paging') || 2);
+
+                // auto-incr the paging data attr even before querying
+                $this.data('paging', _page + 1);
+
+                $.get( $this.attr('data-src') + _page, function( _html ){
+                    if( !_html.length ){
+                        $this.replaceWith('<strong class="text-success"><i class="fa fa-check-circle-o"></i> All Posts Loaded!</strong>');
+                        $this.off('click.pager');
+                        return;
+                    }
+
+                    var $container = $('.list-group', '#postList');
+                    if( $container.data('masonry') ){
+                        var $html = $(_html)
+                        $container.masonry().append($html).masonry('appended', $html);
+                    }else{
+                        $container.append(_html);
+                    }
+                }, 'html');
+            });
+
+
+            // masonry grid stuff for news page
+            $('[data-view]', '#postList').on('click', function(){
+                var $this = $(this),
+                    $container = $('.list-group', '#postList');
+
+                $this.addClass('active').siblings('button').removeClass('active');
+
+                if( $this.attr('data-view') === 'grid' ){
+                    $container.addClass('grid');
+                    $container.masonry({
+                        itemSelector: '.list-group-item',
+                        columnWidth: '.list-group-item',
+                        gutter: 0,
+                        transitionDuration: '0.2s'
+                    });
+                    return;
+                }
+
+                if( $container.data('masonry') ){
+                    $container.masonry('destroy');
+                }
+                $container.removeClass('grid');
             });
 
 

@@ -61,7 +61,10 @@
 		}
 		
 		public function on_page_view(){
-			if( Config::get('MASONRY_CONFIG_INCLUDE_MODERNIZR') ){
+            // add to the footer! dont put in block/js directory auto-include in the header
+            $this->addFooterItem( Loader::helper('html')->javascript('jquery.masonry.min.js', 'masonry_grid') );
+			// include modernizr?
+            if( Config::get('MASONRY_CONFIG_INCLUDE_MODERNIZR') ){
 				$this->addHeaderItem( Loader::helper('html')->javascript('modernizr.min.js', 'masonry_grid') );
 			}
 		}
