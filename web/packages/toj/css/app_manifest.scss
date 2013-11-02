@@ -183,6 +183,7 @@ body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
     .alert {margin:0;@include rounded(0);
       &:first-child {@include rounded(6px,6px,0,0);}
       &:last-child {@include rounded(0,0,6px,6px);}
+      &:only-child {@include rounded(6px);}
     }
   }
 
