@@ -12,7 +12,7 @@
             <?php Loader::packageElement('dashboard/calendars/form_setup', 'schedulizer', array(
                 'calendarObj' 	=> $calendarObj,
                 'activeTab'     => $activeTab,
-                'editableAttrs'	=> $editableAttrs
+                'calendarAttrs'	=> $calendarAttrs
             )); ?>
         </div>
         <div class="ccm-pane-footer"></div>

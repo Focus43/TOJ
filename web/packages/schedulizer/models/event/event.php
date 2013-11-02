@@ -27,7 +27,7 @@
                 IS_ALIAS_FALSE                  = 0;
 
 
-        // defaults for new events
+        // defaults
         protected $attrCategoryHandle  = 'schedulizer_event',
                   $useCalendarTimezone = self::USE_CALENDAR_TIMEZONE_TRUE,
                   $isAllDay            = self::ALL_DAY_FALSE,
@@ -35,7 +35,7 @@
                   $repeatTypeHandle    = self::REPEAT_TYPE_HANDLE_DAILY,
                   $repeatIndefinite    = self::REPEAT_INDEFINITE_TRUE,
                   $repeatMonthlyMethod = self::REPEAT_MONTHLY_SPECIFIC_DATE,
-                  $colorHex            = '#A3D900', // see EventColorsHelper for available values
+                  $colorHex            = SchedulizerEventColors::GREEN, // see EventColorsHelper for available values
                   $isAlias             = self::IS_ALIAS_FALSE;
 
 
@@ -145,15 +145,6 @@
 
 
         /**
-         * Get the event timezone offset.
-         * @return string
-         */
-        public function getTimezoneOffset(){
-            return $this->timezoneOffset;
-        }
-
-
-        /**
          * Get the event color hex code.
          * @return string
          */
@@ -241,47 +232,11 @@
          * @param bool $isAlias
          * @param string $aliasDate Only the date portion, eg: "2013-08-01"
          */
-        public function setIsAlias( DateTime $aliasDate, $isAlias = false ){
-            $this->isAlias = $isAlias;
-
-            if( $this->isAlias ){
-                // get whether the *original* date is during DST, *before* we adjust startUTC instance property
-                // @note; getting startDateTimeObj LOCALIZED here, whereas the startEndIntrvl below gets UTC
-                $originalIsDST = $this->getStartDateTimeObj()->format('I');
-
-                // get interval between startUTC and endUTC as stored in the database
-                $startEndIntrvl     = $this->getStartDateTimeObj(false)->diff( $this->getEndDateTimeObj(false) );
-
-                // get start DateTime object, adjust to the alias date
-                $startUTC_DTO       = new DateTime($this->getStartUTC(), new DateTimeZone('UTC'));
-                $adjustedStartDTO   = $startUTC_DTO->setDate($aliasDate->format('Y'), $aliasDate->format('m'), $aliasDate->format('d'));
-
-                // clone the adjusted start DateTime object, then add the interval
-                $adjustedEndDTO     = clone $adjustedStartDTO;
-                $adjustedEndDTO     = $adjustedEndDTO->add($startEndIntrvl);
-
-                // set the updated startUTC and endUTC instance properties
-                $this->startUTC     = $adjustedStartDTO->format(SchedulizerPackage::TIMESTAMP_FORMAT);
-                $this->endUTC       = $adjustedEndDTO->format(SchedulizerPackage::TIMESTAMP_FORMAT);
-
-                // determine whether the adjusted startUTC is during DST (note, we're calling getStartDateTimeObj() *again* to
-                // get a new, localized copy of the start time object)
-                $aliasIsDST = $this->getStartDateTimeObj()->format('I');
-
-                // if both have the same DST setting; we're good, so return
-                if( $originalIsDST === $aliasIsDST ){ return; }
-
-                // otherwise, gotsta add or subtract an hour
-                $intrvlOneHour = new DateInterval("PT1H");
-
-                if( (bool) $originalIsDST ){
-                    $this->startUTC = $adjustedStartDTO->add($intrvlOneHour)->format(SchedulizerPackage::TIMESTAMP_FORMAT);
-                    $this->endUTC   = $adjustedEndDTO->add($intrvlOneHour)->format(SchedulizerPackage::TIMESTAMP_FORMAT);
-                }else{
-                    $this->startUTC = $adjustedStartDTO->sub($intrvlOneHour)->format(SchedulizerPackage::TIMESTAMP_FORMAT);
-                    $this->endUTC   = $adjustedEndDTO->sub($intrvlOneHour)->format(SchedulizerPackage::TIMESTAMP_FORMAT);
-                }
-            }
+        public function setIsAlias( DateTime $startDTO ){
+            $this->isAlias = true;
+            $interval = $this->getStartDateTimeObj(false)->diff( $this->getEndDateTimeObj(false) );
+            $this->startUTC = $this->getStartDateTimeObj(false)->setDate( $startDTO->format('Y'), $startDTO->format('m'), $startDTO->format('d') )->format(SchedulizerPackage::TIMESTAMP_FORMAT);
+            $this->endUTC   = $this->getStartDateTimeObj(false)->add($interval)->format(SchedulizerPackage::TIMESTAMP_FORMAT);
         }
 
 
@@ -332,7 +287,10 @@
 
 
         /**
-         * Get the event's timezone as a DateTimeZone object.
+         * Get the event's timezone as a DateTimeZone object. Inheritance of the Calendar's default time
+         * zone is *not* done in the database or programmatically; instead, every time the default
+         * timezone gets updated, every event in the calendar *that uses the default timezone* also
+         * gets updated.
          * @return DateTimeZone
          */
         public function getEventTimezoneObj(){
@@ -414,7 +372,7 @@
          */
         protected function persistable(){
             return array('calendarID', 'title', 'description', 'startUTC', 'endUTC', 'isAllDay', 'useCalendarTimezone',
-            'timezoneName', 'timezoneOffset', 'colorHex', 'isRepeating', 'repeatTypeHandle', 'repeatEvery',
+            'timezoneName', 'colorHex', 'isRepeating', 'repeatTypeHandle', 'repeatEvery',
             'repeatIndefinite', 'repeatEndUTC', 'repeatMonthlyMethod', 'ownerID');
         }
 
@@ -427,7 +385,7 @@
             $this->persistToDatabase();
             // @todo: save attributes
             $self = self::getByID( $this->id );
-            // Events::fire('schedulizer_event_save', $self);
+            Events::fire('schedulizer_event_save', $self);
             return $self;
         }
 

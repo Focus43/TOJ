@@ -89,23 +89,23 @@
 
         /**
          * Save a calendar model in its current state.
+         *
+         * @internal The schedulizer_calendar_save hook is used (amongst other things) to
+         * update events that use the default calendar timezone.
+         *
          * @return SchedulizerCalendar
          */
         public function save(){
             $this->persistToDatabase();
-            // @todo: save attributes
-            $self = self::getByID( $this->id );
-            // Events::fire('schedulizer_calendar_save', $self);
 
-            // UPDATE ANY EVENTS THAT ARE USING THE DEFAULT CALENDAR TIMEZONE!
-            if( $this->formerTimezone !== null ){
-                $formerTz = new DateTime('now', new DateTimeZone($this->formerTimezone));
-                $newTz    = new DateTime('now', new DateTimeZone($this->getDefaultTimezone()));
-                Loader::db()->Execute("UPDATE SchedulizerEvent SET timezoneName = ?, timezoneOffset = ?, startUTC = CONVERT_TZ(CONVERT_TZ(startUTC, '+00:00', ?), ?, '+00:00'), endUTC = CONVERT_TZ(CONVERT_TZ(endUTC, '+00:00', ?), ?, '+00:00') WHERE calendarID = ? AND useCalendarTimezone = 1", array(
-                    $this->getDefaultTimezone(), $newTz->format('P'), $formerTz->format('P'), $newTz->format('P'), $formerTz->format('P'), $newTz->format('P'), $this->getCalendarID()
-                ));
+            // save attributes
+            $attrKeys = SchedulizerCalendarAttributeKey::getList();
+            foreach($attrKeys AS $akObj){
+                $akObj->saveAttributeForm( $this );
             }
 
+            $self = self::getByID( $this->id );
+            Events::fire('schedulizer_calendar_save', $self, $this->previousTimezone);
             return $self;
         }
 
@@ -124,6 +124,7 @@
 
         /**
          * Delete the record and any associated attribute values.
+         * @todo Delete all associated events (and therefore repeating records, and nullifiers)
          * @return void
          */
         public function delete(){

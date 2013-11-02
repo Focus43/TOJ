@@ -1,7 +1,7 @@
 <?php
 
     /**
-     * Class SchedulizerEventRepeat
+     * Class SchedulizerEventRepeat. Mostly used for saving repeating events.
      * @property SchedulizerEvent eventObj
      * @property array settings
      */
@@ -14,7 +14,11 @@
                 WEEKDAY_INDEX_WED   = 4,
                 WEEKDAY_INDEX_THU   = 5,
                 WEEKDAY_INDEX_FRI   = 6,
-                WEEKDAY_INDEX_SAT   = 7;
+                WEEKDAY_INDEX_SAT   = 7,
+                // how to handle saving an event when its an alias
+                UPDATE_ONLY_THIS_EVENT  = 'this_event_only',
+                UPDATE_FOLLOWING_EVENTS = 'following_events',
+                UPDATE_ALL_EVENTS       = 'update_all';
 
         protected $eventObj, $settings;
 
@@ -36,6 +40,18 @@
          */
         public static function purgeExisting( $eventID ){
             Loader::db()->Execute("DELETE FROM SchedulizerEventRepeat WHERE eventID = ?", array($eventID));
+        }
+
+
+        /**
+         * @param $eventID
+         * @param $date
+         * @return void
+         */
+        public static function nullifyOnDate( DateTime $date, $eventID ){
+            Loader::db()->Execute("INSERT INTO SchedulizerEventRepeatNullify (eventID, hideOnDate) VALUES (?,?)", array(
+                (int) $eventID, $date->format('Y-m-d')
+            ));
         }
 
 
@@ -91,8 +107,8 @@
          * @return void
          */
         private function saveRepeatYearly(){
-            Loader::db()->Execute("INSERT INTO SchedulizerEventRepeat (eventID, repeatYear) VALUES(?,?)", array(
-                $this->eventObj->getEventID(), '0'
+            Loader::db()->Execute("INSERT INTO SchedulizerEventRepeat (eventID) VALUES(?)", array(
+                $this->eventObj->getEventID()
             ));
         }
 
@@ -104,7 +120,6 @@
          */
         public static function save( SchedulizerEvent $eventObj, array $settings ){
             $self = new self($eventObj, $settings);
-            //$self->purgeExisting();
 
             switch( $self->eventObj->getRepeatTypeHandle() ){
                 // handle repeating daily

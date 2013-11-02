@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <schema version="0.3">
 
-    <!-- CALENDAR -->
 	<table name="SchedulizerCalendar">
 		<field name="id" type="I">
 			<autoincrement />
@@ -43,7 +42,28 @@
 	</table>
 
 
-    <!-- EVENTS -->
+    <table name="SchedulizerCalendarAttributeValues">
+        <field name="calendarID" type="I">
+            <KEY/>
+            <DEFAULT value="0"/>
+            <UNSIGNED />
+            <NOTNULL />
+        </field>
+        <field name="akID" type="I">
+            <KEY/>
+            <UNSIGNED />
+            <NOTNULL />
+            <DEFAULT value="0"/>
+        </field>
+        <field name="avID" type="I">
+            <KEY/>
+            <UNSIGNED />
+            <NOTNULL />
+            <DEFAULT value="0"/>
+        </field>
+    </table>
+
+
     <table name="SchedulizerEvent">
         <field name="id" type="I">
             <autoincrement />
@@ -82,7 +102,6 @@
             <default value="1" />
         </field>
         <field name="timezoneName" type="C" size="255" />
-        <field name="timezoneOffset" type="C" size="255" />
         <field name="colorHex" type="C" size="10" />
         <field name="isRepeating" type="I1">
             <unsigned />
@@ -131,30 +150,22 @@
         <index name="title">
             <col>title</col>
         </index>
+        <index name="repeatTypeHandle">
+            <col>ownerID</col>
+        </index>
+        <index name="repeatEndUTC">
+            <col>repeatEndUTC</col>
+        </index>
         <index name="ownerID">
             <col>ownerID</col>
         </index>
     </table>
 
-    <!-- Repeating Events -->
+
     <table name="SchedulizerEventRepeat">
-        <field name="id" type="I">
-            <autoincrement />
-            <key />
-            <unsigned />
-        </field>
         <field name="eventID" type="I" size="11">
             <unsigned />
         </field>
-        <!--<field name="repeatStart" type="T">
-            <NOTNULL/>
-        </field>-->
-        <!--<field name="repeatYear" type="I" size="5">
-            <unsigned />
-        </field>-->
-        <!--<field name="repeatMonth" type="I" size="2">
-            <unsigned />
-        </field>-->
         <field name="repeatWeek" type="I" size="2">
             <unsigned />
         </field>
@@ -164,7 +175,22 @@
         <field name="repeatWeekday" type="I" size="2">
             <unsigned />
         </field>
+
+        <!-- indices -->
+        <index name="eventID">
+            <col>eventID</col>
+        </index>
+        <index name="repeatWeek">
+            <col>repeatWeek</col>
+        </index>
+        <index name="repeatDay">
+            <col>repeatDay</col>
+        </index>
+        <index name="repeatWeekday">
+            <col>repeatWeekday</col>
+        </index>
     </table>
+
 
     <table name="SchedulizerEventRepeatNullify">
         <field name="eventID" type="I" size="11">
@@ -173,6 +199,14 @@
         <field name="hideOnDate" type="T">
             <NOTNULL/>
         </field>
+
+        <!-- indices -->
+        <index name="eventID">
+            <col>eventID</col>
+        </index>
+        <index name="hideOnDate">
+            <col>hideOnDate</col>
+        </index>
     </table>
 	
 </schema>
