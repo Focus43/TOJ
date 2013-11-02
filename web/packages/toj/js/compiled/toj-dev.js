@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 0.30.1093 (2013-11-02)
+/*! Town Of Jackson - Deploy v: 0.30.1103 (2013-11-02)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -159,7 +159,7 @@ var l,_,u,p,f,c,m=/(?:\d|\-\d|\.\d|\-\.\d)+/g,d=/(?:\d|\-\d|\.\d|\-\.\d|\+=\d|\-
                 }
 
                 $element.load( uri, function( _html ){
-                    console.log('sesstionStorage cache miss: ', uri);
+                    console.log('sessionStorage cache miss: ', uri);
                     setCache(uri, _html);
                     _task.resolve();
                 });
@@ -196,30 +196,34 @@ $(function(){
 
 
             // lazy-load sidebar content, if visible (auto-triggers on init)
-            $document.on(_self.transitionEnd, '#cL1', function( _transitionEvent ){
-                if( _transitionEvent.target === this ){
-                    var _bodyWidth = $body.outerWidth();
+            if( !$body.hasClass('edit-mode') ){
+                $document.on(_self.transitionEnd, '#cL1', function( _transitionEvent ){
+                    if( _transitionEvent.target === this ){
+                        var _bodyWidth = $body.outerWidth();
 
-                    if( _bodyWidth >= 1240 ){
-                        var $sidebarLeft = $('#sidebarLeft');
-                        if( $sidebarLeft.attr('data-load') ){
-                            $sidebarLeft.htmlCacheLoader( $sidebarLeft.attr('data-load')).done(function(){
-                                $sidebarLeft.removeAttr('data-load');
-                            });
+                        if( _bodyWidth >= 1240 ){
+                            var $sidebarLeft = $('#sidebarLeft');
+                            if( $sidebarLeft.attr('data-load') ){
+                                $sidebarLeft.htmlCacheLoader( $sidebarLeft.attr('data-load')).done(function(){
+                                    $sidebarLeft.removeAttr('data-load');
+                                });
+                            }
+                        }
+
+                        if( _bodyWidth >= 1480 ){
+                            var $sidebarRight = $('#sidebarRight');
+                            if( $sidebarRight.attr('data-load') ){
+                                $sidebarRight.htmlCacheLoader( $sidebarRight.attr('data-load')).done(function(){
+                                    $sidebarRight.removeAttr('data-load');
+                                });
+                                $document.off(_self.transitionEnd, '#cL1');
+                            }
                         }
                     }
-
-                    if( _bodyWidth >= 1480 ){
-                        var $sidebarRight = $('#sidebarRight');
-                        if( $sidebarRight.attr('data-load') ){
-                            $sidebarRight.htmlCacheLoader( $sidebarRight.attr('data-load')).done(function(){
-                                $sidebarRight.removeAttr('data-load');
-                            });
-                            $document.off(_self.transitionEnd, '#cL1');
-                        }
-                    }
-                }
-            });
+                });
+            }else{
+                $('.sidebars').removeAttr('data-load');
+            }
 
 
             // auto-trigger the transition event (load sidebar content) on init

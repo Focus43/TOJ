@@ -44,7 +44,7 @@
                 }
 
                 $element.load( uri, function( _html ){
-                    console.log('sesstionStorage cache miss: ', uri);
+                    console.log('sessionStorage cache miss: ', uri);
                     setCache(uri, _html);
                     _task.resolve();
                 });

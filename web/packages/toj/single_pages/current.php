@@ -59,7 +59,7 @@
     <div id="currentMain" class="col-sm-9 col-sm-pull-3">
         <div id="postList" class="panel panel-default">
             <div class="panel-heading">
-                <div class="btn-group pull-right">
+                <div class="btn-group pull-right hidden-xs">
                     <button type="button" data-view="list" class="btn btn-default active"><i class="fa fa-reorder"></i> List</button>
                     <button type="button" data-view="grid" class="btn btn-default"><i class="fa fa-th"></i> Grid</button>
                 </div>

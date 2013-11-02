@@ -35,9 +35,16 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 #cL3 {padding:80px 45px 20px;}
 #cBodyContent {margin:0 auto;max-width:$contentMaxWidth;}
 
+// these should be place somewhere!
 .circle {position:relative;left:-8px;display:inline-block;padding-top:14px;overflow:hidden;vertical-align:middle;width:60px;height:60px;text-align:center;margin-top:2px;font-size:12px;color:#fff;background:#a47e3c;@include rounded(50%);@include borderBox;
   &:first-child {left:0;z-index:2;}
   &.img {background-size:cover;background-position:50% 50%;}
+}
+
+// WEATHER WIDGET (BLOCK)
+.weatherWidget {text-align:center;color:#333;margin-bottom:1em;overflow:hidden; @include rounded(5px); @include boxShadow(0 0 5px #000); @include linearGradientLight;
+  label {display:block;padding:.3em 0;font-size:inherit;color:#e1e1e1;background:rgba(0,0,0,.55);}
+  img {margin-bottom:5px;}
 }
 
 
@@ -254,7 +261,7 @@ body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
   #cCurrent {
     #currentMain {
       #postList.panel {
-        .list-group.news-grid {
+        .list-group.grid {
           .list-group-item {width:50%;}
         }
       }

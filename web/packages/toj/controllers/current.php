@@ -3,7 +3,7 @@
     class CurrentController extends TojPageController {
 
         protected $includeThemeAssets   = true,
-                  $newsPostItemsPerPage = 5;
+                  $newsPostItemsPerPage = 8;
 
         public function on_start(){
             parent::on_start();
