@@ -45,16 +45,28 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="well well-sm">
-                                    <?php
-                                        $newsPosts = new TojNewsPageList;
-                                    ?>
+                                    <ul class="list-unstyled">
+                                        <?php
+                                            $textHelper = Loader::helper('text');
+                                            $newsPosts = new TojNewsPageList;
+                                            $newsPosts->sortByPublicDateDescending();
+                                            $results   = $newsPosts->get(3);
+                                            foreach($results AS $pageObj): /** @var Page $pageObj */ ?>
+                                                <li>
+                                                    <a>
+                                                        <h4><?php echo $pageObj->getCollectionName(); ?></h4>
+                                                        <span><?php echo $textHelper->shortenTextWord( $pageObj->getCollectionDescription(), 100 ); ?></span>
+                                                    </a>
+                                                </li>
+                                        <?php endforeach; ?>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <h5 class="updating"><i class="fa fa-spinner fa-spin"></i> Checking for alert updates...</h5>
                                 <div class="alertGroup" style="display:none;">
                                     <div class="alert alert-success">
-                                        <a>
+                                        <a class="alert-link no-link">
                                             <i class="fa fa-check-circle"></i><span> No warnings or critical alerts are currently issued.</span>
                                         </a>
                                     </div>

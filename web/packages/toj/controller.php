@@ -37,6 +37,11 @@
 				'TojPageController'	=> array('library', 'toj_page_controller', $this->pkgHandle),
                 'TojNewsPageList'   => array('model', 'news_page_list', $this->pkgHandle)
 			));
+
+            // hook into system events
+            if( User::isLoggedIn() ){
+                Events::extend('on_page_update', 'TojPageEvents', 'onPageUpdate', "packages/{$this->pkgHandle}/libraries/system_event_hooks/page_events.php");
+            }
 	    }
 		
 	
@@ -172,22 +177,28 @@
 
             if( !is_object(CollectionAttributeKey::getByHandle('alert_warning')) ){
                 CollectionAttributeKey::add($this->attributeType('boolean'), array(
-                    'akHandle'  => 'alert_warning',
-                    'akName'    => 'Alert Level: Warning'
+                    'akHandle'              => 'alert_warning',
+                    'akName'                => 'Alert Level: Warning',
+                    'akIsSearchableIndexed' => 1,
+                    'akIsSearchable'        => 1
                 ), $this->packageObject());
             }
 
             if( !is_object(CollectionAttributeKey::getByHandle('alert_critical')) ){
                 CollectionAttributeKey::add($this->attributeType('boolean'), array(
-                    'akHandle'  => 'alert_critical',
-                    'akName'    => 'Alert Level: Critical'
+                    'akHandle'              => 'alert_critical',
+                    'akName'                => 'Alert Level: Critical',
+                    'akIsSearchableIndexed' => 1,
+                    'akIsSearchable'        => 1
                 ), $this->packageObject());
             }
 
             if( !is_object(CollectionAttributeKey::getByHandle('sticky_until')) ){
                 CollectionAttributeKey::add($this->attributeType('date_time'), array(
-                    'akHandle'  => 'sticky_until',
-                    'akName'    => 'Sticky Until'
+                    'akHandle'              => 'sticky_until',
+                    'akName'                => 'Sticky Until',
+                    'akIsSearchableIndexed' => 1,
+                    'akIsSearchable'        => 1
                 ), $this->packageObject());
             }
 	        

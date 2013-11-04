@@ -80,11 +80,17 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
   }
   // news and current tab
   #newsAndCurrentArea {
+    .list-unstyled {
+      a {display:block;color:#333;
+        h4 {margin:0;padding-bottom:5px;line-height:1.3em;}
+      }
+    }
     .alertGroup {margin:0;
       .alert {
         a {display:block;@include clearfix;
+          &.no-link:hover {text-decoration:none;}
           i {float:left;font-size:22px;}
-          span {display:block;margin-left:36px;}
+          span {display:block;margin-left:36px;text-transform:capitalize;}
         }
       }
     }

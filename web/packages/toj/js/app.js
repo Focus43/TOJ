@@ -183,17 +183,21 @@
                 $('a i.fa-spinner', $newsAndCurrentArea).replaceWith('<i class="fa '+iconColor+' '+iconClass+'" />');
 
                 var $alertGroup = $('.alertGroup', $newsAndCurrentArea);
-                if( _resp.criticals ){
+                if( _resp.criticals || _resp.warnings ){
                     $alertGroup.empty();
-                    $.each( _resp.criticals, function(idx, obj){
-                        $alertGroup.append('<div class="alert alert-danger"><a href="'+obj.path+'" class="alert-link"><i class="fa fa-exclamation-triangle"></i><span> '+obj.name+'</span></a></div>');
-                    });
-                }
 
-                if( _resp.warnings ){
-                    $.each( _resp.warnings, function(idx, obj){
-                        $alertGroup.append('<div class="alert alert-warning"><a href="'+obj.path+'" class="alert-link"><i class="fa fa-exclamation-circle"></i><span>'+obj.name+'</span></a></div>');
-                    });
+                    if( _resp.criticals ){
+                        $alertGroup.empty();
+                        $.each( _resp.criticals, function(idx, obj){
+                            $alertGroup.append('<div class="alert alert-danger"><a href="'+obj.path+'" class="alert-link"><i class="fa fa-exclamation-triangle"></i><span> '+obj.name+'</span></a></div>');
+                        });
+                    }
+
+                    if( _resp.warnings ){
+                        $.each( _resp.warnings, function(idx, obj){
+                            $alertGroup.append('<div class="alert alert-warning"><a href="'+obj.path+'" class="alert-link"><i class="fa fa-exclamation-circle"></i><span>'+obj.name+'</span></a></div>');
+                        });
+                    }
                 }
 
                 $('h5.updating', $newsAndCurrentArea).remove();
