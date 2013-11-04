@@ -144,7 +144,7 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 
 // CONTAINERS AND RAINBOWS AND UNICORNS
 .whiteContainer {padding:0 15px 1em;overflow:hidden;background:rgba(255,255,255,.9); @include rounded(5px);@include boxShadow(0 0 3px rgba(0,0,0,.75));
-  h1 {font-weight:300;color:#777;margin:0 -20px 20px;padding:.3em 0 .4em 20px;background:#f1f1f1;border-top:1px solid #f9f9f9;border-bottom:1px solid #ddd;text-shadow:0 1px 0 #fff;}
+  h1 {font-weight:300;margin:0 -20px 20px;padding:.3em 0 .4em 20px;background:#f1f1f1;border-top:1px solid #f9f9f9;border-bottom:1px solid #ddd;text-shadow:0 1px 0 #fff;}
   .containerSidebar {
     .panel ul.list-group li.list-group-item {
       &:hover, &.active, &.nav-path-selected {background:$linkColorDefault;

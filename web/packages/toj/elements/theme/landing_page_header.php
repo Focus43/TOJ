@@ -28,6 +28,6 @@
             <span style="font-size:16px;top:3px;position:relative;display:inline-block;"><?php echo User::getByUserID( Page::getCurrentPage()->getCollectionUserID() )->getUserName(); ?></span>
         </div>
         <?php endif; ?>
-        <h1><?php echo Page::getCurrentPage()->getCollectionName(); ?> <?php if(!($hideDescription === true)): ?><small class="visible-desktop"><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small><?php endif; ?></h1>
+        <h1 class="<?php echo $titleClass; ?>"><?php echo Page::getCurrentPage()->getCollectionName(); ?> <?php if(!($hideDescription === true)): ?><small class="visible-desktop"><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small><?php endif; ?></h1>
     </div>
 </div>

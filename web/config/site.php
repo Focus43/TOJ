@@ -100,3 +100,5 @@
 	
 	// sitemap.xml file
 	define('SITEMAPXML_FILE', 'files/sitemap.xml');
+
+    define('ENABLE_PROGRESSIVE_PAGE_REINDEX', false);

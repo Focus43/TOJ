@@ -34,7 +34,11 @@
 
                             <!-- actual page content -->
                             <div class="whiteContainer">
-                                <?php Loader::packageElement('theme/landing_page_header', 'toj', array('hideDescription' => true, 'showAuthor' => true)); ?>
+                                <?php Loader::packageElement('theme/landing_page_header', 'toj', array(
+                                    'hideDescription' => true,
+                                    'showAuthor' => true,
+                                    'titleClass' => $titleClass
+                                )); ?>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <blockquote><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></blockquote>

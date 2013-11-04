@@ -200,7 +200,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
 					Loader::library('database_indexed_search');
 					$index = new IndexedSearch();
 				}
-				
+
 				$index->reindexPage($this);
 				$db->Replace('PageSearchIndex', array('cID' => $this->getCollectionID(), 'cRequiresReindex' => 0), array('cID'), false);
 
