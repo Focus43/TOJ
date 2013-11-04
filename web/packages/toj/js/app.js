@@ -140,7 +140,7 @@
 
                     var $container = $('.list-group', '#postList');
                     if( $container.data('masonry') ){
-                        var $html = $(_html)
+                        var $html = $(_html);
                         $container.masonry().append($html).masonry('appended', $html);
                     }else{
                         $container.append(_html);
@@ -207,7 +207,7 @@
             // PUBLIC METHODS
             return {
 
-            }
+            };
 
         }());
 

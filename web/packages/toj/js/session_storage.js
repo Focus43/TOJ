@@ -10,8 +10,8 @@
          * @returns {number}
          */
         String.prototype.hashCode = function(){
-            var hash = 0, i, char;
-            if (this.length == 0) return hash;
+            var hash = 0, i, l, char;
+            if (this.length === 0){ return hash; }
             for (i = 0, l = this.length; i < l; i++) {
                 char  = this.charCodeAt(i);
                 hash  = ((hash<<5)-hash)+char;
@@ -50,6 +50,6 @@
                 });
             });
 
-        }
+        };
 
     })(jQuery);

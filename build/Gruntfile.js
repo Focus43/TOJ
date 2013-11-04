@@ -53,32 +53,15 @@ module.exports = function(grunt) {
         jquery: true,
         es5: true,
         globals: {
-          cust_params: true,
-          app: true,
-          "$": true,
-          fluid: true,
-          asyncTest: true,
-          deepEqual: true,
-          equal: true,
-          expect: true,
-          module: true,
-          notDeepEqual: true,
-          notEqual: true,
-          notStrictEqual: true,
-          ok: true,
-          QUnit: true,
-          raises: true,
-          start: true,
-          stop: true,
-          strictEqual: true,
-          test: true
+          Modernizr: true,
+          $: true
         }
       },
       gruntfile: {
         src: 'Gruntfile.js'
       },
       lib_test: {
-        src: ['../web/packages/toj/js/**/*.js'] // , 'test/**/*.js'
+        src: ['../web/packages/toj/js/session_storage.js', '../web/packages/toj/js/app.js'] // , 'test/**/*.js'
       }
     },
     sass: {
@@ -88,18 +71,13 @@ module.exports = function(grunt) {
         },
         files: {
             '../web/packages/toj/css/compiled/<%= filename %>-min.css': '../web/packages/toj/css/app_manifest.scss'
-            //'../web/packages/toj/css/compiled/<%= filename %>-parallax-min.css': '../web/packages/toj/css/parallax.scss'
         }
       }
     },
     watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
-      lib_test: {
+      build_js: {
         files: '<%= jshint.lib_test.src %>',
-        tasks: ['default']
+        tasks: ['jshint:lib_test', 'default']
       },
       sassy_pants: {
         files: '../web/packages/toj/css/*.scss',
@@ -118,8 +96,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bump');
 
   // Default task.
-  grunt.registerTask('default', ['concat', 'sass:build', 'bump']);
-  //grunt.registerTask('build', ['jshint', 'concat', 'strip', 'uglify', 'sass:build', 'bump:minor']);
+  grunt.registerTask('default', ['concat', 'sass:build']);
   grunt.registerTask('build', ['concat', 'strip', 'uglify', 'sass:build', 'bump:minor']);
   grunt.registerTask('release', ['jshint', 'concat', 'strip', 'uglify', 'sass:build', 'bump:major']);
 

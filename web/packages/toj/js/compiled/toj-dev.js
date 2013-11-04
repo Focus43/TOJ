@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 1.0.71 (2013-11-04)
+/*! Town Of Jackson - Deploy v: 1.0.75 (2013-11-04)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -125,8 +125,8 @@ var l,_,u,p,f,c,m=/(?:\d|\-\d|\.\d|\-\.\d)+/g,d=/(?:\d|\-\d|\.\d|\-\.\d|\+=\d|\-
          * @returns {number}
          */
         String.prototype.hashCode = function(){
-            var hash = 0, i, char;
-            if (this.length == 0) return hash;
+            var hash = 0, i, l, char;
+            if (this.length === 0){ return hash; }
             for (i = 0, l = this.length; i < l; i++) {
                 char  = this.charCodeAt(i);
                 hash  = ((hash<<5)-hash)+char;
@@ -165,7 +165,7 @@ var l,_,u,p,f,c,m=/(?:\d|\-\d|\.\d|\-\.\d)+/g,d=/(?:\d|\-\d|\.\d|\-\.\d|\+=\d|\-
                 });
             });
 
-        }
+        };
 
     })(jQuery);
 $(function(){
@@ -304,7 +304,7 @@ $(function(){
 
                     var $container = $('.list-group', '#postList');
                     if( $container.data('masonry') ){
-                        var $html = $(_html)
+                        var $html = $(_html);
                         $container.masonry().append($html).masonry('appended', $html);
                     }else{
                         $container.append(_html);
@@ -371,7 +371,7 @@ $(function(){
             // PUBLIC METHODS
             return {
 
-            }
+            };
 
         }());
 
