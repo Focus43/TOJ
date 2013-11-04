@@ -8,7 +8,7 @@
          */
         public function onPageUpdate( Page $pageObj ){
             if( $pageObj->getCollectionTypeHandle() === 'news_post' ){
-                //$pageObj->reindex();
+                $pageObj->reindex();
             }
         }
 
