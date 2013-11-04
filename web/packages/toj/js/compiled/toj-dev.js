@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 0.30.1103 (2013-11-02)
+/*! Town Of Jackson - Deploy v: 1.0.54 (2013-11-04)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -337,6 +337,32 @@ $(function(){
                 }
                 $container.removeClass('grid');
             });
+
+
+            // header news & current, set icon class
+            var $newsAndCurrentArea = $('#newsAndCurrentArea');
+            $.get( $('#tojAppPaths').attr('data-tools') + '_data/current', function( _resp ){
+                var iconColor = (_resp.criticals) ? 'text-danger' : (_resp.warnings) ? 'text-warning' : 'text-success',
+                    iconClass = (_resp.criticals) ? 'fa-exclamation-triangle' : (_resp.warnings) ? 'fa-exclamation-circle' : 'fa-check-circle';
+                $('a i.fa-spinner', $newsAndCurrentArea).replaceWith('<i class="fa '+iconColor+' '+iconClass+'" />');
+
+                var $alertGroup = $('.alertGroup', $newsAndCurrentArea);
+                if( _resp.criticals ){
+                    $alertGroup.empty();
+                    $.each( _resp.criticals, function(idx, obj){
+                        $alertGroup.append('<div class="alert alert-danger"><a href="'+obj.path+'" class="alert-link"><i class="fa fa-exclamation-triangle"></i><span> '+obj.name+'</span></a></div>');
+                    });
+                }
+
+                if( _resp.warnings ){
+                    $.each( _resp.warnings, function(idx, obj){
+                        $alertGroup.append('<div class="alert alert-warning"><a href="'+obj.path+'" class="alert-link"><i class="fa fa-exclamation-circle"></i><span>'+obj.name+'</span></a></div>');
+                    });
+                }
+
+                $('h5.updating', $newsAndCurrentArea).remove();
+                $alertGroup.show();
+            },'json');
 
 
             // PUBLIC METHODS

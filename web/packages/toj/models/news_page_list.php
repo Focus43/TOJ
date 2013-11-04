@@ -14,6 +14,7 @@
         public function filterByStickyUntil( $time = 'now', $dir = '>=' ){
             $dateTimeObj = new DateTime($time, new DateTimeZone('UTC'));
             $dateTimeObj->setTimezone( new DateTimeZone('America/Denver') );
+            //echo $dateTimeObj->format('Y-m-d H:i:s');exit;
             $this->filterByAttribute('sticky_until', $dateTimeObj->format('Y-m-d H:i:s'), $dir);
         }
 

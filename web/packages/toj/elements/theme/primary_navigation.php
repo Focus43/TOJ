@@ -38,7 +38,7 @@
                 </li>
             <?php endforeach; ?>
 
-            <li>
+            <li id="newsAndCurrentArea">
                 <a class="level-1" href="<?php echo $this->url('/current'); ?>"><i class="fa fa-spinner fa-spin"></i>&nbsp; News &amp; Current</a>
                 <div class="subMenu">
                     <div class="container">
@@ -51,7 +51,14 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-
+                                <h5 class="updating"><i class="fa fa-spinner fa-spin"></i> Checking for alert updates...</h5>
+                                <div class="alertGroup" style="display:none;">
+                                    <div class="alert alert-success">
+                                        <a>
+                                            <i class="fa fa-check-circle"></i><span> No warnings or critical alerts are currently issued.</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
