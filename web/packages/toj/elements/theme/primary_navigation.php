@@ -53,7 +53,7 @@
                                             $results   = $newsPosts->get(3);
                                             foreach($results AS $pageObj): /** @var Page $pageObj */ ?>
                                                 <li>
-                                                    <a>
+                                                    <a href="<?php echo View::url( $pageObj->getCollectionPath() ); ?>">
                                                         <h4><?php echo $pageObj->getCollectionName(); ?></h4>
                                                         <span><?php echo $textHelper->shortenTextWord( $pageObj->getCollectionDescription(), 100 ); ?></span>
                                                     </a>

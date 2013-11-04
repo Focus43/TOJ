@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 1.0.63 (2013-11-04)
+/*! Town Of Jackson - Deploy v: 1.0.71 (2013-11-04)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -174,7 +174,6 @@ $(function(){
             // cache common selectors
             var _self       = this,
                 $document   = $(document),
-                $window     = $(window),
                 $body       = $('body'),
                 $settings   = $('#siteSettings');
 

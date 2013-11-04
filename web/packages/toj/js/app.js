@@ -10,7 +10,6 @@
             // cache common selectors
             var _self       = this,
                 $document   = $(document),
-                $window     = $(window),
                 $body       = $('body'),
                 $settings   = $('#siteSettings');
 
