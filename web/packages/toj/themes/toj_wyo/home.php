@@ -34,11 +34,11 @@
 
                             <!-- actual page content -->
                             <div id="tagLine" class="row">
-                                <div id="tojLogo">
+                                <div id="tojLogo" class="hidden-xs">
                                     <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>toj_logo.png" />
                                 </div>
-                                <div class="col-sm-12 hidden-xs">
-                                    <h1>Town Of Jackson, Wyoming<small>The Last Of The Wild, Wild West</small></h1>
+                                <div class="col-sm-12">
+                                    <h1>Town Of Jackson, Wyoming<small class="hidden-xs">The Last Of The Wild, Wild West</small></h1>
                                     <!--<a id="launchParallax">
                                         <img src="<?php echo TOJ_IMAGES_URL; ?>explore.svg" />
                                     </a>-->
