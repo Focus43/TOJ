@@ -35,19 +35,19 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
   .inner {padding:10px;min-height:100%;}
 }
 
-#sidebarRight {
+#sidebarRight {overflow:hidden;
   .inner {padding:0;}
   span.thumb {position:relative;float:left;display:inline-block;width:80px;height:80px;background-size:cover;background-position:50% 50%;z-index:1;@include cssTransform(scale(1,1));@include cssTransition(all .15s ease-out);
-    &:hover {@include cssTransform(scale(1.4,1.4));z-index:2;}
+    &:hover {z-index:2;@include boxShadow(0 0 8px #000);@include cssTransform(scale(1.4,1.4));}
   }
 }
 
 // main page content
-#cL1 {background:#e5e5e5;position:relative;z-index:1;@include boxShadow(0 0 20px #000);@include cssTransition(margin .25s ease-in);}
+#cL1 {background:#e5e5e5;position:relative;z-index:1;@include cssTransition(margin .25s ease-in);}
 #pageBackgroundImage {display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include cssTransition((left .25s ease-in, right .25s ease-in));
   span.backStretch {position:absolute;top:0;right:0;bottom:0;left:0;}
 }
-#cL2 {min-height:100%;position:relative;z-index:1;}
+#cL2 {min-height:100%;position:relative;z-index:1;@include boxShadow(0 0 20px #000);}
 #cL3 {padding:80px 45px 20px;}
 #cBodyContent {margin:0 auto;max-width:$contentMaxWidth;}
 
@@ -102,7 +102,7 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 }
 
 // footer
-#cFooter {color:$textColorLightGray;position:absolute;top:100%;left:0;right:0;background:#e5e5e5;@include boxShadow(0 0 11px rgba(0,0,0,.5));
+#cFooter {color:$textColorLightGray;position:absolute;top:100%;left:0;right:0;background:#e5e5e5;@include boxShadow(0 0 20px #000);
   .content {padding:1em 15px;margin:0 auto;max-width:900px;
     .horiz {border-bottom:1px solid #ccc;
       ul.iconz {@include tabbedList;font-size:1.3em;padding-bottom:8px;text-align:center;border-bottom:1px solid #fff;
