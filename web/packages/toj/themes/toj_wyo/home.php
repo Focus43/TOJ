@@ -44,15 +44,30 @@
                                 </div>
                             </div>
 
-                            <!--<div id="homeSearch" class="row">
+                            <div id="homeSearch" class="row">
                                 <div class="col-sm-12">
                                     <div class="inner">
                                         <input type="text" class="form-control input-lg" placeholder="Search" />
                                         <i class="fa fa-search"></i>
                                         <button class="btn btn-info btn-lg">Search</button>
+
+                                        <!-- google custom search -->
+                                        <script>
+                                            (function() {
+                                                var cx = '008919983407566295456:1bhycu9q2r8';
+                                                var gcse = document.createElement('script');
+                                                gcse.type = 'text/javascript';
+                                                gcse.async = true;
+                                                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                                    '//www.google.com/cse/cse.js?cx=' + cx;
+                                                var s = document.getElementsByTagName('script')[0];
+                                                s.parentNode.insertBefore(gcse, s);
+                                            })();
+                                        </script>
+                                        <gcse:searchresults-only></gcse:searchresults-only>
                                     </div>
                                 </div>
-                            </div>-->
+                            </div>
 
                             <div id="introLinks">
                                 <?php for($i = 1; $i <= 8; $i++):
@@ -84,5 +99,17 @@
 
 <?php Loader::packageElement('theme/site_settings', 'toj'); ?>
 <?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
+
+<script type="text/javascript">
+    $(function(){
+        var $input = $('input', '#homeSearch');
+
+        $input.on('keyup', function(){
+            var _gse = google.search.cse.element.getElement('searchresults-only0');
+            $('[id*="gcse"]', '#homeSearch').show();
+            _gse.execute( $input.val() );
+        });
+    });
+</script>
 </body>
 </html>

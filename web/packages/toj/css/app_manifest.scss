@@ -30,12 +30,12 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 // sidebars
 .sidebars {width:$sidebarWidth;position:fixed;top:0;bottom:0;overflow-y:hidden/*auto*/;z-index:0;
   &#sidebarLeft {left:0;/*@include boxShadow(inset -20px 0 20px -20px #000);*/}
-  &#sidebarRight {right:0;/*@include boxShadow(inset 20px 0 20px -20px #000);*/}
+  &#sidebarRight {color:#fff;right:0;/*@include boxShadow(inset 20px 0 20px -20px #000);*/}
   &[data-load] {background:transparent url(#{$imagePath}loading.gif) no-repeat 50% 50%;}
   .inner {padding:10px;min-height:100%;}
 }
 
-#sidebarRight {overflow:hidden;
+/*#sidebarRight {overflow:hidden;
   .inner {padding:0;}
   span.thumb {position:relative;float:left;display:inline-block;width:80px;height:80px;background-size:cover;background-position:50% 50%;z-index:1;@include cssTransform(scale(1,1));@include cssTransition(all .15s ease-out);
     &:hover {z-index:2;@include boxShadow(0 0 8px #000);@include cssTransform(scale(1.2,1.2));
@@ -43,7 +43,7 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
       &:nth-child(3n) {@include cssTransform(scale(1.2,1.2) translateX(-6px));}
     }
   }
-}
+}*/
 
 // main page content
 #cL1 {background:#e5e5e5;position:relative;z-index:1;@include cssTransition(margin .25s ease-in);}
@@ -203,9 +203,14 @@ body.pt-home {
 
   #homeSearch {margin-bottom:45px;
     .inner {position:relative;
-      input {padding-left:35px;@include boxShadow(0 0 20px rgba(0,0,0,.65));}
-      i {position:absolute;font-size:1.7em;left:8px;top:10px;z-index:1;}
-      button {position:absolute;right:0;top:0;z-index:1;}
+      input {position:relative;z-index:2;padding-left:35px;@include boxShadow(0 0 20px rgba(0,0,0,.65));}
+      i {position:absolute;z-index:3;font-size:1.7em;left:8px;top:10px;}
+      button {position:absolute;z-index:3;right:0;top:0;}
+    }
+
+    // google custom search
+    div[id*="gcse"] {display:none;position:relative;top:-6px;z-index:1;
+      .gsc-control-cse {@include rounded(0 0 5px 5px);@include boxShadow(0 0 20px rgba(0,0,0,.65));}
     }
   }
 
@@ -278,9 +283,9 @@ body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
 /****************************** PARALLAX STUFF ******************************/
 
 
-body.parallax {overflow:hidden;
+/*body.parallax {overflow:hidden;
   #cL2 {@include boxShadow(none);}
-  /*#cL1, .sidebars {@include cssTransition(all 1s ease);@include cssFilter(blur(8px));}
+  #cL1, .sidebars {@include cssTransition(all 1s ease);@include cssFilter(blur(8px));}
   #cFooter {display:none;}
 
   #parallaxView {opacity:0;position:fixed;top:15px;right:15px;bottom:15px;left:15px;background:#ddd;z-index:99;
@@ -290,9 +295,8 @@ body.parallax {overflow:hidden;
     &.unblur {
       @include cssFilter(blur(0));
     }
-  }*/
-
-}
+  }
+}*/
 
 
 
