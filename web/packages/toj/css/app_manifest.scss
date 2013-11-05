@@ -192,6 +192,8 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 body.pt-home {
   #cBodyContent {max-width:780px;}
 
+  #launchParallax {cursor:pointer;z-index:8;max-width:120px;display:block;position:absolute;top:50px;right:15px;}
+
   #tagLine {margin:15px 0 45px;
     #tojLogo {width:170px;display:block;margin:0 auto 20px;text-align:center;}
     h1 {margin:0;line-height:1em;color:#fff;text-align:center;text-shadow:0 1px 4px #000;
@@ -214,6 +216,12 @@ body.pt-home {
         &:hover {text-decoration:none;border:1px solid #fff;color:#fff;}
       }
     }
+  }
+}
+
+body.pt-department {
+  #areaTop {
+    #departmentNavList ul {float:none;}
   }
 }
 
@@ -267,6 +275,29 @@ body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
 }
 
 
+/****************************** PARALLAX STUFF ******************************/
+
+
+body.parallax {overflow:hidden;
+  #cL2 {@include boxShadow(none);}
+  /*#cL1, .sidebars {@include cssTransition(all 1s ease);@include cssFilter(blur(8px));}
+  #cFooter {display:none;}
+
+  #parallaxView {opacity:0;position:fixed;top:15px;right:15px;bottom:15px;left:15px;background:#ddd;z-index:99;
+    @include cssFilter(blur(10px));
+    @include cssTransition(all .5s ease);
+
+    &.unblur {
+      @include cssFilter(blur(0));
+    }
+  }*/
+
+}
+
+
+
+
+
 // transition main content and fixed background to show sidebars
 @media (min-width:1240px){
   #cL1 {margin-left:$sidebarWidth;}
@@ -283,6 +314,13 @@ body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
 @media (min-width:$navbarBreakpoint){
   #primaryNav {
     ul.nav li:hover .subMenu {display:block;}
+  }
+
+  // department page
+  body.pt-department {
+    #areaTop {
+      .navbar-brand {display:none;}
+    }
   }
 }
 

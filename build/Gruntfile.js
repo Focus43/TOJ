@@ -54,6 +54,8 @@ module.exports = function(grunt) {
         es5: true,
         globals: {
           Modernizr: true,
+          TweenLite: true,
+          TweenMax: true,
           $: true
         }
       },

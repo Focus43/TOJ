@@ -27,6 +27,8 @@
         <div id="cL2">
             <?php Loader::packageElement('theme/primary_navigation', 'toj', array('c' => $c)); ?>
 
+            <a id="launchParallax"><img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>explore_jackson.png" /></a>
+
             <div id="cL3">
                 <div class="row">
                     <div class="col-sm-12">
@@ -39,9 +41,6 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <h1>Town Of Jackson, Wyoming<small class="hidden-xs">The Last Of The Wild, Wild West</small></h1>
-                                    <!--<a id="launchParallax">
-                                        <img src="<?php echo TOJ_IMAGES_URL; ?>explore.svg" />
-                                    </a>-->
                                 </div>
                             </div>
 

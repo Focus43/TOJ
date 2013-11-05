@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 1.5.53 (2013-11-05)
+/*! Town Of Jackson - Deploy v: 1.6.44 (2013-11-05)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -375,6 +375,23 @@ $(function(){
                     $('h5.updating', $newsAndCurrentArea).remove();
                     $alertGroup.show();
                 }
+            });
+
+
+            $('#launchParallax').on('click', function(){
+                /*var $parallaxView = $('<div id="parallaxView" />');
+                $body.append($parallaxView).addClass('parallax');
+                TweenMax.to($parallaxView, 0.3, {opacity:1, onComplete: function(){
+                    $parallaxView.addClass('unblur');
+                }});*/
+                var $cL1     = $('#cL1'),
+                    $navbar  = $('#primaryNav'),
+                    $largeBg = $('#pageBackgroundImage');
+
+                $body.addClass('parallax');
+                TweenLite.to($cL1, 0.3, {top:'100%'});
+                TweenLite.to($navbar, 0.3, {opacity:0});
+                TweenLite.to($largeBg, 0.3, {left:0,right:0});
             });
 
 
