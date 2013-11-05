@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="<?php echo $this->url('/'); ?>"><?php echo SITE; ?>
-            <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>toj_logo.png" />
+            <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>logo_naked.png" />
         </a>
     </div>
 
