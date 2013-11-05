@@ -210,7 +210,7 @@ body.pt-home {
 
     // google custom search
     div[id*="gcse"] {display:none;position:relative;top:-6px;z-index:1;
-      .gsc-control-cse {@include rounded(0 0 5px 5px);@include boxShadow(0 0 20px rgba(0,0,0,.65));}
+      .gsc-control-cse {@include rounded(0, 0, 5px, 5px);@include boxShadow(0 0 20px rgba(0,0,0,.65));}
     }
   }
 
