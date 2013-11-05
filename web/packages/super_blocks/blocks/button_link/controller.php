@@ -11,29 +11,32 @@
         const LINKTYPE_PAGE = 1,
               LINKTYPE_URL  = 2,
               // button color classes
+              BTN_DEFAULT   = 'btn-default',
               BTN_PRIMARY   = 'btn-primary',
               BTN_INFO      = 'btn-info',
               BTN_SUCCESS   = 'btn-success',
               BTN_WARNING   = 'btn-warning',
               BTN_DANGER    = 'btn-danger',
-              BTN_INVERSE   = 'btn-inverse',
               // size
-              SIZE_LARGE    = 'btn-large',
-              SIZE_SMALL    = 'btn-small',
-              SIZE_MINI     = 'btn-mini',
+              SIZE_LARGE    = 'btn-lg',
+              SIZE_SMALL    = 'btn-sm',
+              SIZE_MINI     = 'btn-xs',
+              // targets
+              TARGET_SELF   = '_self',
+              TARGET_BLANK  = '_blank',
               // width
               WIDTH_AUTO    = 0,
               WIDTH_BLOCK   = 1;
 
         // array helpers
         public static $btnColors = array(
-            ''                  => 'Default (silver)',
+            ''                  => 'None',
+            self::BTN_DEFAULT   => 'Default (white)',
             self::BTN_PRIMARY   => 'Primary (blue)',
             self::BTN_INFO      => 'Info (light blue)',
             self::BTN_SUCCESS   => 'Success (green)',
             self::BTN_WARNING   => 'Warning (yellow)',
-            self::BTN_DANGER    => 'Danger (red)',
-            self::BTN_INVERSE   => 'Inverse (black)'
+            self::BTN_DANGER    => 'Danger (red)'
         );
         
         public static $btnSizes = array(
@@ -41,6 +44,11 @@
             self::SIZE_LARGE    => 'Large',
             self::SIZE_SMALL    => 'Small',
             self::SIZE_MINI     => 'Mini'
+        );
+
+        public static $linkTargets = array(
+            self::TARGET_SELF   => 'This Window',
+            self::TARGET_BLANK  => 'New Window or Tab'
         );
 
 		protected $btTable 									= 'btButtonLink';
@@ -84,6 +92,7 @@
 		    $this->set('linkUrl', $this->getLinkUrl());
             $this->set('classes', $this->getButtonClasses());
             $this->set('linkDisplayText', $this->getLinkDisplayText());
+            $this->set('linkTarget', $this->linkTarget);
 		}
         
         
@@ -116,7 +125,8 @@
                 'btn',
                 $this->buttonColorClass,
                 $this->buttonSizeClass,
-                $this->getWidthClass()
+                $this->getWidthClass(),
+                $this->ifTargetPageIsModalClass()
             )));
         }
         
@@ -127,6 +137,18 @@
         protected function getWidthClass(){
             if( $this->fullWidth == self::WIDTH_BLOCK ){
                 return 'btn-block';
+            }
+        }
+
+
+        /**
+         * return string (class "modalize") || null
+         */
+        protected function ifTargetPageIsModalClass(){
+            if( $this->pageOrUrl == self::LINKTYPE_PAGE ){
+                if( $this->pageObject()->getCollectionTypeHandle() === 'modal' && !($this->pageObject()->isExternalLink()) ){
+                    return 'modalize';
+                }
             }
         }
 		

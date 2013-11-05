@@ -40,6 +40,9 @@
 
         <h4>Custom Icon (Optional)</h4>
         <?php echo $formHelper->select('fontAwesomeIcon', $fontAwesomeIconList, $this->controller->fontAwesomeIcon, array('class' => 'input-block-level')); ?>
+
+        <h4>Target (Optional)</h4>
+        <?php echo $formHelper->select('linkTarget', ButtonLinkBlockController::$linkTargets, $this->controller->linkTarget, array('class' => 'input-block-level')); ?>
 	</div>
 
 <script type="text/javascript">

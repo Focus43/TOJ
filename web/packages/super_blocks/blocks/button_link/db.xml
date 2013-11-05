@@ -22,5 +22,6 @@
         </field>
 	    <field name="linkText" type="X" />
         <field name="fontAwesomeIcon" type="C" size="255" />
+        <field name="linkTarget" type="C" size="255" />
 	</table>
 </schema>
