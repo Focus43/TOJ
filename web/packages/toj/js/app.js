@@ -32,6 +32,10 @@
 
             // lazy-load sidebar content, if visible (auto-triggers on init)
             if( !$body.hasClass('edit-mode') ){
+                if( $body.hasClass('cms-admin') ){
+                    sessionStorage.clear();
+                }
+
                 $document.on(_self.transitionEnd, '#cL1', function( _transitionEvent ){
                     if( _transitionEvent.target === this ){
                         var _bodyWidth = $body.outerWidth();

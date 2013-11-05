@@ -35,13 +35,15 @@
                             <!-- actual page content -->
                             <div class="whiteContainer">
                                 <?php Loader::packageElement('theme/landing_page_header', 'toj', array(
-                                    'hideDescription' => true,
-                                    'showAuthor' => true,
-                                    'titleClass' => $titleClass
+                                    'hideDescription'   => true,
+                                    'showAuthor'        => true,
+                                    'titleClass'        => $titleClass,
+                                    'avatarPath'        => $avatarPath,
+                                    'authorName'        => $authorName
                                 )); ?>
                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <blockquote><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></blockquote>
+                                    <div class="descr col-sm-12">
+                                        <?php echo Page::getCurrentPage()->getCollectionDescription(); ?>
                                     </div>
                                 </div>
                                 <div class="row">

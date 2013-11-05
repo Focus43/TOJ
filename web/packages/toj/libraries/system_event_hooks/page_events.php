@@ -10,15 +10,8 @@
          */
         public function onPageUpdate( Page $pageObj ){
             if( $pageObj->getCollectionTypeHandle() === 'news_post' ){
-                //Cache::disableCache();
-                //$pageObj->reindex();
-                //$pageObj->refreshCache();
-
-                // refresh attribute caches
-                //$collectionAKs = CollectionAttributeKey::getList();
-                //foreach($collectionAKs AS $akObj){ /** @var CollectionAttributeKey $akObj */
-                //    $akObj->updateSearchIndex();
-                //}
+                // we don't actually have to do anything in here, the way it works is adjust
+                // the constant as noted above
             }
         }
 

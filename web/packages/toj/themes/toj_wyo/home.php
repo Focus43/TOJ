@@ -33,8 +33,11 @@
                         <div id="cBodyContent">
 
                             <!-- actual page content -->
-                            <div id="tagLine" class="row hidden-xs">
-                                <div class="col-sm-12">
+                            <div id="tagLine" class="row">
+                                <div id="tojLogo">
+                                    <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>toj_logo.png" />
+                                </div>
+                                <div class="col-sm-12 hidden-xs">
                                     <h1>Town Of Jackson, Wyoming<small>The Last Of The Wild, Wild West</small></h1>
                                     <!--<a id="launchParallax">
                                         <img src="<?php echo TOJ_IMAGES_URL; ?>explore.svg" />
@@ -42,7 +45,7 @@
                                 </div>
                             </div>
 
-                            <div id="homeSearch" class="row">
+                            <!--<div id="homeSearch" class="row">
                                 <div class="col-sm-12">
                                     <div class="inner">
                                         <input type="text" class="form-control input-lg" placeholder="Search" />
@@ -50,7 +53,7 @@
                                         <button class="btn btn-info btn-lg">Search</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div id="introLinks">
                                 <?php for($i = 1; $i <= 8; $i++):

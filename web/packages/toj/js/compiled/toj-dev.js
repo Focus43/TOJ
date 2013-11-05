@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 1.2.1 (2013-11-04)
+/*! Town Of Jackson - Deploy v: 1.3.40 (2013-11-05)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -196,6 +196,10 @@ $(function(){
 
             // lazy-load sidebar content, if visible (auto-triggers on init)
             if( !$body.hasClass('edit-mode') ){
+                if( $body.hasClass('cms-admin') ){
+                    sessionStorage.clear();
+                }
+
                 $document.on(_self.transitionEnd, '#cL1', function( _transitionEvent ){
                     if( _transitionEvent.target === this ){
                         var _bodyWidth = $body.outerWidth();
