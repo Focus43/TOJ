@@ -1,8 +1,5 @@
 <div class="inner">
     <?php
-        // top editable area
-        $a = new GlobalArea('Global Right'); $a->display($c);
-
         $fileList = new FileList;
         $fileList->setPermissionLevel('view_file_set_file');
         $fileList->filterBySet( FileSet::getByName('Sidebar Photos') );
@@ -24,11 +21,11 @@
             <div class="thumbEl">
                 <span class="thumb" style="display:block;background-image:url('<?php echo $fileObj->url; ?>');"></span>
             </div>
-        <?php if($_index == 2){ break; } endforeach;
+        <?php if($_index == 4){ break; } endforeach; ?>
 
-        // bottom editable area
-        $a1 = new GlobalArea('Global Right Bottom'); $a1->display($c);
-    ?>
+    <div class="overlay">
+        <?php $a = new GlobalArea('Global Right'); $a->display($c); ?>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -49,7 +46,7 @@
                     $span.fadeIn().siblings('.thumb').fadeOut(function(){
                         $(this).remove();
                     });
-                    _i = (_i == 2) ? 0 : _i + 1;
+                    _i = (_i == 4) ? 0 : _i + 1;
                     // *now* call the method to begin recursion
                     recurse();
                 });
