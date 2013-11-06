@@ -22,8 +22,8 @@
         <ul class="list-group">
             <?php foreach($results AS $pageObj){ /** @var Page $pageObj */ ?>
                 <li class="list-group-item">
-                    <span class="badge">ok meow</span>
-                    <a><?php echo $pageObj->getCollectionName(); ?></a>
+                    <span class="badge"><?php echo $pageObj->getCollectionDatePublic('M d') ?></span>
+                    <a href="<?php echo View::url($pageObj->getCollectionPath()); ?>"><?php echo $pageObj->getCollectionName(); ?></a>
                 </li>
             <?php } ?>
         </ul>
