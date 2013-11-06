@@ -14,7 +14,7 @@
         Modernizr.load([
             {
                 test: Modernizr.mq('only all'),
-                nope: '/packages/toj/js/libs/shims/respond.min.js',
+                nope: '/packages/toj/js/standalones/shims/respond.min.js',
                 complete: function(){
                     if( typeof(respond) !== 'undefined' ){
                         respond.update();
@@ -23,7 +23,7 @@
             },
             {
                 test: Modernizr.placeholder,
-                nope: '/packages/toj/js/libs/shims/placeholder.min.js',
+                nope: '/packages/toj/js/standalones/shims/placeholder.min.js',
                 complete: function(){
                     if( typeof(Placeholders) != 'undefined' ){
                         Placeholders.init();
@@ -32,7 +32,7 @@
             },
             {
                 test: Modernizr.backgroundsize,
-                nope: '/packages/toj/js/libs/shims/backstretch.js',
+                nope: '/packages/toj/js/standalones/shims/backstretch.js',
                 complete: function(){
                     if( typeof($) !== 'undefined' && $.isFunction($.backstretch) ){
                         $('[data-background]').each(function(idx, element){

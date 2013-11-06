@@ -15,8 +15,7 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        //src: ['../web/concrete/js/ccm.base.js', '../web/packages/toj/js/libs/bootstrap.min.js', '../web/packages/toj/js/libs/modernizr.min.js', '../web/packages/toj/js/toj.app.js'],
-        src: ['../web/concrete/js/ccm.base.js', '../web/packages/toj/js/libs/*.js', '../web/packages/toj/js/session_storage.js', '../web/packages/toj/js/app.js'],
+        src: ['../web/packages/toj/js/libs/*.js', '../web/packages/toj/js/session_storage.js', '../web/packages/toj/js/app.js'],
         dest: '../web/packages/toj/js/compiled/<%= filename %>-dev.js'
       }
     },
@@ -79,11 +78,11 @@ module.exports = function(grunt) {
     watch: {
       build_js: {
         files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'default']
+        tasks: ['jshint:lib_test', 'concat']
       },
       sassy_pants: {
         files: '../web/packages/toj/css/*.scss',
-        tasks: ['sass:build', 'bump']
+        tasks: ['sass:build']
       }
     }
   });

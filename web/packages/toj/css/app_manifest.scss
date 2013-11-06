@@ -56,7 +56,7 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 #cBodyContent {margin:0 auto;max-width:$contentMaxWidth;}
 
 // WEATHER WIDGET (BLOCK)
-.weatherWidget {text-align:center;color:#333;margin-bottom:1em;overflow:hidden; @include rounded(5px); @include boxShadow(0 0 5px #000); @include linearGradientLight;
+.weatherWidget {text-align:center;color:#333;margin-bottom:20px;overflow:hidden; @include rounded(5px); @include boxShadow(0 0 5px #000); @include linearGradientLight;
   label {display:block;padding:.3em 0;font-size:inherit;color:#e1e1e1;background:rgba(0,0,0,.55);}
   img {margin-bottom:5px;}
 }
@@ -164,7 +164,7 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
     }
   }
 
-  .topper {border-bottom:1px solid #ddd;
+  .topper {background:#fff;border-bottom:1px solid #ddd;
     // BREADCRUMBS
     #breadCrumbs {@include tabbedList;margin-left:-12px;font-size:12px;letter-spacing:1px;text-transform:capitalize;font-weight:200;font-family:'helvetica neue', arial, sans-serif;
       li {padding:12px 20px 11px 12px;background:url('#{$imagePath}breadcrumb-arrow@2x.png') no-repeat 100% 50%;background-size:11px 35px;
@@ -271,6 +271,9 @@ body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
 
 
 /****************************** BOOTSTRAP OVERRIDES ******************************/
+// reset back to the default
+span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
 .modal {
   .modal-dialog {width:720px;
     .modal-header {padding:12px 20px 13px 20px;@include rounded(6px,6px,0,0);@include linearGradientLight;

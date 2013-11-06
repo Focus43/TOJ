@@ -10,7 +10,7 @@
             $this->set('backgroundImage', $this->getPageBackgroundImageURL());
 
             // include the masonry gallery script from the masonry_grid package
-            $this->addFooterItem( $this->getHelper('html')->javascript('masonry.pkgd.min.js', 'toj') );
+            $this->addFooterItem( $this->getHelper('html')->javascript('standalones/masonry.pkgd.min.js', 'toj') );
         }
 
 
