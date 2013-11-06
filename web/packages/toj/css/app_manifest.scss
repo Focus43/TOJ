@@ -28,9 +28,9 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 }
 
 // sidebars
-.sidebars {width:$sidebarWidth;position:fixed;top:0;bottom:0;overflow-y:hidden/*auto*/;z-index:0;
-  &#sidebarLeft {left:0;/*@include boxShadow(inset -20px 0 20px -20px #000);*/}
-  &#sidebarRight {color:#fff;right:0;/*@include boxShadow(inset 20px 0 20px -20px #000);*/}
+.sidebars {width:$sidebarWidth;position:fixed;top:0;bottom:0;overflow-y:hidden;z-index:0;
+  &#sidebarLeft {left:0;}
+  &#sidebarRight {color:#fff;right:0;}
   &[data-load] {background:transparent url(#{$imagePath}loading.gif) no-repeat 50% 50%;}
   .inner {padding:10px;min-height:100%;}
 }

@@ -30,7 +30,7 @@
 
 <script type="text/javascript">
     $(function(){
-        var $three   = $('.thumbEl', '#sidebarRight'),
+        var $elmnts  = $('.thumbEl', '#sidebarRight'),
             imgList  = <?php echo Loader::helper('json')->encode( array_values($imageList) ); ?>,
             listSize = imgList.length;
 
@@ -42,11 +42,11 @@
 
                 $pre.one('load', {url: rand.url}, function( _ev ){
                     var $span = $('<span class="thumb" />').css('background-image', 'url('+_ev.data.url+')');
-                    $three.eq(_i).append($span);
+                    $elmnts.eq(_i).append($span);
                     $span.fadeIn().siblings('.thumb').fadeOut(function(){
                         $(this).remove();
                     });
-                    _i = (_i == 4) ? 0 : _i + 1;
+                    _i = (_i == ($elmnts.length-1)) ? 0 : _i + 1;
                     // *now* call the method to begin recursion
                     recurse();
                 });
