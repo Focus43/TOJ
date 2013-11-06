@@ -17,12 +17,20 @@ module.exports = function(grunt) {
       dist: {
         src: ['../web/packages/toj/js/libs/*.js', '../web/packages/toj/js/session_storage.js', '../web/packages/toj/js/app.js'],
         dest: '../web/packages/toj/js/compiled/<%= filename %>-dev.js'
+      },
+      home: {
+        src: ['../web/packages/toj/js/home/*.js'],
+        dest: '../web/packages/toj/js/compiled/parallax.js'
       }
     },
     strip: {
       main : {
         src : '<%= concat.dist.dest %>',
         dest : '../web/packages/toj/js/compiled/<%= filename %>-min.js'
+      },
+      home : {
+        src: '../web/packages/toj/js/compiled/parallax.js',
+        dest: '../web/packages/toj/js/compiled/parallax.js'
       }
     },
     uglify: {
@@ -32,6 +40,10 @@ module.exports = function(grunt) {
       dist: {
         src: '<%= strip.main.dest %>',
         dest: '<%= strip.main.dest %>'
+      },
+      home: {
+        src: '../web/packages/toj/js/compiled/parallax.js',
+        dest: '../web/packages/toj/js/compiled/parallax.js'
       }
     },
     jshint: {
@@ -71,7 +83,8 @@ module.exports = function(grunt) {
           style: 'compressed'
         },
         files: {
-            '../web/packages/toj/css/compiled/<%= filename %>-min.css': '../web/packages/toj/css/app_manifest.scss'
+            '../web/packages/toj/css/compiled/<%= filename %>-min.css': '../web/packages/toj/css/app_manifest.scss',
+            '../web/packages/toj/css/compiled/parallax.css': '../web/packages/toj/css/home/parallax.scss'
         }
       }
     },
@@ -80,8 +93,12 @@ module.exports = function(grunt) {
         files: '<%= jshint.lib_test.src %>',
         tasks: ['jshint:lib_test', 'concat']
       },
+      build_home_js: {
+        files: ['../web/packages/toj/js/home/*.js'],
+        tasks: ['concat:home']
+      },
       sassy_pants: {
-        files: '../web/packages/toj/css/*.scss',
+        files: ['../web/packages/toj/css/*.scss', '../web/packages/toj/css/home/*.scss'],
         tasks: ['sass:build']
       }
     }

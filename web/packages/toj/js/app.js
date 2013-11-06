@@ -236,27 +236,6 @@ $(function(){
         });
 
 
-        $('#launchParallax').on('click', function(){
-            /*var $parallaxView = $('<div id="parallaxView" />');
-            $body.append($parallaxView).addClass('parallax');
-            TweenMax.to($parallaxView, 0.3, {opacity:1, onComplete: function(){
-                $parallaxView.addClass('unblur');
-            }});*/
-            var $cL1     = $('#cL1'),
-                $navbar  = $('#primaryNav'),
-                $largeBg = $('#pageBackgroundImage');
-
-            $body.addClass('parallax');
-            TweenLite.to($cL1, 0.3, {top:'100%'});
-            TweenLite.to($navbar, 0.3, {opacity:0});
-            TweenLite.to($largeBg, 0.3, {left:0,right:0});
-        });
-
-
-
-        //console.log($.simpleWeather);
-
-
         // PUBLIC METHODS
         return {
 

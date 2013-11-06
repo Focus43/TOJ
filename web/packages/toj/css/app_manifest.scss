@@ -35,6 +35,12 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
   .inner {padding:10px;min-height:100%;}
 }
 
+// left sidebar weather
+#sidebarWeather {display:block;color:#444;font-size:22px;font-weight:bold;
+  &:hover {text-decoration:none;}
+  span.badge {position:relative;top:-3px;}
+}
+
 #sidebarRight {overflow:hidden;
   .inner {padding:0;height:100%;
     .thumbEl {display:block;margin:0;position:relative;height:20%;
@@ -282,28 +288,6 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
     }
   }
 }
-
-
-/****************************** PARALLAX STUFF ******************************/
-
-
-/*body.parallax {overflow:hidden;
-  #cL2 {@include boxShadow(none);}
-  #cL1, .sidebars {@include cssTransition(all 1s ease);@include cssFilter(blur(8px));}
-  #cFooter {display:none;}
-
-  #parallaxView {opacity:0;position:fixed;top:15px;right:15px;bottom:15px;left:15px;background:#ddd;z-index:99;
-    @include cssFilter(blur(10px));
-    @include cssTransition(all .5s ease);
-
-    &.unblur {
-      @include cssFilter(blur(0));
-    }
-  }
-}*/
-
-
-
 
 
 // transition main content and fixed background to show sidebars

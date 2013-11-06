@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 1.13.6 (2013-11-06)
+/*! Town Of Jackson - Deploy v: 1.15.0 (2013-11-06)
 Author: Focus43 (http://focus-43.com) */
 /*! Modernizr 2.6.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-fontface-backgroundsize-borderimage-borderradius-boxshadow-flexbox-hsla-multiplebgs-opacity-rgba-textshadow-cssanimations-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-hashchange-history-audio-video-input-inputtypes-localstorage-sessionstorage-geolocation-inlinesvg-svg-shiv-mq-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_backgroundposition_shorthand-css_backgroundposition_xy-css_backgroundrepeat-css_backgroundsizecover-forms_placeholder-load-cssclassprefix:mdnzr!
@@ -353,27 +353,6 @@ $(function(){
                 $alertGroup.show();
             }
         });
-
-
-        $('#launchParallax').on('click', function(){
-            /*var $parallaxView = $('<div id="parallaxView" />');
-            $body.append($parallaxView).addClass('parallax');
-            TweenMax.to($parallaxView, 0.3, {opacity:1, onComplete: function(){
-                $parallaxView.addClass('unblur');
-            }});*/
-            var $cL1     = $('#cL1'),
-                $navbar  = $('#primaryNav'),
-                $largeBg = $('#pageBackgroundImage');
-
-            $body.addClass('parallax');
-            TweenLite.to($cL1, 0.3, {top:'100%'});
-            TweenLite.to($navbar, 0.3, {opacity:0});
-            TweenLite.to($largeBg, 0.3, {left:0,right:0});
-        });
-
-
-
-        //console.log($.simpleWeather);
 
 
         // PUBLIC METHODS

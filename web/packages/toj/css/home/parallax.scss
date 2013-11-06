@@ -1,0 +1,27 @@
+@import "../variables-mixins";
+
+body.pt-home {
+  #cL1, .sidebars {@include cssTransition(all 1s ease);}
+  #parallaxView {opacity:0;background:rgba(0,0,0,.9);position:fixed;top:15px;right:15px;bottom:15px;left:15px;z-index:99;}
+
+  // when parallax class is added to body
+  &.parallax {
+    #cL1, .sidebars {@include cssFilter(blur(8px));}
+    #cFooter {display:none;}
+  }
+}
+
+/*body.parallax {overflow:hidden;
+  #cL2 {@include boxShadow(none);}
+  @include cssFilter(blur(8px));}
+  #cFooter {display:none;}
+
+  #parallaxView {opacity:0;position:fixed;top:15px;right:15px;bottom:15px;left:15px;background:#ddd;z-index:99;
+    @include cssFilter(blur(10px));
+    @include cssTransition(all .5s ease);
+
+    &.unblur {
+      @include cssFilter(blur(0));
+    }
+  }
+}*/
