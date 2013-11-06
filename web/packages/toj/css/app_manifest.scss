@@ -63,7 +63,7 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 
 
 // navigation
-#primaryNav {@include linearGradientDark;
+#primaryNav {@include linearGradientDark;@include cssTransition(all .25s ease-in);
   .navbar-brand {color:#fff;position:relative;
     img {max-height:36px;position:absolute;left:100%;margin-left:-8px;top:8px;}
   }
