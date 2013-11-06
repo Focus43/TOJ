@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 1.8.0 (2013-11-05)
+/*! Town Of Jackson - Deploy v: 1.9.15 (2013-11-06)
 Author: Focus43 (http://focus-43.com) */
 // cannot rely on jQuery being loaded here
 
@@ -142,6 +142,8 @@ var l,_,u,p,f,c,m=/(?:\d|\-\d|\.\d|\-\.\d)+/g,d=/(?:\d|\-\d|\.\d|\-\.\d|\+=\d|\-
                 _keyPrepend = 'html_partial';
 
             function getCached( uri ){
+                // disable cache results (manual override for developers)
+                if( +(sessionStorage.getItem('disableViewCache')) === 1 ){ return null; }
                 return sessionStorage.getItem( _keyPrepend + uri.hashCode() );
             }
 

@@ -37,7 +37,7 @@
 
             // get a random one from the Page Backgrounds file set
             $fileListObj = new FileList;
-            $fileListObj->filterByExtension('jpg');
+            $fileListObj->setPermissionLevel('view_file_set_file');
             $fileListObj->filterBySet( FileSet::getByName('Page Backgrounds') );
             $imagesList = $fileListObj->get();
             if( !empty($imagesList) ){
