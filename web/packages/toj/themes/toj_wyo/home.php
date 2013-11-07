@@ -27,7 +27,8 @@
         <div id="cL2">
             <?php Loader::packageElement('theme/primary_navigation', 'toj', array('c' => $c)); ?>
 
-            <a id="launchParallax" onclick="ExploreJackson.open();">
+            <!-- parallax launcher! -->
+            <a id="launchParallax" class="hidden-xs" onclick="ExploreJackson.open();">
                 <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>explore_jackson.png" />
             </a>
 
@@ -45,7 +46,7 @@
                                     <h1>Town Of Jackson, Wyoming<small class="hidden-xs">The Last Of The Wild, Wild West</small></h1>
                                 </div>
                             </div>-->
-                            <div id="tagLine" class="row">
+                            <div id="tagLine" class="hidden-xs row">
                                 <div class="col-sm-12">
                                     <div class="clearfix" style="text-align:center;">
                                         <h1 style="position:relative;display:inline-block;margin:0 auto;text-align:left;left:65px;">
