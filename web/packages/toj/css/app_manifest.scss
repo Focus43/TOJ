@@ -391,6 +391,16 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
   }
 }
 
+@media (max-width:500px){
+  body:not(.pt-home) {
+    #cL2 {min-height:0;}
+    #cL3 {padding:51px 15px 0;}
+    #cBodyContent {margin:0 -15px;
+      .whiteContainer {padding-bottom:20px;@include rounded(0);}
+    }
+  }
+}
+
 
 ///////////////////////// TRANSITIONS (SCALE BACKGROUND SIZE) /////////////////////////
 // http://joshbroton.com/quick-fix-sass-mixins-for-css-keyframe-animations/
