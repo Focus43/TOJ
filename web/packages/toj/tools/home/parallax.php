@@ -8,16 +8,18 @@ $c = Page::getByID(1); $panelCount = 7; ?>
     <!-- pages -->
     <div id="parallaxSections" class="fullHeight clearfix">
         <?php for($i = 1; $i <= $panelCount; $i++): ?>
-            <div class="section <?php echo $i === 1 ? 'active' : ''; ?>">
+            <div class="section fullHeight <?php echo $i === 1 ? 'active' : ''; ?>">
                 <div class="inner">
-                    <div class="row">
+                    <div class="sectionTitle row">
                         <div class="col-md-12">
-                            <?php $a = new Area("Parallax Header {$i}"); $a->display($c); ?>
+                            <?php $a = new Area("Parallax Header {$i}"); $a->setBlockLimit(1); $a->display($c); ?>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="opaque col-md-12">
-                            <?php $a = new Area("Parallax Content {$i}"); $a->display($c); ?>
+                    <div class="sectionContent row">
+                        <div class="col-md-12">
+                            <div class="opaque">
+                                <?php $a = new Area("Parallax Content {$i}"); $a->display($c); ?>
+                            </div>
                         </div>
                     </div>
                 </div>

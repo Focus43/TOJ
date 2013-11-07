@@ -38,7 +38,9 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 // left sidebar weather
 #sidebarWeather {display:block;color:#444;font-size:22px;font-weight:bold;
   &:hover {text-decoration:none;}
-  span.badge {position:relative;top:-3px;}
+  .panel-body {text-align:center;
+    span.badge {position:relative;top:-3px;}
+  }
 }
 
 #sidebarRight {overflow:hidden;
@@ -303,6 +305,12 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 }
 
 
+@media(max-width:$navbarBreakpoint){
+  .hidden-nav-break {display:none !important;}
+  #primaryNav {background:#111;}
+}
+
+
 // general media queries
 @media (min-width:$navbarBreakpoint){
   #primaryNav {
@@ -318,7 +326,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 }
 
 @media (max-width:$screen-sm){
-  #cL3 {padding:55px 15px 10px;}
+  #cL3 {padding:70px 15px 10px;}
   // logo on the homepage
   body.pt-home {
     #tagLine {margin-bottom:25px;
@@ -362,8 +370,13 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 }
 
 @media (orientation: portrait){
-  body.pt-home #introLinks .element {width:48%;margin-left:0;left:0;
-    &:nth-child(even) {float:right;}
+  body.pt-home {
+    #homeSearch {margin-bottom:20px;}
+
+    #introLinks .element {width:48%;margin-left:0;left:0;
+      &:nth-child(even) {float:right;}
+      span {white-space:normal;max-width:70px;display:block;text-align:center;margin:0 auto;}
+    }
   }
 }
 

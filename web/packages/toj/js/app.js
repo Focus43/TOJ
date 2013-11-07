@@ -48,7 +48,6 @@ $(function(){
                                     _task.resolve(_htmlResponse);
                                 }, 'html');
                             }).done(function( _htmlResults ){
-                                console.log('left cache');
                                 $sidebarLeft.append( _htmlResults).removeAttr('data-load');
                                 $sidebarLeft.trigger('sidebar_left_open');
                             });
@@ -61,7 +60,6 @@ $(function(){
                                 _task.resolve(_htmlResponse);
                             }, 'html');
                         }).done(function( _htmlResults ){
-                            console.log('right cache');
                             $sidebarRight.append( _htmlResults).removeAttr('data-load');
                             $document.off(_self.transitionEnd, '#cL1');
                         });

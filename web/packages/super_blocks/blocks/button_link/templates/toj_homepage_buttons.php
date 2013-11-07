@@ -5,7 +5,7 @@
     if( $csr instanceof CustomStyleRule ){
         $styles = $csr->getCustomStyleRuleCustomStylesArray();
         $rgb = Loader::helper('hex_rgb', 'toj')->hex2rgb( $styles['background_color'], true );
-        $bgStyle = "background-color:rgba($rgb,.8)";
+        $bgStyle = "background-color:rgba($rgb,.7)";
     }
 ?>
 

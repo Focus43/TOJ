@@ -69,6 +69,7 @@
                 // cache hit? return as the specified data type
                 if( _result ){
                     var _data = (dataType === 'json') ? JSON.parse(_result) : _result;
+                    console.log('SessionCache hit on: ' + _key);
                     _task.resolve( _data );
                     return;
                 }
