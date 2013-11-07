@@ -16,18 +16,20 @@ body.pt-home {
     // section container
     #parallaxSections {width:($panelCount*100%);z-index:3;  /* width = # of panels * 100 */
       .section {float:left;width:(100%/$panelCount); /* width = 100% / # of panels */
-        .inner {margin:0 auto;padding:70px 15px;max-width:980px;
-          .sectionTitle {margin-bottom:30px;text-align:center;
-            h1, h2, h3 {line-height:1em;text-align:center;text-shadow:0 1px 4px #000;
-              small {color:#e9e9e9;padding:.6em 0;display:block;}
-            }
-          }
-          .sectionContent {
-            .opaque {padding:30px;background:rgba(0,0,0,.65);@include rounded(10px);
-              h1, h2, h3 {
-                &:first-child {margin-top:0;}
+        .inner {margin:0 auto;padding:45px 70px 0;
+          .containment {margin:0 auto;max-width:980px;
+            .sectionTitle {margin-bottom:30px;text-align:center;
+              h1, h2, h3 {line-height:1em;text-align:center;text-shadow:0 1px 4px #000;
+                small {color:#e9e9e9;padding:.6em 0;display:block;}
               }
-              p:last-child {margin-bottom:0;}
+            }
+            .sectionContent {
+              .opaque {padding:30px;background:rgba(0,0,0,.65);@include rounded(10px);
+                h1, h2, h3 {
+                  &:first-child {margin-top:0;}
+                }
+                p:last-child {margin-bottom:0;}
+              }
             }
           }
         }

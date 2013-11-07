@@ -10,75 +10,23 @@ $c = Page::getByID(1); $panelCount = 7; ?>
         <?php for($i = 1; $i <= $panelCount; $i++): ?>
             <div class="section fullHeight <?php echo $i === 1 ? 'active' : ''; ?>">
                 <div class="inner">
-                    <div class="sectionTitle row">
-                        <div class="col-md-12">
-                            <?php $a = new Area("Parallax Header {$i}"); $a->setBlockLimit(1); $a->display($c); ?>
+                    <div class="containment">
+                        <div class="sectionTitle row">
+                            <div class="col-md-12">
+                                <?php $a = new Area("Parallax Header {$i}"); $a->setBlockLimit(1); $a->display($c); ?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="sectionContent row">
-                        <div class="col-md-12">
-                            <div class="opaque">
-                                <?php $a = new Area("Parallax Content {$i}"); $a->display($c); ?>
+                        <div class="sectionContent row">
+                            <div class="col-md-12">
+                                <div class="opaque">
+                                    <?php $a = new Area("Parallax Content {$i}"); $a->display($c); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         <?php endfor; ?>
-
-        <!--<div class="panel active fullHeight">
-            <div class="inner">
-                <div class="container-fluid">
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <h1 class="centerize">Explore The Wild Outdoors<small>The Pinnacle Of North American Adventure</small></h1>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dark container-fluid">
-                    <div class="row-fluid">
-                        <div class="span4">
-                            <?php $a = new Area('Home Panel 1, Left'); $a->display($c); ?>
-                        </div>
-                        <div class="span8">
-                            <?php $a = new Area('Home Panel 1, Right'); $a->display($c); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel active fullHeight">
-            <div class="inner">
-                <div class="container-fluid">
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <h1 class="centerize">Endless Family Adventure<small>The Pinnacle Of North American Adventure</small></h1>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dark container-fluid">
-                    <div class="row-fluid">
-                        <div class="span4">
-                            <?php// $a = new Area('Home Panel 2, Left'); $a->display($c); ?>
-                        </div>
-                        <div class="span8">
-                            <?php// $a = new Area('Home Panel 2, Right'); $a->display($c); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel fullHeight">
-            this is the third panel
-        </div>
-
-        <div class="panel fullHeight">
-            this is the fourth panel
-        </div>-->
     </div>
 
     <!-- scroll controls -->
