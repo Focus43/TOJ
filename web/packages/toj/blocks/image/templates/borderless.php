@@ -6,9 +6,14 @@ $maxHeight   = ($this->controller->maxHeight > 0) ? $this->controller->maxHeight
 $thumb       = $imageHelper->getThumbnail($this->controller->getFileObject(), $maxWidth, $maxHeight);
 
 $imageTag    = t('<img class="img-responsive" src="%s" alt="%s" />', $thumb->src, $this->controller->getAltText());
+?>
 
-if( !empty($imageLink) ){
-    echo t('<a href="%s">%s</a>', $imageLink, $imageTag);
-}else{
-    echo $imageTag;
-}
+<div class="btImageBorderless">
+    <?php
+        if( !empty($imageLink) ){
+            echo t('<a href="%s">%s</a>', $imageLink, $imageTag);
+        }else{
+            echo $imageTag;
+        }
+    ?>
+</div>
