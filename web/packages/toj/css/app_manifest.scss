@@ -293,6 +293,13 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 }
 
 
+/****************************** CONCRETE5 BLOCK CUSTOMIZATION ******************************/
+.btImage {text-align:center;
+  img {margin:0 auto;}
+}
+
+
+
 // transition main content and fixed background to show sidebars
 @media (min-width:1240px){
   #cL1 {margin-left:$sidebarWidth;}

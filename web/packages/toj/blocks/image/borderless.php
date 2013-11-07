@@ -5,15 +5,10 @@ $maxWidth    = ($this->controller->maxWidth > 0) ? $this->controller->maxWidth :
 $maxHeight   = ($this->controller->maxHeight > 0) ? $this->controller->maxHeight : 900;
 $thumb       = $imageHelper->getThumbnail($this->controller->getFileObject(), $maxWidth, $maxHeight);
 
-$imageTag    = t('<img class="img-thumbnail" src="%s" alt="%s" />', $thumb->src, $this->controller->getAltText());
-?>
+$imageTag    = t('<img class="img-responsive" src="%s" alt="%s" />', $thumb->src, $this->controller->getAltText());
 
-<div class="btImage">
-    <?php
-    if( !empty($imageLink) ){
-        echo t('<a href="%s">%s</a>', $imageLink, $imageTag);
-    }else{
-        echo $imageTag;
-    }
-    ?>
-</div>
+if( !empty($imageLink) ){
+    echo t('<a href="%s">%s</a>', $imageLink, $imageTag);
+}else{
+    echo $imageTag;
+}
