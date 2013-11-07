@@ -2,9 +2,7 @@
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarLinks">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <i class="fa fa-bars"></i>
         </button>
         <a class="navbar-brand" href="<?php echo $this->url('/'); ?>"><?php echo SITE; ?>
             <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>logo_naked.png" />

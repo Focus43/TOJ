@@ -72,6 +72,7 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 
 // navigation
 #primaryNav {@include linearGradientDark;@include cssTransition(all .25s ease-in);
+  .navbar-toggle {color:#fff;}
   .navbar-brand {color:#fff;position:relative;
     img {max-height:36px;position:absolute;left:100%;margin-left:-8px;top:8px;}
   }
@@ -193,6 +194,12 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
     }
     span.name {font-size:16px;top:3px;position:relative;display:inline-block;text-transform:capitalize;}
   }
+}
+
+
+#sidebarNavigation {
+  button.navbar-toggle {margin:-9px -10px;}
+  #sidebarNavList {padding:0;}
 }
 
 
@@ -327,6 +334,9 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
   #primaryNav {
     ul.nav li:hover .subMenu {display:block;}
   }
+
+
+  #sidebarNavList {max-height:none;}
 
   // department page
   body.pt-department {
