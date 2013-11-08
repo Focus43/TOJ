@@ -15,23 +15,11 @@
         -o-transition-property: height, width;
         transition-property: height, width;
     }
-
-    /*.news-grid .list-group-item {
-        -webkit-transition-property: left, right, top;
-        -moz-transition-property: left, right, top;
-        -ms-transition-property: left, right, top;
-        -o-transition-property: left, right, top;
-        transition-property: left, right, top;
-    }*/
 </style>
 
 <div id="cCurrent" class="row">
     <!-- inner sidebar -->
     <div id="currentSidebar" class="col-sm-3 col-sm-push-9">
-        <!--<ul class="list-group">
-            <li class="list-group-item text-danger"><span class="label label-danger"><?php echo count($criticals); ?></span> Critical Alerts</li>
-            <li class="list-group-item text-warning"><span class="label label-warning"><?php echo count($warnings); ?></span> Warnings</li>
-        </ul>-->
         <div class="alertGroup">
             <?php if( count($criticals) || count($warnings) ): ?>
                 <?php foreach($criticals AS $criticalPageObj): /** @var Page $pageObj */ ?>

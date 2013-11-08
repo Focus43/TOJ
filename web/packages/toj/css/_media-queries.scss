@@ -53,8 +53,9 @@
 @media (min-width: $navbarBreakpoint){
   #cL3 {padding-left:30px;padding-right:30px;}
 
-  #primaryNav {@include linearGradientDark;
+  #primaryNav {
     .navbar-header .status-alert-icon {display:none;}
+
     ul.nav li {
       &:hover, &.sticky {
         .subMenu {display:block;}

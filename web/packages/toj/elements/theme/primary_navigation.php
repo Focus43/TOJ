@@ -25,7 +25,7 @@
                 <li>
                     <a class="level-1" href="<?php echo $this->url( $pageObj->getCollectionPath() ); ?>"><?php echo $pageObj->getCollectionName(); ?></a>
                     <div class="subMenu">
-                        <div class="container">
+                        <div class="menuInner">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="well well-sm">
@@ -45,7 +45,7 @@
             <li class="newsAndCurrent">
                 <a class="level-1" href="<?php echo $this->url('/current'); ?>"><span class="status-alert-icon"><i class="fa fa-spinner fa-spin"></i></span>&nbsp; News &amp; Current</a>
                 <div class="subMenu">
-                    <div class="container">
+                    <div class="menuInner">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="well well-sm">
