@@ -36,13 +36,11 @@ foreach ($navItems as $index => $ni) {
 
 <nav class="navbar navbar-default">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#departmentNavList">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="<?php echo $departmentURL; ?>"><?php echo $departmentName; ?> Links</a>
+        <a class="navbar-toggle btn" data-toggle="collapse" data-target="#departmentNavList">
+            <span class="sr-only">Toggle Agency Navigation</span>
+            <i class="fa fa-bars"></i>
+        </a>
+        <a class="navbar-brand visible-xs" href="<?php echo $departmentURL; ?>"><?php echo $departmentName; ?> Links</a>
     </div>
 
     <div id="departmentNavList" class="collapse navbar-collapse">

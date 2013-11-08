@@ -1,0 +1,49 @@
+/****************************** SIDEBAR SPECIFIC BREAKPOINTS ******************************/
+@media (min-width:$sidebarLeftShowAt){
+  #cL1 {margin-left:$sidebarWidth;}
+  #primaryNav, #pageBackgroundImage {left:$sidebarWidth;}
+
+  @media (min-width:$sidebarRightShowAt){
+    #cL1 {margin-right:$sidebarWidth;}
+    #primaryNav, #pageBackgroundImage {right:$sidebarWidth;}
+  }
+}
+
+
+/****************************** SCREENS < 900 ******************************/
+@media (max-width:$screen-sm){
+  // padding on the body content
+  #cL3 {padding:70px 15px 20px;}
+
+  // main navigation stuff
+  #primaryNav {background:#111;
+    ul.nav li:hover .subMenu {display:none;} // not "mobile first"
+  }
+
+  // default page type
+  #cPageContent .innerSidebar .panel ul.list-group {max-height:340px;}
+
+  //body.pt-home #homeSearch {margin-bottom:20px;}
+}
+
+
+/****************************** SCREENS < 480 ******************************/
+@media (max-width:$screen-xs){
+  #cL2 {min-height:0;}
+  #cL3 {padding:57px 15px 0;}
+  #cL4 {margin:0 -15px;}
+  #cPageContent {padding-bottom:20px;@include rounded(0);}
+
+  body.pt-home #cL4 {margin:0;}
+}
+
+
+/****************************** HOMEPAGE BUTTONS ******************************/
+@media (max-width:739px){
+  body.pt-home {
+    #introLinks .element {width:48%;margin-left:0;left:0;
+      &:nth-child(even) {float:right;}
+      span {white-space:normal;max-width:70px;display:block;text-align:center;margin:0 auto;}
+    }
+  }
+}

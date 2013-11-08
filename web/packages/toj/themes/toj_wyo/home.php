@@ -28,7 +28,7 @@
             <?php Loader::packageElement('theme/primary_navigation', 'toj', array('c' => $c)); ?>
 
             <!-- parallax launcher! -->
-            <a id="launchParallax" class="hidden-nav-break" onclick="ExploreJackson.open();">
+            <a id="launchParallax" class="hidden-xs" onclick="ExploreJackson.open();">
                 <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>explore_jackson.png" />
             </a>
 
@@ -38,12 +38,12 @@
                         <div id="cL4">
 
                             <!-- actual page content -->
-                            <div id="tagLine" class="hidden-nav-break row" style="margin-bottom:60px;">
+                            <div id="tagLine" class="hidden-xs row" style="margin-bottom:60px;">
                                 <div class="col-sm-12">
                                     <div class="clearfix" style="text-align:center;">
                                         <h1 style="position:relative;display:inline-block;margin:0 auto;text-align:left;left:65px;">
                                             Town Of Jackson, Wyoming
-                                            <small class="hidden-xs">The Last Of The Wild, Wild West</small>
+                                            <small>The Last Of The Wild, Wild West</small>
                                             <img class="img-responsive pull-left" style="width:120px;position:absolute;top:-22px;left:-130px;" src="<?php echo TOJ_IMAGES_URL; ?>toj_logo.png" />
                                         </h1>
                                     </div>

@@ -7,13 +7,19 @@ $sidebarWidth:240px;
 $contentMaxWidth:1134px;
 $textColorLightGray:#3d3d3d;
 
-// navbar collapse breakpoint
-$navbarBreakpoint:900px;
+// breakpoints to show the sidebars
+$sidebarLeftShowAt:1240px;
+$sidebarRightShowAt:1480px;
 
 // from bootstrap 3
-$screen-sm:$navbarBreakpoint;
+$screen-xs:480px;
+$screen-sm:900px;
 $screen-md:992px;
 $screen-lg:1200px;
+
+// navbar collapse breakpoint
+$navbarBreakpoint:$screen-sm;
+
 
 /****************************** MIXINS ******************************/
 @mixin tabbedList {

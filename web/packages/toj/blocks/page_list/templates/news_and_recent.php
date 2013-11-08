@@ -1,7 +1,7 @@
 <?php $textHelper = Loader::helper('text'); ?>
 
 <div id="newsAndAlerts" class="well">
-    <span id="importantAlerts">News <span class="hidden-sidebar hidden-phone">&amp; Current Events</span></span>
+    <span id="importantAlerts">News <span>&amp; Current Events</span></span>
     <div id="alertRotation">
         <ol class="list-unstyled">
             <?php foreach( $pages AS $pageObj ):

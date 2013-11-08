@@ -24,7 +24,10 @@ foreach ($navItems as $ni) {
 <?php if( count($navItems) >= 1 ): ?>
     <div class="panel-heading">
         <?php echo Page::getByID( Page::getCollectionParentIDFromChildID( $navItems[0]->cID ) )->getCollectionName(); ?> Links
-        <button class="visible-xs navbar-toggle" data-toggle="collapse" data-target="#sidebarCollapseTarget"><i class="fa fa-bars"></i></button>
+        <a class="visible-xs navbar-toggle btn" data-toggle="collapse" data-target="#sidebarCollapseTarget">
+            <span class="sr-only">Toggle Sidebar Navigation</span>
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
     <ul id="sidebarCollapseTarget" class="list-group collapse navbar-collapse">
         <?php

@@ -1,11 +1,11 @@
-// commons
+/****************************** BASIC STUFF ******************************/
 html, body, #cL1 {height:100% !important;}
 body {font-family:'Roboto Slab', serif;background:url(#{$imagePath}textures/black_lozenge.png);background-attachment:fixed;}
 h1,h2,h3,h4,h5 {font-family:inherit;font-weight:700;}
 a {cursor:pointer;}
-blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30px;margin-right:30px;border-left-color:$textColorLightGray;background:#fff; @include rounded(4px);@include boxShadow(inset 0 0 4px rgba(0,0,0,.35));
-  p {font-size:1em;} // text editor puts p inside blockquote
-}
+
+
+/****************************** SHARED GLOBALLY ******************************/
 .backStretch {background-position:50% 50%;background-size:cover;background-repeat:no-repeat;
   &.anchorLeft {background-position:0 50%;}
 }
@@ -17,6 +17,24 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
     &:only-child {@include rounded(6px);}
   }
 }
+
+
+/****************************** BOOTSTRAP OVERRIDES ******************************/
+blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30px;margin-right:30px;border-left-color:$textColorLightGray;background:#fff; @include rounded(4px);@include boxShadow(inset 0 0 4px rgba(0,0,0,.35));
+  p {font-size:1em;} // text editor puts p inside blockquote
+}
+
+span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+.modal {
+  .modal-dialog {width:720px;
+    .modal-header {padding:12px 20px 13px 20px;@include rounded(6px,6px,0,0);@include linearGradientLight;
+      button.close {font-size:34px;}
+      h3, h4 {padding-top:.1em;margin:0;}
+    }
+  }
+}
+
 
 /************************ Sidebars ************************/
 .sidebars {width:$sidebarWidth;position:fixed;top:0;bottom:0;overflow-y:hidden;z-index:0;
@@ -84,8 +102,8 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
       // on hovering the <li> (sticky is cms editing helper)
       &:hover, &.sticky {
         a.level-1 {color:$textColorLightGray;background:#f5f5f5;}
+        .subMenu {display:block;}
       }
-      &.sticky .subMenu {display:block;}
 
       // news and current tab specifically
       &.newsAndCurrent {
@@ -143,7 +161,7 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
   .innerSidebar {
     .panel {
       .panel-heading {
-        button.navbar-toggle {margin:-9px -10px;}
+        .navbar-toggle {margin:-9px -10px;}
       }
       ul.list-group {padding:0;max-height:none;
         li.list-group-item {
@@ -202,24 +220,10 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
 }
 
 
-// SITE SETTINGS (IE, INTERNATIONALIZATION)
+/****************************** Site settings (eg. translation, accessibility) ******************************/
 #siteSettings {width:520px;position:fixed;top:-100%;left:50%;margin-left:-260px;z-index:11; @include linearGradientLight; @include boxShadow(0 0 10px #000);
   .inner {position:relative;padding:1.4em 15px;text-align:center;
     a.closer {padding:8px;display:block;position:absolute;top:0;right:0;text-align:center;color:#fff;font-size:1.4em;z-index:99; @include linearGradientDark;}
-  }
-}
-
-
-/****************************** BOOTSTRAP OVERRIDES ******************************/
-// reset back to the default
-span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
-
-.modal {
-  .modal-dialog {width:720px;
-    .modal-header {padding:12px 20px 13px 20px;@include rounded(6px,6px,0,0);@include linearGradientLight;
-      button.close {font-size:34px;}
-      h3, h4 {padding-top:.1em;margin:0;}
-    }
   }
 }
 
@@ -228,50 +232,12 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 .btImage {text-align:center;
   img {margin:0 auto;}
 }
-
-.btImageBorderless {
-  img {margin:0 auto;}
-}
+.btImageBorderless img {margin:0 auto;}
 
 
-
-// transition main content and fixed background to show sidebars
-@media (min-width:1240px){
-  #cL1 {margin-left:$sidebarWidth;}
-  #primaryNav, #pageBackgroundImage {left:$sidebarWidth;}
-
-  @media (min-width:1480px){
-    #cL1 {margin-right:$sidebarWidth;}
-    #primaryNav, #pageBackgroundImage {right:$sidebarWidth;}
-  }
-}
-
-
-@media(max-width:$navbarBreakpoint){
-  .hidden-nav-break {display:none !important;}
-  #primaryNav {background:#111;}
-}
-
-
-// general media queries
-@media (min-width:$navbarBreakpoint){
-  #primaryNav {
-    ul.nav li:hover .subMenu {display:block;}
-  }
-
-
-  #sidebarNavList {max-height:none;}
-
-  // department page
-  body.pt-department {
-    #areaTop {
-      .navbar-brand {display:none;}
-    }
-  }
-}
 
 @media (max-width:$screen-sm){
-  #cL3 {padding:70px 15px 10px;}
+  //#cL3 {padding:70px 15px 10px;}
   // logo on the homepage
   body.pt-home {
     #tagLine {margin-bottom:25px;
@@ -306,31 +272,6 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
           .list-group-item {width:50%;}
         }
       }
-    }
-  }
-}
-
-@media (min-width:$screen-md){
-  //.modal {width:720px;margin-left:-360px;}
-}
-
-@media (orientation: portrait){
-  body.pt-home {
-    #homeSearch {margin-bottom:20px;}
-
-    #introLinks .element {width:48%;margin-left:0;left:0;
-      &:nth-child(even) {float:right;}
-      span {white-space:normal;max-width:70px;display:block;text-align:center;margin:0 auto;}
-    }
-  }
-}
-
-@media (max-width:500px){
-  body:not(.pt-home) {
-    #cL2 {min-height:0;}
-    #cL3 {padding:51px 15px 0;}
-    #cL4 {margin:0 -15px;
-      #cPageContent {padding-bottom:20px;@include rounded(0);}
     }
   }
 }
