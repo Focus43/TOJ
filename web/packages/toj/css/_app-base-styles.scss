@@ -82,7 +82,9 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 /************************ Main site navigation ************************/
 #primaryNav {background:#111;@include cssTransition(all .25s ease-in);
   // responsive toggler button
-  .navbar-toggle {color:#fff;padding-left:12px;padding-right:12px;}
+  .navbar-toggle {color:#fff;padding:7px 12px;background:#2d2d2d;
+    &:hover {background:#1d1d1d;}
+  }
   // name and logo
   .navbar-brand {color:#fff;position:relative;
     img {max-height:36px;position:absolute;left:100%;margin-left:-8px;top:8px;}
@@ -165,7 +167,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
       .panel-heading {position:relative;
         .btn {position:absolute;top:0;right:0;bottom:0;padding-top:10px;}
       }
-      ul.list-group {padding:0;
+      ul.list-group {padding:0;max-height:280px;overflow-y:auto;
         li.list-group-item {
           &:hover, &.active, &.nav-path-selected {background:$linkColorDefault;
             a {color:#f5f5f5;text-decoration:none;}
@@ -222,7 +224,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 
 /****************************** Site settings (eg. translation, accessibility) ******************************/
-#siteSettings {width:520px;position:fixed;top:-100%;left:50%;margin-left:-260px;z-index:11; @include linearGradientLight; @include boxShadow(0 0 10px #000);
+#siteSettings {position:fixed;top:-100%;z-index:11;left:15px;right:15px; @include linearGradientLight; @include boxShadow(0 0 10px #000);//width:520px;position:fixed;top:-100%;left:50%;margin-left:-260px;z-index:11; @include linearGradientLight; @include boxShadow(0 0 10px #000);
   .inner {position:relative;padding:1.4em 15px;text-align:center;
     a.closer {padding:8px;display:block;position:absolute;top:0;right:0;text-align:center;color:#fff;font-size:1.4em;z-index:99; @include linearGradientDark;}
   }
@@ -236,11 +238,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 .btImageBorderless img {margin:0 auto;}
 
 
-
-
-
-
-///////////////////////// TRANSITIONS (SCALE BACKGROUND SIZE) /////////////////////////
+/****************************** Custom Animations ("Progressive enhancement") ******************************/
 // http://joshbroton.com/quick-fix-sass-mixins-for-css-keyframe-animations/
 // http://stackoverflow.com/questions/13010776/how-can-i-convert-this-css3-animation-into-a-sass-mixin
 @include cssKeyframes(backgroundScaler){
@@ -264,7 +262,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 }
 
 
-// cms login/status overrides
+// HELPER STYLES FOR WHEN LOGGED INTO THE CMS AND EDITING
 body.cms-admin {
   .sidebars, #primaryNav {top:49px;}
   #siteSettings {margin-top:49px;}
