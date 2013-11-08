@@ -35,21 +35,19 @@
         <div class="alertGroup">
             <?php if( count($criticals) || count($warnings) ): ?>
                 <?php foreach($criticals AS $criticalPageObj): /** @var Page $pageObj */ ?>
-                    <div class="alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <i class="fa fa-warning"></i> <a class="alert-link" href="<?php echo $this->url( $criticalPageObj->getCollectionPath() ); ?>"><?php echo $criticalPageObj->getCollectionName(); ?></a>
-                    </div>
+                    <a class="alert alert-danger" href="<?php echo $this->url( $criticalPageObj->getCollectionPath() ); ?>">
+                        <i class="fa fa-exclamation-triangle"></i><span><?php echo $criticalPageObj->getCollectionName(); ?></span>
+                    </a>
                 <?php endforeach; ?>
                 <?php foreach($warnings AS $warningPageObj): /** @var Page $pageObj */ ?>
-                    <div class="alert alert-warning">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <i class="fa fa-warning"></i> <a class="alert-link" href="<?php echo $this->url( $warningPageObj->getCollectionPath() ); ?>"><?php echo $warningPageObj->getCollectionName(); ?></a>
-                    </div>
+                    <a class="alert alert-warning" href="<?php echo $this->url( $warningPageObj->getCollectionPath() ); ?>">
+                        <i class="fa fa-exclamation-circle"></i> <span><?php echo $warningPageObj->getCollectionName(); ?></span>
+                    </a>
                 <?php endforeach; ?>
             <?php else: ?>
-                <div class="alert alert-success">
+                <div class="alert alert-success no-icon">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <i class="fa fa-check-circle"></i> No warnings or critical alerts are currently issued.
+                    <span>No warnings or critical alerts are currently issued.</span>
                 </div>
             <? endif; ?>
         </div>

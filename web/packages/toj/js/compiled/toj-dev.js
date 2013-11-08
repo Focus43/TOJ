@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 2.1.0 (2013-11-08)
+/*! Town Of Jackson - Deploy v: 2.2.0 (2013-11-08)
 Author: Focus43 (http://focus-43.com) */
 /*! Modernizr 2.6.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-fontface-backgroundsize-borderimage-borderradius-boxshadow-flexbox-hsla-multiplebgs-opacity-rgba-textshadow-cssanimations-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-hashchange-history-audio-video-input-inputtypes-localstorage-sessionstorage-geolocation-inlinesvg-svg-shiv-mq-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_backgroundposition_shorthand-css_backgroundposition_xy-css_backgroundrepeat-css_backgroundsizecover-forms_placeholder-load-cssclassprefix:mdnzr!
@@ -326,7 +326,7 @@ $(function(){
 
 
         // header news & current, set icon class
-        var $newsAndCurrentArea = $('.newsAndCurrent', '#primaryNav');
+        //var $newsAndCurrentArea = $('.newsAndCurrent', '#primaryNav');
 
         $.ajax({
             url: $('#tojAppPaths').attr('data-tools') + '_data/current',
@@ -335,28 +335,45 @@ $(function(){
             success: function( _resp ){
                 var iconColor = (_resp.criticals) ? 'text-danger' : (_resp.warnings) ? 'text-warning' : 'text-success',
                     iconClass = (_resp.criticals) ? 'fa-exclamation-triangle' : (_resp.warnings) ? 'fa-exclamation-circle' : 'fa-check-circle';
-                $('a i.fa-spinner', $newsAndCurrentArea).replaceWith('<i class="fa '+iconColor+' '+iconClass+'" />');
 
-                var $alertGroup = $('.alertGroup', $newsAndCurrentArea);
-                if( _resp.criticals || _resp.warnings ){
-                    $alertGroup.empty();
+                // find both icons (mobile and desktop navigation view) to replace
+                $('.status-alert-icon', '#primaryNav').find('i.fa').replaceWith('<i class="fa '+iconColor+' '+iconClass+'" />');
 
-                    if( _resp.criticals ){
-                        $alertGroup.empty();
-                        $.each( _resp.criticals, function(idx, obj){
-                            $alertGroup.append('<div class="alert alert-danger"><a href="'+obj.path+'" class="alert-link"><i class="fa fa-exclamation-triangle"></i><span> '+obj.name+'</span></a></div>');
-                        });
-                    }
+                // create alertGroup dom elements
+                var $alertGroup = $('<div class="alertGroup" />');
 
-                    if( _resp.warnings ){
-                        $.each( _resp.warnings, function(idx, obj){
-                            $alertGroup.append('<div class="alert alert-warning"><a href="'+obj.path+'" class="alert-link"><i class="fa fa-exclamation-circle"></i><span>'+obj.name+'</span></a></div>');
-                        });
-                    }
+                // append any criticals
+                if( _resp.criticals ){
+                    $.each( _resp.criticals, function(idx, obj){
+                        $alertGroup.append('<a class="alert alert-danger" href="'+obj.path+'"><i class="fa fa-exclamation-triangle"></i><span> '+obj.name+'</span></a>');
+                    });
                 }
 
-                $('h5.updating', $newsAndCurrentArea).remove();
-                $alertGroup.show();
+                // append any warning
+                if( _resp.warnings ){
+                    $.each( _resp.warnings, function(idx, obj){
+                        $alertGroup.append('<a class="alert alert-warning" href="'+obj.path+'"><i class="fa fa-exclamation-circle"></i><span>'+obj.name+'</span></a>');
+                    });
+                }
+
+                // if theres none of the above, create OK message
+                if( ! $('.alert', $alertGroup).length ){
+                    $alertGroup.append('<a class="alert alert-success no-icon"><span>No warnings or critical alerts are currently issued.</span></a>');
+                }
+
+                // replace in desktop hover menu
+                $('h5.updating', '#primaryNav').replaceWith($alertGroup);
+
+                // create the popover for mobile
+                $('.status-alert-icon', '#primaryNav .navbar-header').popover({
+                    animation: false,
+                    html: true,
+                    placement: 'bottom',
+                    title: 'Current Alerts',
+                    content: $alertGroup.clone(),
+                    trigger: 'click',
+                    container: '#primaryNav'
+                });
             }
         });
 

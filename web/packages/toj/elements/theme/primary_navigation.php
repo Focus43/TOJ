@@ -1,5 +1,8 @@
 <div id="primaryNav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
+        <a data-href="<?php echo View::url('current'); ?>" class="status-alert-icon">
+            <i class="fa fa-spinner fa-spin"></i>
+        </a>
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navCollapseTarget">
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars"></i>
@@ -40,7 +43,7 @@
 
             <!-- news and current -->
             <li class="newsAndCurrent">
-                <a class="level-1" href="<?php echo $this->url('/current'); ?>"><i class="fa fa-spinner fa-spin"></i>&nbsp; News &amp; Current</a>
+                <a class="level-1" href="<?php echo $this->url('/current'); ?>"><span class="status-alert-icon"><i class="fa fa-spinner fa-spin"></i></span>&nbsp; News &amp; Current</a>
                 <div class="subMenu">
                     <div class="container">
                         <div class="row">
@@ -64,14 +67,8 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
+                                <!-- replaced via ajax -->
                                 <h5 class="updating"><i class="fa fa-spinner fa-spin"></i> Checking for alert updates...</h5>
-                                <div class="alertGroup" style="display:none;">
-                                    <div class="alert alert-success">
-                                        <a class="alert-link no-link">
-                                            <i class="fa fa-check-circle"></i><span> No warnings or critical alerts are currently issued.</span>
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,7 @@
 @import "../variables-mixins";
 
+#cCurrent .alertGroup .alert i {padding-top:6px;}
+
 #postList.panel {
   .panel-heading {
     h2 {margin:0;}

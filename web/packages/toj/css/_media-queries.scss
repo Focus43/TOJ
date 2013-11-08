@@ -13,7 +13,7 @@
 @media (min-width: $screen-sm){
   // containers and unicorns rainbows n shit
   #cL2 {min-height:100%;}
-  #cL3 {padding:80px 20px 20px;}
+  #cL3 {padding:70px 20px 20px;}
   #cL4 {margin:0 auto;}
   #cPageContent {@include rounded(5px);@include boxShadow(0 0 12px rgba(0,0,0,.75));
     .innerSidebar .panel .list-group.collapse {display:block;max-height:none;}
@@ -51,9 +51,10 @@
 
 /************************* 870+ *************************/
 @media (min-width: $navbarBreakpoint){
-  #cL3 {padding:72px 25px 20px;}
+  #cL3 {padding-left:30px;padding-right:30px;}
 
   #primaryNav {@include linearGradientDark;
+    .navbar-header .status-alert-icon {display:none;}
     ul.nav li {
       &:hover, &.sticky {
         .subMenu {display:block;}
