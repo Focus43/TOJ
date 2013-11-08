@@ -5,7 +5,7 @@
             <i class="fa fa-bars"></i>
         </button>
         <a class="navbar-brand" href="<?php echo $this->url('/'); ?>"><?php echo SITE; ?>
-            <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>logo_naked.png" />
+            <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>toj_logo_borderless.png" />
         </a>
     </div>
 

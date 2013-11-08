@@ -80,7 +80,7 @@ if( $u->isLoggedIn() ){
     $this->addHeaderItem($html->javascript('jquery.js'), 'CORE');
     $this->addHeaderItem($html->javascript('ccm.base.js', false, true), 'CORE');
 }else{
-    $this->addHeaderItem($html->javascript('ccm.base.js', false, true), 'CORE');
+    //$this->addHeaderItem($html->javascript('ccm.base.js', false, true), 'CORE');
     $this->addFooterItem($html->javascript('jquery.js'), 'CORE');
 }
 

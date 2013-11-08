@@ -52,7 +52,7 @@
                             <div id="homeSearch" class="row">
                                 <div class="col-sm-12">
                                     <div class="inner">
-                                        <input type="text" class="form-control input-lg" placeholder="Search" />
+                                        <input id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Search (start typing)" />
                                         <i class="fa fa-search"></i>
                                         <button class="btn btn-info btn-lg">Search</button>
 
@@ -89,10 +89,6 @@
         </div>
     </div>
 
-
-<?php Loader::packageElement('theme/site_settings', 'toj'); ?>
-<?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
-
 <!-- google custom search loader -->
 <script>
     (function() {
@@ -105,16 +101,29 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(gcse, s);
     })();
-</script>
 
-<!-- custom search input handler -->
-<script type="text/javascript">
-    $(function(){
-        $('input', '#homeSearch').on('keyup', function(){
-            $('[id*="gcse"]', '#homeSearch').show();
-            google.search.cse.element.getElement('searchresults-only0').execute( this.value );
-        });
-    });
+    // custom for TOJ; sans-jquery
+    (function(){
+        var _container, _googleApi, _timeOut;
+        function typeDelay( _api, _keyEvent ){
+            return setTimeout(function(){
+                _api.execute( _keyEvent.target.value );
+                _keyEvent.target.focus();
+            }, 275);
+        }
+        document.getElementById('googleSearchInput').onkeyup = function( keyEvent ){
+            keyEvent.target.focus();
+            clearTimeout(_timeOut);
+            _container = _container || document.querySelector('[id*=gcse]');
+            _googleApi = _googleApi || google.search.cse.element.getElement('searchresults-only0');
+            if( typeof(_googleApi) !== 'undefined' ){
+                _container.style.display = 'block';
+                _timeOut = typeDelay( _googleApi, keyEvent );
+            }
+        };
+    })();
 </script>
+<?php Loader::packageElement('theme/site_settings', 'toj'); ?>
+<?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
 </body>
 </html>

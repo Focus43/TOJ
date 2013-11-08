@@ -123,7 +123,6 @@
             
             // ie8 stylesheet
             $ieShim = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('compiled/elderly/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
-            $ieShim .= "<!--[if lt IE 8]>\n" . $this->getHelper('html')->css('compiled/elderly/font-awesome-ie7.min.css', self::PACKAGE_HANDLE) . "\n<![endif]-->";
             $pageController->addHeaderItem( $ieShim );
 
             if( DEPLOYMENT_STATUS_PRODUCTION === true ){
