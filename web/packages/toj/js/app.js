@@ -98,9 +98,16 @@ $(function(){
         });
 
 
-        // toggle font size
+        /**
+         * Toggle the font size
+         */
         $settings.on('click', '.setFontSize', function(){
-            $body.css({zoom: $(this).attr('data-zoom')});
+            var _value = $(this).attr('data-zoom');
+            if( _value === 'default' ){
+                $body.removeAttr('data-zoom');
+                return;
+            }
+            $body.attr('data-zoom', _value);
         });
 
 

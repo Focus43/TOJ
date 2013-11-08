@@ -4,11 +4,11 @@
         <div class="row">
             <div class="col-sm-6">
                 <p>Text Size</p>
-                <a class="btn btn-default setFontSize" data-zoom="1" style="font-size:14px;">A</a>
-                <a class="btn btn-default setFontSize" data-zoom="1.15" style="font-size:16px;">A</a>
-                <a class="btn btn-default setFontSize" data-zoom="1.2" style="font-size:18px;">A</a>
-                <a class="btn btn-default setFontSize" data-zoom="1.25" style="font-size:20px;">A</a>
-                <a class="btn btn-default setFontSize" data-zoom="1.3" style="font-size:22px;">A</a>
+                <a class="btn btn-default setFontSize" data-zoom="default" style="font-size:14px;">A</a>
+                <a class="btn btn-default setFontSize" data-zoom="15" style="font-size:16px;">A</a>
+                <a class="btn btn-default setFontSize" data-zoom="17" style="font-size:18px;">A</a>
+                <a class="btn btn-default setFontSize" data-zoom="19" style="font-size:20px;">A</a>
+                <a class="btn btn-default setFontSize" data-zoom="20" style="font-size:22px;">A</a>
             </div>
             <div class="col-sm-6">
                 <p>Language</p>

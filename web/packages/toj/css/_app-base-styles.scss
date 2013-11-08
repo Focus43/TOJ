@@ -5,6 +5,13 @@ h1,h2,h3,h4,h5 {font-family:inherit;font-weight:700;}
 a {cursor:pointer;}
 
 
+/****************************** ACCESSIBILITY (BODY FONT SIZE) ******************************/
+body[data-zoom="15"] {font-size:15px;}
+body[data-zoom="17"] {font-size:17px;}
+body[data-zoom="19"] {font-size:19px;}
+body[data-zoom="20"] {font-size:20px;}
+
+
 /****************************** SHARED GLOBALLY ******************************/
 .backStretch {background-position:50% 50%;background-size:cover;background-repeat:no-repeat;
   &.anchorLeft {background-position:0 50%;}
