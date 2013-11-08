@@ -20,16 +20,17 @@ foreach ($navItems as $ni) {
     $ni->classes = implode(" ", $classes);
 } ?>
 
+
 <div class="panel panel-default">
 <?php if( count($navItems) >= 1 ): ?>
     <div class="panel-heading">
-        <?php echo Page::getByID( Page::getCollectionParentIDFromChildID( $navItems[0]->cID ) )->getCollectionName(); ?> Links
-        <a class="visible-xs navbar-toggle btn" data-toggle="collapse" data-target="#sidebarCollapseTarget">
+        <a class="visible-xs btn pull-right" data-toggle="collapse" data-target="#sidebarCollapseTarget">
             <span class="sr-only">Toggle Sidebar Navigation</span>
             <i class="fa fa-bars"></i>
         </a>
+        <?php echo Page::getByID( Page::getCollectionParentIDFromChildID( $navItems[0]->cID ) )->getCollectionName(); ?> Links
     </div>
-    <ul id="sidebarCollapseTarget" class="list-group collapse navbar-collapse">
+    <ul id="sidebarCollapseTarget" class="list-group collapse">
         <?php
             foreach ($navItems as $ni) {
                 echo '<li class="list-group-item ' . $ni->classes . '">'; //opens a nav item

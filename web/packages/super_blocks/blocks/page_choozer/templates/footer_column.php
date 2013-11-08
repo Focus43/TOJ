@@ -2,9 +2,9 @@
 
     <div class="resources">
         <a class="blockName" data-toggle="collapse" data-target="#footer-list-<?php echo $this->controller->bID; ?>">
-            <h4><?php echo $this->getBlockObject()->getBlockName(); ?></h4>
+            <?php echo $this->getBlockObject()->getBlockName(); ?>
         </a>
-        <ul id="footer-list-<?php echo $this->controller->bID; ?>" class="list-unstyled collapse navbar-collapse">
+        <ul id="footer-list-<?php echo $this->controller->bID; ?>" class="list-unstyled collapse">
             <?php foreach( $pageCollection AS $pageObj ){
                 // determine link URL
                 $url = ($pageObj->isExternalLink()) ?

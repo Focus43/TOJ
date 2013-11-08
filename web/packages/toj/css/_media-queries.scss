@@ -1,91 +1,79 @@
-/****************************** SIDEBAR SPECIFIC BREAKPOINTS ******************************/
-@media (min-width:$sidebarLeftShowAt){
-  #cL1 {margin-left:$sidebarWidth;}
-  #primaryNav, #pageBackgroundImage {left:$sidebarWidth;}
-
-  @media (min-width:$sidebarRightShowAt){
-    #cL1 {margin-right:$sidebarWidth;}
-    #primaryNav, #pageBackgroundImage {right:$sidebarWidth;}
-  }
-}
-
-
-/****************************** SCREENS < 900 ******************************/
-@media (max-width:$screen-sm){
-  // padding on the body content
-  #cL3 {padding:70px 15px 20px;}
-
-  // main navigation stuff
-  #primaryNav {background:#111;
-    ul.nav li:hover .subMenu {display:none;} // not "mobile first"
-  }
-
-  // default page type
-  #cPageContent .innerSidebar .panel ul.list-group {max-height:340px;}
-
-  //body.pt-home #homeSearch {margin-bottom:20px;}
-}
-
-
-/****************************** SCREENS < 480 ******************************/
-@media (max-width:$screen-xs){
-  #cL2 {min-height:0;}
-  #cL3 {padding:57px 15px 0;}
-  #cL4 {margin:0 -15px;}
-  #cPageContent {padding-bottom:20px;@include rounded(0);}
-
-  body.pt-home #cL4 {margin:0;}
-}
-
-
-/****************************** HOMEPAGE BUTTONS ******************************/
-@media (max-width:739px){
+/************************* 480+ (Mobiles in landscape and >) *************************/
+@media (min-width: $screen-xs){
   body.pt-home {
-    #introLinks .element {width:48%;margin-left:0;left:0;
-      &:nth-child(even) {float:right;}
-      span {white-space:normal;max-width:70px;display:block;text-align:center;margin:0 auto;}
-    }
-  }
-}
-
-
-// !!!! NOT REFACTORED YET !!!!
-@media (max-width:$screen-sm){
-  //#cL3 {padding:70px 15px 10px;}
-  // logo on the homepage
-  body.pt-home {
-    #tagLine {margin-bottom:25px;
-      #tojLogo {display:none;}
-      h1 {font-size:1.5em;}
-    }
-  }
-  #cFooter {
-    .content {
-      .horiz ul.iconz {font-size:1em;
-        li a {padding:8px;
-          i:last-child {margin-right:0;}
-        }
+    #introLinks {margin-left:-3px;margin-right:-3px;
+      .element {width:33.33%;float:left !important;
+        a {margin:0 3px;}
       }
-      .columns {padding:0;
-        .inner {border:0;
-          .resources {font-size:.9em;margin:4px 0;padding:.3em 1em;border:0;@include rounded(4px);@include boxShadow(0 1px 3px rgba(0,0,0,.35));@include linearGradientLight;
-            a {text-align:center;}
+    }
+  }
+}
+
+/************************* 768+ *************************/
+@media (min-width: $screen-sm){
+  // containers and unicorns rainbows n shit
+  #cL2 {min-height:100%;}
+  #cL3 {padding:80px 20px 20px;}
+  #cL4 {margin:0 auto;}
+  #cPageContent {@include rounded(5px);@include boxShadow(0 0 12px rgba(0,0,0,.75));
+    .innerSidebar .panel .list-group.collapse {display:block;max-height:none;}
+  }
+
+  #cFooter .content {
+    .columns.row {
+      .inner {border-left:1px solid #ccc;margin-bottom:1em;background:none;
+        .resources {padding-left:1em;border-left:1px solid #fff;text-align:left;
+          .list-unstyled.collapse {display:block;
+            li {display:block;
+              a {padding:2px 0;}
+            }
           }
         }
       }
+      .col-sm-3:first-child {
+        .inner, .resources {border-left:0;}
+      }
+    }
+  }
+
+  // specific things
+  body.pt-home {
+    #introLinks {
+      .element {width:25%;
+        span {max-width:100%;}
+      }
     }
   }
 }
 
-@media (max-width:$screen-md){
-  // grid view (not necessarily mobile, maybe tablets)
-  #cCurrent {
-    #currentMain {
-      #postList.panel {
-        .list-group.grid {
-          .list-group-item {width:50%;}
-        }
+
+/************************* 870+ *************************/
+@media (min-width: $navbarBreakpoint){
+  #cL3 {padding:72px 25px 20px;}
+
+  #primaryNav {@include linearGradientDark;
+    ul.nav li {
+      &:hover, &.sticky {
+        .subMenu {display:block;}
       }
     }
+  }
+}
+
+
+/************************* 992+ *************************/
+@media (min-width: $screen-md){
+  #cFooter .content .iconography .borderize ul.iconz {font-size:140%;}
+}
+
+
+/************************* 1200+ *************************/
+@media (min-width: $screen-lg){
+  #cL1 {margin-left:$sidebarWidth;}
+  #primaryNav, #pageBackgroundImage {left:$sidebarWidth;}
+  /************************* 1334+ *************************/
+  @media (min-width:$sidebarRightShowAt){
+    #cL1 {margin-right:$sidebarWidth;}
+    #primaryNav, #pageBackgroundImage {right:$sidebarWidth;}
   }
 }

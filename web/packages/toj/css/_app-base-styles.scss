@@ -20,7 +20,9 @@ a {cursor:pointer;}
 
 
 /****************************** BOOTSTRAP OVERRIDES ******************************/
-blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30px;margin-right:30px;border-left-color:$textColorLightGray;background:#fff; @include rounded(4px);@include boxShadow(inset 0 0 4px rgba(0,0,0,.35));
+button:focus {outline:0;}
+
+blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30px;margin-right:30px;border-left-color:$textMediumGray;background:#fff; @include rounded(4px);@include boxShadow(inset 0 0 4px rgba(0,0,0,.35));
   p {font-size:1em;} // text editor puts p inside blockquote
 }
 
@@ -70,17 +72,17 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
     span.backStretch {position:absolute;top:0;right:0;bottom:0;left:0;}
   }
 // Container Level 2
-#cL2 {min-height:100%;position:relative;z-index:1;@include boxShadow(0 0 20px #000);}
+#cL2 {min-height:0;/*100%;*/position:relative;z-index:1;@include boxShadow(0 0 20px #000);}
 // Container Level 3
-#cL3 {padding:80px 45px 20px;}
+#cL3 {padding:57px 15px 0;/*80px 45px 20px;*/}
 // Container Level 4
-#cL4 {margin:0 auto;max-width:$contentMaxWidth;}
+#cL4 {margin:0 -15px;/*0 auto;*/max-width:$contentMaxWidth;}
 
 
 /************************ Main site navigation ************************/
-#primaryNav {@include linearGradientDark;@include cssTransition(all .25s ease-in);
+#primaryNav {background:#111;@include cssTransition(all .25s ease-in);
   // responsive toggler button
-  .navbar-toggle {color:#fff;}
+  .navbar-toggle {color:#fff;padding-left:12px;padding-right:12px;}
   // name and logo
   .navbar-brand {color:#fff;position:relative;
     img {max-height:36px;position:absolute;left:100%;margin-left:-8px;top:8px;}
@@ -101,8 +103,8 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
       }
       // on hovering the <li> (sticky is cms editing helper)
       &:hover, &.sticky {
-        a.level-1 {color:$textColorLightGray;background:#f5f5f5;}
-        .subMenu {display:block;}
+        a.level-1 {color:$textMediumGray;background:#f5f5f5;}
+        //.subMenu {display:block;} // true mobile-first handles this in the media query
       }
 
       // news and current tab specifically
@@ -129,7 +131,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 
 /************************ Main content container ************************/
-#cPageContent {padding:0 15px 1em;overflow:hidden;background:rgba(255,255,255,.9); @include rounded(5px);@include boxShadow(0 0 3px rgba(0,0,0,.75));
+#cPageContent {padding:0 15px 1em;overflow:hidden;background:rgba(255,255,255,.9);/*@include rounded(5px);@include boxShadow(0 0 3px rgba(0,0,0,.75));*/
   .innerHead {margin-bottom:20px;
     // very top row, breadcrumbs and social icons
     .breadcrumbSocial {background:#fff;border-bottom:1px solid #ddd;
@@ -141,7 +143,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
         }
       }
       // social icons
-      .sociable {color:$textColorLightGray;font-size:1.7em;
+      .sociable {color:$textMediumGray;font-size:1.7em;
         a {color:inherit;}
       }
     }
@@ -160,10 +162,10 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
   .innerSidebar {
     .panel {
-      .panel-heading {
-        .navbar-toggle {margin:-9px -10px;}
+      .panel-heading {position:relative;
+        .btn {position:absolute;top:0;right:0;bottom:0;padding-top:10px;}
       }
-      ul.list-group {padding:0;max-height:none;
+      ul.list-group {padding:0;
         li.list-group-item {
           &:hover, &.active, &.nav-path-selected {background:$linkColorDefault;
             a {color:#f5f5f5;text-decoration:none;}
@@ -176,16 +178,20 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 
 /************************ Footer container ************************/
-#cFooter {color:$textColorLightGray;position:absolute;top:100%;left:0;right:0;background:#e5e5e5;@include boxShadow(0 0 20px #000);
+#cFooter {color:$textMediumGray;position:absolute;top:100%;left:0;right:0;background:#e5e5e5;@include boxShadow(0 0 20px #000);
   .content {padding:1em 15px;margin:0 auto;max-width:900px;
-    .iconography.row {
+    .iconography {
       .borderize {border-bottom:1px solid #ccc;
-        ul.iconz {@include tabbedList;font-size:1.3em;padding-bottom:8px;text-align:center;border-bottom:1px solid #fff;
+        ul.iconz {@include tabbedList;font-size:115%;padding-bottom:8px;text-align:center;border-bottom:1px solid #fff;
           li {float:none;
-            a {color:inherit;padding:1em;
+            a {color:inherit;padding:.6em .5em;
               &:hover {text-decoration:none;}
-              i {font-size:1.4em;margin:0 2px;}
-              span.inner-text {display:inline-block;padding-left:4px;position:relative;top:-3px;}
+              i {font-size:1.4em;margin:0 2px;
+                &:last-child {margin-right:0;}
+              }
+              span.inner-text {display:inline-block;position:relative;top:-3px;
+                span {padding-left:4px;}
+              }
             }
             &:hover a {background:#d1d1d1;@include rounded(5px);@include boxShadow(inset 0 0 7px rgba(0,0,0,.32));}
           }
@@ -193,26 +199,21 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
       }
     }
 
-    .columns.row {padding:1em 0;
-      .inner {border-left:1px solid #ccc;
-        .resources {padding-left:1em;border-left:1px solid #fff;
-          a {display:block;
-            &:hover {text-decoration:none;}
-            &.blockName {color:$textColorLightGray;}
-          }
-          ul.collapse {padding-left:0;
-            li a {display:block;padding:2px 0;}
+    .columns {padding:1em 0 0;
+      .inner {margin-bottom:8px;background:#fff;@include rounded(4px);
+        .resources {text-align:center;
+          a.blockName {color:$textMediumGray;display:block;padding:6px 12px;font-weight:bold;font-size:120%;}
+          ul.list-unstyled {padding:0 12px 8px;
+            li {display:inline-block;
+              a {display:block;padding:2px 8px;}
+            }
           }
         }
       }
-
-      .col-sm-3:first-child .inner {border-left:0;
-        .resources {border-left:0;}
-      }
     }
 
-    .legal.row {
-      .well {font-size:12px;color:$textColorLightGray;text-align:center;margin-bottom:0;background:rgba(0,0,0,.15);
+    .legal {
+      .well {font-size:12px;color:$textMediumGray;text-align:center;margin-bottom:0;background:rgba(0,0,0,.15);
         p {margin:0;}
       }
     }

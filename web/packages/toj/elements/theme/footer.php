@@ -31,22 +31,22 @@
         </div>
 
         <div class="columns row">
-            <div class="col-sm-3">
+            <div class="col-xs-12 col-sm-3">
                 <div class="inner">
                     <?php $area1 = new GlobalArea('Footer Column 1'); $area1->display($c); ?>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-12 col-sm-3">
                 <div class="inner">
                     <?php $area2 = new GlobalArea('Footer Column 2'); $area2->display($c); ?>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-12 col-sm-3">
                 <div class="inner">
                     <?php $area3 = new GlobalArea('Footer Column 3'); $area3->display($c); ?>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-12 col-sm-3">
                 <div class="inner">
                     <?php $area4 = new GlobalArea('Footer Column 4'); $area4->display($c); ?>
                 </div>

@@ -41,7 +41,7 @@ $(function(){
                 if( _transitionEvent.target === this ){
                     var _bodyWidth = $body.outerWidth();
 
-                    if( _bodyWidth >= 1240 ){
+                    if( _bodyWidth >= 1200 ){
                         if( $sidebarLeft.attr('data-load') ){
                             $.clientCache('leftSidebar', function( _task ){
                                 $.get($sidebarLeft.attr('data-load'), function( _htmlResponse ){
@@ -54,7 +54,7 @@ $(function(){
                         }
                     }
 
-                    if( _bodyWidth >= 1480 ){
+                    if( _bodyWidth >= 1334 ){
                         $.clientCache('rightSidebar', function( _task ){
                             $.get($sidebarRight.attr('data-load'), function( _htmlResponse ){
                                 _task.resolve(_htmlResponse);

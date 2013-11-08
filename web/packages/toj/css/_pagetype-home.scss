@@ -1,16 +1,16 @@
 body.pt-home {
-  #cL4 {max-width:780px;}
+  #cL4 {padding:20px 15px 5px;max-width:800px;}
 
   #launchParallax {cursor:pointer;z-index:8;max-width:120px;display:block;position:absolute;top:50px;right:15px;}
 
-  #tagLine {margin-top:60px;
+  #tagLine {text-align:center;margin:45px 0 60px;
     #tojLogo {width:170px;display:block;margin:0 auto 20px;text-align:center;}
     h1 {margin:0;line-height:1em;color:#fff;text-align:center;text-shadow:0 1px 4px #000;
       small {display:block;color:#e9e9e9;padding:.6em 0 0;}
     }
   }
 
-  #homeSearch {
+  #homeSearch {margin-bottom:20px;
     .inner {position:relative;
       input {position:relative;z-index:2;padding-left:35px;@include boxShadow(0 0 20px rgba(0,0,0,.65));}
       i {position:absolute;z-index:3;font-size:1.7em;left:8px;top:10px;}
@@ -24,12 +24,14 @@ body.pt-home {
   }
 
   #introLinks {color:#f1f1f1;text-align:center;@include clearfix;
-    .ccm-block-styles {background:none;}
-    .element {width:25%;margin-bottom:10px;padding:0 5px;float:left;position:relative;@include borderBox;
+    .ccm-block-styles {background:none !important;}
+    .element {width:49%;float:left;margin-bottom:10px;
       a {display:block;padding:1.2em 1em 1em;color:inherit;background-color:rgba(0,0,0,.8);border:1px solid transparent;background-clip:padding-box; @include rounded(8px); @include boxShadow(0 0 4px #000);
         i {display:block;margin:0 auto;font-size:2.9em;margin-bottom:.1em;}
+        span {white-space:normal;max-width:70px;display:block;text-align:center;margin:0 auto;}
         &:hover {text-decoration:none;border:1px solid #fff;color:inherit;}
       }
+      &:nth-child(even) {float:right;}
     }
   }
 }

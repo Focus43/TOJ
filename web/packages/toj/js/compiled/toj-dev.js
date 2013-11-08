@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 1.24.0 (2013-11-08)
+/*! Town Of Jackson - Deploy v: 1.25.0 (2013-11-08)
 Author: Focus43 (http://focus-43.com) */
 /*! Modernizr 2.6.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-fontface-backgroundsize-borderimage-borderradius-boxshadow-flexbox-hsla-multiplebgs-opacity-rgba-textshadow-cssanimations-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-hashchange-history-audio-video-input-inputtypes-localstorage-sessionstorage-geolocation-inlinesvg-svg-shiv-mq-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_backgroundposition_shorthand-css_backgroundposition_xy-css_backgroundrepeat-css_backgroundsizecover-forms_placeholder-load-cssclassprefix:mdnzr!
@@ -161,7 +161,7 @@ $(function(){
                 if( _transitionEvent.target === this ){
                     var _bodyWidth = $body.outerWidth();
 
-                    if( _bodyWidth >= 1240 ){
+                    if( _bodyWidth >= 1200 ){
                         if( $sidebarLeft.attr('data-load') ){
                             $.clientCache('leftSidebar', function( _task ){
                                 $.get($sidebarLeft.attr('data-load'), function( _htmlResponse ){
@@ -174,7 +174,7 @@ $(function(){
                         }
                     }
 
-                    if( _bodyWidth >= 1480 ){
+                    if( _bodyWidth >= 1334 ){
                         $.clientCache('rightSidebar', function( _task ){
                             $.get($sidebarRight.attr('data-load'), function( _htmlResponse ){
                                 _task.resolve(_htmlResponse);
