@@ -236,45 +236,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 
 
-@media (max-width:$screen-sm){
-  //#cL3 {padding:70px 15px 10px;}
-  // logo on the homepage
-  body.pt-home {
-    #tagLine {margin-bottom:25px;
-      #tojLogo {display:none;}
-      h1 {font-size:1.5em;}
-    }
-  }
-  #cFooter {
-    .content {
-      .horiz ul.iconz {font-size:1em;
-        li a {padding:8px;
-          i:last-child {margin-right:0;}
-        }
-      }
-      .columns {padding:0;
-        .inner {border:0;
-          .resources {font-size:.9em;margin:4px 0;padding:.3em 1em;border:0;@include rounded(4px);@include boxShadow(0 1px 3px rgba(0,0,0,.35));@include linearGradientLight;
-            a {text-align:center;}
-          }
-        }
-      }
-    }
-  }
-}
 
-@media (max-width:$screen-md){
-  // grid view (not necessarily mobile, maybe tablets)
-  #cCurrent {
-    #currentMain {
-      #postList.panel {
-        .list-group.grid {
-          .list-group-item {width:50%;}
-        }
-      }
-    }
-  }
-}
 
 
 ///////////////////////// TRANSITIONS (SCALE BACKGROUND SIZE) /////////////////////////
