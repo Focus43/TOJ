@@ -1,0 +1,2 @@
+// drop the z-index when editing so areas don't get overlayed
+body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}

@@ -2,7 +2,7 @@
 
 $navItems = $controller->getNavItems(true); ?>
 
-<ul id="breadCrumbs">
+<ul class="breadcrumbNav">
     <?php for ($i = 0; $i < count($navItems); $i++):
             $ni = $navItems[$i];
 

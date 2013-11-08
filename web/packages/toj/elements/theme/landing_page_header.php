@@ -1,5 +1,6 @@
-<div id="landingPageHeader">
-    <div class="topper row">
+<div class="innerHead">
+
+    <div class="breadcrumbSocial row">
         <div class="col-sm-12">
             <div class="pull-left">
                 <?php
@@ -18,10 +19,11 @@
             </div>
         </div>
     </div>
-    <div class="row">
+
+    <div class="pageTitle row">
         <div class="col-sm-12">
             <?php if( $showAuthor === true ): ?>
-                <div class="newsPostMeta pull-right">
+                <div class="pageMeta pull-right">
                     <div class="circle"><?php echo Page::getCurrentPage()->getCollectionDatePublic('M d, Y'); ?></div>
                     <div class="circle img" style="background-image:url('<?php echo $avatarPath; ?>')"></div>
                     <span class="name"><?php echo $authorName; ?></span>
@@ -30,4 +32,5 @@
             <h1 class="<?php echo $titleClass; ?>"><?php echo Page::getCurrentPage()->getCollectionName(); ?> <?php if(!($hideDescription === true)): ?><small class="visible-desktop"><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small><?php endif; ?></h1>
         </div>
     </div>
+
 </div>

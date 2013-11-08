@@ -1,12 +1,3 @@
-// web fonts
-@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400italic,700italic|Roboto+Slab:400,300,700);
-@import url(http://fonts.googleapis.com/css?family=Bitter:400,700,400italic);
-
-// libraries / dependencies
-@import "variables-mixins";
-@import "bootstrap";
-@import "font-awesome";
-
 // commons
 html, body, #cL1 {height:100% !important;}
 body {font-family:'Roboto Slab', serif;background:url(#{$imagePath}textures/black_lozenge.png);background-attachment:fixed;}
@@ -27,23 +18,22 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
   }
 }
 
-// sidebars
+/************************ Sidebars ************************/
 .sidebars {width:$sidebarWidth;position:fixed;top:0;bottom:0;overflow-y:hidden;z-index:0;
-  &#sidebarLeft {left:0;}
-  &#sidebarRight {color:#fff;right:0;}
   &[data-load] {background:transparent url(#{$imagePath}loading.gif) no-repeat 50% 50%;}
   .inner {padding:10px;min-height:100%;}
 }
 
-// left sidebar weather
-#sidebarWeather {display:block;color:#444;font-size:22px;font-weight:bold;
-  &:hover {text-decoration:none;}
-  .panel-body {text-align:center;
-    span.badge {position:relative;top:-3px;}
+#sidebarLeft {left:0;
+  .weatherWidget {display:block;color:#444;font-size:22px;font-weight:bold;
+    &:hover {text-decoration:none;}
+    .panel-body {text-align:center;
+      span.badge {position:relative;top:-3px;}
+    }
   }
 }
 
-#sidebarRight {overflow:hidden;
+#sidebarRight {right:0;color:#fff;overflow:hidden;
   .inner {padding:0;height:100%;
     .thumbEl {display:block;margin:0;position:relative;height:20%;
       span.thumb {display:none;position:absolute;top:0;right:10px;bottom:10px;left:10px;background-size:cover;background-position:50% 50%;@include boxShadow(0 0 10px #000);}
@@ -54,31 +44,35 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
   }
 }
 
-// main page content
+
+/************************ Page container levels ************************/
 #cL1 {background:#e5e5e5;position:relative;z-index:1;@include cssTransition(margin .25s ease-in);}
-#pageBackgroundImage {display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include cssTransition((left .25s ease-in, right .25s ease-in));
-  span.backStretch {position:absolute;top:0;right:0;bottom:0;left:0;}
-}
+  // Large background container
+  #pageBackgroundImage {display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include cssTransition((left .25s ease-in, right .25s ease-in));
+    span.backStretch {position:absolute;top:0;right:0;bottom:0;left:0;}
+  }
+// Container Level 2
 #cL2 {min-height:100%;position:relative;z-index:1;@include boxShadow(0 0 20px #000);}
+// Container Level 3
 #cL3 {padding:80px 45px 20px;}
-#cBodyContent {margin:0 auto;max-width:$contentMaxWidth;}
-
-// WEATHER WIDGET (BLOCK)
-.weatherWidget {text-align:center;color:#333;margin-bottom:20px;overflow:hidden; @include rounded(5px); @include boxShadow(0 0 5px #000); @include linearGradientLight;
-  label {display:block;padding:.3em 0;font-size:inherit;color:#e1e1e1;background:rgba(0,0,0,.55);}
-  img {margin-bottom:5px;}
-}
+// Container Level 4
+#cL4 {margin:0 auto;max-width:$contentMaxWidth;}
 
 
-// navigation
+/************************ Main site navigation ************************/
 #primaryNav {@include linearGradientDark;@include cssTransition(all .25s ease-in);
+  // responsive toggler button
   .navbar-toggle {color:#fff;}
+  // name and logo
   .navbar-brand {color:#fff;position:relative;
     img {max-height:36px;position:absolute;left:100%;margin-left:-8px;top:8px;}
   }
+  // navigation links
   ul.nav {position:relative;
     li {position:static;
+      // first level link
       a.level-1 {color:#e5e5e5;cursor:pointer;z-index:1;}
+      // flyout submenu
       .subMenu {display:none;background:#f5f5f5;position:absolute;padding:15px 0;top:100%;left:0;right:10px; @include boxShadow(0 2px 8px rgba(0,0,0,.65));@include rounded(0,0,6px,6px);
         .container {width:100%;
           .well {margin:0;background-color:#e9e9e9;}
@@ -87,49 +81,101 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
           }
         }
       }
-
-      &:hover, &.sticky { // sticky is the class for cms editing
+      // on hovering the <li> (sticky is cms editing helper)
+      &:hover, &.sticky {
         a.level-1 {color:$textColorLightGray;background:#f5f5f5;}
-        //.subMenu {display:block;}
       }
-    }
-  }
-  // news and current tab
-  #newsAndCurrentArea {
-    .list-unstyled li {
-      a {display:block;color:#333;
-        h4 {margin:0;padding-bottom:5px;line-height:1.3em;text-transform:capitalize;}
-        &:hover {padding-left:5px;}
-      }
-    }
-    .alertGroup {margin:0;
-      .alert {
-        a {display:block;@include clearfix;
-          &.no-link:hover {text-decoration:none;}
-          i {float:left;font-size:22px;}
-          span {display:block;margin-left:36px;text-transform:capitalize;}
+      &.sticky .subMenu {display:block;}
+
+      // news and current tab specifically
+      &.newsAndCurrent {
+        .list-unstyled li {
+          a {display:block;color:#333;
+            h4 {margin:0;padding-bottom:5px;line-height:1.3em;text-transform:capitalize;}
+            &:hover {padding-left:5px;}
+          }
+        }
+        .alertGroup {margin:0;
+          .alert {
+            a {display:block;@include clearfix;
+              &.no-link:hover {text-decoration:none;}
+              i {float:left;font-size:22px;}
+              span {display:block;margin-left:36px;text-transform:capitalize;}
+            }
+          }
         }
       }
     }
   }
 }
 
-// footer
-#cFooter {color:$textColorLightGray;position:absolute;top:100%;left:0;right:0;background:#e5e5e5;@include boxShadow(0 0 20px #000);
-  .content {padding:1em 15px;margin:0 auto;max-width:900px;
-    .horiz {border-bottom:1px solid #ccc;
-      ul.iconz {@include tabbedList;font-size:1.3em;padding-bottom:8px;text-align:center;border-bottom:1px solid #fff;
-        li {float:none;
-          a {color:inherit;padding:1em;
-            &:hover {text-decoration:none;}
-            i {font-size:1.4em;margin:0 2px;}
-            span.inner-text {display:inline-block;padding-left:4px;position:relative;top:-3px;}
+
+/************************ Main content container ************************/
+#cPageContent {padding:0 15px 1em;overflow:hidden;background:rgba(255,255,255,.9); @include rounded(5px);@include boxShadow(0 0 3px rgba(0,0,0,.75));
+  .innerHead {margin-bottom:20px;
+    // very top row, breadcrumbs and social icons
+    .breadcrumbSocial {background:#fff;border-bottom:1px solid #ddd;
+      // breadcrumbs
+      .breadcrumbNav {@include tabbedList;margin-left:-12px;font-size:12px;letter-spacing:1px;text-transform:capitalize;font-weight:200;font-family:'helvetica neue', arial, sans-serif;
+        li {padding:12px 20px 11px 12px;background:url('#{$imagePath}breadcrumb-arrow@2x.png') no-repeat 100% 50%;background-size:11px 35px;
+          &.current {font-weight:bold;}
+          &:last-child {background:none;}
+        }
+      }
+      // social icons
+      .sociable {color:$textColorLightGray;font-size:1.7em;
+        a {color:inherit;}
+      }
+    }
+    // second row page name, and optionally (for news pages) some author info
+    .pageTitle {
+      h1 {font-weight:300;margin:0 -15px 0;padding:.3em 0 .4em 20px;background:#f1f1f1;border-top:1px solid #f9f9f9;border-bottom:1px solid #ddd;text-shadow:0 1px 0 #fff;}
+      .pageMeta {
+        .circle {position:relative;left:-8px;display:inline-block;padding-top:14px;overflow:hidden;vertical-align:middle;width:60px;height:60px;text-align:center;margin-top:2px;font-size:12px;color:#fff;background:#a47e3c;@include rounded(50%);@include borderBox;
+          &:first-child {left:0;z-index:2;}
+          &.img {background-size:cover;background-position:50% 50%;}
+        }
+        span.name {font-size:16px;top:3px;position:relative;display:inline-block;text-transform:capitalize;}
+      }
+    }
+  }
+
+  .innerSidebar {
+    .panel {
+      .panel-heading {
+        button.navbar-toggle {margin:-9px -10px;}
+      }
+      ul.list-group {padding:0;max-height:none;
+        li.list-group-item {
+          &:hover, &.active, &.nav-path-selected {background:$linkColorDefault;
+            a {color:#f5f5f5;text-decoration:none;}
           }
-          &:hover a {background:#d1d1d1;@include rounded(5px);@include boxShadow(inset 0 0 7px rgba(0,0,0,.32));}
         }
       }
     }
-    .columns {padding:1em 0;
+  }
+}
+
+
+/************************ Footer container ************************/
+#cFooter {color:$textColorLightGray;position:absolute;top:100%;left:0;right:0;background:#e5e5e5;@include boxShadow(0 0 20px #000);
+  .content {padding:1em 15px;margin:0 auto;max-width:900px;
+    .iconography.row {
+      .borderize {border-bottom:1px solid #ccc;
+        ul.iconz {@include tabbedList;font-size:1.3em;padding-bottom:8px;text-align:center;border-bottom:1px solid #fff;
+          li {float:none;
+            a {color:inherit;padding:1em;
+              &:hover {text-decoration:none;}
+              i {font-size:1.4em;margin:0 2px;}
+              span.inner-text {display:inline-block;padding-left:4px;position:relative;top:-3px;}
+            }
+            &:hover a {background:#d1d1d1;@include rounded(5px);@include boxShadow(inset 0 0 7px rgba(0,0,0,.32));}
+          }
+        }
+      }
+    }
+
+    .columns.row {padding:1em 0;
       .inner {border-left:1px solid #ccc;
         .resources {padding-left:1em;border-left:1px solid #fff;
           a {display:block;
@@ -146,142 +192,20 @@ blockquote {font:italic normal 1.45em/1.4em 'Droid Serif', serif;margin-left:30p
         .resources {border-left:0;}
       }
     }
-    .well {font-size:12px;color:$textColorLightGray;text-align:center;margin-bottom:0;background:rgba(0,0,0,.15);
-      p {margin:0;}
+
+    .legal.row {
+      .well {font-size:12px;color:$textColorLightGray;text-align:center;margin-bottom:0;background:rgba(0,0,0,.15);
+        p {margin:0;}
+      }
     }
   }
 }
+
 
 // SITE SETTINGS (IE, INTERNATIONALIZATION)
 #siteSettings {width:520px;position:fixed;top:-100%;left:50%;margin-left:-260px;z-index:11; @include linearGradientLight; @include boxShadow(0 0 10px #000);
   .inner {position:relative;padding:1.4em 15px;text-align:center;
     a.closer {padding:8px;display:block;position:absolute;top:0;right:0;text-align:center;color:#fff;font-size:1.4em;z-index:99; @include linearGradientDark;}
-  }
-}
-
-// CONTAINERS AND RAINBOWS AND UNICORNS
-.whiteContainer {padding:0 15px 1em;overflow:hidden;background:rgba(255,255,255,.9); @include rounded(5px);@include boxShadow(0 0 3px rgba(0,0,0,.75));
-  #landingPageHeader {margin-bottom:20px;
-    h1 {font-weight:300;margin:0 -15px 0;padding:.3em 0 .4em 20px;background:#f1f1f1;border-top:1px solid #f9f9f9;border-bottom:1px solid #ddd;text-shadow:0 1px 0 #fff;}
-  }
-
-  .containerSidebar {
-    .panel ul.list-group li.list-group-item {
-      &:hover, &.active, &.nav-path-selected {background:$linkColorDefault;
-        a {color:#f5f5f5;text-decoration:none;}
-      }
-    }
-  }
-
-  .topper {background:#fff;border-bottom:1px solid #ddd;
-    // BREADCRUMBS
-    #breadCrumbs {@include tabbedList;margin-left:-12px;font-size:12px;letter-spacing:1px;text-transform:capitalize;font-weight:200;font-family:'helvetica neue', arial, sans-serif;
-      li {padding:12px 20px 11px 12px;background:url('#{$imagePath}breadcrumb-arrow@2x.png') no-repeat 100% 50%;background-size:11px 35px;
-        &.current {font-weight:bold;}
-        &:last-child {background:none;}
-      }
-    }
-
-    .sociable {color:$textColorLightGray;font-size:1.7em;
-      a {color:inherit;}
-    }
-  }
-
-  .newsPostMeta {
-    .circle {position:relative;left:-8px;display:inline-block;padding-top:14px;overflow:hidden;vertical-align:middle;width:60px;height:60px;text-align:center;margin-top:2px;font-size:12px;color:#fff;background:#a47e3c;@include rounded(50%);@include borderBox;
-      &:first-child {left:0;z-index:2;}
-      &.img {background-size:cover;background-position:50% 50%;}
-    }
-    span.name {font-size:16px;top:3px;position:relative;display:inline-block;text-transform:capitalize;}
-  }
-}
-
-
-#sidebarNavigation {
-  button.navbar-toggle {margin:-9px -10px;}
-  #sidebarNavList {padding:0;}
-}
-
-
-/****************************** PAGE TYPES ******************************/
-/*### HOME ###*/
-body.pt-home {
-  #cBodyContent {max-width:780px;}
-
-  #launchParallax {cursor:pointer;z-index:8;max-width:120px;display:block;position:absolute;top:50px;right:15px;}
-
-  #tagLine {margin:15px 0 45px;
-    #tojLogo {width:170px;display:block;margin:0 auto 20px;text-align:center;}
-    h1 {margin:0;line-height:1em;color:#fff;text-align:center;text-shadow:0 1px 4px #000;
-      small {display:block;color:#e9e9e9;padding:.6em 0 0;}
-    }
-  }
-
-  #homeSearch {margin-bottom:45px;
-    .inner {position:relative;
-      input {position:relative;z-index:2;padding-left:35px;@include boxShadow(0 0 20px rgba(0,0,0,.65));}
-      i {position:absolute;z-index:3;font-size:1.7em;left:8px;top:10px;}
-      button {position:absolute;z-index:3;right:0;top:0;}
-    }
-
-    // google custom search
-    div[id*="gcse"] {display:none;position:relative;top:-6px;z-index:1;
-      .gsc-control-cse {@include rounded(0, 0, 5px, 5px);@include boxShadow(0 0 20px rgba(0,0,0,.65));}
-    }
-  }
-
-  #introLinks {margin:0 -5px 35px;color:#f1f1f1;text-align:center;@include clearfix;
-    .ccm-block-styles {background:none;}
-    .element {width:25%;margin-bottom:10px;padding:0 5px;float:left;position:relative;@include borderBox;
-      a {display:block;padding:1.2em 1em 1em;color:inherit;background-color:rgba(0,0,0,.8);border:1px solid transparent;background-clip:padding-box; @include rounded(8px); @include boxShadow(0 0 4px #000);
-        i {display:block;margin:0 auto;font-size:2.9em;margin-bottom:.1em;}
-        &:hover {text-decoration:none;border:1px solid #fff;color:inherit;}
-      }
-    }
-  }
-}
-
-body.pt-department {
-  #areaTop {
-    #departmentNavList ul {float:none;}
-  }
-}
-
-body.pt-news_post {
-  #landingPageHeader {margin-bottom:0;}
-  .descr {background:#e5e5e5;margin-bottom:20px;padding:12px 15px;border-bottom:1px dashed #ccc;font-size:1.2em;font-style:italic;color:#666;}
-}
-
-/*### MODAL ###*/
-// drop the z-index when editing so areas don't get overlayed
-body.pt-modal .modal {z-index:4;display:block;margin-top:70px;}
-
-
-/****************************** SINGLE PAGE STYLES ******************************/
-#cCurrent {
-  #currentMain {
-    #postList.panel {
-      .panel-heading {
-        h2 {margin:0;}
-      }
-      .list-group {
-        .list-group-item {display:block;
-          h4 {font-weight:bold;margin:3px 0 7px;text-transform:capitalize;}
-          span {margin-bottom:0;}
-        }
-
-        &.grid {@include clearfix;
-          .list-group-item {background:none;width:33.33%;border:0;border-bottom:1px solid #ccc;@include rounded(0);
-            h4 {font-weight:bold;}
-          }
-        }
-      }
-      .panel-footer {text-align:center;}
-    }
-  }
-
-  #currentSidebar {
-
   }
 }
 
@@ -405,8 +329,8 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
   body:not(.pt-home) {
     #cL2 {min-height:0;}
     #cL3 {padding:51px 15px 0;}
-    #cBodyContent {margin:0 -15px;
-      .whiteContainer {padding-bottom:20px;@include rounded(0);}
+    #cL4 {margin:0 -15px;
+      #cPageContent {padding-bottom:20px;@include rounded(0);}
     }
   }
 }

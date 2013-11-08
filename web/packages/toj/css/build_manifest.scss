@@ -1,0 +1,15 @@
+// web fonts
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400italic,700italic|Roboto+Slab:400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Bitter:400,700,400italic);
+
+// libraries / dependencies
+@import "variables-mixins";
+@import "bootstrap";
+@import "font-awesome";
+@import "app-base-styles";
+
+// cms template pages
+@import "pagetype-home";
+@import "pagetype-department";
+@import "pagetype-news-post";
+@import "pagetype-modal";

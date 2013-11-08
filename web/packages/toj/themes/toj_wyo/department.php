@@ -30,10 +30,10 @@
             <div id="cL3">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div id="cBodyContent">
+                        <div id="cL4">
 
                             <!-- actual page content -->
-                            <div class="whiteContainer">
+                            <div id="cPageContent">
                                 <?php Loader::packageElement('theme/landing_page_header', 'toj'); ?>
                                 <div id="areaTop" class="row">
                                     <div class="col-sm-12">

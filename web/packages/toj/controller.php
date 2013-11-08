@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.36';
+	    protected $pkgVersion 			= '0.37';
 	
 		
 		/**
@@ -111,6 +111,12 @@
 				 ->setupPageTypes()
 				 ->setupSitePages()
                  ->setupFileSets();
+
+            // remove weather block, if installed
+            $weatherBlockType = BlockType::getByHandle('weather_widget');
+            if( $weatherBlockType->canUninstall() ){
+                $weatherBlockType->delete();
+            }
 		}
 		
 		

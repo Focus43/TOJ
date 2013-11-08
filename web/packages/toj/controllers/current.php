@@ -9,6 +9,8 @@
             parent::on_start();
             $this->set('backgroundImage', $this->getPageBackgroundImageURL());
 
+            // single page css
+            $this->addHeaderItem( $this->getHelper('html')->css('compiled/singlepage-current.css', 'toj') );
             // include the masonry gallery script from the masonry_grid package
             $this->addFooterItem( $this->getHelper('html')->javascript('standalones/masonry.pkgd.min.js', 'toj') );
         }

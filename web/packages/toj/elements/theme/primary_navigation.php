@@ -1,6 +1,6 @@
 <div id="primaryNav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarLinks">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navCollapseTarget">
             <span class="sr-only">Toggle navigation</span>
             <i class="fa fa-bars"></i>
         </button>
@@ -9,7 +9,7 @@
         </a>
     </div>
 
-    <div id="navbarLinks" class="collapse navbar-collapse">
+    <div id="navCollapseTarget" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
             <?php
             $pageList = new PageList();
@@ -38,7 +38,8 @@
                 </li>
             <?php endforeach; ?>
 
-            <li id="newsAndCurrentArea">
+            <!-- news and current -->
+            <li class="newsAndCurrent">
                 <a class="level-1" href="<?php echo $this->url('/current'); ?>"><i class="fa fa-spinner fa-spin"></i>&nbsp; News &amp; Current</a>
                 <div class="subMenu">
                     <div class="container">
@@ -77,9 +78,8 @@
                 </div>
             </li>
 
-            <li>
-                <a id="openSettings" data-toggle="collapse" data-target=".nav-collapse"><i class="fa fa-cogs"></i></a>
-            </li>
+            <!-- accessibility settings -->
+            <li><a id="openSettings"><i class="fa fa-cogs"></i></a></li>
         </ul>
     </div>
 </div>

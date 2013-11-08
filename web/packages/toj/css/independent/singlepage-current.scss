@@ -1,0 +1,28 @@
+@import "../variables-mixins";
+
+#cCurrent {
+  #currentMain {
+    #postList.panel {
+      .panel-heading {
+        h2 {margin:0;}
+      }
+      .list-group {
+        .list-group-item {display:block;
+          h4 {font-weight:bold;margin:3px 0 7px;text-transform:capitalize;}
+          span {margin-bottom:0;}
+        }
+
+        &.grid {@include clearfix;
+          .list-group-item {background:none;width:33.33%;border:0;border-bottom:1px solid #ccc;@include rounded(0);
+            h4 {font-weight:bold;}
+          }
+        }
+      }
+      .panel-footer {text-align:center;}
+    }
+  }
+
+  #currentSidebar {
+
+  }
+}

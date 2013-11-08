@@ -26,9 +26,9 @@
     </div>
 
     <div id="cL1">
-            <span id="pageBackgroundImage">
-                <span class="backStretch" data-background="<?php echo $backgroundImage; ?>"></span>
-            </span>
+        <span id="pageBackgroundImage">
+            <span class="backStretch" data-background="<?php echo $backgroundImage; ?>"></span>
+        </span>
 
         <div id="cL2">
             <?php Loader::packageElement('theme/primary_navigation', 'toj', array('c' => $c)); ?>
@@ -36,10 +36,10 @@
             <div id="cL3">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div id="cBodyContent">
+                        <div id="cL4">
 
                             <!-- actual page content -->
-                            <div class="whiteContainer">
+                            <div id="cPageContent">
                                 <?php Loader::packageElement('theme/landing_page_header', 'toj'); ?>
                                 <div class="row">
                                     <div class="col-sm-12">

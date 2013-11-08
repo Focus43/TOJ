@@ -1,8 +1,9 @@
 <div id="cFooter">
     <div class="content">
-        <div class="row">
+
+        <div class="iconography row">
             <div class="col-sm-12">
-                <div class="horiz">
+                <div class="borderize">
                     <ul class="iconz">
                         <li class="showPopover" title="Socialize &amp; Engage" data-content="Share, explore, and learn more about the Town Of Jackson">
                             <a href="<?php echo View::url('socialize'); ?>">
@@ -28,6 +29,7 @@
                 </div>
             </div>
         </div>
+
         <div class="columns row">
             <div class="col-sm-3">
                 <div class="inner">
@@ -50,12 +52,14 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+
+        <div class="legal row">
             <div class="col-sm-12">
                 <div class="well well-sm">
                     <p>Copyright &copy; 2013 Town Of Jackson Municipal Services. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
+
     </div>
 </div>

@@ -1,4 +1,4 @@
-/*! Town Of Jackson - Deploy v: 1.23.0 (2013-11-07)
+/*! Town Of Jackson - Deploy v: 1.24.0 (2013-11-08)
 Author: Focus43 (http://focus-43.com) */
 /*! Modernizr 2.6.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-fontface-backgroundsize-borderimage-borderradius-boxshadow-flexbox-hsla-multiplebgs-opacity-rgba-textshadow-cssanimations-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-hashchange-history-audio-video-input-inputtypes-localstorage-sessionstorage-geolocation-inlinesvg-svg-shiv-mq-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-css_backgroundposition_shorthand-css_backgroundposition_xy-css_backgroundrepeat-css_backgroundsizecover-forms_placeholder-load-cssclassprefix:mdnzr!
@@ -198,7 +198,7 @@ $(function(){
                     _task.resolve(weather);
                 }});
             }, 'json').done(function( weather ){
-                $('.panel-body', '#sidebarWeather').append(function(){
+                $('.panel-body', '#sidebarLeft .weatherWidget').append(function(){
                     return '<img src="'+weather.thumbnail+'" />'+weather.temp+'&deg;'+weather.units.temp+' &nbsp;<span class="badge">'+weather.currently+'</span>';
                 });
             });
@@ -319,7 +319,7 @@ $(function(){
 
 
         // header news & current, set icon class
-        var $newsAndCurrentArea = $('#newsAndCurrentArea');
+        var $newsAndCurrentArea = $('.newsAndCurrent', '#primaryNav');
 
         $.ajax({
             url: $('#tojAppPaths').attr('data-tools') + '_data/current',

@@ -83,8 +83,9 @@ module.exports = function(grunt) {
           style: 'compressed'
         },
         files: {
-            '../web/packages/toj/css/compiled/<%= filename %>-min.css': '../web/packages/toj/css/app_manifest.scss',
-            '../web/packages/toj/css/compiled/parallax.css': '../web/packages/toj/css/home/parallax.scss'
+            '../web/packages/toj/css/compiled/<%= filename %>-min.css': '../web/packages/toj/css/build_manifest.scss',
+            '../web/packages/toj/css/compiled/parallax.css': '../web/packages/toj/css/independent/parallax.scss',
+            '../web/packages/toj/css/compiled/singlepage-current.css': '../web/packages/toj/css/independent/singlepage-current.scss',
         }
       }
     },
@@ -98,7 +99,7 @@ module.exports = function(grunt) {
         tasks: ['concat:home']
       },
       sassy_pants: {
-        files: ['../web/packages/toj/css/*.scss', '../web/packages/toj/css/home/*.scss'],
+        files: ['../web/packages/toj/css/*.scss', '../web/packages/toj/css/independent/*.scss'],
         tasks: ['sass:build']
       }
     }
