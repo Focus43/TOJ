@@ -5,8 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.project %> - Deploy v: <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd") %>)\n' +
-        'Author: <%= pkg.author.name %> (<%= pkg.author.url %>) */\n',
+    banner: '/*!***** <%= pkg.project %> // Build v:<%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd") %>), @auth: <%= pkg.author.name %> (<%= pkg.author.url %>) ******/\n;',
     filename: '<%= pkg.name %>',
     // Task configuration.
     concat: {
@@ -21,6 +20,10 @@ module.exports = function(grunt) {
       home: {
         src: ['../web/packages/toj/js/home/*.js'],
         dest: '../web/packages/toj/js/compiled/parallax.js'
+      },
+      mdnzr: {
+        src: ['../web/packages/toj/js/modernizr/*.js'],
+        dest: '../web/packages/toj/js/compiled/modernizr.js'
       }
     },
     strip: {
@@ -31,6 +34,10 @@ module.exports = function(grunt) {
       home : {
         src: '../web/packages/toj/js/compiled/parallax.js',
         dest: '../web/packages/toj/js/compiled/parallax.js'
+      },
+      mdnzr: {
+        src: '../web/packages/toj/js/compiled/modernizr.js',
+        dest: '../web/packages/toj/js/compiled/modernizr.js'
       }
     },
     uglify: {
@@ -44,6 +51,10 @@ module.exports = function(grunt) {
       home: {
         src: '../web/packages/toj/js/compiled/parallax.js',
         dest: '../web/packages/toj/js/compiled/parallax.js'
+      },
+      mdnzr: {
+        src: '../web/packages/toj/js/compiled/modernizr.js',
+        dest: '../web/packages/toj/js/compiled/modernizr.js'
       }
     },
     jshint: {
@@ -97,6 +108,10 @@ module.exports = function(grunt) {
       build_home_js: {
         files: ['../web/packages/toj/js/home/*.js'],
         tasks: ['concat:home']
+      },
+      build_modernizr_js: {
+        files: ['../web/packages/toj/js/modernizr/*.js'],
+        tasks: ['concat:mdnzr']
       },
       sassy_pants: {
         files: ['../web/packages/toj/css/*.scss', '../web/packages/toj/css/independent/*.scss'],

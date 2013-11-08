@@ -15,6 +15,21 @@ $(function(){
             $sidebarRight = $('#sidebarRight');
 
 
+        // We have to rely on jquery being loaded for this shim to work (and we want images to
+        // lazy load anyways...)
+        Modernizr.load([{
+            test: Modernizr.backgroundsize,
+            nope: '/packages/toj/js/standalones/shims/backstretch.js',
+            complete: function(){
+                if( typeof($) !== 'undefined' && $.isFunction($.backstretch) ){
+                    $('[data-background]').each(function(idx, element){
+                        $(element).backstretch( element.getAttribute('data-background') );
+                    });
+                }
+            }
+        }]);
+
+
         // css transitions
         this.transitionEnd  = 'transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd';
 
@@ -256,6 +271,34 @@ $(function(){
                 });
             }
         });
+
+
+        /* IE8 "shim" for responsive sidebar loading
+        if( $.browser.msie && $.browser.version < 9.0 ){
+            $window.on('resize.transition-shim', function(){
+                responsiveSidebars();
+            });
+        }*/
+
+
+        /**
+         * Auto rotate alert messages on the homepage
+
+        var $alertItems = $('li', '#cMiddle #alertSection ol'),
+            _alertCount = $alertItems.length;
+        if( $alertItems.length ){
+            (function alertRotation(){
+                setTimeout(function(){
+                    var $current = $alertItems.filter(':visible'),
+                        _index   = $current.index(),
+                        $next    = (_index == (_alertCount-1)) ? $('li:first', '#cMiddle #alertSection ol') : $current.next('li');
+                    $current.fadeOut(150, function(){
+                        $next.fadeIn(150);
+                        alertRotation();
+                    });
+                }, 3800);
+            })();
+        }*/
 
 
         // PUBLIC METHODS

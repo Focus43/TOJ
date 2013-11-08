@@ -120,10 +120,12 @@
             // header and CSS items
             $pageController->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
             $pageController->addHeaderItem( $this->getHelper('html')->css('compiled/toj-min.css', self::PACKAGE_HANDLE) );
+            $pageController->addHeaderItem( $this->getHelper('html')->javascript('compiled/modernizr.js', self::PACKAGE_HANDLE) );
             
             // ie8 stylesheet
-            $ieShim = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('compiled/elderly/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
-            $pageController->addHeaderItem( $ieShim );
+            //$ieShims = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('compiled/elderly/ie8.css', self::PACKAGE_HANDLE) . "\n" . '<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>' . "\n<![endif]-->\n";
+            $ieShims = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('compiled/elderly/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
+            $pageController->addHeaderItem( $ieShims );
 
             if( DEPLOYMENT_STATUS_PRODUCTION === true ){
                 $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-min.js', self::PACKAGE_HANDLE)) );
