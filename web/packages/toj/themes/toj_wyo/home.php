@@ -52,7 +52,7 @@
                             <div id="homeSearch" class="row">
                                 <div class="col-sm-12">
                                     <div class="inner">
-                                        <input id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Search (start typing)" />
+                                        <input id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Type To Search" />
                                         <i class="fa fa-search"></i>
                                         <button class="btn btn-info btn-lg">Search</button>
 
