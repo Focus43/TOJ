@@ -23,7 +23,7 @@ body.pt-home {
     }
   }
 
-  #introLinks {color:#f1f1f1;text-align:center;@include clearfix;
+  #introLinks {color:#f1f1f1;text-align:center;margin-bottom:10px;@include clearfix;
     .ccm-block-styles {background:none !important;}
     .element {width:49%;float:left;margin-bottom:10px;
       a {display:block;padding:1.2em 1em 1em;color:inherit;border:1px solid transparent;@include bgBlackOpaque80;background-clip:padding-box;@include rounded(8px); @include boxShadow(0 0 4px #000);
@@ -34,4 +34,14 @@ body.pt-home {
       &:nth-child(even) {float:right;}
     }
   }
+}
+
+// animations for scaling in app buttons
+@include cssKeyframes(introLinks){
+  from { opacity:0;@include cssTransform(scale(.8,.8)); }
+  to { opacity:1;@include cssTransform(scale(1,1)); }
+}
+
+#introLinks .element {
+  @include cssAnimation(introLinks 1s 1 normal);
 }

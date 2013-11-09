@@ -78,6 +78,7 @@
 @media (min-width: $screen-lg){
   #cL1 {margin-left:$sidebarWidth;}
   #primaryNav, #pageBackgroundImage {left:$sidebarWidth;}
+  #newsItems {display:none;} // homepage
   /************************* 1334+ *************************/
   @media (min-width:$sidebarRightShowAt){
     #cL1 {margin-right:$sidebarWidth;}

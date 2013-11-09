@@ -283,15 +283,15 @@ $(function(){
 
         /**
          * Auto rotate alert messages on the homepage
-
-        var $alertItems = $('li', '#cMiddle #alertSection ol'),
+         */
+        /*var $alertItems = $('li', '.newsItems'),
             _alertCount = $alertItems.length;
         if( $alertItems.length ){
             (function alertRotation(){
                 setTimeout(function(){
                     var $current = $alertItems.filter(':visible'),
                         _index   = $current.index(),
-                        $next    = (_index == (_alertCount-1)) ? $('li:first', '#cMiddle #alertSection ol') : $current.next('li');
+                        $next    = (_index === (_alertCount-1)) ? $('li:first', '#cMiddle #alertSection ol') : $current.next('li');
                     $current.fadeOut(150, function(){
                         $next.fadeIn(150);
                         alertRotation();

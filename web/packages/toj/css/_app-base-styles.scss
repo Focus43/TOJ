@@ -1,6 +1,6 @@
 /****************************** BASIC STUFF ******************************/
 html, body, #cL1 {height:100% !important;}
-body {font-family:'Roboto Slab', serif;background:url(#{$imagePath}textures/black_lozenge.png);background-attachment:fixed;}
+body {font-family:'Roboto Slab', serif;background:#1d1d1d;/*url(#{$imagePath}textures/black_lozenge.png);background-attachment:fixed;*/}
 h1,h2,h3,h4,h5 {font-family:inherit;font-weight:700;}
 a {cursor:pointer;}
 
@@ -71,6 +71,18 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
     &:hover {text-decoration:none;}
     .panel-body {text-align:center;
       span.badge {position:relative;top:-3px;}
+    }
+  }
+
+  a.toggleTheme {margin-bottom:10px;}
+  // testing with a dark sidebar
+  &.dark {
+    .inner {padding:0;
+      a {color:#92bdd6;}
+      .panel {border:0;margin-bottom:0;color:#fff;background-color:#1d1d1d;@include rounded(0);
+        .panel-heading {border-color:#444;background:#2d2d2d;color:inherit;@include rounded(0);}
+        ul.list-group li {background:none;border-color:#333;}
+      }
     }
   }
 }
@@ -277,16 +289,6 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
     @include cssAnimation(backgroundScaler 4s 1 normal);
   }
 }
-
-@include cssKeyframes(introLinks){
-  from { opacity:0;@include cssTransform(scale(.8,.8)); }
-  to { opacity:1;@include cssTransform(scale(1,1)); }
-}
-
-#introLinks .element {
-  @include cssAnimation(introLinks 1s 1 normal);
-}
-
 
 // HELPER STYLES FOR WHEN LOGGED INTO THE CMS AND EDITING
 body.cms-admin {
