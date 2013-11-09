@@ -33,9 +33,9 @@
     // randomize
     shuffle($imageList);
 
-    foreach($imageList AS $_index => $fileObj): /** @var File $fileObj */ ?>
+    foreach($imageList AS $_index => $shortObj): ?>
         <div class="thumbEl">
-            <span class="thumb" style="display:block;background-image:url('<?php echo $fileObj->url; ?>');"></span>
+            <span class="thumb" data-src="<?php echo $shortObj->url ?>" style="display:block;background-image:url('<?php echo $shortObj->url; ?>');"></span>
         </div>
     <?php if($_index == 2){ break; } endforeach; ?>
 
@@ -45,22 +45,24 @@
 </div>
 
 <script type="text/javascript">
+    //sessionStorage.clear(); // temporary for development
     $(function(){
         var $elmnts  = $('.thumbEl', '#sidebarRight'),
             imgList  = <?php echo Loader::helper('json')->encode( array_values($imageList) ); ?>,
             listSize = imgList.length;
 
+        // auto-rotation
         var _i = 0;
         (function recurse(){
             setTimeout(function(){
                 var rand = imgList[Math.floor(Math.random() * listSize)],
                     $pre = $('<img />').attr('src', rand.url);
 
-                $pre.one('load', {url: rand.url}, function( _ev ){
-                    var $span = $('<span class="thumb" />').css('background-image', 'url('+_ev.data.url+')');
+                $pre.one('load', {obj: rand}, function( _ev ){
+                    var $span = $('<span class="thumb" />').attr('data-src', _ev.data.obj.url).css('background-image', 'url('+_ev.data.obj.url+')');
                     $elmnts.eq(_i).append($span);
                     $span.fadeIn().siblings('.thumb').fadeOut(function(){
-                        $(this).remove();
+                        //$(this).remove();
                     });
                     _i = (_i == ($elmnts.length-1)) ? 0 : _i + 1;
                     // *now* call the method to begin recursion
@@ -68,5 +70,22 @@
                 });
             }, 1800);
         })();
+
+        // modal
+        $('#sidebarRight').on('click', 'span.thumb', function(){
+            var $this  = $(this),
+                $html  = $('<div id="sidebarGallery"><div class="wrap"><img src="' + $this.attr('data-src') + '" /></div></div>'),
+                $close = $('<a class="closable"><i class="fa fa-times"></i></a>');
+            $('.wrap', $html).append($close);
+            $('body').append($html);
+
+            $html.on('click', function( _clickEvent ){
+                if( ! $(_clickEvent.target).is('img') ){
+                    $html.fadeOut(450, function(){
+                        $html.remove();
+                    });
+                }
+            });
+        });
     });
 </script>
