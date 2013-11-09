@@ -149,7 +149,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 }
 
 /************************ Main content container ************************/
-#cPageContent {padding:0 15px 1em;overflow:hidden;background:rgba(255,255,255,.9);/*@include rounded(5px);@include boxShadow(0 0 3px rgba(0,0,0,.75));*/
+#cPageContent {padding:0 15px 1em;overflow:hidden;@include bgWhiteOpaque90;
   .innerHead {margin-bottom:20px;
     // very top row, breadcrumbs and social icons
     .breadcrumbSocial {background:#fff;border-bottom:1px solid #ddd;
@@ -240,7 +240,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 
 /****************************** Site settings (eg. translation, accessibility) ******************************/
-#siteSettings {position:fixed;top:-100%;z-index:11;left:15px;right:15px; @include linearGradientLight; @include boxShadow(0 0 10px #000);//width:520px;position:fixed;top:-100%;left:50%;margin-left:-260px;z-index:11; @include linearGradientLight; @include boxShadow(0 0 10px #000);
+#siteSettings {position:fixed;top:-100%;z-index:11;left:15px;right:15px; @include linearGradientLight; @include boxShadow(0 0 10px #000);
   .inner {position:relative;padding:1.4em 15px;text-align:center;
     a.closer {padding:8px;display:block;position:absolute;top:0;right:0;text-align:center;color:#fff;font-size:1.4em;z-index:99; @include linearGradientDark;}
   }
