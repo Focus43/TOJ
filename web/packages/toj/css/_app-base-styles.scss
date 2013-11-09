@@ -77,7 +77,8 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 #sidebarRight {right:0;color:#fff;overflow:hidden;
   .inner {height:100%;
-    .thumbEl {display:block;margin:10px 0 0;position:relative;height:20%;
+    .content {padding-bottom:10px;}
+    .thumbEl {display:block;margin:0 0 10px;position:relative;height:20%;
       span.thumb {display:none;position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:50% 50%;@include boxShadow(0 0 10px #000);}
     }
   }

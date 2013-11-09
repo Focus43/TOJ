@@ -1,5 +1,5 @@
 <div class="inner">
-    <div class="overlay">
+    <div class="content">
         <?php $a = new GlobalArea('Global Right'); $a->display($c); ?>
     </div>
 
@@ -39,7 +39,7 @@
         </div>
     <?php if($_index == 2){ break; } endforeach; ?>
 
-    <div class="overlay">
+    <div class="content">
         <?php $a = new GlobalArea('Global Right 2'); $a->display($c); ?>
     </div>
 </div>
