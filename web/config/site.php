@@ -101,4 +101,5 @@
 	// sitemap.xml file
 	define('SITEMAPXML_FILE', 'files/sitemap.xml');
 
+    // needed for the news page attribute updating to propagate immediately
     define('ENABLE_PROGRESSIVE_PAGE_REINDEX', false);

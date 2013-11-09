@@ -7,9 +7,9 @@
 			<h3 style="font-weight:200;margin-bottom:.6em;">
 				<?php
 					if( !($hashName === null) ){
-						echo "<strong>Hash Name:</strong> {$hashName}, <strong>Key:</strong> {$hashKey}";
+						echo "<strong>Hash Name:</strong> {$hashName}, <strong>Key:</strong> {$redisKey}";
 					}else{
-						echo "<strong>Key:</strong> {$hashKey}";
+						echo "<strong>Key:</strong> {$redisKey}";
 					}
 				?>
 			</h3>
@@ -17,7 +17,7 @@
 			<div class="well">
 				<h4 style="margin-bottom:.6em;">Object Data</h4>
 				<pre>
-					<?php if( !$keyData ){ echo $rawKeyData; }else{ print_r( $keyData ); } ?>
+					<?php if( !$keyData ){ echo $rawKeyData; }else{ print htmlspecialchars(print_r($keyData, true)); } ?>
 				</pre>
 			</div>
 

@@ -1,30 +1,46 @@
 <div class="inner">
-    <?php
-        $fileList = new FileList;
-        $fileList->setPermissionLevel('view_file_set_file');
-        $fileList->filterBySet( FileSet::getByName('Sidebar Photos') );
-
-        // turn into shorter more serializable objects
-        $imageList = array_map(function( $fileObj ){ /** @var File $fileObj */
-            $approved = $fileObj->getVersion();
-            return (object) array(
-                'name'  => $approved->getFileName(),
-                'descr' => $approved->getDescription(),
-                'url'   => $approved->getRelativePath()
-            );
-        }, $fileList->get(40));
-
-        // randomize
-        shuffle($imageList);
-
-        foreach($imageList AS $_index => $fileObj): /** @var File $fileObj */ ?>
-            <div class="thumbEl">
-                <span class="thumb" style="display:block;background-image:url('<?php echo $fileObj->url; ?>');"></span>
-            </div>
-        <?php if($_index == 4){ break; } endforeach; ?>
-
     <div class="overlay">
         <?php $a = new GlobalArea('Global Right'); $a->display($c); ?>
+    </div>
+
+    <?php
+    /** @var FileList $fileList */
+    $fileList = new FileList;
+    $fileList->setPermissionLevel('view_file_set_file');
+    $fileList->filterBySet( FileSet::getByName('Sidebar Photos') );
+    $fileListResults = $fileList->get(40);
+
+    /** @var Concrete5_Helper_Image $imageHelper */
+    $imageHelper = Loader::helper('image');
+    $imageHelper->setJpegCompression(88);
+
+    // build out the results to JSON-format friendly array, while also creating the
+    // resized/cached thumbnail images
+    $imageList = array();
+    foreach( $fileListResults AS $fileObj ){ /** @var File $fileObj */
+        $approved  = $fileObj->getVersion(); /** @var FileVersion $approved */
+        $thumbnail = $imageHelper->getThumbnail( $fileObj, 1000, 800 );
+
+        array_push($imageList, (object) array(
+            'name'   => $approved->getFileName(),
+            'descr'  => $approved->getDescription(),
+            'url'    => $thumbnail->src,
+            'width'  => $thumbnail->width,
+            'height' => $thumnail->height
+        ));
+    }
+
+    // randomize
+    shuffle($imageList);
+
+    foreach($imageList AS $_index => $fileObj): /** @var File $fileObj */ ?>
+        <div class="thumbEl">
+            <span class="thumb" style="display:block;background-image:url('<?php echo $fileObj->url; ?>');"></span>
+        </div>
+    <?php if($_index == 2){ break; } endforeach; ?>
+
+    <div class="overlay">
+        <?php $a = new GlobalArea('Global Right 2'); $a->display($c); ?>
     </div>
 </div>
 
