@@ -20,9 +20,7 @@
     (function( _stack ){
         _stack.push({
             bID: <?php echo $this->controller->bID; ?>,
-            eventSrc: '<?php echo SCHEDULIZER_TOOLS_URL; ?>blocks/calendar?' + $.param({
-                blockID: <?php echo $this->controller->bID; ?>
-            })
+            eventSrc: '<?php echo SCHEDULIZER_TOOLS_URL; ?>blocks/calendar?blockID=<?php echo $this->controller->bID; ?>'
         });
         window.schedulizers = _stack;
     }( window.schedulizers || [] ));
