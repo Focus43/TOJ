@@ -271,6 +271,16 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 }
 .btImageBorderless img {margin:0 auto;}
 
+// CALENDARS (will change pending updates)
+.schedulizerCalendar {
+  h2 {font-size:1.2em;margin:0;padding:.4em 0 0;}
+  .fc-content {background:#fff;}
+  .fc-event-inner {text-indent:-9999px;height:9px;cursor:pointer;}
+}
+table[id*="eventTable"] {background:#fff;
+  tbody {}
+}
+
 
 /****************************** Custom Animations ("Progressive enhancement") ******************************/
 // http://joshbroton.com/quick-fix-sass-mixins-for-css-keyframe-animations/

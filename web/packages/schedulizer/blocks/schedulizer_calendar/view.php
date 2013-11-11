@@ -4,7 +4,7 @@
 
 </div>
 
-<table id="eventTable-<?php echo $this->controller->bID; ?>" class="table table-bordered">
+<table id="eventTable-<?php echo $this->controller->bID; ?>" class="table table-condensed">
     <thead>
     <tr>
         <th>Date</th>

@@ -301,6 +301,15 @@ $(function(){
         }*/
 
 
+        // hook into eventclick.schedulzier custom one
+        $document.on('eventclick.schedulizer', function(clickEv, calEv){
+            $.get($('#tojAppPaths').attr('data-tools') + 'schedulizer_event_view', {eventID: calEv.id}, function(_html){
+                var $modal = $(_html);
+                $modal.appendTo($body).modal();
+            }, 'html');
+        });
+
+
         // PUBLIC METHODS
         return {
 

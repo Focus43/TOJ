@@ -1,4 +1,4 @@
-/*!***** Town Of Jackson // Build v:2.17.0 (2013-11-11), @auth: Focus43 (http://focus-43.com) ******/
+/*!***** Town Of Jackson // Build v:2.18.0 (2013-11-11), @auth: Focus43 (http://focus-43.com) ******/
 ;/*!
  * Bootstrap v3.0.1 by @fat and @mdo
  * Copyright 2013 Twitter, Inc.
@@ -414,6 +414,15 @@ $(function(){
                 }, 3800);
             })();
         }*/
+
+
+        // hook into eventclick.schedulzier custom one
+        $document.on('eventclick.schedulizer', function(clickEv, calEv){
+            $.get($('#tojAppPaths').attr('data-tools') + 'schedulizer_event_view', {eventID: calEv.id}, function(_html){
+                var $modal = $(_html);
+                $modal.appendTo($body).modal();
+            }, 'html');
+        });
 
 
         // PUBLIC METHODS

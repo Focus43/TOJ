@@ -6,10 +6,24 @@ $(function(){
         $calendar.fullCalendar({
             header: {
                 left: 'title',
-                right: 'prev,next today'
+                right: 'prev,next'
             },
             editable: false,
+            weekMode: 'liquid',
             defaultView: 'month',
+            columnFormat: {
+                month: 'ddd'
+            },
+            dayNamesShort: ['S','M','T','W','T','F','S'],
+            eventRender: function(calEvent, element, view){
+                //console.log(calEvent, element, view);
+                $(element).tooltip({
+                    animation: false,
+                    title: calEvent.title,
+                    container: 'body'
+                });
+            },
+
             // event feed
             events: settings.eventSrc,
             // click on an event
