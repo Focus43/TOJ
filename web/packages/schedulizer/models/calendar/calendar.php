@@ -129,6 +129,16 @@
          */
         public function delete(){
             $db = Loader::db();
+
+            // get all associated eventIDs, load the eventObj, and run delete method
+            $eventIDs = $db->GetCol("SELECT id FROM SchedulizerEvent WHERE calendarID = ?", array($this->id));
+            foreach($eventIDs AS $eventID){
+                SchedulizerEvent::getByID($eventID)->delete();
+            }
+
+            // then delete the calendar record itself and associated values
+            $db->Execute("DELETE FROM SchedulizerCalendarAttributeValues WHERE calendarID = ?", array($this->id));
+            $db->Execute("DELETE FROM SchedulizerCalendarSearchIndexAttributes WHERE calendarID = ?", array($this->id));
             $db->Execute("DELETE FROM {$this->tableName} WHERE id = ?", array($this->id));
         }
 

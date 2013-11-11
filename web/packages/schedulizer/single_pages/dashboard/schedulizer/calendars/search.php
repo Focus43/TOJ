@@ -6,7 +6,7 @@
 
 <?php echo Loader::helper('concrete/dashboard')->getDashboardPaneHeaderWrapper(t('Calendars'), t('Schedulizer Calendars.'), false, false ); ?>
 
-    <div id="lithWrap">
+    <div id="schedulizerWrap">
         <div class="ccm-pane-options">
             <?php /*Loader::packageElement('dashboard/calendars/search_form_advanced', 'schedulizer', array(
                 'columns' 			=> $columns,

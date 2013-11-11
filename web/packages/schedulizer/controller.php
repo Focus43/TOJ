@@ -69,6 +69,7 @@
                 $db->Execute("DROP TABLE SchedulizerEvent");
                 $db->Execute("DROP TABLE SchedulizerEventRepeat");
                 $db->Execute("DROP TABLE SchedulizerEventRepeatNullify");
+                $db->Execute("DROP TABLE SchedulizerCalendarSearchIndexAttributes");
 			}catch(Exception $e){
 				// fail gracefully
 			}

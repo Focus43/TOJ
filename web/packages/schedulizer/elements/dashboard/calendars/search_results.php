@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <table id="lithSearchTable" border="0" cellspacing="0" cellpadding="0" class="ccm-results-list">
+        <table id="schedulizerSearchTable" border="0" cellspacing="0" cellpadding="0" class="ccm-results-list">
             <thead>
             <tr>
                 <th><input id="checkAllBoxes" type="checkbox" /></th>

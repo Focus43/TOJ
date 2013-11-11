@@ -6,7 +6,8 @@
         SchedulizerDashboard = (function(){
 
             var $document = $(document),
-                _toolsURI = $('meta[name="schedulizer-tools"]', 'head').attr('content');
+                _toolsURI = $('meta[name="schedulizer-tools"]', 'head').attr('content'),
+                $actionMenu = $('#actionMenu');
 
 
             /**
@@ -212,6 +213,50 @@
 
                 // otherwise toggle to visible when unchecked
                 $( $this.attr('data-viz-unchecked')).toggle(!_state);
+            });
+
+
+            // select all checkboxes
+            $('#checkAllBoxes').on('click', function(){
+                var $this  = $(this),
+                    checkd = $this.is(':checked');
+                $(':checkbox', '#schedulizerSearchTable tbody').prop('checked', checkd).trigger('change');
+            });
+
+
+            // if any box is checked, enable the actions dropdown
+            $('tbody', '#schedulizerSearchTable').on('change', ':checkbox', function(){
+                if( $(':checkbox', '#schedulizerSearchTable > tbody').filter(':checked').length ){
+                    $actionMenu.prop('disabled', false);
+                    return;
+                }
+                $actionMenu.attr('disabled', true);
+            });
+
+
+            // actions menu
+            $actionMenu.on('change', function(){
+                var $this	= $(this),
+                    tools  	= $('[name="schedulizer-tools"]').attr('content'),
+                    $checkd = $('tbody', '#schedulizerSearchTable').find(':checkbox').filter(':checked'),
+                    data   	= $checkd.serializeArray();
+
+                switch( $this.val() ){
+                    case 'delete':
+                        if( confirm('Delete the selected calendars? This cannot be undone.') ){
+                            $.post( tools + 'dashboard/delete_calendars', data, function(resp){
+                                if( resp.code == 1 ){
+                                    $checkd.parents('tr').fadeOut(150);
+                                }else{
+                                    alert('An error occurred. Try again later.');
+                                }
+                            }, 'json');
+                        }
+                        break;
+                }
+
+                // reset the menu
+                $this.val('');
             });
 
 

@@ -408,6 +408,8 @@
          */
         public function delete(){
             $db = Loader::db();
+            $db->Execute("DELETE FROM SchedulizerEventRepeat WHERE eventID = ?", array($this->id));
+            $db->Execute("DELETE FROM SchedulizerEventRepeatNullify WHERE eventID = ?", array($this->id));
             $db->Execute("DELETE FROM {$this->tableName} WHERE id = ?", array($this->id));
         }
 
