@@ -54,7 +54,7 @@
                                     <div class="inner">
                                         <input id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Type To Search" />
                                         <i class="fa fa-search"></i>
-                                        <button class="btn btn-info btn-lg">Search</button>
+                                        <button id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
 
                                         <!-- google custom search -->
                                         <gcse:searchresults-only></gcse:searchresults-only>
@@ -110,6 +110,8 @@
         </div>
     </div>
 
+<?php Loader::packageElement('theme/site_settings', 'toj'); ?>
+
 <!-- google custom search loader -->
 <script>
     (function() {
@@ -125,26 +127,31 @@
 
     // custom for TOJ; sans-jquery
     (function(){
-        var _container, _googleApi, _timeOut;
-        function typeDelay( _api, _keyEvent ){
-            return setTimeout(function(){
-                _api.execute( _keyEvent.target.value );
-                _keyEvent.target.focus();
-            }, 275);
-        }
-        document.getElementById('googleSearchInput').onkeyup = function( keyEvent ){
-            keyEvent.target.focus();
-            clearTimeout(_timeOut);
-            _container = _container || document.querySelector('[id*=gcse]');
-            _googleApi = _googleApi || google.search.cse.element.getElement('searchresults-only0');
-            if( typeof(_googleApi) !== 'undefined' ){
-                _container.style.display = 'block';
-                _timeOut = typeDelay( _googleApi, keyEvent );
+        var _timeOut;
+        var _contain = function(){ return (_containment = typeof _containment === 'undefined' ? document.querySelector('[id*=gcse]') : _containment); };
+        var _gapi    = function(){ return (_googleApi = typeof _googleApi === 'undefined' ? google.search.cse.element.getElement('searchresults-only0') : _googleApi); };
+
+        if( ! Modernizr.touch ){
+            function typeDelay( _api, _keyEvent ){
+                return setTimeout(function(){
+                    _api.execute( _keyEvent.target.value );
+                }, 275);
             }
-        };
+            document.getElementById('googleSearchInput').onkeyup = function( keyEvent ){
+                clearTimeout(_timeOut);
+                if( typeof(_gapi()) !== 'undefined' ){
+                    _contain().style.display = 'block';
+                    _timeOut = typeDelay( _gapi(), keyEvent );
+                }
+            };
+        }else{
+            document.getElementById('googleSearchButton').onclick = function(){
+                _contain().style.display = 'block';
+                _gapi().execute( document.getElementById('googleSearchInput').value );
+            }
+        }
     })();
 </script>
-<?php Loader::packageElement('theme/site_settings', 'toj'); ?>
 <?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
 </body>
 </html>
