@@ -67,22 +67,18 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 }
 
 #sidebarLeft {left:0;
+  .inner {padding:0;
+    a {color:#92bdd6;}
+    .panel {border:0;margin-bottom:0;color:#fff;background-color:#1d1d1d;@include rounded(0);
+      .panel-heading {border-color:#444;background:#2d2d2d;color:inherit;@include rounded(0);}
+      ul.list-group li {background:none;border-color:#333;}
+    }
+  }
+
   .weatherWidget {display:block;color:#444;font-size:22px;font-weight:bold;
     &:hover {text-decoration:none;}
     .panel-body {text-align:center;
       span.badge {position:relative;top:-3px;}
-    }
-  }
-
-  a.toggleTheme {margin-bottom:10px;}
-  // testing with a dark sidebar
-  &.dark {
-    .inner {padding:0;
-      a {color:#92bdd6;}
-      .panel {border:0;margin-bottom:0;color:#fff;background-color:#1d1d1d;@include rounded(0);
-        .panel-heading {border-color:#444;background:#2d2d2d;color:inherit;@include rounded(0);}
-        ul.list-group li {background:none;border-color:#333;}
-      }
     }
   }
 }
