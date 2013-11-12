@@ -49,18 +49,17 @@
                             </div>
 
 
-                            <div id="homeSearch" class="row">
+                            <!--<div id="homeSearch" class="row">
                                 <div class="col-sm-12">
                                     <div class="inner">
                                         <input id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Type To Search" />
                                         <i class="fa fa-search"></i>
                                         <button id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
 
-                                        <!-- google custom search -->
                                         <gcse:searchresults-only></gcse:searchresults-only>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div id="introLinks">
                                 <?php for($i = 1; $i <= 8; $i++):
