@@ -103,7 +103,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 
 /************************ Page container levels ************************/
-#cL1 {background:#e5e5e5;position:relative;z-index:1;@include cssTransition(margin .25s ease-in);}
+#cL1 {background:#1d1d1d;position:relative;z-index:1;@include cssTransition(margin .25s ease-in);}
   // Large background container
   #pageBackgroundImage {display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include cssTransition((left .25s ease-in, right .25s ease-in));
     span.backStretch {position:absolute;top:0;right:0;bottom:0;left:0;}
@@ -117,7 +117,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 
 /************************ Main site navigation ************************/
-#primaryNav {background:#111;@include cssTransition(all .25s ease-in);
+#primaryNav {background:#111;@include cssTransition((left .25s ease-in, right .25s ease-in));
   .navbar-header {
     // @note, there is also .status-alert-mobile in the ul.nav navigation links that *doesn't* need these styles
     .status-alert-icon {color:#fff;position:absolute;display:block;padding:0 8px;right:57px;top:8px;font-size:25px;}
