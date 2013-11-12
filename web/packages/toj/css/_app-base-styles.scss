@@ -37,14 +37,6 @@ body[data-zoom="20"] {font-size:20px;}
 
 .popover .alertGroup {margin:0;}
 
-.recentNews { // shared on both homepage and left sidebar
-  a.read-more {display:inline-block;font-size:12px;float:right;font-weight:100;color:#999 !important;
-    i {font-size:17px;position:relative;top:2px;}
-    &:hover {text-decoration:none;color:#ddd !important;}
-  }
-}
-#cL1 .recentNews a:hover {color:#444 !important;}
-
 
 /****************************** BOOTSTRAP OVERRIDES ******************************/
 button:focus {outline:0;}
@@ -270,6 +262,21 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
   .inner {position:relative;padding:1.4em 15px;text-align:center;
     a.closer {padding:8px;display:block;position:absolute;top:0;right:0;text-align:center;color:#fff;font-size:1.4em;z-index:99; @include linearGradientDark;}
   }
+}
+
+
+/****************************** "Recent News" styling ******************************/
+.recentNews { // shared on both homepage and left sidebar
+  a.read-more {display:inline-block;font-size:12px;float:right;font-weight:100;
+    i {font-size:17px;position:relative;top:2px;}
+    &:hover {text-decoration:none;}
+  }
+}
+#sidebarLeft .recentNews a.read-more {color:#999;
+  &:hover {color:#ddd;}
+}
+#cL1 .recentNews a:hover {color:#444;
+  &:hover {color:#888;}
 }
 
 
