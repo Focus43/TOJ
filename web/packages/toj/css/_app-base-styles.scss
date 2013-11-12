@@ -37,6 +37,14 @@ body[data-zoom="20"] {font-size:20px;}
 
 .popover .alertGroup {margin:0;}
 
+.recentNews { // shared on both homepage and left sidebar
+  a.read-more {display:inline-block;font-size:12px;float:right;font-weight:100;color:#999 !important;
+    i {font-size:17px;position:relative;top:2px;}
+    &:hover {text-decoration:none;color:#ddd !important;}
+  }
+}
+#cL1 .recentNews a:hover {color:#444 !important;}
+
 
 /****************************** BOOTSTRAP OVERRIDES ******************************/
 button:focus {outline:0;}
