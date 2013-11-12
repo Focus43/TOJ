@@ -19,7 +19,9 @@ $c = Page::getByID(1); $panelCount = 7; ?>
                         <div class="sectionContent row">
                             <div class="col-md-12">
                                 <div class="opaque">
-                                    <?php $a = new Area("Parallax Content {$i}"); $a->display($c); ?>
+                                    <div class="scrollme">
+                                        <?php $a = new Area("Parallax Content {$i}"); $a->display($c); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

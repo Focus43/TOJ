@@ -68,6 +68,19 @@ $(function(){
         }
 
 
+        function fitContent( $plxWrap ){
+            $('.opaque', $plxWrap).css('max-height', $plxWrap.outerHeight() - 180);
+            $('.scrollme', $plxWrap).height($plxWrap.outerHeight() - 240).perfectScrollbar();
+        }
+
+
+        $(window).on('resize', function(){
+            var $plxWrap = $('#parallaxWrap');
+            $('.opaque', $plxWrap).css('max-height', $plxWrap.outerHeight() - 180);
+            $('.scrollme', $plxWrap).height($plxWrap.outerHeight() - 240).perfectScrollbar('update');
+        });
+
+
         function launch(){
             // create the wrapper element
             var $plxWrap = $('<div id="parallaxWrap" />');
@@ -84,6 +97,7 @@ $(function(){
                 $('#panorama', $plxWrap).css({backgroundImage:'url('+panoramaPath+')', width:panorama.width});
                 // initialize the animation listeners n shit
                 initAnimationBindings( $plxWrap );
+                fitContent( $plxWrap );
                 // close handler
                 $('.closer', $plxWrap).one('click', function(){
                     $plxWrap.remove();
