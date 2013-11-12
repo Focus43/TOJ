@@ -29,12 +29,6 @@
 		
 		// application profiler. disable this for live sites! (just comment out)
 		//define('ENABLE_APPLICATION_PROFILER', true);
-
-        // google translate
-        define('GOOGLE_TRANSLATE_META_KEY', 'fe19218503253714-9071846145fc9ecf-gf08250028e52f83f-1d');
-
-        // disable marketplace support b/c of Pagodabox read-only file system
-        define('ENABLE_MARKETPLACE_SUPPORT', false);
 	
 	/**
 	 * STAGING, LOCAL MACHINE, OR VAGRANT?
@@ -103,3 +97,6 @@
 
     // needed for the news page attribute updating to propagate immediately
     define('ENABLE_PROGRESSIVE_PAGE_REINDEX', false);
+
+    define('EMAIL_DEFAULT_FROM_ADDRESS', 'website@townofjackson.com');
+    define('EMAIL_DEFAULT_FROM_NAME', 'Town Of Jackson');
