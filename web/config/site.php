@@ -99,4 +99,5 @@
     define('ENABLE_PROGRESSIVE_PAGE_REINDEX', false);
 
     define('EMAIL_DEFAULT_FROM_ADDRESS', 'website@townofjackson.com');
+    define('EMAIL_ADDRESS_FORGOT_PASSWORD', EMAIL_DEFAULT_FROM_ADDRESS);
     define('EMAIL_DEFAULT_FROM_NAME', 'Town Of Jackson');
