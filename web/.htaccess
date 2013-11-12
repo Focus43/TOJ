@@ -3,10 +3,13 @@
 
         # redirect all domains to townofjackson.com
         # http://stackoverflow.com/questions/9837394/rewrite-condition-to-check-if-not-two-urls
-        #RewriteCond %{HTTP_HOST} !^(townofjackson\.com|localhost.*)$ [NC]
-        #RewriteRule ^ http://townofjackson.com%{REQUEST_URI} [L,R=301]
-        RewriteCond %{HTTP_HOST} !=townofjackson.com
+        RewriteCond %{HTTP_HOST} !^((townofjackson\.com)|localhost(.*))$ [NC]
+        #RewriteCond %{HTTP_HOST} !=townofjackson.com [NC,OR]
+        #RewriteCond %{HTTP_HOST} !=
         RewriteRule ^ http://townofjackson.com%{REQUEST_URI} [L,R=301]
+
+        #RewriteCond %{HTTP_HOST} !=townofjackson.com
+        #RewriteRule ^ http://townofjackson.com%{REQUEST_URI} [L,R=301]
 
         RewriteBase /
 	    RewriteCond %{REQUEST_URI} !^/favicon.ico$
