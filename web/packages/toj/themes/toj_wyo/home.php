@@ -49,7 +49,7 @@
                             </div>
 
 
-                            <!--<div id="homeSearch" class="row">
+                            <div id="homeSearch" class="row">
                                 <div class="col-sm-12">
                                     <div class="inner">
                                         <input id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Type To Search" />
@@ -59,7 +59,7 @@
                                         <gcse:searchresults-only></gcse:searchresults-only>
                                     </div>
                                 </div>
-                            </div>-->
+                            </div>
 
                             <div id="introLinks">
                                 <?php for($i = 1; $i <= 8; $i++):
@@ -88,7 +88,7 @@
 <!-- google custom search loader -->
 <script>
     (function() {
-        var cx = '008919983407566295456:1bhycu9q2r8';
+        var cx = '011694434224589997737:sbj5ayzj2fe';
         var gcse = document.createElement('script');
         gcse.type = 'text/javascript';
         gcse.async = true;

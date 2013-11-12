@@ -3,7 +3,7 @@
 
         # rewrites for any requests to the old site (anything containing .cfm)
         RewriteCond %{REQUEST_URI} ^(.*)\.cfm [NC]
-        RewriteRule . http://townofjackson.com [L]
+        RewriteRule ^ http://townofjackson.com [L,R=301]
 
         # redirect all domains to townofjackson.com
         # http://stackoverflow.com/questions/9837394/rewrite-condition-to-check-if-not-two-urls
