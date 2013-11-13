@@ -21,7 +21,7 @@
 	} ?>
 
     <div class="searchBox">
-        <input name="query" id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Type To Search" value="<?=htmlentities($query, ENT_COMPAT, APP_CHARSET)?>" />
+        <input name="query" id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Site Search" value="<?=htmlentities($query, ENT_COMPAT, APP_CHARSET)?>" />
         <i class="fa fa-search"></i>
         <button type="submit" id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
     </div>

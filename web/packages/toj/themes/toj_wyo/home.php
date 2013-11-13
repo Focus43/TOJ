@@ -52,7 +52,7 @@
                                 <div class="col-sm-12">
                                     <div class="inner">
                                         <form method="get" action="<?php echo $this->url('search'); ?>">
-                                            <input name="query" id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Type To Search" />
+                                            <input name="query" id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Site Search" />
                                             <i class="fa fa-search"></i>
                                             <button type="submit" id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
                                             <input name="search_paths[]" type="hidden" value="">
