@@ -44,7 +44,7 @@
                         <? foreach($results as $r) {
                             $currentPageBody = $this->controller->highlightedExtendedMarkup($r->getBodyContent(), $query);?>
                             <li class="list-group-item">
-                                <h3><a href="<?=$r->getPath()?>"><?=$r->getName()?></a></h3>
+                                <h3><a href="<?=$r->getPath()?>" class="<?php echo (Collection::getByID($r->cID)->getVersionObject()->ctHandle === 'modal') ? 'modalize' : ''; ?>"><?=$r->getName()?></a></h3>
                                 <p>
                                     <? if ($r->getDescription()) { ?>
                                         <?php  echo $this->controller->highlightedMarkup($tt->shortText($r->getDescription()),$query)?><br/>
