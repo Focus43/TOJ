@@ -40,10 +40,9 @@
                             <!-- actual page content -->
                             <div id="tagLine" class="hidden-xs row">
                                 <div class="col-sm-12">
-                                    <h1 style="position:relative;display:inline-block;margin:0 auto;text-align:left;left:65px;">
-                                        Town Of Jackson, Wyoming
+                                    <h1>Town Of Jackson, Wyoming
                                         <small><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small>
-                                        <img class="img-responsive pull-left" style="width:120px;position:absolute;top:-22px;left:-130px;" src="<?php echo TOJ_IMAGES_URL; ?>toj_logo.png" />
+                                        <img class="img-responsive pull-left" src="<?php echo TOJ_IMAGES_URL; ?>toj_logo.png" />
                                     </h1>
                                 </div>
                             </div>
@@ -52,11 +51,14 @@
                             <div id="homeSearch" class="row">
                                 <div class="col-sm-12">
                                     <div class="inner">
-                                        <input id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Type To Search" />
-                                        <i class="fa fa-search"></i>
-                                        <button id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
+                                        <form method="get" action="<?php echo $this->url('search'); ?>">
+                                            <input name="query" id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Type To Search" />
+                                            <i class="fa fa-search"></i>
+                                            <button type="submit" id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
+                                            <input name="search_paths[]" type="hidden" value="">
+                                        </form>
 
-                                        <gcse:searchresults-only></gcse:searchresults-only>
+                                        <!--<gcse:searchresults-only></gcse:searchresults-only>-->
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +89,7 @@
 
 <!-- google custom search loader -->
 <script>
-    (function() {
+    /*(function() {
         var cx = '011694434224589997737:sbj5ayzj2fe';
         var gcse = document.createElement('script');
         gcse.type = 'text/javascript';
@@ -123,7 +125,7 @@
                 _gapi().execute( document.getElementById('googleSearchInput').value );
             }
         }
-    })();
+    })();*/
 </script>
 <?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
 </body>
