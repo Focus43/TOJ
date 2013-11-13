@@ -13,9 +13,8 @@
                 ?>
             </div>
             <div class="sociable pull-right hidden-xs">
-                <a title="Share On Facebook"><i class="fa fa-facebook-square"></i></a>
-                <a title="Share On Twitter"><i class="fa fa-twitter-square"></i></a>
-                <a title="Share On Google Plus"><i class="fa fa-google-plus-square"></i></a>
+                <a title="Share On Facebook"><div class="fb-share-button" data-type="button_count"></div></a>
+                <a title="Share On Twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></a>
             </div>
         </div>
     </div>

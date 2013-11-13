@@ -20,7 +20,7 @@
                                 <i class="fa fa-cogs"></i><span class="inner-text"><span class="hidden-xs">Accessibility</span></span>
                             </a>
                         </li>
-                        <li class="showPopover" title="Photos &amp; Media" data-content="Lorem ipsum dolor sit amet consect et tetur.">
+                        <li class="showPopover" title="Photos" data-content="Photos of the Jackson area submitted by users of the site.">
                             <a href="<?php echo View::url('life-pictures'); ?>">
                                 <i class="fa fa-camera-retro"></i><span class="inner-text"><span class="hidden-xs">Photos</span></span>
                             </a>
