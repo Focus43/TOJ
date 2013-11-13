@@ -180,9 +180,8 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
       }
       // social icons
       .sociable {color:$textMediumGray;font-size:1.7em;min-height:35px;min-width:120px;
-        .service {position:relative;float:left;font-size:11px;
-          &.tw {top:2px;right:-15px;}
-          &.fb {top:-6px;}
+        .service {top:7px;position:relative;float:left;font-size:11px;
+          &.tw {right:-15px;}
         }
       }
     }
