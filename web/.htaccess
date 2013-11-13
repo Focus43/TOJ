@@ -1,12 +1,15 @@
 <IfModule mod_rewrite.c>
         RewriteEngine On
 
-        # rewrites for any requests to the old site (anything containing .cfm)
+        # redirects any requests for stuff on the old site (.cfm)
         RewriteCond %{REQUEST_URI} ^(.*)\.cfm [NC]
         RewriteRule ^ http://townofjackson.com [L,R=301]
 
+        # redirect anything with "police" in the domain to
+        RewriteCond %{HTTP_HOST} ^((.*)police(.*))$ [NC]
+        RewriteRule ^ http://townofjackson.com/services/police [L,R=301]
+
         # redirect all domains to townofjackson.com
-        # http://stackoverflow.com/questions/9837394/rewrite-condition-to-check-if-not-two-urls
         RewriteCond %{HTTP_HOST} !^((townofjackson\.com)|localhost(.*))$ [NC]
         RewriteRule ^ http://townofjackson.com%{REQUEST_URI} [L,R=301]
 
