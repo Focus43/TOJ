@@ -311,6 +311,34 @@ $(function(){
         });
 
 
+        /**
+         * Load the apis for twitter and facebook? only if .sociable is visible...
+         */
+        if( $('.sociable', '#cPageContent').is(':visible') ){
+            // facebook
+            $body.append('<div id="fb-root"></div>');
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if(d.getElementById(id)){return;}
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+            // twitter
+            (function(d,s,id){
+                var js,fjs=d.getElementsByTagName(s)[0];
+                if(!d.getElementById(id)){
+                    js=d.createElement(s);
+                    js.id=id;
+                    js.src="https://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js,fjs);
+
+                }
+            }(document,"script","twitter-wjs"));
+        }
+
+
         // PUBLIC METHODS
         return {
 

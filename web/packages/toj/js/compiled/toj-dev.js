@@ -1,4 +1,4 @@
-/*!***** Town Of Jackson // Build v:2.25.0 (2013-11-13), @auth: Focus43 (http://focus-43.com) ******/
+/*!***** Town Of Jackson // Build v:2.26.0 (2013-11-13), @auth: Focus43 (http://focus-43.com) ******/
 ;/*!
  * Bootstrap v3.0.1 by @fat and @mdo
  * Copyright 2013 Twitter, Inc.
@@ -424,6 +424,34 @@ $(function(){
                 $modal.appendTo($body).modal();
             }, 'html');
         });
+
+
+        /**
+         * Load the apis for twitter and facebook? only if .sociable is visible...
+         */
+        if( $('.sociable', '#cPageContent').is(':visible') ){
+            // facebook
+            $body.append('<div id="fb-root"></div>');
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if(d.getElementById(id)){return;}
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+            // twitter
+            (function(d,s,id){
+                var js,fjs=d.getElementsByTagName(s)[0];
+                if(!d.getElementById(id)){
+                    js=d.createElement(s);
+                    js.id=id;
+                    js.src="https://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js,fjs);
+
+                }
+            }(document,"script","twitter-wjs"));
+        }
 
 
         // PUBLIC METHODS

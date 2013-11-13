@@ -60,6 +60,5 @@
 
 <?php Loader::packageElement('theme/site_settings', 'toj'); ?>
 <?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
-<?php Loader::packageElement('theme/social_apis', 'toj'); // only required if landing_page_header is included on page ?>
 </body>
 </html>
