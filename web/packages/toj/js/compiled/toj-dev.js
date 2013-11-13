@@ -1,4 +1,4 @@
-/*!***** Town Of Jackson // Build v:2.24.0 (2013-11-12), @auth: Focus43 (http://focus-43.com) ******/
+/*!***** Town Of Jackson // Build v:2.25.0 (2013-11-13), @auth: Focus43 (http://focus-43.com) ******/
 ;/*!
  * Bootstrap v3.0.1 by @fat and @mdo
  * Copyright 2013 Twitter, Inc.

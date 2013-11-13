@@ -180,7 +180,10 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
       }
       // social icons
       .sociable {color:$textMediumGray;font-size:1.7em;
-
+        .service {position:relative;float:left;
+          &.tw {top:2px;right:-15px;}
+          &.fb {top:-6px;}
+        }
       }
     }
     // second row page name, and optionally (for news pages) some author info
