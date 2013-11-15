@@ -13,13 +13,13 @@
             <div class="col-sm-6">
                 <p>Language</p>
                 <!-- Begin TranslateThis Button -->
-                <div id="translate-this" class="btn">
+                <!--<div id="translate-this" class="btn">
                     <a style="width:180px;height:18px;display:block;" class="translate-this-button" href="http://www.translatecompany.com/">Translate Company</a>
                 </div>
                 <script type="text/javascript" src="http://x.translateth.is/translate-this.js"></script>
                 <script type="text/javascript">
                     TranslateThis();
-                </script>
+                </script>-->
                 <!-- End TranslateThis Button -->
             </div>
         </div>
