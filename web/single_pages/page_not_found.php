@@ -9,14 +9,17 @@
     <h3 style="margin-top:0;">Seems like we couldn't find the page you're looking for...</h3>
     <p>We recently launched a totally new TownOfJackson.com, so please bear with us as we work to ensure links pointing to our site get updated. We're working as quickly as we can!</p>
 
-    <div class="well">
-        <p>In the meantime, maybe our custom <i>Site Search</i> feature can help you find what you're looking for:</p>
-        <div class="searchBox">
-            <input name="query" id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Site Search" value="<?=htmlentities($query, ENT_COMPAT, APP_CHARSET)?>" />
-            <i class="fa fa-search"></i>
-            <button type="submit" id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
+    <form method="get" action="<?php echo View::url('search'); ?>">
+        <input name="search_paths[]" type="hidden" value="" />
+        <div class="well">
+            <p>In the meantime, maybe our custom <i>Site Search</i> feature can help you find what you're looking for:</p>
+            <div class="searchBox">
+                <input name="query" id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Site Search" value="<?=htmlentities($query, ENT_COMPAT, APP_CHARSET)?>" />
+                <i class="fa fa-search"></i>
+                <button type="submit" id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
+            </div>
         </div>
-    </div>
+    </form>
 
 
 <!--<h1 class="error"><?=t('Page Not Found')?></h1>
