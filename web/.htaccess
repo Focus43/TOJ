@@ -23,6 +23,7 @@
         RewriteRule . index.php [L]
 </IfModule>
 
+
 # BEGIN W3TC Browser Cache
 <IfModule mod_mime.c>
     AddType text/css .css
