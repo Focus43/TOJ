@@ -3,8 +3,8 @@
 
         # redirects any requests for stuff on the old site (.cfm)
         # LEAVE COMMENTED OUT AND LET C5 ORGANICALLY ISSUE 404s
-        #RewriteCond %{REQUEST_URI} ^(.*)\.cfm [NC]
-        #RewriteRule ^ http://townofjackson.com [L,R=301]
+        RewriteCond %{REQUEST_URI} ^(.*)\.cfm [NC]
+        RewriteRule ^ http://townofjackson.com [L,R=301]
 
         # redirect anything with "police" in the domain to
         RewriteCond %{HTTP_HOST} ^((.*)police(.*))$ [NC]
