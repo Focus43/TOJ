@@ -33,7 +33,7 @@ $(function(){
             eventAfterAllRender: function(view){
                 $eventTable.empty();
                 $.each(view.calendar.clientEvents(), function(idx, event){
-                $eventTable.append('<tr><td>'+ $.fullCalendar.formatDate(event.start, 'MMM d, yyyy') +'</td><td>'+event.title+'</td></tr>');
+                $eventTable.append('<tr><td>'+ $.fullCalendar.formatDate(event.start, 'MMM d, yyyy h:mm tt') +'</td><td>'+event.title+'</td></tr>');
                 });
             }
         });

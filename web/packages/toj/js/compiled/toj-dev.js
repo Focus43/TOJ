@@ -1,4 +1,4 @@
-/*!***** Town Of Jackson // Build v:2.28.0 (2013-11-13), @auth: Focus43 (http://focus-43.com) ******/
+/*!***** Town Of Jackson // Build v:2.29.0 (2013-11-14), @auth: Focus43 (http://focus-43.com) ******/
 ;/*!
  * Bootstrap v3.0.1 by @fat and @mdo
  * Copyright 2013 Twitter, Inc.
@@ -204,7 +204,7 @@ $(function(){
         // weather data for sidebars
         $document.on('sidebar_left_open', function(){
             $.clientCache('weatherData', function( _task ){
-                $.simpleWeather({zipcode: '83001', unit: 'f', success: function(weather){
+                $.simpleWeather({zipcode: '83002', unit: 'f', success: function(weather){
                     _task.resolve(weather);
                 }});
             }, 'json').done(function( weather ){

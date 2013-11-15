@@ -1,8 +1,7 @@
-<?php   
+<?php defined('C5_EXECUTE') or die(_("Access Denied."));
 
-defined('C5_EXECUTE') or die(_("Access Denied."));
-
-
+$themePathView = View::getInstance();
+$themePathView->setThemeByPath('/page_not_found', 'toj_wyo');
 /* 
 	you can override system layouts here  - but we're not going to by default 
 	
