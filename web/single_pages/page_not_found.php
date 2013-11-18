@@ -8,6 +8,7 @@
     </style>
     <h3 style="margin-top:0;">Seems like we couldn't find the page you're looking for...</h3>
     <p>We recently launched a totally new TownOfJackson.com, so please bear with us as we work to ensure links pointing to our site get updated. We're working as quickly as we can!</p>
+    <p>Please update your browser's cache, and beware that old bookmarks may no longer work.</p>
 
     <form method="get" action="<?php echo View::url('search'); ?>">
         <input name="search_paths[]" type="hidden" value="" />
@@ -20,7 +21,6 @@
             </div>
         </div>
     </form>
-
 
 <!--<h1 class="error"><?=t('Page Not Found')?></h1>
 
