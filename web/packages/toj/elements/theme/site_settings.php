@@ -12,15 +12,13 @@
             </div>
             <div class="col-sm-6">
                 <p>Language</p>
-                <!-- Begin TranslateThis Button -->
-                <!--<div id="translate-this" class="btn">
-                    <a style="width:180px;height:18px;display:block;" class="translate-this-button" href="http://www.translatecompany.com/">Translate Company</a>
-                </div>
-                <script type="text/javascript" src="http://x.translateth.is/translate-this.js"></script>
+                <div id="google_translate_element"></div>
                 <script type="text/javascript">
-                    TranslateThis();
-                </script>-->
-                <!-- End TranslateThis Button -->
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false, gaTrack: true, gaId: 'UA-40042488-1'}, 'google_translate_element');
+                    }
+                </script>
+                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
             </div>
         </div>
     </div>

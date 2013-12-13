@@ -1,4 +1,4 @@
-/*!***** Town Of Jackson // Build v:2.29.0 (2013-11-14), @auth: Focus43 (http://focus-43.com) ******/
+/*!***** Town Of Jackson // Build v:3.0.0 (2013-12-13), @auth: Focus43 (http://focus-43.com) ******/
 ;/*!
  * Bootstrap v3.0.1 by @fat and @mdo
  * Copyright 2013 Twitter, Inc.
@@ -208,7 +208,7 @@ $(function(){
                     _task.resolve(weather);
                 }});
             }, 'json').done(function( weather ){
-                $('.panel-body', '#sidebarLeft .weatherWidget').append(function(){
+                $('.panel-body', '#sidebarLeft .weatherWidget').empty().append(function(){
                     return '<img src="'+weather.thumbnail+'" />'+weather.temp+'&deg;'+weather.units.temp+' &nbsp;<span class="badge">'+weather.currently+'</span>';
                 });
             });

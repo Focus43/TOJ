@@ -10,13 +10,17 @@
     <div id="sidebarLeft" class="sidebars" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_left">
         <?php if( Page::getCurrentPage()->isEditMode() ){
             Loader::packageElement('partials/sidebar_left', 'toj', array('c' => $c));
-        } ?>
+        }else{ ?>
+            <div class="working"><i class="fa fa-refresh fa-spin"></i></div>
+        <?php } ?>
     </div>
 
     <div id="sidebarRight" class="sidebars" data-load="<?php echo TOJ_TOOLS_URL; ?>sidebar_right">
         <?php if( Page::getCurrentPage()->isEditMode() ){
             Loader::packageElement('partials/sidebar_right', 'toj', array('c' => $c));
-        } ?>
+        }else{ ?>
+            <div class="working"><i class="fa fa-refresh fa-spin"></i></div>
+        <?php } ?>
     </div>
 
     <div id="cL1">

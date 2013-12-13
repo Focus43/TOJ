@@ -62,7 +62,8 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 /************************ Sidebars ************************/
 .sidebars {width:$sidebarWidth;position:fixed;top:0;bottom:0;overflow-y:hidden;z-index:0;
-  &[data-load] {background:transparent url(#{$imagePath}loading.gif) no-repeat 50% 50%;}
+  .working {font-size:22px;color:#555;display:none;text-align:center;padding-top:100px;}
+  &[data-load] .working {display:block;}
   .inner {padding:10px;min-height:100%;}
 }
 
@@ -105,7 +106,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 /************************ Page container levels ************************/
 #cL1 {background:#1d1d1d;position:relative;z-index:1;@include cssTransition(margin .25s ease-in);}
   // Large background container
-  #pageBackgroundImage {display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include cssTransition((left .25s ease-in, right .25s ease-in));
+  #pageBackgroundImage {background-color:#1d1d1d;display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include cssTransition((left .25s ease-in, right .25s ease-in));
     span.backStretch {position:absolute;top:0;right:0;bottom:0;left:0;}
   }
 // Container Level 2

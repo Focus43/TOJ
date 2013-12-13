@@ -93,7 +93,7 @@ $(function(){
                     _task.resolve(weather);
                 }});
             }, 'json').done(function( weather ){
-                $('.panel-body', '#sidebarLeft .weatherWidget').append(function(){
+                $('.panel-body', '#sidebarLeft .weatherWidget').empty().append(function(){
                     return '<img src="'+weather.thumbnail+'" />'+weather.temp+'&deg;'+weather.units.temp+' &nbsp;<span class="badge">'+weather.currently+'</span>';
                 });
             });
