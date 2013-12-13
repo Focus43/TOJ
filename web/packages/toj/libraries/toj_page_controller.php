@@ -89,7 +89,7 @@
             }
 
             // add specific classes if logged in
-            if( $this->pagePermissionObject()->canAdminPage() ){
+            if( $this->pagePermissionObject()->canWrite() ){
                 array_push($classes, 'cms-admin');
                 if( $this->getCollectionObject()->isEditMode() ){
                     array_push($classes, 'edit-mode');
