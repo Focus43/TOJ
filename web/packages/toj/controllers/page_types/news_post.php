@@ -8,10 +8,15 @@
             $this->set('backgroundImage', $this->getPageBackgroundImageURL());
             parent::on_start();
 
-            $authorUserInfoObj = UserInfo::getByID( $this->getCollectionObject()->getCollectionUserID() );
+            // should title be normal, warning, or danger colored?
             $this->set('titleClass', $this->titleClass());
-            $this->set('avatarPath', $this->authorAvatarImgPath( $authorUserInfoObj ));
-            $this->set('authorName', $this->authorName( $authorUserInfoObj ));
+
+            // author name + avatar
+            $authorUserInfoObj = UserInfo::getByID( $this->getCollectionObject()->getCollectionUserID() );
+            if( $authorUserInfoObj instanceof UserInfo ){
+                $this->set('avatarPath', $this->authorAvatarImgPath( $authorUserInfoObj ));
+                $this->set('authorName', $this->authorName( $authorUserInfoObj ));
+            }
         }
 
 
