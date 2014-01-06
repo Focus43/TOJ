@@ -53,6 +53,13 @@
     var promiseCache  = {};
 
 
+    /**
+     * Bind the method to jquery so globally available.
+     * @param _key
+     * @param _sourceFunction
+     * @param _returnType
+     * @returns {*}
+     */
     $.clientCache = function( _key, _sourceFunction, _returnType ){
             // set the data type, if not defined defaults to html
         var dataType = typeof _returnType !== 'undefined' ? _returnType : 'html',
@@ -88,6 +95,20 @@
 
         // return the promise from the cache key
         return promiseCache[ cacheKey ];
+    };
+
+
+    /**
+     * @todo THIS NEEDS TO BE REFACTORED SO WE HAVE A SINGLE LIBRARY WE CAN CALL THIS
+     * FROM.
+     * @param _key
+     */
+    $.clientCacheBust = function( _key, _returnType ){
+        var dataType = typeof _returnType !== 'undefined' ? _returnType : 'html',
+            // make sure the key is in unique hash form
+            cacheKey = _key + '_' + ('c@che' + _key).hashCode() + dataType;
+        // bust it
+        sessionStorage.removeItem(cacheKey);
     };
 
 })(jQuery);

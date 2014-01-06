@@ -1,4 +1,4 @@
-/*!***** Town Of Jackson // Build v:3.0.0 (2013-12-13), @auth: Focus43 (http://focus-43.com) ******/
+/*!***** Town Of Jackson // Build v:4.0.0 (2014-01-06), @auth: Focus43 (http://focus-43.com) ******/
 ;/*!
  * Bootstrap v3.0.1 by @fat and @mdo
  * Copyright 2013 Twitter, Inc.
@@ -75,6 +75,13 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap requires jQuery");+func
     var promiseCache  = {};
 
 
+    /**
+     * Bind the method to jquery so globally available.
+     * @param _key
+     * @param _sourceFunction
+     * @param _returnType
+     * @returns {*}
+     */
     $.clientCache = function( _key, _sourceFunction, _returnType ){
             // set the data type, if not defined defaults to html
         var dataType = typeof _returnType !== 'undefined' ? _returnType : 'html',
@@ -110,6 +117,20 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap requires jQuery");+func
 
         // return the promise from the cache key
         return promiseCache[ cacheKey ];
+    };
+
+
+    /**
+     * @todo THIS NEEDS TO BE REFACTORED SO WE HAVE A SINGLE LIBRARY WE CAN CALL THIS
+     * FROM.
+     * @param _key
+     */
+    $.clientCacheBust = function( _key, _returnType ){
+        var dataType = typeof _returnType !== 'undefined' ? _returnType : 'html',
+            // make sure the key is in unique hash form
+            cacheKey = _key + '_' + ('c@che' + _key).hashCode() + dataType;
+        // bust it
+        sessionStorage.removeItem(cacheKey);
     };
 
 })(jQuery);
@@ -336,8 +357,6 @@ $(function(){
 
 
         // header news & current, set icon class
-        //var $newsAndCurrentArea = $('.newsAndCurrent', '#primaryNav');
-
         $.ajax({
             url: $('#tojAppPaths').attr('data-tools') + '_data/current',
             dataType: 'json',
@@ -357,6 +376,7 @@ $(function(){
                     $.each( _resp.criticals, function(idx, obj){
                         $alertGroup.append('<a class="alert alert-danger" href="'+obj.path+'"><i class="fa fa-exclamation-triangle"></i><span> '+obj.name+'</span></a>');
                     });
+                    $.clientCacheBust('leftSidebar');
                 }
 
                 // append any warning
@@ -364,6 +384,7 @@ $(function(){
                     $.each( _resp.warnings, function(idx, obj){
                         $alertGroup.append('<a class="alert alert-warning" href="'+obj.path+'"><i class="fa fa-exclamation-circle"></i><span>'+obj.name+'</span></a>');
                     });
+                    $.clientCacheBust('leftSidebar');
                 }
 
                 // if theres none of the above, create OK message
@@ -386,34 +407,6 @@ $(function(){
                 });
             }
         });
-
-
-        /* IE8 "shim" for responsive sidebar loading
-        if( $.browser.msie && $.browser.version < 9.0 ){
-            $window.on('resize.transition-shim', function(){
-                responsiveSidebars();
-            });
-        }*/
-
-
-        /**
-         * Auto rotate alert messages on the homepage
-         */
-        /*var $alertItems = $('li', '.newsItems'),
-            _alertCount = $alertItems.length;
-        if( $alertItems.length ){
-            (function alertRotation(){
-                setTimeout(function(){
-                    var $current = $alertItems.filter(':visible'),
-                        _index   = $current.index(),
-                        $next    = (_index === (_alertCount-1)) ? $('li:first', '#cMiddle #alertSection ol') : $current.next('li');
-                    $current.fadeOut(150, function(){
-                        $next.fadeIn(150);
-                        alertRotation();
-                    });
-                }, 3800);
-            })();
-        }*/
 
 
         // hook into eventclick.schedulzier custom one

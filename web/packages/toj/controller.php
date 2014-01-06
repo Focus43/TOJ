@@ -169,18 +169,6 @@
 	            ), $this->packageObject());
 	        }
 
-            /*if( !is_object(CollectionAttributeKey::getByHandle('alert_level')) ){
-                $alertLevelAk = CollectionAttributeKey::add($this->attributeType('select'), array(
-                    'akHandle'  => 'alert_level',
-                    'akName'    => 'Alert Level'
-                ), $this->packageObject());
-
-                // setup alert level values
-                SelectAttributeTypeOption::add($alertLevelAk, 'News Post', 1);
-                SelectAttributeTypeOption::add($alertLevelAk, 'Warning', 1);
-                SelectAttributeTypeOption::add($alertLevelAk, 'Critical Alert', 1);
-            }*/
-
             if( !is_object(CollectionAttributeKey::getByHandle('alert_warning')) ){
                 CollectionAttributeKey::add($this->attributeType('boolean'), array(
                     'akHandle'              => 'alert_warning',

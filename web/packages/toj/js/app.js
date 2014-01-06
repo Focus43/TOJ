@@ -221,8 +221,6 @@ $(function(){
 
 
         // header news & current, set icon class
-        //var $newsAndCurrentArea = $('.newsAndCurrent', '#primaryNav');
-
         $.ajax({
             url: $('#tojAppPaths').attr('data-tools') + '_data/current',
             dataType: 'json',
@@ -242,6 +240,7 @@ $(function(){
                     $.each( _resp.criticals, function(idx, obj){
                         $alertGroup.append('<a class="alert alert-danger" href="'+obj.path+'"><i class="fa fa-exclamation-triangle"></i><span> '+obj.name+'</span></a>');
                     });
+                    $.clientCacheBust('leftSidebar');
                 }
 
                 // append any warning
@@ -249,6 +248,7 @@ $(function(){
                     $.each( _resp.warnings, function(idx, obj){
                         $alertGroup.append('<a class="alert alert-warning" href="'+obj.path+'"><i class="fa fa-exclamation-circle"></i><span>'+obj.name+'</span></a>');
                     });
+                    $.clientCacheBust('leftSidebar');
                 }
 
                 // if theres none of the above, create OK message
@@ -271,34 +271,6 @@ $(function(){
                 });
             }
         });
-
-
-        /* IE8 "shim" for responsive sidebar loading
-        if( $.browser.msie && $.browser.version < 9.0 ){
-            $window.on('resize.transition-shim', function(){
-                responsiveSidebars();
-            });
-        }*/
-
-
-        /**
-         * Auto rotate alert messages on the homepage
-         */
-        /*var $alertItems = $('li', '.newsItems'),
-            _alertCount = $alertItems.length;
-        if( $alertItems.length ){
-            (function alertRotation(){
-                setTimeout(function(){
-                    var $current = $alertItems.filter(':visible'),
-                        _index   = $current.index(),
-                        $next    = (_index === (_alertCount-1)) ? $('li:first', '#cMiddle #alertSection ol') : $current.next('li');
-                    $current.fadeOut(150, function(){
-                        $next.fadeIn(150);
-                        alertRotation();
-                    });
-                }, 3800);
-            })();
-        }*/
 
 
         // hook into eventclick.schedulzier custom one
