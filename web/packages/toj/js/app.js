@@ -311,6 +311,20 @@ $(function(){
         }
 
 
+        /**
+         * Since jQuery isn't available until bottom of the page, you can push delay
+         * functions onto the window.tojOnLoad stack, which will be looped through and
+         * run here (see single_pages/agendas for example use).
+         */
+        if( $.isArray(window.tojOnLoad) ){
+            $.each(window.tojOnLoad, function(idx, func){
+                if( $.isFunction(func) ){
+                    func.call();
+                }
+            });
+        }
+
+
         // PUBLIC METHODS
         return {
 

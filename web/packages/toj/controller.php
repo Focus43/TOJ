@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.37';
+	    protected $pkgVersion 			= '0.44';
 	
 		
 		/**
@@ -114,8 +114,10 @@
 
             // remove weather block, if installed
             $weatherBlockType = BlockType::getByHandle('weather_widget');
-            if( $weatherBlockType->canUninstall() ){
-                $weatherBlockType->delete();
+            if( $weatherBlockType instanceof BlockType ){
+                if( $weatherBlockType->canUninstall() ){
+                    $weatherBlockType->delete();
+                }
             }
 		}
 		
@@ -205,9 +207,9 @@
 		 */
 		private function setupBlocks(){
             // Weather Widget
-            if(!is_object(BlockType::getByHandle('weather_widget'))) {
-                BlockType::installBlockTypeFromPackage('weather_widget', $this->packageObject());
-            }
+            //if(!is_object(BlockType::getByHandle('weather_widget'))) {
+            //    BlockType::installBlockTypeFromPackage('weather_widget', $this->packageObject());
+            //}
 			
 			return $this;
 		}
@@ -273,6 +275,11 @@
 		 */
 		private function setupSitePages(){
             SinglePage::add('current', $this->packageObject());
+            $agendasPage = SinglePage::add('agendas', $this->packageObject());
+            if( is_object($agendasPage) ){
+                $agendasPage->setAttribute('exclude_nav', 1);
+                $agendasPage->setAttribute('exclude_page_list', 1);
+            }
 
 			return $this;
 		}

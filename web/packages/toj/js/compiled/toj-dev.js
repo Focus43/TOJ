@@ -1,4 +1,4 @@
-/*!***** Town Of Jackson // Build v:4.0.0 (2014-01-06), @auth: Focus43 (http://focus-43.com) ******/
+/*!***** Town Of Jackson // Build v:4.1.0 (2014-01-08), @auth: Focus43 (http://focus-43.com) ******/
 ;/*!
  * Bootstrap v3.0.1 by @fat and @mdo
  * Copyright 2013 Twitter, Inc.
@@ -444,6 +444,20 @@ $(function(){
 
                 }
             }(document,"script","twitter-wjs"));
+        }
+
+
+        /**
+         * Since jQuery isn't available until bottom of the page, you can push delay
+         * functions onto the window.tojOnLoad stack, which will be looped through and
+         * run here (see single_pages/agendas for example use).
+         */
+        if( $.isArray(window.tojOnLoad) ){
+            $.each(window.tojOnLoad, function(idx, func){
+                if( $.isFunction(func) ){
+                    func.call();
+                }
+            });
         }
 
 
