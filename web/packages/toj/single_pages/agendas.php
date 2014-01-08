@@ -21,7 +21,8 @@
     </div>
     <div class="col-sm-9">
         <div id="postList" class="panel panel-default">
-            <div class="panel-heading" style="background:#3b3b3b;">
+            <div class="panel-heading" style="background:#3b3b3b;color:#e1e1e1;">
+                <?php $a = new Area('Agenda Instructions'); $a->display($c); ?>
                 <select id="agendaSelector" class="form-control">
                     <option value="tc">Town Council Meeting Agendas</option>
                     <option value="pz">Planning &amp; Zoning Commission / Board of Adjustment Meeting Agendas</option>
