@@ -237,7 +237,7 @@
                 // setup alert level values
                 SelectableAttributeTypeOption::create($agendaTypeAk, 'town_council', 'Town Council', 1);
                 SelectableAttributeTypeOption::create($agendaTypeAk, 'pzcba', 'PZCBA', 2);
-                SelectableAttributeTypeOption::create($agendaTypeAk, 'jim', 'JIM', 3);
+                SelectableAttributeTypeOption::create($agendaTypeAk, 'jim', 'Joint Information Meeting', 3);
             }
 	        
 	        return $this;
