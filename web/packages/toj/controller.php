@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.44';
+	    protected $pkgVersion 			= '0.68';
 	
 		
 		/**
@@ -104,6 +104,8 @@
 		 */
 		private function installAndUpdate(){
 			$this->setupUserGroups()
+                 ->setupAttributeTypes()
+                 ->attributeTypeAssociations()
 				 ->setupUserAttributes()
 				 ->setupCollectionAttributes()
 				 ->setupBlocks()
@@ -132,6 +134,32 @@
 			
 			return $this;
 		}
+
+
+        /**
+         * @return TojPackage
+         */
+        private function setupAttributeTypes(){
+            if( ! is_object($this->attributeType('selectable')) ){
+                AttributeType::add('selectable', t('Selectable'), $this->packageObject());
+            }
+
+            return $this;
+        }
+
+
+        /**
+         * @return TojPackage
+         */
+        private function attributeTypeAssociations(){
+            try {
+                if( is_object( $this->attributeKeyCategory('collection') ) ){
+                    $this->attributeKeyCategory('collection')->associateAttributeKeyType( $this->attributeType('selectable') );
+                }
+            }catch(Exception $e){ /* KEY IS ALREADY ASSIGNED; FAIL GRACEFULLY */ }
+
+            return $this;
+        }
 
 
 		/**
@@ -197,6 +225,20 @@
                     'akIsSearchable'        => 1
                 ), $this->packageObject());
             }
+
+            if( !is_object(CollectionAttributeKey::getByHandle('agenda_type')) ){
+                $agendaTypeAk = CollectionAttributeKey::add($this->attributeType('selectable'), array(
+                    'akHandle'              => 'agenda_type',
+                    'akName'                => 'Agenda Type',
+                    'akIsSearchableIndexed' => 1,
+                    'akIsSearchable'        => 1
+                ), $this->packageObject());
+
+                // setup alert level values
+                SelectableAttributeTypeOption::create($agendaTypeAk, 'town_council', 'Town Council', 1);
+                SelectableAttributeTypeOption::create($agendaTypeAk, 'pzcba', 'PZCBA', 2);
+                SelectableAttributeTypeOption::create($agendaTypeAk, 'jim', 'JIM', 3);
+            }
 	        
 	        return $this;
 	    }
@@ -256,14 +298,16 @@
                 ));
             }
 
-            // modal
             if( !is_object($this->pageType('modal')) ){
                 CollectionType::add(array('ctHandle' => 'modal', 'ctName' => 'Modal'), $this->packageObject());
             }
 
-            // agency homepage
             if( !is_object($this->pageType('department')) ){
                 CollectionType::add(array('ctHandle' => 'department', 'ctName' => 'Department', 'ctIcon' => 'right_sidebar.png'), $this->packageObject());
+            }
+
+            if( !is_object($this->pageType('agenda')) ){
+                CollectionType::add(array('ctHandle' => 'agenda', 'ctName' => 'Agenda'), $this->packageObject());
             }
 
 			return $this;
@@ -369,7 +413,11 @@
 		 */
 		private function attributeType( $atHandle ){
 			if( $this->{ "at_{$atHandle}" } === null ){
-				$this->{ "at_{$atHandle}" } = AttributeType::getByHandle( $atHandle );
+                $attributeType = AttributeType::getByHandle( $atHandle );
+                if( $attributeType->getAttributeTypeID() >= 1 ){
+                    $this->{ "at_{$atHandle}" } = $attributeType;
+                }
+
 			}
 			return $this->{ "at_{$atHandle}" };
 		}

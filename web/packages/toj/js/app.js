@@ -316,8 +316,8 @@ $(function(){
          * functions onto the window.tojOnLoad stack, which will be looped through and
          * run here (see single_pages/agendas for example use).
          */
-        if( $.isArray(window.tojOnLoad) ){
-            $.each(window.tojOnLoad, function(idx, func){
+        if( $.isArray(window.deferredExecution) ){
+            $.each(window.deferredExecution, function(idx, func){
                 if( $.isFunction(func) ){
                     func.call();
                 }

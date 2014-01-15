@@ -1,4 +1,4 @@
-/*!***** Town Of Jackson // Build v:4.1.0 (2014-01-08), @auth: Focus43 (http://focus-43.com) ******/
+/*!***** Town Of Jackson // Build v:4.2.0 (2014-01-14), @auth: Focus43 (http://focus-43.com) ******/
 ;/*!
  * Bootstrap v3.0.1 by @fat and @mdo
  * Copyright 2013 Twitter, Inc.
@@ -452,8 +452,8 @@ $(function(){
          * functions onto the window.tojOnLoad stack, which will be looped through and
          * run here (see single_pages/agendas for example use).
          */
-        if( $.isArray(window.tojOnLoad) ){
-            $.each(window.tojOnLoad, function(idx, func){
+        if( $.isArray(window.deferredExecution) ){
+            $.each(window.deferredExecution, function(idx, func){
                 if( $.isFunction(func) ){
                     func.call();
                 }
