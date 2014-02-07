@@ -1,45 +1,126 @@
-# Concrete5 CMS Pagodabox Quickstart #
+# Concrete5 :: Pagodabox Quickstart #
 
-Release of Concrete5 (latest stable: 5.6.1.2) for Pagodabox, with a couple extra free add-ons.
+Concrete5 (latest stable: 5.6.2.1) for [Pagodabox](http://pagodabox.com), with a couple freebie packages and a whole slew
+of tools for developers. Use the one-click Quickstart launcher at **[Concrete5 Quickstart](https://pagodabox.com/cafe/jonohartman/concrete5)**.
+
+**Intended Audience/Users**
+In short, this Quickstart/repo is targeted at developers/teams or git-savvy folks that want a super-streamlined workflow.
+Using the bundled VM provisioning tools, you can be sure anyone who ever checks out and runs the project locally is using the exact same environment, with the exact same toolset. And deploys via `git push`.
+
+**Versions**: Vagrant builds were tested with VirtualBox 4.2.18 and Vagrant 1.3.5 on OSX Mavericks. Small version incremements should remain stable,
+however, not guaranteed. If you're using a newer version of either VirtualBox or Vagrant and run into issues, please file an issue report in the
+[issues tracker](https://github.com/Focus43/Concrete5-Stable/issues)
+
+[Overview](#overview)
+
+[Usage / Getting Started](#usage--getting-started)
+* [Building Locally](#build-locally)
+* [Starting/Stopping VM](#startingstopping-the-vm-for-day-to-day-development)
+* [Connecting To Database from GUI](#connecting-to-the-database-from-a-mysql-gui)
+* [SSL](#ssl-stuff)
+
+[Notes](#notes)
 
 ## Overview ##
 
-This is a release of the Concrete5 CMS, with slight modifications to run on the PagodaBox infrastructure. This repository
-will remain updated as new stable releases roll out.
+This is a release of Concrete5 v5.6.2.1, with slight modifications to run on PagodaBox (see notes at the bottom of this page for details). Several tools come bundled with this repo for creating a super-streamlined workflow for development and deployment. From start to finish, here's what can be accomplished with **3 commands** (literally, that's it).
 
-This quickstart will automatically provision the a 200mb web server, a 10mb MySQL server, and a 10mb
-Redis cache server. Every resource can be scaled independently using the Pagodabox dashboard.
+1. Launch a production instance of Concrete5 on Pagodabox,
+2. Get a local copy of the repo on your own machine (with Git-deployment pre-configured),
+3. Build and provision a VM for local development with: Ubuntu 12.04, Apache, PHP 5.3.10, MySQL 5.5+, Redis, NodeJS, GruntJS, Xdebug, PHPUnit
 
-Check out the Boxfile to see the basic install settings. Features:
+Thanks to kick-ass [Vagrant](http://www.vagrantup.com/), you **do not** need to have a LAMP stack installed on your machine
+to get a development copy up and running. The files in the /vagrant directory will automatically build and provision
+an entire VM automatically, and will bind (if avail) to port :8080 on your local machine. Concrete5 will be automatically
+installed in the VM, matching the install process used for Pagodabox.
 
-1. APC cache installed as opcode cache
-2. Redis ~~is~~ can be used as the session cache, and as the Full Page Caching library
-3. Server file upload size set to 20mb
+If you're new to Vagrant or the idea of working with virtual machines for local development, [read this](http://www.vagrantup.com/about.html).
 
-## Usage ##
+#### Default Pagodabox Configuration ####
 
-Visit https://pagodabox.com/cafe/jonohartman/concrete5. The one-click install will clone
-this repository and perform all setup.
+This quickstart will automatically provision the following resources for a new Concrete5 app on Pagodabox
+(see the [Boxfile](https://github.com/Focus43/concrete5/blob/pagoda/Boxfile) for exact details).
 
-## Installing Locally ##
+* a 200mb web server (PHP 5.3.10, APC cache, CURL, zip, GD image library, 20MB max upload filesize setting)
+* a 10mb MySQL server
+* a 10mb Redis cache server (used as session store, and optionally the full page caching library)
 
-The intended workflow with this PagodaBox Quickstart is: run QuickStart install on PagodaBox, then clone the
-QuickStart repo to your local machine. Install on your local machine, then develop there. When changes are working,
-simply push back to the origin (pagodabox). To install on your local machine, you *should* be able to simply clone
-the repo, setup a mysql database, and create a file named `site.local.php` at `web/config/site.local.php`.
+Every resource can be scaled independently in the app dashboard, but the default configuration (200mb web server, 10mb mysql, 10mb redis)
+can handle a very decent traffic load with full page caching enabled. (Even better if you install the included
+Redis package, which enables Concrete5's full page cache library to use ultra-fast, in-memory Redis).
 
-In the `site.local.php` file, place the following code (credentials for connecting to your *local* database):
+## Usage / Getting Started ##
 
-	<?php
-	$_SERVER['DB1_HOST'] = 'HOST_HERE'; // probably localhost
-	$_SERVER['DB1_USER'] = 'USER_HERE'; // maybe root
-	$_SERVER['DB1_PASS'] = 'PASSWORD_HERE'; // maybe empty on your local machine
-	$_SERVER['DB1_NAME'] = 'DB_NAME_HERE'; // local database to use, must be empty
+**Prerequisites**: A [Pagodabox account](https://dashboard.pagodabox.com/account/register), configured for
+pushing/pulling via Git (instructions for: [OSX](http://help.pagodabox.com/customer/portal/articles/200927), [Windows](http://help.pagodabox.com/customer/portal/articles/202068)),
+and the following installed on your local computer: [VirtualBox](https://www.virtualbox.org/), and [Vagrant](http://docs.vagrantup.com/v2/installation/).
 
-Update appropriately, and save. Then from the command line:
+* After logging in, click this link to launch a new C5 instance: https://pagodabox.com/q/u8/go. (Be patient, takes a sec
+to initialize).
 
-	cd /path/to/web/root/ (repository root)
-	php cli_installer.php
+* Once the app has launched, visit the app dashboard and look for 'Show Git Clone Url'. Copy the URL, then on
+your local computer, `$ git clone {git-url-here}`.
+
+* In the repo root on your machine, `$cd vagrant && vagrant up`. Watch Vagrant build your development environment (could take a while).
+
+When you clone the repository from Pagodabox, the default branch in your repo will be called "pagoda" instead of the usual "master". From your project root, do `$ git status` to confirm. You'll want to make all changes to this branch (it is effectively master, but for upgrading purposes when new releases come out from the core team, we preserve master).
+
+**Default Login Credentials**
+For both Pagodabox and local installations:
+* user: `admin`
+* password: `c5@dmin`
+
+CHANGE THE PASSWORD ON YOUR PAGODABOX (eg. "PRODUCTION") INSTANCE RIGHT AWAY
+
+#### Build Locally ####
+
+Once the VM is done provisioning, open a browser and go to `http://localhost:8080` (assuming port 8080 is not being used on your machine). If :8080 is in use by another program, the VM will automatically bind to the next available port. When you `vagrant up`, it'll tell you where.
+
+Now open the project in your favorite IDE, build something awesome, and when you're ready to push the changes to your live Pagodabox instance, just...
+
+* `$ git add . && git commit -m "Built something fly"`
+* `$ git push origin pagoda`
+
+Rinse and repeat.
+
+**Note** If you're new to developing within a VM, understand this: you write all the code on your local machine, but when you visit `http://localhost:8080` in a browser, your code base is being executed completely within the VM. Its totally segregated from whatever operating system your using. Your code is actually being run on Ubuntu linux 12.04 w/ Apache, MySQL, PHP 5.3.10, and Redis (if your using the ConcreteRedis package).
+
+#### Starting/Stopping the VM for day-to-day development ####
+
+Whenever you work on the project, make sure the VM is running. From project root, `$ cd vagrant && vagrant up`. When you're done, do `vagrant halt`. If you need to work on multiple projects throughout the day, you can run a few VMs at a time without much problem (they're fairly light weight). Just beware that every VM you `vagrant up` will bind on a different port, so accessing each project/site in the browser happens on a different port (it tells you which when you start the VM via `vagrant up`).
+
+To start the VM without provisioning, do `vagrant up` with the `--no-provision` flag. (`cd vagrant && vagrant up --no-provision`). After the VM is built the first time, you can start it with `--no-provision` to load it faster.
+
+#### Connecting to the database from a MySQL GUI ####
+
+If you want to inspect whats going on in the database, you can easily connect to the MySQL instance running inside the VM from your local machine. From your favorite MySQL GUI, use:
+* host: `127.0.0.1` (or `localhost`)
+* username: `root`
+* password: `root`
+* port: `3307`
+
+If something else was running on port 3307 when you ran `vagrant up`, Vagrant will bind to the next available port, similar to how it handles :8080 (see above).
+
+#### SSL Stuff ####
+
+The VM comes with a self-signed certificate for testing SSL during development. As it's a self-signed certificate, your browser will (almost definitely) show security warnings. Just click proceed. To eliminate the warning, you should add the certificate to your system's trusted certificate chain. If you're on chrome, the only way to make the `https://` connection marker in the URL bar green is to setup an alias in your system's `hosts` file (the alias must include a `.`).
+
+On OSX, from terminal:
+
+* `$ sudo nano /etc/hosts`
+* Add a line with `127.0.0.1 lo.cal` then save
+* Test in your browser by first visiting the `http://lo.cal:8080` (or whatever port the VM is running on)
+* Next, try to visit it via https: `https://lo.cal:4433` (again, when you start the VM, Vagrant will show which port 443 is forwarded to - usually it'll be 4433)
+
+If you setup the browser correctly, you should be able to connect via HTTPS with a green "secure" notification in the browser bar.
+
+**Deploying w/ SSL to Pagodabox**
+
+This repo comes pre-configured with an [.htaccess](https://github.com/Focus43/concrete5/blob/pagoda/web/.htaccess) file, to enable Pretty URLs by default (as well as a whole bunch of static asset caching optimizations). It also includes settings for forcing HTTPS connections either sitewide, or when accessing the dashboard (commented out). When you want to deploy a site with SSL, simply uncomment the appropriate lines.
+
+## To Do ##
+
+Write-up on using updated build tools (GruntJS) in the VM, and the bundled ConcreteRedis and FluidDNS packages in the /packages directory.
 
 ## Notes ##
 
@@ -51,7 +132,7 @@ used in a master-master MySQL configuration are not the same as a standard MySQL
 
 This causes the installation of dashboard pages to fail. This has been fixed to work with PagodaBox.
 
-
+### Marketplace Integration ###
 In order to download marketplace items (packages, themes, etc.), the /packages directory would need to be writable.
 With PagodaBox's shared writable directories, this IS possible, but the code in the packages directory would no longer
 be trackable. By using this QuickStart, understand that *downloading marketplace items directly to the server is not
