@@ -1,0 +1,46 @@
+@import 'variables_mixins';
+@import 'fullcalendar-1.6.1/fullcalendar';
+
+// Flash messages in dashboard
+#schedulizerFlash {
+  ul.unstyled {margin:0;}
+}
+
+// Wrapper to enforce style overrides
+#schedulizerWrap {
+  form {margin:0;}
+  .custom-attributes input[type="text"] {max-width:100%;padding:13px 4px;@include box-sizing(border-box);}
+}
+
+// Generics
+.btn.btn-block {width:100%;@include box-sizing(border-box);}
+.ccm-ui .message ul.unstyled {margin:0;}
+form {margin-bottom:0 !important;}
+span.colorThumbnail {width:20px;height:20px;float:left;margin-right:5px;cursor:pointer;border:2px solid transparent; @include box-sizing(border-box);
+  &.active {border-color:#333;}
+  input[type="radio"] {display:none;}
+}
+
+// Event configuration window
+#eventSetupForm {
+  .well {margin-bottom:8px;}
+  .pull-left {display:block;margin-right:4px;}
+  .timeChoozers {margin-bottom:0;}
+  .timeChoozers .from-to {display:inline-block;padding-top:7px;}
+  .timeChoozers .chzn-container {width:120px !important;}
+  .timeChoozers .chzn-drop {width:118px !important;}
+  .timeChoozers .chzn-search input[type="text"] {width:83px !important;margin:-3px 0 2px;}
+  .timeChoozers .chzn-single {height:26px;}
+  .timeChoozers .chzn-single span {position:relative;top:2px;}
+  input[type="radio"] {margin-top:0;}
+  label.checkbox.no-pad {padding-left:0;}
+  .control-group .control-label {width:80px;white-space:nowrap;}
+  .control-group .controls {margin-left:100px;}
+  .btn-group button input {display:none;}
+  .repeat-options {display:none;}
+}
+
+#eventRepeatSettings div.checkbox.inline {padding-left:0;}
+
+// Settings page
+#schedulizerWrap .clearfix.btn-wrap {margin:0;padding:12px 0 0;}

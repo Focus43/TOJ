@@ -3,6 +3,7 @@
     class SchedulizerCalendar extends SchedulizerBaseModel {
 
         protected $attrCategoryHandle = 'schedulizer_calendar',
+                  // this is a double back up; gets overridden by saved config settings
                   $defaultTimezone    = 'America/New_York';
 
 

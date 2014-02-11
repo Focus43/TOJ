@@ -3,10 +3,12 @@
 	class SchedulizerPackage extends Package {
 
         const TIMESTAMP_FORMAT = 'Y-m-d H:i:s';
+        // config keys
+        const DEFAULT_TIMEZONE = 'DEFAULT_TIMEZONE';
 
 	    protected $pkgHandle 			= 'schedulizer';
 	    protected $appVersionRequired 	= '5.6.1';
-	    protected $pkgVersion 			= '0.21';
+	    protected $pkgVersion 			= '0.22';
 
 
         /**
@@ -137,10 +139,21 @@
          * @return void
          */
         private function installAndUpdate(){
-			$this->setupBlocks()
+			$this->defaultSettings()
+                 ->setupBlocks()
                  ->setupSinglePages()
                  ->registerEntityCategories();
 		}
+
+
+        /**
+         * @return SchedulizerPackage
+         */
+        private function defaultSettings(){
+            $this->saveConfig( self::DEFAULT_TIMEZONE, 'America/New_York' );
+
+            return $this;
+        }
 
 
         /**
@@ -176,6 +189,12 @@
             if( $attributes instanceof Page ){
                 $attributes->setAttribute('icon_dashboard', 'icon-cog');
             }
+
+            // settings
+            $attributes = SinglePage::add('/dashboard/schedulizer/settings', $this->packageObject());
+            if( $attributes instanceof Page ){
+                $attributes->setAttribute('icon_dashboard', 'icon-wrench');
+            }
 			
 			return $this;
 		}
@@ -200,7 +219,7 @@
         }
 
 
-		/**
+        /**
 		 * Get the package object; if it hasn't been instantiated yet, load it.
 		 * @return SchedulizerPackage
 		 */

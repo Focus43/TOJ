@@ -100,6 +100,31 @@
 
 
         /**
+         * Get Config object, restricted to the SchedulizerPackage settings.
+         * @return Config
+         */
+        public function packageConfig(){
+            if( $this->_packageConfigObj === null ){
+                $this->_packageConfigObj = new Config();
+                $this->_packageConfigObj->setPackageObject( $this->packageObject() );
+            }
+            return $this->_packageConfigObj;
+        }
+
+
+        /**
+         * Get the package object; if it hasn't been instantiated yet, load it.
+         * @return SchedulizerPackage
+         */
+        private function packageObject(){
+            if( $this->_packageObj == null ){
+                $this->_packageObj = Package::getByHandle( self::PACKAGE_HANDLE );
+            }
+            return $this->_packageObj;
+        }
+
+
+        /**
          * "Memoize" helpers so they're only loaded once.
          * @param string $handle Handle of the helper to load
          * @param string $pkg Package to get the helper from
