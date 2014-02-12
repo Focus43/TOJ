@@ -56,13 +56,11 @@
                                 <div class="col-sm-12">
                                     <div class="inner">
                                         <form method="get" action="<?php echo $this->url('search'); ?>">
-                                            <input name="query" id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Site Search" />
+                                            <input name="query" type="text" class="form-control input-lg" placeholder="Site Search" />
                                             <i class="fa fa-search"></i>
-                                            <button type="submit" id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
+                                            <button type="submit" class="btn btn-info btn-lg">Search</button>
                                             <input name="search_paths[]" type="hidden" value="">
                                         </form>
-
-                                        <!--<gcse:searchresults-only></gcse:searchresults-only>-->
                                     </div>
                                 </div>
                             </div>
@@ -90,47 +88,6 @@
     </div>
 
 <?php Loader::packageElement('theme/site_settings', 'toj'); ?>
-
-<!-- google custom search loader -->
-<script>
-    /*(function() {
-        var cx = '011694434224589997737:sbj5ayzj2fe';
-        var gcse = document.createElement('script');
-        gcse.type = 'text/javascript';
-        gcse.async = true;
-        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-            '//www.google.com/cse/cse.js?cx=' + cx;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(gcse, s);
-    })();
-
-    // custom for TOJ; sans-jquery
-    (function(){
-        var _timeOut;
-        var _contain = function(){ return (_containment = typeof _containment === 'undefined' ? document.querySelector('[id*=gcse]') : _containment); };
-        var _gapi    = function(){ return (_googleApi = typeof _googleApi === 'undefined' ? google.search.cse.element.getElement('searchresults-only0') : _googleApi); };
-
-        if( ! Modernizr.touch ){
-            function typeDelay( _api, _keyEvent ){
-                return setTimeout(function(){
-                    _api.execute( _keyEvent.target.value );
-                }, 275);
-            }
-            document.getElementById('googleSearchInput').onkeyup = function( keyEvent ){
-                clearTimeout(_timeOut);
-                if( typeof(_gapi()) !== 'undefined' ){
-                    _contain().style.display = 'block';
-                    _timeOut = typeDelay( _gapi(), keyEvent );
-                }
-            };
-        }else{
-            document.getElementById('googleSearchButton').onclick = function(){
-                _contain().style.display = 'block';
-                _gapi().execute( document.getElementById('googleSearchInput').value );
-            }
-        }
-    })();*/
-</script>
 <?php Loader::element('footer_required'); // REQUIRED BY C5 // ?>
 </body>
 </html>

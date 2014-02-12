@@ -7,6 +7,7 @@
          */
         public function __construct(){
             $this->filterByCollectionTypeHandle('news_post');
+            $this->sortByRecentFirstAndPinnedToTop();
         }
 
 
@@ -16,6 +17,14 @@
          */
         public function filterByWarningsAndAlerts(){
             $this->filter(false, '(ak_alert_warning = 1 OR ak_alert_critical = 1)');
+        }
+
+
+        /**
+         * Order the results so critical alerts are first
+         */
+        public function sortByAlertsCriticalFirst(){
+            $this->sortByMultiple('ak_alert_critical desc', 'cvDatePublic desc');
         }
 
 
@@ -35,16 +44,16 @@
         public function filterByStickyUntil( $time = 'now', $dir = '>=' ){
             $dateTimeObj = new DateTime($time, new DateTimeZone('UTC'));
             $dateTimeObj->setTimezone( new DateTimeZone('America/Denver') );
-            //echo $dateTimeObj->format('Y-m-d H:i:s');exit;
             $this->filterByAttribute('sticky_until', $dateTimeObj->format('Y-m-d H:i:s'), $dir);
         }
 
 
         /**
-         * Order the results so critical alerts are first
+         * Same as default : but make it a public method so it can be called if something else
+         * accidentally overrides it.
          */
-        public function sortByAlertsCriticalFirst(){
-            $this->sortByMultiple('ak_alert_critical desc', 'cvDatePublic desc');
+        public function sortByRecentFirstAndPinnedToTop(){
+            $this->sortByMultiple('ak_pin_top desc', 'cvDatePublic desc');
         }
 
     }

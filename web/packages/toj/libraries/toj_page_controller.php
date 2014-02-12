@@ -123,7 +123,6 @@
             $pageController->addHeaderItem( $this->getHelper('html')->javascript('compiled/modernizr.js', self::PACKAGE_HANDLE) );
             
             // ie8 stylesheet
-            //$ieShims = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('compiled/elderly/ie8.css', self::PACKAGE_HANDLE) . "\n" . '<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>' . "\n<![endif]-->\n";
             $ieShims = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('compiled/elderly/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
             $pageController->addHeaderItem( $ieShims );
 

@@ -274,14 +274,18 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
     i {font-size:17px;position:relative;top:2px;}
     &:hover {text-decoration:none;}
   }
+  .fa-thumb-tack {color:#00cc66;margin-left:8px;@include cssTransform(rotate(30deg));}
 }
 // sidebar only
 #sidebarLeft .recentNews {
   a.read-more {color:#999;
     &:hover {color:#ddd;}
   }
-  .badge.warning {background-color:#f0ad4e;}
-  .badge.critical {background-color:#d9534f;}
+  .badge {margin:-10px -15px 5px 7px;@include rounded(0);
+    &.warning {background-color:#f0ad4e;}
+    &.critical {background-color:#d9534f;}
+  }
+  .fa-thumb-tack {margin:0;position:absolute;right:5px;bottom:5px;}
 }
 // homepage only
 #cL1 .recentNews a:hover {color:#444;

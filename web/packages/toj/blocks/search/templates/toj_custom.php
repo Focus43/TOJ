@@ -28,9 +28,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="searchBox">
-                <input name="query" id="googleSearchInput" type="text" class="form-control input-lg" placeholder="Site Search" value="<?=htmlentities($query, ENT_COMPAT, APP_CHARSET)?>" />
+                <input name="query" type="text" class="form-control input-lg" placeholder="Site Search" value="<?=htmlentities($query, ENT_COMPAT, APP_CHARSET)?>" />
                 <i class="fa fa-search"></i>
-                <button type="submit" id="googleSearchButton" class="btn btn-info btn-lg">Search</button>
+                <button type="submit" class="btn btn-info btn-lg">Search</button>
             </div>
         </div>
         <div class="list-group">

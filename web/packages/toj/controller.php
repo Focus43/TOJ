@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.68';
+	    protected $pkgVersion 			= '0.69';
 	
 		
 		/**
@@ -238,6 +238,15 @@
                 SelectableAttributeTypeOption::create($agendaTypeAk, 'town_council', 'Town Council', 1);
                 SelectableAttributeTypeOption::create($agendaTypeAk, 'pzcba', 'PZCBA', 2);
                 SelectableAttributeTypeOption::create($agendaTypeAk, 'jim', 'Joint Information Meeting', 3);
+            }
+
+            if( !is_object(CollectionAttributeKey::getByHandle('pin_top')) ){
+                CollectionAttributeKey::add($this->attributeType('boolean'), array(
+                    'akHandle'              => 'pin_top',
+                    'akName'                => 'Pin As Top Post',
+                    'akIsSearchableIndexed' => 1,
+                    'akIsSearchable'        => 1
+                ), $this->packageObject());
             }
 	        
 	        return $this;
