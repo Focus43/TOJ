@@ -154,10 +154,13 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
       // news and current tab specifically
       &.newsAndCurrent {
-        .list-unstyled li {
-          a {display:block;color:#333;
-            h4 {margin:0;padding-bottom:5px;line-height:1.3em;text-transform:capitalize;}
-            &:hover {padding-left:5px;}
+        .alertGroup {margin-bottom:10px;}
+        .list-unstyled {padding-bottom:10px;
+          li {
+            a {display:block;color:#333;
+              h5 {margin:0;padding-bottom:4px;line-height:1em;text-transform:capitalize;}
+              &:hover {padding-left:5px;}
+            }
           }
         }
       }

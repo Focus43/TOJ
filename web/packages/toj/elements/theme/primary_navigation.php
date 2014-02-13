@@ -47,28 +47,29 @@
                 <div class="subMenu">
                     <div class="menuInner">
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="well well-sm">
-                                    <ul class="list-unstyled">
-                                        <?php
-                                            $textHelper = Loader::helper('text');
-                                            $newsPosts = new TojNewsPageList;
-                                            $newsPosts->sortByPublicDateDescending();
-                                            $results   = $newsPosts->get(3);
-                                            foreach($results AS $pageObj): /** @var Page $pageObj */ ?>
-                                                <li>
-                                                    <a href="<?php echo View::url( $pageObj->getCollectionPath() ); ?>">
-                                                        <h4><?php echo $pageObj->getCollectionName(); ?></h4>
-                                                        <span><?php echo $textHelper->shortenTextWord( $pageObj->getCollectionDescription(), 100 ); ?></span>
-                                                    </a>
-                                                </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <!-- replaced via ajax -->
                                 <h5 class="updating"><i class="fa fa-spinner fa-spin"></i> Checking for alert updates...</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="list-unstyled">
+                                    <?php
+                                    $textHelper = Loader::helper('text');
+                                    $newsPosts = new TojNewsPageList;
+                                    $newsPosts->sortByPublicDateDescending();
+                                    $results   = $newsPosts->get(3);
+                                    foreach($results AS $pageObj): /** @var Page $pageObj */ ?>
+                                        <li>
+                                            <a href="<?php echo View::url( $pageObj->getCollectionPath() ); ?>">
+                                                <h5><?php echo $pageObj->getCollectionName(); ?></h5>
+                                                <span><?php echo $textHelper->shortenTextWord( $pageObj->getCollectionDescription(), 100 ); ?></span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                                <a href="<?php echo $this->url('/current'); ?>" class="btn btn-info btn-block">More</a>
                             </div>
                         </div>
                     </div>
