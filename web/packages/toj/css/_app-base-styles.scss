@@ -87,20 +87,11 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 #sidebarRight {right:0;color:#fff;overflow:hidden;
   .inner {height:100%;
     .content {padding-bottom:10px;}
-    .thumbEl {display:block;margin:0 0 10px;position:relative;height:20%;
-      span.thumb {display:none;position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:50% 50%;@include boxShadow(0 0 10px #000);}
-    }
   }
 }
 
-
-#sidebarGallery {position:fixed;top:0;right:0;bottom:0;left:0;z-index:99;background:rgba(0,0,0,.8);
-  .wrap {text-align:center;position:relative;padding:30px;height:100% !important;@include borderBox;
-    .closable {display:block;position:absolute;top:0;right:20px;font-size:3em;color:#fff;}
-    img {max-width:100%;max-height:100%;padding:5px;background:rgba(255,255,255,.8);@include boxShadow(0 0 20px #000);@include rounded(50px);}
-  }
-}
-.cms-admin #sidebarGallery {top:49px;}
+// CUSTOMIZED FOR INTEGRATION WITH FLEXRY PACKAGE (overrides)
+html.flexry-lb-active, html.flexry-lb-active body {overflow:inherit !important;}
 
 
 /************************ Page container levels ************************/
