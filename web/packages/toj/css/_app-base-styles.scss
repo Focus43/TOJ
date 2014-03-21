@@ -86,7 +86,9 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 #sidebarRight {right:0;color:#fff;overflow:hidden;
   .inner {height:100%;
-    .content {padding-bottom:10px;}
+    .content {padding-bottom:10px;
+      .rtl-image {@include boxShadow(0 0 8px #000);}
+    }
   }
 }
 
