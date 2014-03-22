@@ -1,8 +1,3 @@
-/*!
- * Town Of Jackson site
- * @author Focus43 (http://focus-43.com)
- * @copyright 2013 Town Of Jackson. All Rights Reserved.
- */
 $(function(){
     window.tojApp = (function(){
 

@@ -129,11 +129,10 @@
             // app js
             $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj.js', self::PACKAGE_HANDLE)) );
 
-            /*if( DEPLOYMENT_STATUS_PRODUCTION === true ){
-                $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-min.js', self::PACKAGE_HANDLE)) );
-            }else{
-                $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-dev.js', self::PACKAGE_HANDLE)) );
-            }*/
+            // include live reload for for grunt watch!
+            if(isset($_SERVER['VAGRANT_VM']) && ((bool) $_SERVER['VAGRANT_VM'] === true)){
+                $this->addFooterItem('<script src="http://localhost:9090/livereload.js"></script>');
+            }
         }
         
         

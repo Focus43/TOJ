@@ -1,4 +1,4 @@
-; /*!
+/*!
  * "Explore Jackson" super sexy parallax.
  * @dependency Greensock animation library
  */
@@ -17,7 +17,7 @@ $(function(){
                 var img = new Image();
                 img.onload = function(){
                     _task.resolve(img);
-                }
+                };
                 img.src = _src;
             }).promise();
         }
@@ -51,7 +51,7 @@ $(function(){
 
                 // trigger animations
                 TweenLite.to($panorama, 2.8, {left: -_panoramaLeft, ease:Power4.easeOut} );
-                TweenLite.to($panelsWrap, 1.4, {left: _contentPanelsLeft, ease: Power4.easeOut, delay:.15});
+                TweenLite.to($panelsWrap, 1.4, {left: _contentPanelsLeft, ease: Power4.easeOut, delay:0.15});
             });
 
             // manage window resizing

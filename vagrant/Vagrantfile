@@ -38,6 +38,9 @@ Vagrant.configure("2") do |config|
     }
   }
 
+  # CUSTOM - open another port for live reload
+  config.vm.network :forwarded_port, guest: 9090, host: 9090, auto_correct: true
+
   # The precise64-pristine box is a bare-bones Ubuntu installation with just Ruby 1.9.3
   # and Chef 11.6 installed; just enough to allow the machine to provision itself.
   # Base box name
