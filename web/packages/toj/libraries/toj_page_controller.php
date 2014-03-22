@@ -119,18 +119,21 @@
         public function attachThemeAssets( Controller $pageController ){
             // header and CSS items
             $pageController->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
-            $pageController->addHeaderItem( $this->getHelper('html')->css('compiled/toj-min.css', self::PACKAGE_HANDLE) );
+            $pageController->addHeaderItem( $this->getHelper('html')->css('compiled/toj.css', self::PACKAGE_HANDLE) );
             $pageController->addHeaderItem( $this->getHelper('html')->javascript('compiled/modernizr.js', self::PACKAGE_HANDLE) );
             
             // ie8 stylesheet
             $ieShims = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('compiled/elderly/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
             $pageController->addHeaderItem( $ieShims );
 
-            if( DEPLOYMENT_STATUS_PRODUCTION === true ){
+            // app js
+            $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj.js', self::PACKAGE_HANDLE)) );
+
+            /*if( DEPLOYMENT_STATUS_PRODUCTION === true ){
                 $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-min.js', self::PACKAGE_HANDLE)) );
             }else{
                 $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj-dev.js', self::PACKAGE_HANDLE)) );
-            }
+            }*/
         }
         
         

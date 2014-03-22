@@ -11,7 +11,7 @@ module.exports.buildSettings = function(grunt, _configs){
     _configs.concat.toj = { files: {} };
 
     // theme
-    _configs.concat.toj.files[ pkgPath('js/compiled/<%= filename %>.js') ] = [
+    _configs.concat.toj.files[ pkgPath('js/compiled/toj.js') ] = [
         pkgPath('js/libs/*.js'),
         pkgPath('js/session_storage.js'),
         pkgPath('js/app.js')
@@ -38,7 +38,7 @@ module.exports.buildSettings = function(grunt, _configs){
     };
 
     var _uglifyTargets = [
-        pkgPath('js/compiled/<%= filename %>.js'),
+        pkgPath('js/compiled/toj.js'),
         pkgPath('js/compiled/parallax.js'),
         pkgPath('js/compiled/modernizr.js')
     ];
@@ -52,11 +52,11 @@ module.exports.buildSettings = function(grunt, _configs){
     _configs.sass.toj = {
         options: {
             style: 'compressed',
-            compass: true
+            compass: false // @todo: auto-install compass in Vagrant to enable
         },
         files: [
             // theme
-            {src: [pkgPath('css/build_manifest.scss')], dest: pkgPath('css/compiled/<%= filename %>-min.css')},
+            {src: [pkgPath('css/build_manifest.scss')], dest: pkgPath('css/compiled/toj.css')},
             // parallax
             {src: [pkgPath('css/independent/parallax.scss')], dest: pkgPath('css/compiled/parallax.css')},
             // singlepage: current

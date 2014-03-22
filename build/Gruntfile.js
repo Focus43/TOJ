@@ -7,6 +7,7 @@ module.exports = function(grunt){
         pkg      : grunt.file.readJSON('package.json'),
         banner   : '/*! Town Of Jackson; Build: v<%= pkg.version %>; Author: <%= pkg.author.name %> */\n',
         filename : '%<= pkg.name %>',
+        bump     : {options: {commit: false, push: false}},
         concat   : {},
         strip    : {},
         uglify   : {},
