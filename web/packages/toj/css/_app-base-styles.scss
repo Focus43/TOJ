@@ -69,7 +69,7 @@ span.badge {font-weight:100;letter-spacing:1px;font-family: "Helvetica Neue", He
 
 #sidebarLeft {left:0;
   .inner {padding:0;
-    a {color:#92bdd6;}
+    a {color:$sidebarLinkColor;}
     .panel {border:0;margin-bottom:0;color:#fff;background-color:#1d1d1d;@include rounded(0);
       .panel-heading {border-color:#444;background:#2d2d2d;color:inherit;@include rounded(0);}
       ul.list-group li {background:none;border-color:#333;}
@@ -317,7 +317,7 @@ table[id*="eventTable"] {background:#fff;
 
 #pageBackgroundImage {overflow:hidden;
   span.backStretch {
-    @include cssAnimation(backgroundScaler 4s 1 normal);
+    @include cssAnimation(backgroundScaler 1.75s ease);
   }
 }
 

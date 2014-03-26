@@ -38,18 +38,35 @@
 
                             <!-- actual page content -->
                             <div id="cPageContent">
-                                <?php Loader::packageElement('theme/landing_page_header', 'toj'); ?>
-                                <div id="areaTop" class="row">
-                                    <div class="col-sm-12">
-                                        <?php $a = new Area('Top Area'); $a->setCustomTemplate('autonav', 'agency_subnav.php'); $a->display($c); ?>
+                                <?php Loader::packageElement('theme/landing_page_header', 'toj', array('suppressTitlebar' => true)); ?>
+                                <div class="unpad-lg">
+                                    <div id="areaTop" class="row">
+                                        <div class="col-sm-12">
+                                            <?php $a = new Area('Top Area'); $a->setCustomTemplate('autonav', 'agency_subnav.php'); $a->display($c); ?>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!--<div class="row">
                                     <div class="col-sm-8">
                                         <?php $a = new Area('Left Content'); $a->display($c); ?>
                                     </div>
                                     <div class="col-sm-4">
                                         <?php $a = new Area('Right Content'); $a->display($c); ?>
+                                    </div>
+                                </div>-->
+
+                                <div class="body-content unpad-lg">
+                                    <div class="tabular">
+                                        <div class="left cellular">
+                                            <div class="column-content">
+                                                <?php $a = new Area('Left Content'); $a->display($c); ?>
+                                            </div>
+                                        </div>
+                                        <div class="right cellular">
+                                            <div class="column-content">
+                                                <?php $a = new Area('Right Content'); $a->display($c); ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

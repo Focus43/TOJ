@@ -19,6 +19,7 @@
         </div>
     </div>
 
+    <?php if( ! $suppressTitlebar ): ?>
     <div class="pageTitle row">
         <div class="col-sm-12">
             <?php if( $showAuthor === true ): ?>
@@ -31,5 +32,6 @@
             <h1 class="<?php echo $titleClass; ?>"><?php echo Page::getCurrentPage()->getCollectionName(); ?> <?php if(!($hideDescription === true)): ?><small class="visible-desktop"><?php echo Page::getCurrentPage()->getCollectionDescription(); ?></small><?php endif; ?></h1>
         </div>
     </div>
+    <?php endif; ?>
 
 </div>
