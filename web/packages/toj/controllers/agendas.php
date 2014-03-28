@@ -1,17 +1,16 @@
-<?php
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 
     class AgendasController extends TojPageController {
 
         protected $includeThemeAssets = true,
                   $itemsPerPage       = 20;
 
-        public function on_start(){
-            parent::on_start();
-            $this->set('backgroundImage', $this->getPageBackgroundImageURL());
-        }
 
-
+        /**
+         * If using the view() public function, make sure to call the parent::view().
+         */
         public function view(){
+            parent::view();
             $this->set('optionList', array('_all_' => 'All Meeting Agendas') + $this->agendaTypesList());
             $this->set('agendaList', $this->pageListObj()->getPage());
         }

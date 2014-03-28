@@ -1,22 +1,21 @@
-<?php
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 
     class CurrentController extends TojPageController {
 
         protected $includeThemeAssets   = true,
                   $newsPostItemsPerPage = 8;
 
-        public function on_start(){
-            parent::on_start();
-            $this->set('backgroundImage', $this->getPageBackgroundImageURL());
 
-            // single page css
-            $this->addHeaderItem( $this->getHelper('html')->css('compiled/singlepage-current.css', 'toj') );
-            // include the masonry gallery script from the masonry_grid package
-            $this->addFooterItem( $this->getHelper('html')->javascript('standalones/masonry.pkgd.min.js', 'toj') );
-        }
-
-
+        /**
+         * If using the view() public function, make sure to call the parent::view().
+         */
         public function view(){
+            parent::view();
+
+            // css + js assets
+            $this->addHeaderItem( $this->getHelper('html')->css('compiled/singlepage-current.css', 'toj') );
+            $this->addFooterItem( $this->getHelper('html')->javascript('single_pages/current.js', 'toj') );
+
             $alertsList = $this->alertsPageList()->get();
 
             $this->set('criticals', array_filter($alertsList, function( $pageObj ){

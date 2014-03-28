@@ -11,20 +11,53 @@ module.exports.buildSettings = function(grunt, _configs){
     _configs.concat.toj = { files: {} };
 
     // theme
-    _configs.concat.toj.files[ pkgPath('js/compiled/toj.js') ] = [
-        pkgPath('js/libs/*.js'),
-        pkgPath('js/session_storage.js'),
-        pkgPath('js/app.js')
+//    _configs.concat.toj.files[ pkgPath('js/compiled/toj.js') ] = [
+//        pkgPath('js/libs/*.js'),
+//        pkgPath('js/session_storage.js'),
+//        pkgPath('js/app.js')
+//    ];
+    _configs.concat.toj.files[ pkgPath('js/application.js') ] = [
+        pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js'),
+        pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js'),
+        pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/modal.js'),
+        pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/tooltip.js'),
+        pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/popover.js'),
+        pkgPath('bower_components/simpleWeather/jquery.simpleWeather.js'),
+        pkgPath('js/build_src/custom_components/session_storage.js'),
+        pkgPath('js/build_src/modernizr-rules.js'),
+        pkgPath('js/build_src/application.js')
     ];
 
     // homepage
-    _configs.concat.toj.files[ pkgPath('js/compiled/parallax.js') ] = [
-        pkgPath('js/home/*.js')
+//    _configs.concat.toj.files[ pkgPath('js/compiled/parallax.js') ] = [
+//        pkgPath('js/home/*.js')
+//    ];
+    _configs.concat.toj.files[ pkgPath('js/home-parallax.js') ] = [
+        pkgPath('bower_components/gsap/src/uncompressed/TweenLite.js'),
+        pkgPath('bower_components/gsap/src/uncompressed/plugins/CSSPlugin.js'),
+        pkgPath('bower_components/gsap/src/uncompressed/easing/EasePack.js'),
+        pkgPath('bower_components/perfect-scrollbar/src/jquery.mousewheel.js'),
+        pkgPath('bower_components/perfect-scrollbar/src/perfect-scrollbar.js'),
+        pkgPath('js/build_src/home-parallax.js')
     ];
 
     // modernizr
-    _configs.concat.toj.files[ pkgPath('js/compiled/modernizr.js') ] = [
-        pkgPath('js/modernizr/*.js')
+//    _configs.concat.toj.files[ pkgPath('js/compiled/modernizr.js') ] = [
+//        pkgPath('js/modernizr/*.js')
+//    ];
+    _configs.concat.toj.files[ pkgPath('js/modernizr.js') ] = [
+        pkgPath('js/build_src/custom_components/modernizr.min.js')
+    ];
+
+    // single page: current
+    _configs.concat.toj.files[ pkgPath('js/single_pages/current.js') ] = [
+        pkgPath('bower_components/masonry/dist/masonry.pkgd.js'),
+        pkgPath('js/build_src/single_pages/current.js')
+    ];
+
+    // single page: agendas
+    _configs.concat.toj.files[ pkgPath('js/single_pages/agendas.js') ] = [
+        pkgPath('js/build_src/single_pages/agendas.js')
     ];
 
 
@@ -32,7 +65,7 @@ module.exports.buildSettings = function(grunt, _configs){
     _configs.jshint.toj = {
         options: {},
         files: {
-            src: [pkgPath('js/*.js'), pkgPath('js/home/parallax.js')]
+            src: [pkgPath('js/build_src/*.js')]
         }
     };
 
@@ -53,31 +86,25 @@ module.exports.buildSettings = function(grunt, _configs){
         files: {}
     };
 
-    var _targets = [
-        pkgPath('js/compiled/toj.js'),
-        pkgPath('js/compiled/parallax.js'),
-        pkgPath('js/compiled/modernizr.js')
-    ];
-
-    for( var i = 0; i < _targets.length; i++ ){
-        _configs.strip.toj.files[ _targets[i] ] = _targets[i];
-        _configs.uglify.toj.files[ _targets[i] ] = _targets[i];
-    };
+    Object.keys(_configs.concat.toj.files).forEach(function(script){
+        _configs.strip.toj.files[ script ] = script;
+        _configs.uglify.toj.files[ script ] = script;
+    });
 
 
     /////////////////////////////// SASS BUILDS ///////////////////////////////
     _configs.sass.toj = {
         options: {
             style: 'compressed',
-            compass: false // @todo: auto-install compass in Vagrant to enable
+            compass: true // @todo: might need to update Vagrantfile to auto-install compass
         },
         files: [
             // theme
-            {src: [pkgPath('css/build_manifest.scss')], dest: pkgPath('css/compiled/toj.css')},
+            {src: [pkgPath('css/build_src/manifest.scss')], dest: pkgPath('css/application.css')}
             // parallax
-            {src: [pkgPath('css/independent/parallax.scss')], dest: pkgPath('css/compiled/parallax.css')},
+            //{src: [pkgPath('css/independent/parallax.scss')], dest: pkgPath('css/compiled/parallax.css')},
             // singlepage: current
-            {src: [pkgPath('css/independent/singlepage-current.scss')], dest: pkgPath('css/compiled/singlepage-current.css')}
+            //{src: [pkgPath('css/independent/singlepage-current.scss')], dest: pkgPath('css/compiled/singlepage-current.css')}
         ]
     };
 

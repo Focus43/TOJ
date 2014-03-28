@@ -47,6 +47,15 @@
                 }
             }
         }
+
+
+        /**
+         * Set the page background image attribute. On public pages where a customizable
+         * background is available, make sure this is called by the child class.
+         */
+        public function view(){
+            $this->set('backgroundImage', $this->getPageBackgroundImageURL());
+        }
         
         
         /**
@@ -119,15 +128,15 @@
         public function attachThemeAssets( Controller $pageController ){
             // header and CSS items
             $pageController->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
-            $pageController->addHeaderItem( $this->getHelper('html')->css('compiled/toj.css', self::PACKAGE_HANDLE) );
-            $pageController->addHeaderItem( $this->getHelper('html')->javascript('compiled/modernizr.js', self::PACKAGE_HANDLE) );
+            $pageController->addHeaderItem( $this->getHelper('html')->css('application.css', self::PACKAGE_HANDLE) );
+            $pageController->addHeaderItem( $this->getHelper('html')->javascript('modernizr.js', self::PACKAGE_HANDLE) );
             
             // ie8 stylesheet
             $ieShims = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('compiled/elderly/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
             $pageController->addHeaderItem( $ieShims );
 
             // app js
-            $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('compiled/toj.js', self::PACKAGE_HANDLE)) );
+            $pageController->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('application.js', self::PACKAGE_HANDLE)) );
 
             // include live reload for for grunt watch!
             if(isset($_SERVER['VAGRANT_VM']) && ((bool) $_SERVER['VAGRANT_VM'] === true)){

@@ -1,12 +1,7 @@
-<?php
+<?php defined('C5_EXECUTE') or die("Access Denied.");
 
     class FullWidthPageTypeController extends TojPageController {
         
         protected $includeThemeAssets = true;
-
-        public function on_start(){
-            $this->set('backgroundImage', $this->getPageBackgroundImageURL());
-            parent::on_start();
-        }
         
     }

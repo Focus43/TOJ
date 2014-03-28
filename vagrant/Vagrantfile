@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
         :gems        => {
           "2.1.0"    => [
             {:name   => 'bundler'},
-            {:name   => 'sass'}
+            {:name   => 'compass'}
           ]
         }
       }]

@@ -1,0 +1,25 @@
+// Fonts
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400italic,700italic|Roboto+Slab:400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Bitter:400,700,400italic);
+
+// Custom variables
+$imagePath              : "/packages/toj/images/";
+$contentMaxWidth        : 1134px;
+// Sidebar (left sidebar shows @ $screen-lg from bootstrap, right sidebar @ $screen-xl below)
+$sidebarLinkColor       : #92bdd6;
+$sidebarWidth           : 240px;
+$screen-xl              : 1334px;
+// Navbar (point at which navbar collapses)
+$grid-float-breakpoint  : 870px;
+
+// Dependencies
+@import 'compass'; // needs compass gem installed on system
+@import 'bootstrap-variables';
+@import 'bootstrap';
+@import 'font-awesome';
+@import 'custom-mixins';
+
+// Custom
+@import 'core';
+@import 'page-types';
+@import 'media-queries';
