@@ -1,0 +1,8 @@
+.flexry-expanded {position:relative;width:100%;}
+.flexry-expanded .flexry-expanded-item {position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:50% 50%;}
+.flexry-expanded .flexry-expanded-item .flexry-expanded-inner {position:relative;width:100%;height:100%;}
+.flexry-expanded .flexry-expanded-item .flexry-expanded-inner .tabular {display:table;width:100%;height:100%;text-align:center;}
+.flexry-expanded .flexry-expanded-item .flexry-expanded-inner .cellular {display:table-cell;height:100%;width:100%;vertical-align:middle;}
+.flexry-expanded .flexry-expanded-item .flexry-expanded-inner .meta {display:inline-block;max-width:90%;}
+.flexry-expanded .flexry-expanded-item .flexry-expanded-inner .meta .title {font-size:190%;color:#fff;text-shadow:0 1px 0 #000;}
+.flexry-expanded .flexry-expanded-item .flexry-expanded-inner .meta span:empty {display:none;}

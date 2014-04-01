@@ -65,10 +65,22 @@
                                         <div class="right cellular">
                                             <div class="column-content">
                                                 <!-- custom news list for all departments -->
-                                                <h3>Recent</h3>
-                                                <?php foreach($recentNews AS $pageObj){ ?>
-                                                    <a href="<?php echo View::url($pageObj->getCollectionPath()); ?>"><?php echo $pageObj->getCollectionName(); ?></a>
-                                                <?php } ?>
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h3>Department Posts</h3>
+                                                    </div>
+                                                    <div class="list-group">
+                                                        <?php foreach($recentNews AS $pageObj){ /** @var $pageObj Page */ ?>
+                                                            <a class="list-group-item" href="<?php echo View::url($pageObj->getCollectionPath()); ?>">
+                                                                <h5><?php echo $pageObj->getCollectionName(); ?></h5>
+                                                                <span><?php echo $pageObj->getCollectionDescription(); ?></span>
+                                                            </a>
+                                                        <?php } ?>
+                                                    </div>
+                                                    <div class="panel-footer">
+                                                        <a><i class="fa fa-plus-circle"></i> More</a>
+                                                    </div>
+                                                </div>
 
                                                 <?php $a = new Area('Right Content'); $a->display($c); ?>
                                             </div>
