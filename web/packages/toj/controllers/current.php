@@ -13,7 +13,7 @@
             parent::view();
 
             // css + js assets
-            $this->addHeaderItem( $this->getHelper('html')->css('compiled/singlepage-current.css', 'toj') );
+            $this->addHeaderItem( $this->getHelper('html')->css('unique/current.css', 'toj') );
             $this->addFooterItem( $this->getHelper('html')->javascript('single_pages/current.js', 'toj') );
 
             $alertsList = $this->alertsPageList()->get();

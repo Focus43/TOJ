@@ -132,7 +132,7 @@
             $pageController->addHeaderItem( $this->getHelper('html')->javascript('modernizr.js', self::PACKAGE_HANDLE) );
             
             // ie8 stylesheet
-            $ieShims = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('compiled/elderly/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
+            $ieShims = "<!--[if lt IE 9]>\n" . $this->getHelper('html')->css('unique/ie8.css', self::PACKAGE_HANDLE) . "\n<![endif]-->\n";
             $pageController->addHeaderItem( $ieShims );
 
             // app js

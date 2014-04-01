@@ -1,0 +1,29 @@
+@import 'compass';
+@import '../variables-mixins';
+@import '../bootstrap-variables';
+
+#agendasList {
+  .panel-heading select {margin-bottom:10px;}
+  .extra-content {text-align:center;
+    p:last-child {margin-bottom:0;}
+  }
+  .extra-content, .results {display:none;
+    &.active {display:block;}
+  }
+  .list-group-item {
+    .date {display:block;padding:4px 6px;margin:-10px -15px 10px;background:#f0ad4e;}
+    h4 {font-weight:bold;margin:3px 0 7px;text-transform:capitalize;}
+    p {margin-bottom:0;}
+  }
+  .panel-footer {text-align:center;
+    .text-success {display:none;}
+    &.complete {
+      .text-success {display:block;}
+      button {display:none;}
+    }
+  }
+}
+
+@media (min-width:$grid-float-breakpoint){
+  #agendasList .list-group-item .date {display:inline-block;position:absolute;right:0;top:0;font-size:12px;margin:0;}
+}

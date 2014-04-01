@@ -1,4 +1,3 @@
-
 /****************************** BASIC STUFF ******************************/
 html, body, #cL1 {height:100% !important;}
 body {font-family:'Roboto Slab', serif;background:#1d1d1d;/*url(#{$imagePath}textures/black_lozenge.png);background-attachment:fixed;*/}
@@ -100,8 +99,8 @@ html.flexry-lb-active, html.flexry-lb-active body {overflow:inherit !important;}
 /************************ Page container levels ************************/
 #cL1 {background:#1d1d1d;position:relative;z-index:1;@include transition(margin .25s ease-in);}
 // Large background container
-#pageBackgroundImage {background-color:#1d1d1d;display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include transition((left .25s ease-in, right .25s ease-in));
-  span.backStretch {position:absolute;top:0;right:0;bottom:0;left:0;}
+#pageBackgroundImage {height:100%;background-color:#1d1d1d;display:block;position:fixed;top:0;right:0;left:0;bottom:0;z-index:0;@include transition((left .25s ease-in, right .25s ease-in));
+  span.backStretch {display:block;top:0;right:0;bottom:0;left:0;width:100%;height:100% !important;}
 }
 // Container Level 2
 #cL2 {min-height:0;/*100%;*/position:relative;z-index:1;@include box-shadow(0 0 20px #000);}
@@ -127,7 +126,7 @@ html.flexry-lb-active, html.flexry-lb-active body {overflow:inherit !important;}
   }
 
   // navigation links
-  ul.nav {position:relative;
+  ul.nav {position:relative;margin-right:0;
     li {position:static;overflow:visible;
       // first level link
       a.level-1 {color:#e5e5e5;cursor:pointer;z-index:1;}
@@ -258,10 +257,11 @@ html.flexry-lb-active, html.flexry-lb-active body {overflow:inherit !important;}
 
 
 /****************************** Site settings (eg. translation, accessibility) ******************************/
-#siteSettings {position:fixed;top:-100%;z-index:11;left:15px;right:15px; @include linearGradientLight; @include box-shadow(0 0 10px #000);
+#siteSettings {position:fixed;top:-100%;z-index:11;left:15px;right:15px; @include linearGradientLight; @include box-shadow(0 0 10px #000);@include transition(top .35s ease);
   .inner {position:relative;padding:1.4em 15px;text-align:center;
     a.closer {padding:8px;display:block;position:absolute;top:0;right:0;text-align:center;color:#fff;font-size:1.4em;z-index:99; @include linearGradientDark;}
   }
+  &.opend {top:0;}
 }
 
 

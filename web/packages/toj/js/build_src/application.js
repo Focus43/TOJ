@@ -86,9 +86,8 @@
     /**
      * Accessibility settings
      */
-    $document.on('click', '#openSettings, #closeSettings', {overlay: $settings}, function(_clickEv){
-        var _top = _clickEv.data.overlay.data('toggled') === true ? '-100%' : 0;
-        $('#siteSettings').animate({top:_top}, 300, 'easeOutExpo').data('toggled', !_clickEv.data.overlay.data('toggled'));
+    $document.on('click', '#openSettings, #closeSettings', {el: $settings}, function(_clickEv){
+        _clickEv.data.el.toggleClass('opend');
     });
 
 

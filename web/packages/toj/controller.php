@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.69';
+	    protected $pkgVersion 			= '0.71';
 	
 		
 		/**
@@ -244,6 +244,15 @@
                 CollectionAttributeKey::add($this->attributeType('boolean'), array(
                     'akHandle'              => 'pin_top',
                     'akName'                => 'Pin As Top Post',
+                    'akIsSearchableIndexed' => 1,
+                    'akIsSearchable'        => 1
+                ), $this->packageObject());
+            }
+
+            if( !is_object(CollectionAttributeKey::getByHandle('department_post')) ){
+                CollectionAttributeKey::add($this->attributeType('boolean'), array(
+                    'akHandle'              => 'department_post',
+                    'akName'                => 'Department Post',
                     'akIsSearchableIndexed' => 1,
                     'akIsSearchable'        => 1
                 ), $this->packageObject());

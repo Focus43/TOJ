@@ -1,3 +1,14 @@
+// Custom variables
+$imagePath              : "/packages/toj/images/";
+$contentMaxWidth        : 1134px;
+// Sidebar (left sidebar shows @ $screen-lg from bootstrap, right sidebar @ $screen-xl below)
+$sidebarLinkColor       : #92bdd6;
+$sidebarWidth           : 240px;
+$screen-xl              : 1334px;
+// Point @ which navbar collapses
+$grid-float-breakpoint  : 870px;
+
+
 // @todo: refactor to use bootstrap 3's class="list-inline"
 @mixin tabbedList {
   list-style:none;margin:0;padding:0;@include clearfix;

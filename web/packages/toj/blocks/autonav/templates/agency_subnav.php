@@ -34,23 +34,23 @@ foreach ($navItems as $index => $ni) {
     }
 } ?>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
     <div class="navbar-header">
         <a class="navbar-toggle btn" data-toggle="collapse" data-target="#departmentNavList">
             <span class="sr-only">Toggle Agency Navigation</span>
             <i class="fa fa-bars"></i>
         </a>
-        <a class="navbar-brand visible-xs" href="<?php echo $departmentURL; ?>"><?php echo $departmentName; ?> Links</a>
+        <a class="navbar-brand" href="<?php echo $departmentURL; ?>"><?php echo $departmentName; ?></a>
     </div>
 
     <div id="departmentNavList" class="collapse navbar-collapse">
         <?php if( count($navItems) >= 1 ){
             //*** Step 2 of 2: Output menu HTML ***/
-            echo '<ul class="nav navbar-nav">'; //opens the top-level menu
+            echo '<ul class="nav navbar-nav navbar-right">'; //opens the top-level menu
 
             foreach ($navItems as $ni) {
                 echo '<li class="' . $ni->classes . ($ni->hasSubmenu ? ' dropdown' : '') . '">'; //opens a nav item
-                echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="' . ($ni->hasSubmenu ? 'dropdown-toggle ' : '') . $ni->classes . '"' . ($ni->hasSubmenu ? 'data-toggle="dropdown"' : '') . '>' . $ni->name . ($ni->hasSubmenu ? ' <i class="icon-chevron-down"></i>' : '') . '</a>';
+                echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="' . ($ni->hasSubmenu ? 'dropdown-toggle ' : '') . $ni->classes . '"' . ($ni->hasSubmenu ? 'data-toggle="dropdown"' : '') . '>' . $ni->name . ($ni->hasSubmenu ? ' &nbsp;<i class="fa fa-chevron-down"></i>' : '') . ($ni->target === '_blank' ? ' &nbsp;<i class="fa fa-external-link"></i>' : '') . '</a>';
                 if ($ni->hasSubmenu) {
                     echo '<ul class="dropdown-menu">'; //opens a dropdown sub-menu
                 } else {

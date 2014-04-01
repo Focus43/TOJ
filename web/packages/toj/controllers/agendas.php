@@ -11,6 +11,11 @@
          */
         public function view(){
             parent::view();
+
+            // css + js assets
+            $this->addHeaderItem( $this->getHelper('html')->css('unique/agendas.css', 'toj') );
+            $this->addFooterItem( $this->getHelper('html')->javascript('single_pages/agendas.js', 'toj') );
+
             $this->set('optionList', array('_all_' => 'All Meeting Agendas') + $this->agendaTypesList());
             $this->set('agendaList', $this->pageListObj()->getPage());
         }

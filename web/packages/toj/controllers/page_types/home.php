@@ -9,7 +9,7 @@
          */
         public function view(){
             parent::view();
-            $this->addFooterItem( $this->getHelper('html')->css('compiled/parallax.css', self::PACKAGE_HANDLE) );
+            $this->addFooterItem( $this->getHelper('html')->css('unique/home-parallax.css', self::PACKAGE_HANDLE) );
             $this->addFooterItem( $this->jsAsync($this->getHelper('html')->javascript('home-parallax.js', self::PACKAGE_HANDLE)) );
         }
         

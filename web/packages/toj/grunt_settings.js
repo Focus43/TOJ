@@ -11,17 +11,14 @@ module.exports.buildSettings = function(grunt, _configs){
     _configs.concat.toj = { files: {} };
 
     // theme
-//    _configs.concat.toj.files[ pkgPath('js/compiled/toj.js') ] = [
-//        pkgPath('js/libs/*.js'),
-//        pkgPath('js/session_storage.js'),
-//        pkgPath('js/app.js')
-//    ];
     _configs.concat.toj.files[ pkgPath('js/application.js') ] = [
         pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js'),
         pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js'),
+        pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/dropdown.js'),
         pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/modal.js'),
         pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/tooltip.js'),
         pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/popover.js'),
+        pkgPath('bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/alert.js'),
         pkgPath('bower_components/simpleWeather/jquery.simpleWeather.js'),
         pkgPath('js/build_src/custom_components/session_storage.js'),
         pkgPath('js/build_src/modernizr-rules.js'),
@@ -29,9 +26,6 @@ module.exports.buildSettings = function(grunt, _configs){
     ];
 
     // homepage
-//    _configs.concat.toj.files[ pkgPath('js/compiled/parallax.js') ] = [
-//        pkgPath('js/home/*.js')
-//    ];
     _configs.concat.toj.files[ pkgPath('js/home-parallax.js') ] = [
         pkgPath('bower_components/gsap/src/uncompressed/TweenLite.js'),
         pkgPath('bower_components/gsap/src/uncompressed/plugins/CSSPlugin.js'),
@@ -42,9 +36,6 @@ module.exports.buildSettings = function(grunt, _configs){
     ];
 
     // modernizr
-//    _configs.concat.toj.files[ pkgPath('js/compiled/modernizr.js') ] = [
-//        pkgPath('js/modernizr/*.js')
-//    ];
     _configs.concat.toj.files[ pkgPath('js/modernizr.js') ] = [
         pkgPath('js/build_src/custom_components/modernizr.min.js')
     ];
@@ -98,15 +89,19 @@ module.exports.buildSettings = function(grunt, _configs){
             style: 'compressed',
             compass: true // @todo: might need to update Vagrantfile to auto-install compass
         },
-        files: [
-            // theme
-            {src: [pkgPath('css/build_src/manifest.scss')], dest: pkgPath('css/application.css')}
-            // parallax
-            //{src: [pkgPath('css/independent/parallax.scss')], dest: pkgPath('css/compiled/parallax.css')},
-            // singlepage: current
-            //{src: [pkgPath('css/independent/singlepage-current.scss')], dest: pkgPath('css/compiled/singlepage-current.css')}
+        files : [
+            // core
+            {src: [pkgPath('css/build_src/manifest.scss')], dest: pkgPath('css/application.css')},
+            // single pages
+            {
+                expand  : true,
+                cwd     : pkgPath('css/build_src'),
+                src     : ['unique/**.scss'],
+                dest    : pkgPath('css'),
+                ext     : '.css'
+            }
         ]
-    };
+    }
 
 
     /////////////////////////////// WATCH TASKS ///////////////////////////////
@@ -126,7 +121,7 @@ module.exports.buildSettings = function(grunt, _configs){
 
     _configs.watch.toj_css = {
         options : {livereload: 9090},
-        files   : [pkgPath('css/compiled/*.css')],
+        files   : [pkgPath('css/**/*.css')],
         tasks   : []
     };
 

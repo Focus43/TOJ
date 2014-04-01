@@ -38,22 +38,22 @@
 
                             <!-- actual page content -->
                             <div id="cPageContent">
-                                <?php Loader::packageElement('theme/landing_page_header', 'toj', array('suppressTitlebar' => true)); ?>
                                 <div class="unpad-lg">
                                     <div id="areaTop" class="row">
                                         <div class="col-sm-12">
-                                            <?php $a = new Area('Top Area'); $a->setCustomTemplate('autonav', 'agency_subnav.php'); $a->display($c); ?>
+                                            <?php $a = new Area('Subheader Pre-Nav'); $a->display($c); ?>
+                                            <?php
+                                                $bt = BlockType::getByHandle('autonav');
+                                                $bt->controller->orderBy                 = 'display_asc';
+                                                $bt->controller->displayPages 			 = 'third_level';
+                                                $bt->controller->displaySubPages 		 = 'all';
+                                                $bt->controller->displaySubPageLevels 	 = 'custom';
+                                                $bt->controller->displaySubPageLevelsNum = 1;
+                                                $bt->render('templates/agency_subnav');
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
-                                <!--<div class="row">
-                                    <div class="col-sm-8">
-                                        <?php $a = new Area('Left Content'); $a->display($c); ?>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <?php $a = new Area('Right Content'); $a->display($c); ?>
-                                    </div>
-                                </div>-->
 
                                 <div class="body-content unpad-lg">
                                     <div class="tabular">
@@ -64,6 +64,12 @@
                                         </div>
                                         <div class="right cellular">
                                             <div class="column-content">
+                                                <!-- custom news list for all departments -->
+                                                <h3>Recent</h3>
+                                                <?php foreach($recentNews AS $pageObj){ ?>
+                                                    <a href="<?php echo View::url($pageObj->getCollectionPath()); ?>"><?php echo $pageObj->getCollectionName(); ?></a>
+                                                <?php } ?>
+
                                                 <?php $a = new Area('Right Content'); $a->display($c); ?>
                                             </div>
                                         </div>

@@ -1,22 +1,3 @@
-<style type="text/css">
-    #agendasList .panel-heading select {margin-bottom:10px;}
-    #agendasList .extra-content {text-align:center;}
-    #agendasList .extra-content p:last-child {margin-bottom:0;}
-    #agendasList .extra-content, #agendasList .results {display:none;}
-    #agendasList .extra-content.active, #agendasList .results.active {display:block;}
-    #agendasList .list-group-item .date {display:block;padding:4px 6px;margin:-10px -15px 10px;background:#f0ad4e;}
-    #agendasList .list-group-item h4 {font-weight:bold;margin:3px 0 7px;text-transform:capitalize;}
-    #agendasList .list-group-item p {margin-bottom:0;}
-    #agendasList .panel-footer {text-align:center;}
-    #agendasList .panel-footer .text-success {display:none;}
-    #agendasList .panel-footer.complete .text-success {display:block;}
-    #agendasList .panel-footer.complete button {display:none;}
-
-    @media (min-width:870px){
-        #agendasList .list-group-item .date {display:inline-block;position:absolute;right:0;top:0;font-size:12px;margin:0;}
-    }
-</style>
-
 <div class="row">
     <div class="col-sm-12">
 
@@ -47,6 +28,5 @@
                 <strong class="text-success"><i class="fa fa-check-circle-o"></i> No more meetings to load...</strong>
             </div>
         </div>
-
     </div>
 </div>

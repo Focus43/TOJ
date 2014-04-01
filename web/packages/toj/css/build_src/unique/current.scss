@@ -1,4 +1,6 @@
-@import "../variables-mixins";
+@import 'compass';
+@import '../variables-mixins';
+@import '../bootstrap-variables';
 
 #cCurrent .alertGroup .alert i {padding-top:6px;}
 
@@ -10,11 +12,11 @@
     .list-group-item {display:block;
       h4 {font-weight:bold;margin:3px 0 7px;text-transform:capitalize;}
       span {margin-bottom:0;}
-      .fa-thumb-tack {position:absolute;top:10px;right:10px;color:#00cc66;margin-left:8px;@include cssTransform(rotate(30deg));}
+      .fa-thumb-tack {position:absolute;top:10px;right:10px;color:#00cc66;margin-left:8px;@include transform(rotate(30deg));}
     }
 
     &.grid {@include clearfix;
-      .list-group-item {background:none;width:50%;border:0;border-bottom:1px solid #ccc;@include rounded(0);
+      .list-group-item {background:none;width:50%;border:0;border-bottom:1px solid #ccc;@include border-radius(0);
         h4 {font-weight:bold;}
       }
     }
