@@ -63,7 +63,7 @@
                                         <!-- left column page content -->
                                         <div class="left cellular">
                                             <div class="column-content">
-                                                <?php $a = new Area('Left Content'); $a->display($c); ?>
+                                                <?php $a = new Area('Page Content'); /* deprecated: Area('Left Content') */ $a->display($c); ?>
                                             </div>
                                             <div class="column-content-viewing-posts">
                                                 <button class="btn btn-info toggle-posts minimize">Back To Page <i class="fa fa-angle-right"></i></button>
@@ -96,8 +96,6 @@
                                                         <a class="toggle-posts view-more"><i class="fa fa-plus-circle"></i> Load More</a>
                                                     </div>
                                                 </div>
-
-                                                <?php //$a = new Area('Right Content'); $a->display($c); ?>
                                             </div>
                                         </div>
                                     </div>

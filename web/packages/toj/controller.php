@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.83';
+	    protected $pkgVersion 			= '0.84';
 	
 		
 		/**

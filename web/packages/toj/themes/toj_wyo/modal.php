@@ -16,7 +16,7 @@
                 <h3><?php echo Page::getCurrentPage()->getCollectionName(); ?></h3>
             </div>
             <div class="modal-body">
-                <?php $a = new Area('Modal Content'); $a->display($c); ?>
+                <?php $a = new Area('Page Content'); /* deprecated: Area('Modal Content') */ $a->display($c); ?>
             </div>
         </div>
     </div>
