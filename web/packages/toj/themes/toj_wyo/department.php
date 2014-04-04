@@ -41,8 +41,11 @@
                                 <div class="unpad-lg">
                                     <div id="areaTop" class="row">
                                         <div class="col-sm-12">
-                                            <?php $a = new Area('Subheader Pre-Nav'); $a->display($c); ?>
                                             <?php
+                                                // editable area *above* navigation
+                                                $a = new Area('Top Area'); $a->display($c);
+
+                                                // automatic navigation for agencies
                                                 $bt = BlockType::getByHandle('autonav');
                                                 $bt->controller->orderBy                 = 'display_asc';
                                                 $bt->controller->displayPages 			 = 'third_level';
@@ -70,6 +73,8 @@
                                         <!-- right column -->
                                         <div class="right cellular">
                                             <div class="column-content">
+                                                <?php $a = new Area('Right Content'); $a->display($c); ?>
+
                                                 <div id="deptPostsContainer" class="panel panel-default" data-deptid="<?php echo $departmentRootID; ?>" data-deptpath="<?php echo $departmentRootPath; ?>">
                                                     <div class="panel-heading">
                                                         <h3>Department Posts</h3>
@@ -87,7 +92,7 @@
                                                     </div>
                                                 </div>
 
-                                                <?php $a = new Area('Right Content'); $a->display($c); ?>
+                                                <?php //$a = new Area('Right Content'); $a->display($c); ?>
                                             </div>
                                         </div>
                                     </div>

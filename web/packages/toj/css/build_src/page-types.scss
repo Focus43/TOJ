@@ -90,7 +90,7 @@ body.pt-department {
             img {max-width:100%;width:auto !important;height:auto !important;}
           }
           .column-content {padding:15px;
-            .panel {margin:-15px;border-left:0;border-right:0;@include border-radius(0);}
+            .panel {margin:0;/*margin:-15px -15px 0;*/border-left:0;border-right:0;@include border-radius(0);}
           }
           //.column-content-viewing-posts {padding:15px;display:none;}
         }
