@@ -57,28 +57,33 @@
 
                                 <div class="body-content unpad-lg">
                                     <div class="tabular">
+                                        <!-- left column page content -->
                                         <div class="left cellular">
                                             <div class="column-content">
                                                 <?php $a = new Area('Left Content'); $a->display($c); ?>
                                             </div>
+                                            <div class="column-content-viewing-posts">
+                                                <button class="btn btn-info toggle-posts minimize">Back To Page <i class="fa fa-angle-right"></i></button>
+                                            </div>
                                         </div>
+
+                                        <!-- right column -->
                                         <div class="right cellular">
                                             <div class="column-content">
-                                                <!-- custom news list for all departments -->
-                                                <div class="panel panel-default">
+                                                <div id="deptPostsContainer" class="panel panel-default" data-deptid="<?php echo $departmentRootID; ?>" data-deptpath="<?php echo $departmentRootPath; ?>">
                                                     <div class="panel-heading">
                                                         <h3>Department Posts</h3>
                                                     </div>
                                                     <div class="list-group">
-                                                        <?php foreach($recentNews AS $pageObj){ /** @var $pageObj Page */ ?>
-                                                            <a class="list-group-item" href="<?php echo View::url($pageObj->getCollectionPath()); ?>">
-                                                                <h5><?php echo $pageObj->getCollectionName(); ?></h5>
-                                                                <span><?php echo $pageObj->getCollectionDescription(); ?></span>
-                                                            </a>
-                                                        <?php } ?>
+                                                        <?php foreach($recentNews AS $pageObj){ /** @var $pageObj Page */
+                                                            Loader::packageElement('partials/department_post', 'toj', array(
+                                                                'pageObj' => $pageObj
+                                                            ));
+                                                        } ?>
                                                     </div>
                                                     <div class="panel-footer">
-                                                        <a><i class="fa fa-plus-circle"></i> More</a>
+                                                        <a class="toggle-posts expand"><i class="fa fa-plus-circle"></i> Expand</a>
+                                                        <a class="toggle-posts view-more"><i class="fa fa-plus-circle"></i> Load More</a>
                                                     </div>
                                                 </div>
 

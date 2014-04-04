@@ -1725,7 +1725,57 @@
     });
 
 
-    // hook into eventclick.schedulzier custom one
+    /**
+     * Load more news items department pages.
+     * @todo: cache the selectors; right now this is stupidly heavy
+     */
+    $('.toggle-posts').on('click.deptpagination', function(){
+        var $this           = $(this),
+            $bodyContent    = $('.body-content', '#cPageContent'),
+            $postsContainer = $('#deptPostsContainer');
+
+        // close the posts view?
+        if( $this.hasClass('minimize') ){
+            $bodyContent.removeClass('posts-view');
+            return;
+        }
+
+        // just expand the posts view?
+        if( $this.hasClass('expand') ){
+            $bodyContent.addClass('posts-view');
+        }
+
+        // if pagination has reached the end, then force stopping here
+        if( $postsContainer.data('all_posts_loaded') === true ){
+            return;
+        }
+
+        // if we're here, paginate...
+        var _deptRootID     = $postsContainer.attr('data-deptid'),
+            _deptPath       = $postsContainer.attr('data-deptpath'),
+            _page           = +($postsContainer.data('pagination') || 2);
+
+        // auto-incr pagination data even before querying
+        $postsContainer.data('pagination', _page + 1);
+
+        // load more posts via ajax
+        $.get(_deptPath + '_load_posts/' + _deptRootID + '/' + _page, function( _html ){
+            // if empty, all posts have been loaded
+            if( !_html.length ){
+                $this.off('click.deptpagination').empty().append('<strong class="text-success"><i class="fa fa-check-circle-o"></i> All Posts Loaded!</strong>');
+                $postsContainer.data('all_posts_loaded', true);
+                return;
+            }
+            // othwerise append to the DOM
+            $('.list-group', '#deptPostsContainer').append(_html);
+        }, 'html');
+    });
+
+
+    /**
+     * Hook into custom events emitted by schedulizer to show the
+     * event info in a modal window.
+     */
     $document.on('eventclick.schedulizer', function(clickEv, calEv){
         //console.log(clickEv);
         $.get($('#tojAppPaths').attr('data-tools') + 'schedulizer_event_view', {eventID: calEv.id}, function(_html){

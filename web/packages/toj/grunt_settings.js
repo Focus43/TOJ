@@ -109,6 +109,11 @@ module.exports.buildSettings = function(grunt, _configs){
         return _configs.concat.toj.files[key];
     }));
 
+    _configs.watch.options = {
+        spawn: false,
+        interval: 5007
+    }
+
     _configs.watch.toj_js = {
         files : _watchableJS,
         tasks : ['jshint:toj', 'newer:concat:toj']

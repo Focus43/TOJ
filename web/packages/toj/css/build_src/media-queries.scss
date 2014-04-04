@@ -82,7 +82,7 @@
   #primaryNav, #pageBackgroundImage {left:$sidebarWidth;}
   /************************* 1334+ *************************/
   @media (min-width:$screen-xl){
-    //#cL1 {margin-right:$sidebarWidth;}
-    //#primaryNav, #pageBackgroundImage {right:$sidebarWidth;}
+    #cL1 {margin-right:$sidebarWidth;}
+    #primaryNav, #pageBackgroundImage {right:$sidebarWidth;}
   }
 }

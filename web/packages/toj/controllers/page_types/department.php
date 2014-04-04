@@ -2,29 +2,81 @@
 
     class DepartmentPageTypeController extends TojPageController {
         
-        protected $includeThemeAssets = true;
+        protected $includeThemeAssets = true,
+                  $postsPerPagination = 8;
 
 
         public function view(){
             parent::view();
-            $this->set('recentNews', $this->newsPageList()->get(10));
+            $this->set('recentNews', $this->postsPageList()->getPage());
+            $this->set('departmentRootPath', BASE_URL . View::url($this->getDepartmentRootPageObj()->getCollectionPath()));
+            $this->set('departmentRootID', $this->getDepartmentRootPageObj()->getCollectionID());
+        }
+
+
+        /**
+         * Even with full page caching enabled, using this route avoids
+         * hitting the cache.
+         */
+        public function _load_posts( $departmentID, $pagination = 2 ){
+            if( ! ((int)$departmentID >= 1) ){
+                // @todo: error result
+                exit;
+            }
+            // otherwise, try and load posts
+            $pageListObj = $this->postsPageList(Page::getByID($departmentID));
+            $results      = $pageListObj->getPage( (int)$pagination );
+
+            foreach($results AS $pageObj){
+                Loader::packageElement('partials/department_post', 'toj', array(
+                    'pageObj' => $pageObj
+                ));
+            }
+            exit;
         }
 
 
         /**
          * Get a page list setup to filter by the 10 most recent news_post
          * pages underneath the top level department page.
+         * @param Page $pageObj Optionally inject a $pageObj to act as the root
+         * so we don't have to traverse up the entire site tree!
          * @return PageList
          */
-        protected function newsPageList(){
-            $ancestryList   = $this->pageIDAncestry();
-            $departmentRootPageObj = Page::getByID($ancestryList[2]);
-
-            $pageListObj    = new PageList();
-            $pageListObj->filterByPath($departmentRootPageObj->getCollectionPath());
+        protected function postsPageList( Page $pageObj = null ){
+            $deptRootPage = ($pageObj === null) ? $this->getDepartmentRootPageObj() : $pageObj;
+            $pageListObj = new PageList();
+            $pageListObj->filterByPath($deptRootPage->getCollectionPath());
             $pageListObj->filterByCollectionTypeHandle('department');
             $pageListObj->filter(false, '(ak_department_post = 1)');
+            $pageListObj->setItemsPerPage( $this->postsPerPagination );
             return $pageListObj;
+        }
+
+
+        /**
+         * Get the department root page, using the traversal method.
+         * @return Page
+         */
+        protected function getDepartmentRootPageObj(){
+            if( $this->_departmentRootPageObj === null ){
+                $this->_departmentRootPageObj = Page::getByID($this->getDepartmentRootID());
+            }
+            return $this->_departmentRootPageObj;
+        }
+
+
+        /**
+         * Get the ID of the department root page (aka, traverse the parent tree
+         * and find the third node down from the homepage).
+         * @return int
+         */
+        protected function getDepartmentRootID(){
+            if( $this->_departmentRootID === null ){
+                $ancestryList = $this->pageIDAncestry();
+                $this->_departmentRootID = $ancestryList[2];
+            }
+            return $this->_departmentRootID;
         }
 
 

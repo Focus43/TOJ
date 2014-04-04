@@ -308,20 +308,6 @@ table[id*="eventTable"] {background:#fff;
 }
 
 
-/****************************** Custom Animations ("Progressive enhancement") ******************************/
-// http://joshbroton.com/quick-fix-sass-mixins-for-css-keyframe-animations/
-// http://stackoverflow.com/questions/13010776/how-can-i-convert-this-css3-animation-into-a-sass-mixin
-@include keyframes(backgroundScaler){
-  from { @include transform(scale(1.1,1.1)); }
-  to { @include transform(scale(1,1)); }
-}
-
-#pageBackgroundImage {overflow:hidden;
-  span.backStretch {
-    @include animation(backgroundScaler 1.75s ease);
-  }
-}
-
 // HELPER STYLES FOR WHEN LOGGED INTO THE CMS AND EDITING
 body.cms-admin {
   .sidebars, #primaryNav {top:49px;}
