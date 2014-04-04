@@ -50,7 +50,7 @@ foreach ($navItems as $index => $ni) {
 
             foreach ($navItems as $ni) {
                 echo '<li class="' . $ni->classes . ($ni->hasSubmenu ? ' dropdown' : '') . '">'; //opens a nav item
-                echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="' . ($ni->hasSubmenu ? 'dropdown-toggle ' : '') . $ni->classes . '"' . ($ni->hasSubmenu ? 'data-toggle="dropdown"' : '') . '>' . $ni->name . ($ni->hasSubmenu ? ' &nbsp;<i class="fa fa-chevron-down"></i>' : '') . ($ni->target === '_blank' ? ' &nbsp;<i class="fa fa-external-link"></i>' : '') . '</a>';
+                echo '<a href="' . $ni->url . '" target="' . $ni->target . '" class="'. (($ni->cObj->getVersionObject()->ctHandle === 'modal') ? 'modalize': '') . ' ' . ($ni->hasSubmenu ? 'dropdown-toggle ' : '') . $ni->classes . '"' . ($ni->hasSubmenu ? 'data-toggle="dropdown"' : '') . '>' . $ni->name . ($ni->hasSubmenu ? ' &nbsp;<i class="fa fa-chevron-down"></i>' : '') . ($ni->target === '_blank' ? ' &nbsp;<i class="fa fa-external-link"></i>' : '') . '</a>';
                 if ($ni->hasSubmenu) {
                     echo '<ul class="dropdown-menu">'; //opens a dropdown sub-menu
                 } else {
