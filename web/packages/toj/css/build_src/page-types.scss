@@ -69,9 +69,10 @@ body.pt-department {
     .column-content {padding:15px;
       .panel {
         h3 {margin:0;}
-        .panel-footer {text-align:center;font-size:115%;}
+        .panel-footer {text-align:center;font-size:115%;border-top:0;}
       }
     }
+    .content-right-wrap {padding-bottom:15px;}
     .column-content-viewing-posts {padding:15px;display:none;}
     .toggle-posts {
       &.expand {display:none;}
@@ -90,9 +91,8 @@ body.pt-department {
             img {max-width:100%;width:auto !important;height:auto !important;}
           }
           .column-content {padding:15px;
-            .panel {margin:0;/*margin:-15px -15px 0;*/border-left:0;border-right:0;@include border-radius(0);}
+            .panel {margin:-15px;border-left:0;border-right:0;@include border-radius(0);}
           }
-          //.column-content-viewing-posts {padding:15px;display:none;}
         }
       }
 
@@ -111,14 +111,25 @@ body.pt-department {
           &.right {width:100%;}
         }
 
+        .content-right-wrap {display:none;}
+
         .toggle-posts {
           &.expand {display:none;}
           &.view-more {display:block;}
         }
       }
     }
+
+    // CMS edit mode on department pages
+    &.edit-mode {
+      .body-content .tabular .cellular .column-content .panel {
+        margin-top:0;
+      }
+    }
   }
 }
+
+
 
 
 /**************************************************************

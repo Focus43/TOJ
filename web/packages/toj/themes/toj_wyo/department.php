@@ -73,7 +73,7 @@
                                         <!-- right column -->
                                         <div class="right cellular">
                                             <div class="column-content">
-                                                <?php $a = new Area('Right Content'); $a->display($c); ?>
+                                                <?php $a = new Area('Right Content'); $a->setBlockWrapperStart('<div class="content-right-wrap">'); $a->setBlockWrapperEnd('</div>'); $a->display($c); ?>
 
                                                 <div id="deptPostsContainer" class="panel panel-default" data-deptid="<?php echo $departmentRootID; ?>" data-deptpath="<?php echo $departmentRootPath; ?>">
                                                     <div class="panel-heading">
@@ -85,6 +85,11 @@
                                                                 'pageObj' => $pageObj
                                                             ));
                                                         } ?>
+                                                        <?php if( empty($recentNews) ): ?>
+                                                            <div class="list-group-item">
+                                                                <h5>No Recent Posts</h5>
+                                                            </div>
+                                                        <?php endif; ?>
                                                     </div>
                                                     <div class="panel-footer">
                                                         <a class="toggle-posts expand"><i class="fa fa-plus-circle"></i> Expand</a>

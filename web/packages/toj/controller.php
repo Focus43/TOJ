@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.71';
+	    protected $pkgVersion 			= '0.83';
 	
 		
 		/**
@@ -103,6 +103,11 @@
 		 * @return void
 		 */
 		private function installAndUpdate(){
+            // Execute any custom tasks necessary for a per-version update. Re-getByHandle
+            // the package so we can inject the version being upgrade *TO*.
+            $this->runUpgradeTasks( Package::getByHandle('toj')->getPackageVersion() );
+
+            // Run all
 			$this->setupUserGroups()
                  ->setupAttributeTypes()
                  ->attributeTypeAssociations()
@@ -114,7 +119,7 @@
 				 ->setupSitePages()
                  ->setupFileSets();
 
-            // remove weather block, if installed
+            // Remove weather block, if installed
             $weatherBlockType = BlockType::getByHandle('weather_widget');
             if( $weatherBlockType instanceof BlockType ){
                 if( $weatherBlockType->canUninstall() ){
@@ -122,6 +127,34 @@
                 }
             }
 		}
+
+
+        /**
+         * Run per-version tasks. The version passed in is the version being upgraded *to*.
+         * @return TojPackage
+         */
+        private function runUpgradeTasks( $version ){
+            // Get the handle
+            $handle = sprintf('v%s', str_replace('.', '_', (string)(float)$version));
+            $klass  = sprintf('UpgradeTask_%s', $handle);
+
+            // Register for autoloading
+            Loader::registerAutoload(array(
+                $klass => array('library', "upgrade_task/{$handle}", $this->pkgHandle)
+            ));
+
+            // Test to see if the class exists (ie. was autoloaded)
+            if( class_exists($klass) ){
+                try {
+                    call_user_func(array($klass, 'run'));
+                }catch(Exception $e){
+                    throw new Exception("Tried executing upgrade_task {$handle} but failed.");
+                }
+            }
+
+            // Return package instance
+            return $this;
+        }
 		
 		
 		/**

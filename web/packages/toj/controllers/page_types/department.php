@@ -41,6 +41,7 @@
          * pages underneath the top level department page.
          * @param Page $pageObj Optionally inject a $pageObj to act as the root
          * so we don't have to traverse up the entire site tree!
+         * @todo: integrate modals?
          * @return PageList
          */
         protected function postsPageList( Page $pageObj = null ){
