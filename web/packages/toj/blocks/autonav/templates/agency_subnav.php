@@ -3,7 +3,7 @@
 $navItems = $controller->getNavItems();
 
 /*** STEP 1 of 2: Determine all CSS classes (only 2 are enabled by default, but you can un-comment other ones or add your own) ***/
-$departmentPage = Page::getCurrentPage();
+$departmentPage = Page::getByID($this->controller->displayPagesCID);
 $departmentName = $departmentPage->getCollectionName();
 $departmentURL  = View::url( $departmentPage->getCollectionPath() );
 
@@ -24,14 +24,6 @@ foreach ($navItems as $index => $ni) {
 
     //Put all classes together into one space-separated string
     $ni->classes = implode(" ", $classes);
-
-    if( $index === 0 && is_object($ni) ){
-        $departmentPage = Page::getByID( $ni->cObj->cParentID );
-        if( $departmentPage instanceof Page ){
-            $departmentName = $departmentPage->getCollectionName();
-            $departmentURL  = View::url( $departmentPage->getCollectionPath() );
-        }
-    }
 } ?>
 
 <nav class="navbar navbar-inverse">

@@ -48,7 +48,8 @@
                                                 // automatic navigation for agencies
                                                 $bt = BlockType::getByHandle('autonav');
                                                 $bt->controller->orderBy                 = 'display_asc';
-                                                $bt->controller->displayPages 			 = 'third_level';
+                                                $bt->controller->displayPages 			 = 'custom';
+                                                $bt->controller->displayPagesCID         = $departmentRootID;
                                                 $bt->controller->displaySubPages 		 = 'all';
                                                 $bt->controller->displaySubPageLevels 	 = 'custom';
                                                 $bt->controller->displaySubPageLevelsNum = 1;
