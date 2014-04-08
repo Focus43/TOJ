@@ -8,12 +8,12 @@
         #RewriteRule ^ http://townofjackson.com/page_not_found [R=301]
 
         # redirect anything with "police" in the domain to
-        #RewriteCond %{HTTP_HOST} ^((.*)police(.*))$ [NC]
-        #RewriteRule ^ http://townofjackson.com/services/police [L,R=301]
+        RewriteCond %{HTTP_HOST} ^((.*)police(.*))$ [NC]
+        RewriteRule ^ http://townofjackson.com/services/police [L,R=301]
 
         # redirect all domains to townofjackson.com
-        #RewriteCond %{HTTP_HOST} !^((townofjackson\.com)|localhost(.*))$ [NC]
-        #RewriteRule ^ http://townofjackson.com%{REQUEST_URI} [L,R=301]
+        RewriteCond %{HTTP_HOST} !^((townofjackson\.com)|localhost(.*))$ [NC]
+        RewriteRule ^ http://townofjackson.com%{REQUEST_URI} [L,R=301]
 
         RewriteBase /
 	    RewriteCond %{REQUEST_URI} !^/favicon.ico$
