@@ -237,7 +237,7 @@
         $.get(_deptPath + '_load_posts/' + _deptRootID + '/' + _page, function( _html ){
             // if empty, all posts have been loaded
             if( !_html.length ){
-                $this.off('click.deptpagination').empty().append('<strong class="text-success"><i class="fa fa-check-circle-o"></i> All Posts Loaded!</strong>');
+                $('.toggle-posts.view-more').empty().append('<strong class="text-success"><i class="fa fa-check-circle-o"></i> All Posts Loaded!</strong>');
                 $postsContainer.data('all_posts_loaded', true);
                 return;
             }
