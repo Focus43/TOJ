@@ -47,10 +47,11 @@
         protected function postsPageList( Page $pageObj = null ){
             $deptRootPage = ($pageObj === null) ? $this->getDepartmentRootPageObj() : $pageObj;
             $pageListObj = new PageList();
+            $pageListObj->setItemsPerPage( $this->postsPerPagination );
             $pageListObj->filterByPath($deptRootPage->getCollectionPath());
             $pageListObj->filterByCollectionTypeHandle('department');
             $pageListObj->filter(false, '(ak_department_post = 1)');
-            $pageListObj->setItemsPerPage( $this->postsPerPagination );
+            $pageListObj->sortByPublicDateDescending();
             return $pageListObj;
         }
 
