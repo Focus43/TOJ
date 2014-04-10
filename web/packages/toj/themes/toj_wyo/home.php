@@ -76,8 +76,11 @@
                                 endfor; ?>
                             </div>
 
-                            <?php Loader::packageElement('partials/recent_news', 'toj'); ?>
+                            <div id="centennialLogo">
+                                <a href="http://jacksonholecentennial.com/" target="_blank"><img src="<?php echo TOJ_IMAGES_URL; ?>centennial_logo.jpg" /></a>
+                            </div>
 
+                            <?php Loader::packageElement('partials/recent_news', 'toj'); ?>
                         </div>
                     </div>
                 </div>

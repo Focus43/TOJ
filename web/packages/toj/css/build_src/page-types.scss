@@ -33,6 +33,20 @@ body.pt-home {
       &:nth-child(even) {float:right;}
     }
   }
+
+  /**
+   * Temporary addition
+   */
+  #centennialLogo {text-align:center;padding-bottom:20px;
+    a {display:inline-block;margin:0 auto;
+      img {max-width:130px;}
+    }
+  }
+  @media screen and (min-width:$grid-float-breakpoint){
+    #centennialLogo {padding:0;top:0;left:0;position:absolute;
+      a img {max-width:100px;}
+    }
+  }
 }
 
 // animations for scaling in app buttons
