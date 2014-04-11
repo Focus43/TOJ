@@ -209,6 +209,12 @@ html.flexry-lb-active, html.flexry-lb-active body {overflow:inherit !important;}
       }
     }
   }
+
+  // App-style buttons for anywhere on the site (previously just the homepage)
+  .btn.btn-app-style {padding-top:16px;padding-bottom:16px;
+    i {display:block;margin:0 auto;font-size:165%;}
+    span {white-space:normal;}
+  }
 }
 
 

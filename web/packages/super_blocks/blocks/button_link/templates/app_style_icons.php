@@ -9,7 +9,7 @@
     }
 ?>
 
-    <a href="<?php echo $linkUrl; ?>" target="<?php echo $linkTarget; ?>" class="<?php echo $classes; ?>" style="<?php echo $bgStyle; ?>">
+    <a href="<?php echo $linkUrl; ?>" target="<?php echo $linkTarget; ?>" class="btn-app-style <?php echo $classes; ?>" style="<?php echo $bgStyle; ?>">
         <i class="fa <?php echo $this->controller->fontAwesomeIcon; ?>"></i>
         <span><?php echo $linkDisplayText; ?></span>
     </a>
