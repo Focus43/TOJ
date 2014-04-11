@@ -73,10 +73,10 @@
         protected $btTable 									= 'btFlexryGallery';
 		protected $btInterfaceWidth 						= '580';
 		protected $btInterfaceHeight						= '480';
-		protected $btCacheBlockRecord 						= false;
-		protected $btCacheBlockOutput 						= false;
-		protected $btCacheBlockOutputOnPost 				= false;
-		protected $btCacheBlockOutputForRegisteredUsers 	= false;
+		protected $btCacheBlockRecord 						= true;
+		protected $btCacheBlockOutput 						= true;
+		protected $btCacheBlockOutputOnPost 				= true;
+		protected $btCacheBlockOutputForRegisteredUsers 	= true;
 		protected $btCacheBlockOutputLifetime 				= CACHE_LIFETIME;
 
         // not persistable, just here for record setting
