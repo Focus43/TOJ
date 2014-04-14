@@ -68,7 +68,7 @@
     // weather data for sidebars
     $document.on('sidebar_left_open', function(){
         $.clientCache('weatherData', function( _task ){
-            $.simpleWeather({zipcode: '83002', unit: 'f', success: function(weather){
+            $.simpleWeather({location: '83002', unit: 'f', success: function(weather){
                 _task.resolve(weather);
             }});
         }, 'json').done(function( weather ){
