@@ -107,7 +107,9 @@ html.flexry-lb-active, html.flexry-lb-active body {overflow:inherit !important;}
 // Container Level 3
 #cL3 {padding:51px 15px 0;/*80px 45px 20px;*/}
 // Container Level 4
-#cL4 {margin:0 -15px;/*0 auto;*/max-width:$contentMaxWidth;}
+#cL4 {margin:0 -15px;/*0 auto;*/max-width:$contentMaxWidth;
+  .ccm-layout-cell {float:left;}
+}
 
 
 /************************ Main site navigation ************************/
