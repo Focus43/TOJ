@@ -41,6 +41,7 @@
             // hook into system events
             if( User::isLoggedIn() ){
                 Events::extend('on_page_update', 'TojPageEvents', 'onPageUpdate', "packages/{$this->pkgHandle}/libraries/system_event_hooks/page_events.php");
+                Events::extend('on_page_version_approve', 'TojPageEvents', 'onPageVersionApprove', "packages/{$this->pkgHandle}/libraries/system_event_hooks/page_events.php");
             }
 	    }
 		
