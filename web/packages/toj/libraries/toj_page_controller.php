@@ -128,7 +128,7 @@
         public function attachThemeAssets( Controller $pageController ){
             // header and CSS items
             $pageController->addHeaderItem('<meta id="tojAppPaths" data-js="/packages/toj/js/" data-tools="/tools/packages/toj/" data-images="/packages/toj/images/" />');
-            $pageController->addHeaderItem( $this->getHelper('html')->css('application.css', self::PACKAGE_HANDLE) );
+            $pageController->addHeaderItem( $this->getHelper('html')->css('application-uncache.css', self::PACKAGE_HANDLE) );
             $pageController->addHeaderItem( $this->getHelper('html')->javascript('modernizr.js', self::PACKAGE_HANDLE) );
             
             // ie8 stylesheet
