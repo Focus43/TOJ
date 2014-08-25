@@ -25,7 +25,7 @@ body.pt-home {
   #introLinks {color:#f1f1f1;text-align:center;margin-bottom:10px;@include clearfix;
     .ccm-block-styles {background:none !important;}
     .element {width:49%;float:left;margin-bottom:10px;
-      a {display:block;padding:1.2em 1em 1em;color:inherit;border:1px solid transparent;@include bgBlackOpaque80;background-clip:padding-box;@include border-radius(8px); @include box-shadow(0 0 4px #000);
+      a {display:block;padding:1.2em 1em 1em;color:inherit;border:1px solid transparent;@include bgBlackOpaque80;background-clip:padding-box;@include border-radius(8px);@include box-shadow(0 0 4px #000);
         i {display:block;margin:0 auto;font-size:2.9em;margin-bottom:.1em;}
         span {white-space:normal;max-width:70px;display:block;text-align:center;margin:0 auto;}
         &:hover {text-decoration:none;border:1px solid #fff;color:inherit;}
@@ -46,6 +46,17 @@ body.pt-home {
     #centennialLogo {padding:0;top:0;left:0;position:absolute;
       a img {max-width:100px;}
     }
+  }
+
+  /**
+   * Green Initiative
+   */
+  $greenBoxSpacing: $grid-gutter-width / 2;
+  #green-init {color:inherit;display:block;position:relative;margin-bottom:20px;padding:$greenBoxSpacing;background:rgba(255,255,255,0.65);@include border-radius(8px);@include box-shadow(0 0 4px #000);@include transition(all 0.35s ease);
+    i {position:absolute;font-size:6rem;left:-1.7rem;top:-0.95rem;color:lighten(#449d44, 15%);@include text-shadow(0 0 15px rgba(0,0,0,0.65));@include transform(rotateZ(-24deg));}
+    span {display:block;background:#449d44;color:#fff;font-size:1.9rem;font-weight:100;margin:(-$greenBoxSpacing) (-$greenBoxSpacing) $greenBoxSpacing;padding:10px 10px 10px 42px;@include border-radius(8px 8px 0 0);}
+    p {margin:0;}
+    &:hover {text-decoration:none;background:#fff;}
   }
 }
 

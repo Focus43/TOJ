@@ -76,11 +76,16 @@
                                 endfor; ?>
                             </div>
 
+                            <?php Loader::packageElement('partials/recent_news', 'toj'); ?>
+
+                            <a id="green-init" href="<?php echo $this->url('/services/environmental-initiatives'); ?>">
+                                <span><i class="fa fa-leaf"></i> Energy and Carbon Emissions Initiatives</span>
+                                <p>The Town of Jackson strives to save energy and cut carbon emissions wherever possible. Learn more about our solar panels, alternative fuel vehicles, electronic charging stations and other initiatives here.</p>
+                            </a>
+
                             <div id="centennialLogo">
                                 <a href="http://jacksonholecentennial.com/" target="_blank"><img src="<?php echo TOJ_IMAGES_URL; ?>centennial_logo.jpg" /></a>
                             </div>
-
-                            <?php Loader::packageElement('partials/recent_news', 'toj'); ?>
                         </div>
                     </div>
                 </div>
