@@ -11,6 +11,10 @@
         RewriteCond %{HTTP_HOST} ^((.*)police(.*))$ [NC]
         RewriteRule ^ http://townofjackson.com/services/police [L,R=301]
 
+        # redirect aspenhillcemetery.com
+        RewriteCond %{HTTP_HOST} ^((.*)aspenhillcemetery(.*))$ [NC]
+        RewriteRule ^ http://townofjackson.com/services/cemetery [L,R=301]
+
         # redirect all domains to townofjackson.com
         RewriteCond %{HTTP_HOST} !^((townofjackson\.com)|localhost(.*))$ [NC]
         RewriteRule ^ http://townofjackson.com%{REQUEST_URI} [L,R=301]
