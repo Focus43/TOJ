@@ -43,7 +43,7 @@ error_log
 /web/tools/*
 #/web/controllers/* #pagoda
 #/web/single_pages/*
-/web/models/*
+#/web/models/*
 
 # ignore sitemap.xml
 /web/sitemap.xml
