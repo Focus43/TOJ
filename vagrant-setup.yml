@@ -119,8 +119,8 @@
       php_install_xdebug: false
       php_install_phpunit: false
       php_install_composer: false
-      php_install_redis_ext: false
-      php_sessions_use_redis: false
+      php_install_redis_ext: true
+      php_sessions_use_redis: true
       when: install_php == true
 
     ######################################################################

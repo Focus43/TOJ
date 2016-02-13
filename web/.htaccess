@@ -3,9 +3,9 @@
 
         # redirects any requests for stuff on the old site (.cfm)
         # LEAVE COMMENTED OUT AND LET C5 ORGANICALLY ISSUE 404s
-        #RewriteCond %{REQUEST_URI} ^(.*)\.cfm [OR,NC]
-        #RewriteCond %{QUERY_STRING} fuseaction [NC]
-        #RewriteRule ^ http://townofjackson.com/page_not_found [R=301]
+        # RewriteCond %{REQUEST_URI} ^(.*)\.cfm [OR,NC]
+        # RewriteCond %{QUERY_STRING} fuseaction [NC]
+        # RewriteRule ^ http://townofjackson.com/page_not_found [R=301]
 
         # redirect anything with "police" in the domain to
         RewriteCond %{HTTP_HOST} ^((.*)police(.*))$ [NC]
@@ -16,7 +16,7 @@
         RewriteRule ^ http://townofjackson.com/services/cemetery [L,R=301]
 
         # redirect all domains to townofjackson.com
-        RewriteCond %{HTTP_HOST} !^((townofjackson\.com)|localhost(.*))$ [NC]
+        RewriteCond %{HTTP_HOST} !^((townofjackson\.com)|localhost(.*)|(.*)focusfortythree(.*))$ [NC]
         RewriteRule ^ http://townofjackson.com%{REQUEST_URI} [L,R=301]
 
         RewriteBase /
