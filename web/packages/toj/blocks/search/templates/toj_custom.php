@@ -20,7 +20,7 @@
 
 	<? if(strlen($query)==0){ ?>
 	<input name="search_paths[]" type="hidden" value="<?=htmlentities($baseSearchPath, ENT_COMPAT, APP_CHARSET) ?>" />
-	<? } else if (is_array($_REQUEST['search_paths'])) { 
+	<? } else if (is_array($_REQUEST['search_paths'])) {
 		foreach($_REQUEST['search_paths'] as $search_path){ ?>
 			<input name="search_paths[]" type="hidden" value="<?=htmlentities($search_path, ENT_COMPAT, APP_CHARSET) ?>" />
 	<?  }
@@ -45,6 +45,8 @@
                             $currentPageBody = $this->controller->highlightedExtendedMarkup($r->getBodyContent(), $query);?>
                             <li class="list-group-item">
                                 <h3><a href="<?=$r->getPath()?>" class="<?php echo (Collection::getByID($r->cID)->getVersionObject()->ctHandle === 'modal') ? 'modalize' : ''; ?>"><?=$r->getName()?></a></h3>
+                                <p>
+                                      <?php echo $->getCollectionDatePublic('M d, Y') ?>
                                 <p>
                                     <? if ($r->getDescription()) { ?>
                                         <?php  echo $this->controller->highlightedMarkup($tt->shortText($r->getDescription()),$query)?><br/>
