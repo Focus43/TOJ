@@ -45,9 +45,9 @@
                             $currentPageBody = $this->controller->highlightedExtendedMarkup($r->getBodyContent(), $query);?>
                             <li class="list-group-item">
                                 <h3><a href="<?=$r->getPath()?>" class="<?php echo (Collection::getByID($r->cID)->getVersionObject()->ctHandle === 'modal') ? 'modalize' : ''; ?>"><?=$r->getName()?></a></h3>
-
-                                        <?php  echo $this->controller->highlightedMarkup($r->getCollectionDatePublic('M d, Y'),$query)?><br/>
-
+                                <p>
+                                      <?php echo Page::getCurrentPage()->getCollectionDatePublic('M d, Y'); ?>
+                                <p>
                                     <? if ($r->getDescription()) { ?>
                                         <?php  echo $this->controller->highlightedMarkup($tt->shortText($r->getDescription()),$query)?><br/>
                                     <? } ?>
