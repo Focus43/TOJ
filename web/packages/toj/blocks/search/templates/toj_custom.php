@@ -46,7 +46,7 @@
                             <li class="list-group-item">
                                 <h3><a href="<?=$r->getPath()?>" class="<?php echo (Collection::getByID($r->cID)->getVersionObject()->ctHandle === 'modal') ? 'modalize' : ''; ?>"><?=$r->getName()?></a></h3>
                                 <p>
-                                      <?php echo $this->controller->highlightedMarkup$(->getCollectionDatePublic('M d, Y'),$query);?>
+                                      <?php echo $this->controller->highlightedMarkup(->getCollectionDatePublic('M d, Y'),$query)?>
                                 <p>
                                     <? if ($r->getDescription()) { ?>
                                         <?php  echo $this->controller->highlightedMarkup($tt->shortText($r->getDescription()),$query)?><br/>
