@@ -44,19 +44,14 @@
                         <? foreach($results as $r) {
                             $currentPageBody  = $this->controller->highlightedExtendedMarkup($r->getBodyContent(), $query);
                             $resultPageObject = Page::getByID($r->cID);
-                            print_r($r);
-                            print_r($resultPageObject);
-                            echo "\n\n";
-                            echo "PageObjectctHandle" . $resultPageObject->ctHandle;
-                            echo "\n\n";
-                            print_r($resultPageObject->getCollectionObject()->getVersionObject()->ctHandle);
-                            exit;
+                            $collectionObject = Collection::getByID($r->cID);
+                            $collectionVersionObject = $collectionObject->getVersionObject();
                         ?>
                             <li class="list-group-item">
-                                <h3><a href="<?=$r->getPath()?>" class="<?php echo ($resultPageObject->getVersionObject()->ctHandle === 'modal') ? 'modalize' : ''; ?>"><?=$r->getName()?></a></h3>
+                                <h3><a href="<?=$r->getPath()?>" class="<?php echo ($collectionVersionObject->ctHandle === 'modal') ? 'modalize' : ''; ?>"><?=$r->getName()?></a></h3>
                                 <p>
                                 <?php 
-                                    echo $resultPageObject->getVersionObject()->getCollectionDatePublic('M d, Y'); 
+                                    echo $resultPageObject->getCollectionDatePublic('M d, Y'); 
                                 ?>
                                 <p>
                                     <? if ($r->getDescription()) { ?>

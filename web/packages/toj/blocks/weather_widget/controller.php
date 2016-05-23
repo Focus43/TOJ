@@ -38,7 +38,7 @@
 		public function view(){
 		    $this->set('zipCode', $this->zipCode);
             $this->set('containerClass', "widget-{$this->bID}");
-            $this->set('toolsURL', $this->getBlockToolsURL('jquery.simpleWeather.min.js'));
+            $this->set('toolsURL', $this->getBlockToolsURL('simpleweather.min.js'));
 		}
 
 
