@@ -1,2 +1,2 @@
-# Town Of Jackson Site Package 2016 #
+# Town Of Jackson Site Package #
 

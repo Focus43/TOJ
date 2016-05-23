@@ -2,12 +2,41 @@
 
 For a more complete changelog you can always check out the [commit log](https://github.com/monkeecreate/jquery.simpleWeather/commits/master).
 
+## v3.1.0 - January 29 2016
+
+* Fixed location errors due to Yahoo removing geo.placefinder from their API. It has been replaced with geo.places. [#174](https://github.com/monkeecreate/jquery.simpleWeather/issues/174)
+* Fixed error callback to correctly return an error message. [#101](https://github.com/monkeecreate/jquery.simpleWeather/issues/101)
+
+## v3.0.2 - June 2 2014
+
+* Fixed result issue when more than one location was returned. [#90](https://github.com/monkeecreate/jquery.simpleWeather/issues/90)
+
+## v3.0.1 - May 22 2014
+
+* Fixed forecast thumbnail and image bug. [#88](https://github.com/monkeecreate/jquery.simpleWeather/issues/88)
+
+## v3.0 - May 17 2014
+
+* Complete rewrite! Removed over 100 lines of code without losing functionality.
+* Now < 4.0 kB in size.
+* Added forecast thumbnail image.
+* Removed tomorrow in favor of forecast.
+* Fixed http/https issue on API call [#79](https://github.com/monkeecreate/jquery.simpleWeather/pull/79) and images.
+* Hat tip to [@defvayne23](https://github.com/defvayne23) for a quick code review.
+
+## v2.7 - April 17 2014
+
+* Added gulp and a build/release process.
+* Fix for 3200 (not available) condition code and related image [#77](https://github.com/monkeecreate/jquery.simpleWeather/issues/77).
+* Fixed my assumption of query being present [#72](https://github.com/monkeecreate/jquery.simpleWeather/issues/72). Hat tip to [@rjackson](https://github.com/rjackson).
+* Some general code cleanup.
+
 ## v2.6 - February 26 2014
 
 * Encoding URI for API call.
 * Fixed formatting issues.
 * Fixed alt temps bug.
-* Hat tip to @defvayne23 for the suggestions.
+* Hat tip to [@defvayne23](https://github.com/defvayne23) for the suggestions.
 
 ## v2.5 - February 5 2014
 
