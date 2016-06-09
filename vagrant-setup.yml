@@ -69,8 +69,8 @@
             - { name: "DATABASE1_PASS", value: "{{ shared.dbpass }}" }
             - { name: "DATABASE1_NAME", value: "{{ shared.dbname }}" }
           php_env_vars:
-            - { name: "upload_max_filesize", value: "8M" }
-            - { name: "post_max_size", value: "8M" }
+            - { name: "upload_max_filesize", value: "55M" }
+            - { name: "post_max_size", value: "55M" }
             - { name: "max_input_time", value: "300" }
             - { name: "max_execution_time", value: "300" }
       when: install_apache == true

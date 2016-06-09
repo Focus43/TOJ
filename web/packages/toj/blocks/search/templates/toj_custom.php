@@ -20,7 +20,7 @@
 
 	<? if(strlen($query)==0){ ?>
 	<input name="search_paths[]" type="hidden" value="<?=htmlentities($baseSearchPath, ENT_COMPAT, APP_CHARSET) ?>" />
-	<? } else if (is_array($_REQUEST['search_paths'])) { 
+	<? } else if (is_array($_REQUEST['search_paths'])) {
 		foreach($_REQUEST['search_paths'] as $search_path){ ?>
 			<input name="search_paths[]" type="hidden" value="<?=htmlentities($search_path, ENT_COMPAT, APP_CHARSET) ?>" />
 	<?  }
@@ -42,9 +42,17 @@
                         </li>
                     <? }else{ ?>
                         <? foreach($results as $r) {
-                            $currentPageBody = $this->controller->highlightedExtendedMarkup($r->getBodyContent(), $query);?>
+                            $currentPageBody  = $this->controller->highlightedExtendedMarkup($r->getBodyContent(), $query);
+                            $resultPageObject = Page::getByID($r->cID);
+                            $collectionObject = Collection::getByID($r->cID);
+                            $collectionVersionObject = $collectionObject->getVersionObject();
+                        ?>
                             <li class="list-group-item">
-                                <h3><a href="<?=$r->getPath()?>" class="<?php echo (Collection::getByID($r->cID)->getVersionObject()->ctHandle === 'modal') ? 'modalize' : ''; ?>"><?=$r->getName()?></a></h3>
+                                <h3><a href="<?=$r->getPath()?>" class="<?php echo ($collectionVersionObject->ctHandle === 'modal') ? 'modalize' : ''; ?>"><?=$r->getName()?></a></h3>
+                                <p>
+                                <?php 
+                                    echo $resultPageObject->getCollectionDatePublic('M d, Y'); 
+                                ?>
                                 <p>
                                     <? if ($r->getDescription()) { ?>
                                         <?php  echo $this->controller->highlightedMarkup($tt->shortText($r->getDescription()),$query)?><br/>
