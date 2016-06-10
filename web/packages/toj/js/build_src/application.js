@@ -68,9 +68,17 @@
     // weather data for sidebars
     $document.on('sidebar_left_open', function(){
         $.clientCache('weatherData', function( _task ){
-            $.simpleWeather({location: '83002', unit: 'f', success: function(weather){
-                _task.resolve(weather);
-            }});
+            $.simpleWeather({
+                woeid: '2357536',
+                location: '', 
+                unit: 'f', 
+                success: function(weather){
+                    _task.resolve(weather);
+                },
+                error: function(error) {
+                    console.log(error)
+                }
+            });
         }, 'json').done(function( weather ){
                 $('.panel-body', '#sidebarLeft .weatherWidget').empty().append(function(){
                     return '<img src="'+weather.thumbnail+'" />'+weather.temp+'&deg;'+weather.units.temp+' &nbsp;<span class="badge">'+weather.currently+'</span>';
