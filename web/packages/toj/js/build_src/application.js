@@ -69,14 +69,15 @@
     $document.on('sidebar_left_open', function(){
         $.clientCache('weatherData', function( _task ){
             $.simpleWeather({
-                woeid: '2357536',
+                woeid: '12793681',
                 location: '', 
                 unit: 'f', 
                 success: function(weather){
+                    console.log(weather);
                     _task.resolve(weather);
                 },
                 error: function(error) {
-                    console.log(error)
+                    console.log(error);
                 }
             });
         }, 'json').done(function( weather ){
