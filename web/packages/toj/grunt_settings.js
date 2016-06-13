@@ -132,7 +132,7 @@ module.exports.buildSettings = function(grunt, _configs){
 
 
     /////////////////////////////// CUSTOM TASKS ///////////////////////////////
-    grunt.registerTask('toj_dev', ['jshint:toj', 'concat:toj', 'sass:toj', 'bump:minor']);
-    grunt.registerTask('toj_release', ['jshint:toj', 'concat:toj', 'strip:toj', 'uglify:toj', 'sass:toj', 'bump:major']);
+    grunt.registerTask('toj_dev', ['jshint:toj', 'concat:toj', 'sass:toj']);
+    grunt.registerTask('toj_release', ['jshint:toj', 'concat:toj', 'strip:toj', 'uglify:toj', 'sass:toj']);
 
 }

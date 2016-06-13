@@ -12,6 +12,7 @@ mysql-connector-license.txt
 /.settings/
 /.buildpath
 .project
+cache
 
 
 # ignore error log
