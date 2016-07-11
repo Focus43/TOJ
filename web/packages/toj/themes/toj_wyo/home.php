@@ -85,7 +85,7 @@
 
                             <div id="slide-facts">
                                 <a href="http://townofjackson.com/government/slide-facts/">
-                                    <img src="<?php echo TOJ_FILES_URL; ?>8314/6826/5402/JHSlideFactsLogo_black.png" />
+                                    <img src="<?php echo TOJ_FILES_URL; ?>3414/6826/5823/JHSlideFactsLogo_black.png" />
                                 </a>
                             </div>
                         </div>
