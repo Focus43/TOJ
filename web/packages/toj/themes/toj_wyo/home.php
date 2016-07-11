@@ -83,9 +83,9 @@
                                 <p>The Town of Jackson strives to save energy and cut carbon emissions wherever possible. Learn more about our solar panels, alternative fuel vehicles, electronic charging stations and other initiatives here.</p>
                             </a>
 
-                            <!-- <div id="centennialLogo">
-                                <a href="http://jacksonholecentennial.com/" target="_blank"><img src="<?php echo TOJ_IMAGES_URL; ?>centennial_logo.jpg" /></a>
-                            </div> -->
+                            <div id="slide-facts">
+                                <a href="http://townofjackson.com/government/slide-facts/" target="_blank"><img src="<?php echo TOJ_IMAGES_URL; ?>JHSlideFactsLogo_black.png" /></a>
+                            </div>
                         </div>
                     </div>
                 </div>
