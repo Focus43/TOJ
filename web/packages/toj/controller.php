@@ -4,7 +4,7 @@
 	
 	    protected $pkgHandle 			= 'toj';
 	    protected $appVersionRequired 	= '5.6.1.2';
-	    protected $pkgVersion 			= '0.84';
+	    protected $pkgVersion 			= '0.85';
 	
 		
 		/**
@@ -28,8 +28,10 @@
 		 * @return void
 		 */
 	    public function on_start(){
-	        define('TOJ_TOOLS_URL', BASE_URL . REL_DIR_FILES_TOOLS_PACKAGES . '/' . $this->pkgHandle . '/');
-			define('TOJ_IMAGES_URL', DIR_REL . '/packages/' . $this->pkgHandle . '/images/');
+	      define('TOJ_TOOLS_URL', BASE_URL . REL_DIR_FILES_TOOLS_PACKAGES . '/' . $this->pkgHandle . '/');
+			  define('TOJ_IMAGES_URL', DIR_REL . '/packages/' . $this->pkgHandle . '/images/');
+        define('TOJ_FILES_URL', BASE_URL . '/files/');
+        
 			
 			// autoload classes
 			Loader::registerAutoload(array(
