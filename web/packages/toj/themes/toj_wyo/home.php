@@ -32,11 +32,23 @@
             <?php Loader::packageElement('theme/primary_navigation', 'toj', array('c' => $c)); ?>
 
             <!-- parallax launcher! -->
-            <a id="launchParallax" class="hidden-sm hidden-xs" onclick="ExploreJackson.open();">
+            <!-- <a id="launchParallax" class="hidden-sm hidden-xs" onclick="ExploreJackson.open();">
                 <img class="img-responsive" src="<?php echo TOJ_IMAGES_URL; ?>explore_jackson.png" />
-            </a>
+            </a> -->
 
             <div id="cL3">
+                <div class="square-call left-call">
+                    <?php 
+                        $a = new Area('Square Call Left'); 
+                        $a->display($c);
+                    ?>
+                </div>
+                <div class="square-call right-call">
+                    <?php 
+                        $a = new Area('Square Call Right'); 
+                        $a->display($c);
+                    ?>
+                </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div id="cL4">
@@ -82,12 +94,12 @@
                                 <span><i class="fa fa-leaf"></i> Energy and Carbon Emissions Initiatives</span>
                                 <p>The Town of Jackson strives to save energy and cut carbon emissions wherever possible. Learn more about our solar panels, alternative fuel vehicles, electronic charging stations and other initiatives here.</p>
                             </a>
-
-                            <div id="slide-facts">
+                            
+                            <!-- <div id="slide-facts">
                                 <a href="http://townofjackson.com/government/slide-facts/">
                                     <img src="<?php echo TOJ_FILES_URL; ?>3414/6826/5823/JHSlideFactsLogo_black.png" />
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

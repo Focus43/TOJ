@@ -4,8 +4,6 @@
 body.pt-home {
   #cL4 {padding:20px 15px 5px;max-width:800px;}
 
-  #launchParallax {cursor:pointer;z-index:8;max-width:120px;display:block;position:absolute;top:50px;right:15px;}
-
   #tagLine {text-align:center;margin:45px 0 60px;
     #tojLogo {width:170px;display:block;margin:0 auto 20px;text-align:center;}
     h1 {position:relative;display:inline-block;left:65px;margin:0 auto;line-height:1em;color:#fff;text-align:left;text-shadow:0 1px 4px #000;
@@ -35,16 +33,35 @@ body.pt-home {
   }
 
   /**
-   * Temporary addition
+   * new square homepage editable block
    */
-  #slide-facts {text-align:center;padding-bottom:20px;
+  .square-call {
+    text-align: center;
+    padding-bottom: 20px;
+    cursor:pointer;
+    z-index:8;
+    max-width:120px;
+    display:block;
+    position:absolute;
+    .img-thumbnail{
+      border:none;
+    }
+    &.left-call{
+      left: 15px;
+    }
+    &.right-call{
+      right:15px;
+    }
     a {display:inline-block;margin:0 auto;
       img {max-width:130px;}
     }
   }
-  @media screen and (min-width:$grid-float-breakpoint){
-    #slide-facts {padding:0;top:0;left:0;position:absolute;
-      a img {max-width:100px;}
+
+
+  @media screen and (max-width:$grid-float-breakpoint){
+    .square-call {
+      position: relative;
+      top:15px;
     }
   }
 
