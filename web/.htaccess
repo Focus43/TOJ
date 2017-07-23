@@ -26,7 +26,15 @@
         # redirect jhslidefacts.com
         RewriteCond %{HTTP_HOST} ^((.*)slidefacts(.*))$ [NC]
         RewriteRule ^ http://townofjackson.com/government/slide-facts/ [L,R=301]
-        
+     
+        # redirect jacksonwy.gov
+        RewriteCond %{HTTP_HOST} ^((.*)jacksonwy(.*))$ [NC]
+        RewriteRule ^ http://townofjackson.com/ [L,R=301]
+
+        # redirect tojidlefree.org
+        RewriteCond %{HTTP_HOST} ^((.*)tojidlefree(.*))$ [NC]
+        RewriteRule ^ http://townofjackson.com/services/environmental-initiatives/idle/ [L,R=301]
+
         # redirect all domains to townofjackson.com
         RewriteCond %{HTTP_HOST} !^((townofjackson\.com)|localhost(.*)|(.*)focusfortythree(.*))$ [NC]
         RewriteRule ^ http://townofjackson.com%{REQUEST_URI} [L,R=301]
